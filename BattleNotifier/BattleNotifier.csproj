@@ -32,9 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="HtmlAgilityPack">
       <HintPath>..\HtmlAgilityPack\HtmlAgilityPack.1.4.6\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -143,6 +143,7 @@
     <Content Include="Assets\helmet_notify_icon.ico" />
     <Content Include="Assets\printer.ico" />
     <Content Include="Assets\printer.png" />
+    <EmbeddedResource Include="HtmlAgilityPack.dll" />
     <EmbeddedResource Include="Assets\smb_1-up.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
