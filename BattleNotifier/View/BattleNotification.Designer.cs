@@ -146,6 +146,7 @@
             this.HeadlineLinkLabel.TabIndex = 0;
             this.HeadlineLinkLabel.TabStop = true;
             this.HeadlineLinkLabel.Text = "Pob0984 by Pab";
+            this.HeadlineLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HeadlineLinkLabel_LinkClicked);
             // 
             // BattleNotification
             // 

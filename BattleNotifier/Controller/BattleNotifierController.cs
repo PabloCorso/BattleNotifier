@@ -7,6 +7,7 @@ using System.Linq;
 using System.Xml;
 using System.Timers;
 using BattleNotifier.Utils;
+using AppSettings = System.Configuration.ConfigurationManager;
 using Microsoft.Win32;
 
 namespace BattleNotifier.Controller
@@ -23,12 +24,6 @@ namespace BattleNotifier.Controller
         private bool currentNotified = false;
         private bool powerModeSuspended = false;
         private DateTime CurrentDateTime { get; set; }
-
-        private const string elmaonlineUrl = "http://elmaonline.net/";
-        private const string battlesUrl = elmaonlineUrl + "battles/";
-        private const string mapsUrl = elmaonlineUrl + "images/map/";
-        private const string levelUrl = elmaonlineUrl + "downloads/lev/";
-        private const string domiUrl = "http://elma.seamy.ru:8880/current_battle/";
 
         private IMain MainView { get; set; }
         private IMainPanel MainPanel { get { return MainView.MainPanel; } }
@@ -199,7 +194,7 @@ namespace BattleNotifier.Controller
         {
             try
             {
-                XmlDocument xmlDoc = WebRequestHelper.GetXmlFromUrl(domiUrl);
+                XmlDocument xmlDoc = WebRequestHelper.GetXmlFromUrl(AppSettings.AppSettings["CurrentBattleApiUrl"]);
 
 #if DEBUG
                 xmlDoc.Save(@"D:\Desktop\DomiTest.txt");
@@ -229,12 +224,12 @@ namespace BattleNotifier.Controller
 
                             battle.LevelUrl = document.DocumentNode.Descendants("a")
                                                                 .Select(e => e.GetAttributeValue("href", null))
-                                                                .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(levelUrl))
+                                                                .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(AppSettings.AppSettings["EOLLevelUrl"]))
                                                                 .FirstOrDefault();
 
                             battle.MapUrl = document.DocumentNode.Descendants("img")
                                                             .Select(e => e.GetAttributeValue("src", null))
-                                                            .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(mapsUrl))
+                                                            .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(AppSettings.AppSettings["EOLMapsUrl"]))
                                                             .FirstOrDefault();
                             eolDataLoaded = true;
                         }
@@ -319,7 +314,7 @@ namespace BattleNotifier.Controller
             Battle battle = new Battle()
             {
                 FileName = "Pob0989.lev",
-                MapUrl = "http://elmaonline.net/images/map/308356",
+                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + "308356",
                 Duration = 20,
                 Attributes = (BattleAttribute)15,
                 Type = 0,
@@ -336,7 +331,7 @@ namespace BattleNotifier.Controller
             Battle battle = new Battle()
             {
                 FileName = "WWWWWWWW.lev",
-                MapUrl = "http://elmaonline.net/images/map/308342",
+                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + "308342",
                 Duration = 10,
                 Attributes = (BattleAttribute)1023,
                 Type = (BattleType)2,

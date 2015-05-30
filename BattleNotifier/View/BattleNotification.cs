@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using BattleNotifier.Utils;
 using System.Drawing.Drawing2D;
+using System.Diagnostics;
 
 namespace BattleNotifier.View
 {
@@ -264,6 +265,12 @@ namespace BattleNotifier.View
                 mn.EndNotification();
                 mn = null;
             }
+        }
+
+        private void HeadlineLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Send the URL to the operating system.
+            Process.Start(e.Link.LinkData as string);
         }
     }
 }
