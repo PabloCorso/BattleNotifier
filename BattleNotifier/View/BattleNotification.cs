@@ -14,8 +14,8 @@ namespace BattleNotifier.View
 {
     public partial class BattleNotification : TransDialog
     {
-        MapNotification mn;
-        WMPLib.WindowsMediaPlayer player;
+        private MapNotification mn;
+        private WMPLib.WindowsMediaPlayer player;
         private int battleDuration;
         private string mapUrl;
         private Image map;
