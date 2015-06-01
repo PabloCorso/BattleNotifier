@@ -1,40 +1,69 @@
-﻿using System;
+﻿using BattleNotifier.Controller;
+using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace BattleNotifier.View
 {
-    public partial class MapNotification : TransDialog
+    public partial class MapNotification : Form
     {
         // TODO diferentes resolusiones de mapa. small medium big or ress.
-        // TODO fix map, bottom is cutted.
-        public MapNotification(Image map)
+        public MapNotification(int startHeight, int mapDesiredWidth)
         {
             InitializeComponent();
-            this.Width = map.Width;
-            this.Height = map.Height;
-            PictureBox.Image = map;
+            InitializePicture(mapDesiredWidth);
+            SetupDialogLocation(startHeight);
         }
 
-        public void EndNotification()
+        private void InitializePicture(int desiredWidth) 
         {
-            this.Close();
+            Image map = NotificationsController.Instance.Map;
+            int newWidth = desiredWidth;
+            int aux = (desiredWidth * 100) / map.Width;
+            int newHeight = (aux * map.Height) / 100;
+            Bitmap newImage = new Bitmap(newWidth, newHeight);
+            using (Graphics gr = Graphics.FromImage(newImage))
+            {
+                gr.SmoothingMode = SmoothingMode.HighQuality;
+                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr.DrawImage(map, new Rectangle(0, 0, newWidth, newHeight));
+            }
+
+            this.Width = newImage.Width;
+            this.Height = newImage.Height;
+            PictureBox.Width = Width;
+            PictureBox.Height = Height;
+
+            PictureBox.Image = newImage;
         }
 
-        private void MapNotificationTimer_Tick(object sender, EventArgs e)
+        private void SetupDialogLocation(int startHeight)
         {
-            MapNotificationTimer.Stop();
-            EndNotification();
-        }
+            StartPosition = FormStartPosition.Manual;
+            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
+            Left = screenWidth - Width;
+            Top = screenHeight - Height - startHeight - 20; ;
+        }        
 
         private void MapNotification_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Dispose();
         }
 
-        public int Interval
+        private delegate void BlankDelegate();
+        public void CloseForm()
         {
-            set { this.MapNotificationTimer.Interval = value; }
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new BlankDelegate(this.CloseForm));
+            }
+            else
+            {
+                this.Close();
+            }
         }
     }
 }

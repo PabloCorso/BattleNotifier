@@ -58,6 +58,8 @@
             this.BlackListChListBox = new System.Windows.Forms.CheckedListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ErrorLabel = new System.Windows.Forms.Label();
+            this.MapSizeDomainUpDown = new System.Windows.Forms.DomainUpDown();
+            this.mapSizeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NotificationDurationTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseDialogNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -229,7 +231,7 @@
             // PlaySoundCheckBox
             // 
             this.PlaySoundCheckBox.AutoSize = true;
-            this.PlaySoundCheckBox.Location = new System.Drawing.Point(303, 122);
+            this.PlaySoundCheckBox.Location = new System.Drawing.Point(303, 143);
             this.PlaySoundCheckBox.Name = "PlaySoundCheckBox";
             this.PlaySoundCheckBox.Size = new System.Drawing.Size(78, 17);
             this.PlaySoundCheckBox.TabIndex = 37;
@@ -253,7 +255,7 @@
             // 
             // Simulate1Button
             // 
-            this.Simulate1Button.Location = new System.Drawing.Point(305, 236);
+            this.Simulate1Button.Location = new System.Drawing.Point(300, 253);
             this.Simulate1Button.Name = "Simulate1Button";
             this.Simulate1Button.Size = new System.Drawing.Size(29, 23);
             this.Simulate1Button.TabIndex = 39;
@@ -265,7 +267,7 @@
             // 
             // SimulateBattle2Button
             // 
-            this.SimulateBattle2Button.Location = new System.Drawing.Point(340, 236);
+            this.SimulateBattle2Button.Location = new System.Drawing.Point(335, 253);
             this.SimulateBattle2Button.Name = "SimulateBattle2Button";
             this.SimulateBattle2Button.Size = new System.Drawing.Size(31, 23);
             this.SimulateBattle2Button.TabIndex = 40;
@@ -278,7 +280,7 @@
             // SetSoundButton
             // 
             this.SetSoundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SetSoundButton.Location = new System.Drawing.Point(376, 121);
+            this.SetSoundButton.Location = new System.Drawing.Point(376, 142);
             this.SetSoundButton.Name = "SetSoundButton";
             this.SetSoundButton.Size = new System.Drawing.Size(22, 18);
             this.SetSoundButton.TabIndex = 41;
@@ -289,7 +291,7 @@
             // 
             // CloseDialogNumericUpDown
             // 
-            this.CloseDialogNumericUpDown.Location = new System.Drawing.Point(336, 163);
+            this.CloseDialogNumericUpDown.Location = new System.Drawing.Point(336, 184);
             this.CloseDialogNumericUpDown.Maximum = new decimal(new int[] {
             99,
             0,
@@ -313,7 +315,7 @@
             // CloseDialogTimeCheckBox
             // 
             this.CloseDialogTimeCheckBox.AutoSize = true;
-            this.CloseDialogTimeCheckBox.Location = new System.Drawing.Point(303, 145);
+            this.CloseDialogTimeCheckBox.Location = new System.Drawing.Point(303, 166);
             this.CloseDialogTimeCheckBox.Name = "CloseDialogTimeCheckBox";
             this.CloseDialogTimeCheckBox.Size = new System.Drawing.Size(106, 17);
             this.CloseDialogTimeCheckBox.TabIndex = 43;
@@ -325,7 +327,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(306, 165);
+            this.label1.Location = new System.Drawing.Point(306, 186);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 13);
             this.label1.TabIndex = 44;
@@ -334,7 +336,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(373, 165);
+            this.label2.Location = new System.Drawing.Point(373, 186);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 45;
@@ -376,10 +378,35 @@
             this.ErrorLabel.Text = "With the current settings you will not have notifications";
             this.ErrorLabel.Visible = false;
             // 
+            // MapSizeDomainUpDown
+            // 
+            this.MapSizeDomainUpDown.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.MapSizeDomainUpDown.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.MapSizeDomainUpDown.Items.Add("small");
+            this.MapSizeDomainUpDown.Items.Add("norm");
+            this.MapSizeDomainUpDown.Items.Add("big");
+            this.MapSizeDomainUpDown.Location = new System.Drawing.Point(354, 117);
+            this.MapSizeDomainUpDown.Name = "MapSizeDomainUpDown";
+            this.MapSizeDomainUpDown.ReadOnly = true;
+            this.MapSizeDomainUpDown.Size = new System.Drawing.Size(44, 20);
+            this.MapSizeDomainUpDown.TabIndex = 49;
+            this.MapSizeDomainUpDown.TabStop = false;
+            // 
+            // mapSizeLabel
+            // 
+            this.mapSizeLabel.AutoSize = true;
+            this.mapSizeLabel.Location = new System.Drawing.Point(306, 119);
+            this.mapSizeLabel.Name = "mapSizeLabel";
+            this.mapSizeLabel.Size = new System.Drawing.Size(48, 13);
+            this.mapSizeLabel.TabIndex = 50;
+            this.mapSizeLabel.Text = "map size";
+            // 
             // MainPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.mapSizeLabel);
+            this.Controls.Add(this.MapSizeDomainUpDown);
             this.Controls.Add(this.ErrorLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.BlackListChListBox);
@@ -449,5 +476,7 @@
         private System.Windows.Forms.Label label3;
         internal System.Windows.Forms.TextBox SearchDesignerTextBox;
         private System.Windows.Forms.Label ErrorLabel;
+        private System.Windows.Forms.Label mapSizeLabel;
+        public System.Windows.Forms.DomainUpDown MapSizeDomainUpDown;
     }
 }

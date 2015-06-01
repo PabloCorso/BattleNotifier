@@ -9,6 +9,7 @@ using System.Timers;
 using BattleNotifier.Utils;
 using AppSettings = System.Configuration.ConfigurationManager;
 using Microsoft.Win32;
+using BattleNotifier.View;
 
 namespace BattleNotifier.Controller
 {

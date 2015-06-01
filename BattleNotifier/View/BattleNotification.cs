@@ -1,24 +1,17 @@
 ﻿using System;
-using System.Media;
 using BattleNotifier.Model;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using System.IO;
-using System.Drawing;
 using System.Drawing.Printing;
 using BattleNotifier.Utils;
-using System.Drawing.Drawing2D;
 using System.Diagnostics;
+using BattleNotifier.Controller;
 
 namespace BattleNotifier.View
 {
-    public partial class BattleNotification : TransDialog
+    public partial class BattleNotification : Form
     {
-        private MapNotification mn;
-        private WMPLib.WindowsMediaPlayer player;
         private int battleDuration;
-        private string mapUrl;
-        private Image map;
         private int countdown;
         private bool showToolTip = true;
         private string fullAttributesText;
@@ -31,95 +24,23 @@ namespace BattleNotifier.View
             SetupDialogLocation();
             SetupControls(battle);
 
-            if (settings.LifeSeconds > 0)
-            {
-                BattleNotificationTimer.Interval = settings.LifeSeconds * 1000;
-                BattleNotificationTimer.Enabled = true;
-            }
-
             battleDuration = battle.Duration;
-            bool mapLoaded = true;
-            try
-            {
-                map = WebRequestHelper.GetImageFromUrl(mapUrl);
-            }
-            catch (Exception)
-            {
-                mapLoaded = false;
-            }
 
-            if (mapLoaded && settings.ShowMapDialog)
-                ShowMapDialog();
             if (timeLeft > 0)
                 StartBattleCountdown(timeLeft);
-            if (settings.PlaySound)
-                if (!string.IsNullOrEmpty(settings.SoundPath) && File.Exists(settings.SoundPath))
-                    PlaySound(settings.SoundPath);
-                else
-                    PlayDefaultSound();
         }
 
-        public int Interval
+        private delegate void BlankDelegate();
+        public void CloseForm()
         {
-            get { return this.BattleNotificationTimer.Interval; }
-            set { this.BattleNotificationTimer.Interval = value; }
-        }
-
-        public void EndNotification()
-        {
-            this.Close();
-        }
-
-        private void ShowMapDialog()
-        {
-            try
+            if (this.InvokeRequired)
             {
-                int newWidth = 320;
-                int aux = (320*100) / map.Width; 
-                int newHeight = (aux*map.Height) / 100 ;
-                Bitmap newImage = new Bitmap(newWidth, newHeight);
-                using (Graphics gr = Graphics.FromImage(newImage))
-                {
-                    gr.SmoothingMode = SmoothingMode.HighQuality;
-                    gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    gr.DrawImage(this.map, new Rectangle(0, 0, newWidth, newHeight));
-                }
-
-                // Initialize map notification
-                mn = new MapNotification(newImage);
-                mn.StartPosition = FormStartPosition.Manual;
-                int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
-                int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
-                mn.Left = screenWidth - mn.Width;
-                mn.Top = screenHeight - mn.Height - this.Height - 20;
-
-                mn.Show();
+                this.Invoke(new BlankDelegate(this.CloseForm));
             }
-            catch (Exception) 
+            else
             {
-                // Could not show map dialog.
+                this.Close();
             }
-        }
-
-        private void PlaySound(string path)
-        {
-            try
-            {
-                player = new WMPLib.WindowsMediaPlayer();
-                player.URL = path;
-                player.controls.play();
-            }
-            catch (Exception)
-            {
-                PlayDefaultSound();
-            }
-        }
-
-        private void PlayDefaultSound()
-        {
-            SoundPlayer sound = new SoundPlayer(Properties.Resources.smb_1_up);
-            sound.Play();
         }
 
         private void StartBattleCountdown(int startTime)
@@ -180,8 +101,6 @@ namespace BattleNotifier.View
                 AttributesLabel.Text = fullAttributesText;
 
             DurationLabel.Text = battle.Duration + " mins";
-
-            this.mapUrl = battle.MapUrl;
         }
 
         private void SetupDialogLocation()
@@ -193,19 +112,9 @@ namespace BattleNotifier.View
             Top = screenHeight - this.Height;
         }
 
-        private void BattleNotificationTimer_Tick(object sender, EventArgs e)
-        {
-            EndNotification();
-        }
-
-        protected override bool ShowWithoutActivation
-        {
-            get { return true; }
-        }
-
         private void PrintMapButton_Click(object sender, EventArgs e)
         {
-            if (map != null)
+            if (NotificationsController.Instance.Map != null)
             {
                 PrintMapDialog.AllowSomePages = true;
                 PrintMapDialog.AllowSelection = false;
@@ -222,7 +131,7 @@ namespace BattleNotifier.View
 
         private void PrintMapDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            e.Graphics.DrawImage(map, e.MarginBounds);
+            e.Graphics.DrawImage(NotificationsController.Instance.Map, e.MarginBounds);
         }
 
         private void AttributesLabel_Click(object sender, EventArgs e)
@@ -241,30 +150,13 @@ namespace BattleNotifier.View
 
         private void BattleNotification_FormClosed_1(object sender, FormClosedEventArgs e)
         {
-            try
-            {
-                if (player != null && player.controls != null)
-                    player.controls.stop();
-            }
-            catch (Exception)
-            {
-                // Nothing happend here, no one saw anything. Get back to work.
-            }
-
-            if (this.mn != null)
-                this.mn.EndNotification();
+            NotificationsController.Instance.BattleNotificationClosed();
             this.Dispose();
         }
 
         private void MapCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (mn == null)
-                ShowMapDialog();
-            else
-            {
-                mn.EndNotification();
-                mn = null;
-            }
+            NotificationsController.Instance.BattleNotificationMapPressed();
         }
 
         private void HeadlineLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

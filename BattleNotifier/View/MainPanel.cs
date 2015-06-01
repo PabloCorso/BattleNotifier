@@ -27,7 +27,7 @@ namespace BattleNotifier.View
             this.battleNotifier = battleNotifier;
 
             AutocompleteKuskisList = new List<string>();
-
+            
 #if DEBUG
             Simulate1Button.Visible = true;
             SimulateBattle2Button.Visible = true;
@@ -79,6 +79,7 @@ namespace BattleNotifier.View
                     settings.LifeSeconds = 0;
                 settings.PlaySound = PlaySoundCheckBox.Checked;
                 settings.SoundPath = SoundPath;
+                settings.MapSize = MapSizeDomainUpDown.SelectedIndex;
 
                 return settings;
             }

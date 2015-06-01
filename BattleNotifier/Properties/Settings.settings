@@ -293,5 +293,8 @@ Zox
 Zweq
 zwor</Value>
     </Setting>
+    <Setting Name="MapSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

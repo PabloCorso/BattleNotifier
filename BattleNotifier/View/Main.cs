@@ -31,7 +31,7 @@ namespace BattleNotifier.View
             // Initialize Main Panel.
             mainPanel = new MainPanel(battleNotifier);
             BackgroundPanel.Controls.Add(mainPanel);
-            
+
             LoadUserSettings();
         }
 
@@ -43,15 +43,7 @@ namespace BattleNotifier.View
 
         public void ShowBattleNotificationDialog(Battle battle, int timeLeft)
         {
-            if (this.InvokeRequired)
-            {
-                Invoke(new MethodInvoker(delegate() { ShowBattleNotificationDialog(battle, timeLeft); }));
-            }
-            else
-            {
-                BattleNotification bn = new BattleNotification(battle, timeLeft, MainPanel.BattleNotificationSettings);
-                bn.Show();
-            }
+            NotificationsController.Instance.ShowBattleNotification(battle, timeLeft, MainPanel.BattleNotificationSettings);
         }
         #endregion
 
@@ -91,7 +83,7 @@ namespace BattleNotifier.View
         }
 
         #region NotifyIcon
-        private void InitializeNotifyIcon() 
+        private void InitializeNotifyIcon()
         {
             NotifyIcon.Visible = false;
 
@@ -210,6 +202,7 @@ namespace BattleNotifier.View
             mainPanel.CloseDialogNumericUpDown.Value = settings.DialogLifeSeconds;
             mainPanel.NotificationDurationTrackBar.Value = settings.NotificationDuration;
             mainPanel.SoundPath = settings.SoundPath;
+            mainPanel.MapSizeDomainUpDown.SelectedIndex = settings.MapSize;
 
             string[] aux = settings.BattleTypes.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
             for (int i = 0; i < aux.Length; i++)
@@ -233,7 +226,7 @@ namespace BattleNotifier.View
             }
 
             aux = settings.AutocompleteKuskis.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            for (int i = 0; i < aux.Length; i++) 
+            for (int i = 0; i < aux.Length; i++)
             {
                 if (!string.IsNullOrEmpty(aux[i]))
                     mainPanel.AutocompleteKuskisList.Add(aux[i]);
@@ -251,6 +244,7 @@ namespace BattleNotifier.View
             settings.DialogLifeSeconds = mainPanel.CloseDialogNumericUpDown.Value;
             settings.NotificationDuration = mainPanel.NotificationDurationTrackBar.Value;
             settings.SoundPath = mainPanel.SoundPath;
+            settings.MapSize = mainPanel.MapSizeDomainUpDown.SelectedIndex;
 
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < mainPanel.BattleTypesChListBox.Items.Count; i++)

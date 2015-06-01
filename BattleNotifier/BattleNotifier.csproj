@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\BattleNotifierController.cs" />
+    <Compile Include="Controller\NotificationsController.cs" />
     <Compile Include="Controller\ViewInterface\IMain.cs" />
     <Compile Include="Controller\ViewInterface\IMainPanel.cs" />
     <Compile Include="Model\Battle.cs" />

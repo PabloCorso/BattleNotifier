@@ -28,16 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.MapNotificationTimer = new System.Windows.Forms.Timer(this.components);
             this.PictureBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // MapNotificationTimer
-            // 
-            this.MapNotificationTimer.Interval = 2000;
-            this.MapNotificationTimer.Tick += new System.EventHandler(this.MapNotificationTimer_Tick);
             // 
             // PictureBox
             // 
@@ -65,7 +58,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer MapNotificationTimer;
         private System.Windows.Forms.PictureBox PictureBox;
     }
 }

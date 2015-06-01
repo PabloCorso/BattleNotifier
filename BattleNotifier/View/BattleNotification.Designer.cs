@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.BattleNotificationTimer = new System.Windows.Forms.Timer(this.components);
             this.PrintMapDialog = new System.Windows.Forms.PrintDialog();
             this.PrintMapDocument = new System.Drawing.Printing.PrintDocument();
             this.BattleCountdownTimer = new System.Windows.Forms.Timer(this.components);
@@ -42,11 +41,6 @@
             this.AttributesLabel = new System.Windows.Forms.Label();
             this.HeadlineLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
-            // 
-            // BattleNotificationTimer
-            // 
-            this.BattleNotificationTimer.Interval = 10000;
-            this.BattleNotificationTimer.Tick += new System.EventHandler(this.BattleNotificationTimer_Tick);
             // 
             // PrintMapDialog
             // 
@@ -173,7 +167,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer BattleNotificationTimer;
         private System.Windows.Forms.LinkLabel HeadlineLinkLabel;
         private System.Windows.Forms.Label AttributesLabel;
         private System.Windows.Forms.Label BattleTypeLabel;

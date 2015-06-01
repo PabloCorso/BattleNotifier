@@ -13,5 +13,6 @@ namespace BattleNotifier.Model
         public bool ShowMapDialog { get; set; }
         public string SoundPath { get; set; }
         public int LifeSeconds { get; set; }
+        public int MapSize { get; set; }
     }
 }
