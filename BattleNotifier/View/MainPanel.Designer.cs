@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.NavigateToCurrentBattleButton = new System.Windows.Forms.Button();
-            this.NavigateToSettingsButton = new System.Windows.Forms.Button();
-            this.NavigateToChatButton = new System.Windows.Forms.Button();
-            this.SeparatorLabel = new System.Windows.Forms.Label();
             this.DesignersLabel = new System.Windows.Forms.Label();
             this.NotificationDurationTrackBar = new System.Windows.Forms.TrackBar();
             this.StartNotificationButton = new System.Windows.Forms.Button();
@@ -64,55 +60,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.CloseDialogNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
-            // NavigateToCurrentBattleButton
-            // 
-            this.NavigateToCurrentBattleButton.Enabled = false;
-            this.NavigateToCurrentBattleButton.Location = new System.Drawing.Point(158, 6);
-            this.NavigateToCurrentBattleButton.Name = "NavigateToCurrentBattleButton";
-            this.NavigateToCurrentBattleButton.Size = new System.Drawing.Size(120, 23);
-            this.NavigateToCurrentBattleButton.TabIndex = 35;
-            this.NavigateToCurrentBattleButton.TabStop = false;
-            this.NavigateToCurrentBattleButton.Text = "∧ Current Battle ∧";
-            this.NavigateToCurrentBattleButton.UseVisualStyleBackColor = true;
-            this.NavigateToCurrentBattleButton.MouseEnter += new System.EventHandler(this.NavigateToCurrentBattleButton_MouseEnter);
-            this.NavigateToCurrentBattleButton.MouseLeave += new System.EventHandler(this.NavigateToCurrentBattleButton_MouseLeave);
-            // 
-            // NavigateToSettingsButton
-            // 
-            this.NavigateToSettingsButton.Enabled = false;
-            this.NavigateToSettingsButton.Location = new System.Drawing.Point(350, 6);
-            this.NavigateToSettingsButton.Name = "NavigateToSettingsButton";
-            this.NavigateToSettingsButton.Size = new System.Drawing.Size(75, 23);
-            this.NavigateToSettingsButton.TabIndex = 34;
-            this.NavigateToSettingsButton.TabStop = false;
-            this.NavigateToSettingsButton.Text = "Settings  >>";
-            this.NavigateToSettingsButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.NavigateToSettingsButton.UseVisualStyleBackColor = true;
-            // 
-            // NavigateToChatButton
-            // 
-            this.NavigateToChatButton.Enabled = false;
-            this.NavigateToChatButton.Location = new System.Drawing.Point(12, 6);
-            this.NavigateToChatButton.Name = "NavigateToChatButton";
-            this.NavigateToChatButton.Size = new System.Drawing.Size(75, 23);
-            this.NavigateToChatButton.TabIndex = 33;
-            this.NavigateToChatButton.TabStop = false;
-            this.NavigateToChatButton.Text = "<<    Chat";
-            this.NavigateToChatButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.NavigateToChatButton.UseVisualStyleBackColor = true;
-            // 
-            // SeparatorLabel
-            // 
-            this.SeparatorLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.SeparatorLabel.Location = new System.Drawing.Point(12, 34);
-            this.SeparatorLabel.Name = "SeparatorLabel";
-            this.SeparatorLabel.Size = new System.Drawing.Size(420, 2);
-            this.SeparatorLabel.TabIndex = 32;
-            // 
             // DesignersLabel
             // 
             this.DesignersLabel.AutoSize = true;
-            this.DesignersLabel.Location = new System.Drawing.Point(9, 49);
+            this.DesignersLabel.Location = new System.Drawing.Point(3, 10);
             this.DesignersLabel.Name = "DesignersLabel";
             this.DesignersLabel.Size = new System.Drawing.Size(54, 13);
             this.DesignersLabel.TabIndex = 31;
@@ -120,7 +71,7 @@
             // 
             // NotificationDurationTrackBar
             // 
-            this.NotificationDurationTrackBar.Location = new System.Drawing.Point(148, 282);
+            this.NotificationDurationTrackBar.Location = new System.Drawing.Point(142, 243);
             this.NotificationDurationTrackBar.Name = "NotificationDurationTrackBar";
             this.NotificationDurationTrackBar.Size = new System.Drawing.Size(277, 45);
             this.NotificationDurationTrackBar.TabIndex = 3;
@@ -128,7 +79,7 @@
             // 
             // StartNotificationButton
             // 
-            this.StartNotificationButton.Location = new System.Drawing.Point(12, 282);
+            this.StartNotificationButton.Location = new System.Drawing.Point(6, 243);
             this.StartNotificationButton.Name = "StartNotificationButton";
             this.StartNotificationButton.Size = new System.Drawing.Size(120, 45);
             this.StartNotificationButton.TabIndex = 2;
@@ -141,7 +92,7 @@
             this.DesignersChListBox.CheckOnClick = true;
             this.DesignersChListBox.FormattingEnabled = true;
             this.DesignersChListBox.IntegralHeight = false;
-            this.DesignersChListBox.Location = new System.Drawing.Point(12, 94);
+            this.DesignersChListBox.Location = new System.Drawing.Point(6, 55);
             this.DesignersChListBox.Name = "DesignersChListBox";
             this.DesignersChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.DesignersChListBox.Size = new System.Drawing.Size(120, 80);
@@ -151,7 +102,7 @@
             // 
             // ClearBattleTypesButton
             // 
-            this.ClearBattleTypesButton.Location = new System.Drawing.Point(158, 237);
+            this.ClearBattleTypesButton.Location = new System.Drawing.Point(152, 198);
             this.ClearBattleTypesButton.Name = "ClearBattleTypesButton";
             this.ClearBattleTypesButton.Size = new System.Drawing.Size(120, 23);
             this.ClearBattleTypesButton.TabIndex = 23;
@@ -163,7 +114,7 @@
             // BattleTypesLabel
             // 
             this.BattleTypesLabel.AutoSize = true;
-            this.BattleTypesLabel.Location = new System.Drawing.Point(155, 49);
+            this.BattleTypesLabel.Location = new System.Drawing.Point(149, 10);
             this.BattleTypesLabel.Name = "BattleTypesLabel";
             this.BattleTypesLabel.Size = new System.Drawing.Size(62, 13);
             this.BattleTypesLabel.TabIndex = 21;
@@ -173,7 +124,7 @@
             // 
             this.BattleTypesChListBox.CheckOnClick = true;
             this.BattleTypesChListBox.FormattingEnabled = true;
-            this.BattleTypesChListBox.Location = new System.Drawing.Point(158, 68);
+            this.BattleTypesChListBox.Location = new System.Drawing.Point(152, 29);
             this.BattleTypesChListBox.Name = "BattleTypesChListBox";
             this.BattleTypesChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.BattleTypesChListBox.Size = new System.Drawing.Size(120, 154);
@@ -185,7 +136,7 @@
             // 
             this.SearchDesignerTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.SearchDesignerTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.SearchDesignerTextBox.Location = new System.Drawing.Point(12, 68);
+            this.SearchDesignerTextBox.Location = new System.Drawing.Point(6, 29);
             this.SearchDesignerTextBox.Name = "SearchDesignerTextBox";
             this.SearchDesignerTextBox.Size = new System.Drawing.Size(92, 20);
             this.SearchDesignerTextBox.TabIndex = 1;
@@ -193,7 +144,7 @@
             // 
             // AddDesignerButton
             // 
-            this.AddDesignerButton.Location = new System.Drawing.Point(110, 68);
+            this.AddDesignerButton.Location = new System.Drawing.Point(104, 29);
             this.AddDesignerButton.Name = "AddDesignerButton";
             this.AddDesignerButton.Size = new System.Drawing.Size(22, 20);
             this.AddDesignerButton.TabIndex = 2;
@@ -210,7 +161,7 @@
             // NotificationLabel
             // 
             this.NotificationLabel.AutoSize = true;
-            this.NotificationLabel.Location = new System.Drawing.Point(300, 49);
+            this.NotificationLabel.Location = new System.Drawing.Point(294, 10);
             this.NotificationLabel.Name = "NotificationLabel";
             this.NotificationLabel.Size = new System.Drawing.Size(60, 13);
             this.NotificationLabel.TabIndex = 26;
@@ -219,7 +170,7 @@
             // ShowMapCheckBox
             // 
             this.ShowMapCheckBox.AutoSize = true;
-            this.ShowMapCheckBox.Location = new System.Drawing.Point(303, 99);
+            this.ShowMapCheckBox.Location = new System.Drawing.Point(297, 60);
             this.ShowMapCheckBox.Name = "ShowMapCheckBox";
             this.ShowMapCheckBox.Size = new System.Drawing.Size(101, 17);
             this.ShowMapCheckBox.TabIndex = 36;
@@ -231,7 +182,7 @@
             // PlaySoundCheckBox
             // 
             this.PlaySoundCheckBox.AutoSize = true;
-            this.PlaySoundCheckBox.Location = new System.Drawing.Point(303, 143);
+            this.PlaySoundCheckBox.Location = new System.Drawing.Point(297, 104);
             this.PlaySoundCheckBox.Name = "PlaySoundCheckBox";
             this.PlaySoundCheckBox.Size = new System.Drawing.Size(78, 17);
             this.PlaySoundCheckBox.TabIndex = 37;
@@ -244,7 +195,7 @@
             // 
             this.ShowBattleCheckBox.AutoSize = true;
             this.ShowBattleCheckBox.Enabled = false;
-            this.ShowBattleCheckBox.Location = new System.Drawing.Point(303, 75);
+            this.ShowBattleCheckBox.Location = new System.Drawing.Point(297, 36);
             this.ShowBattleCheckBox.Name = "ShowBattleCheckBox";
             this.ShowBattleCheckBox.Size = new System.Drawing.Size(102, 17);
             this.ShowBattleCheckBox.TabIndex = 38;
@@ -255,7 +206,7 @@
             // 
             // Simulate1Button
             // 
-            this.Simulate1Button.Location = new System.Drawing.Point(300, 253);
+            this.Simulate1Button.Location = new System.Drawing.Point(294, 214);
             this.Simulate1Button.Name = "Simulate1Button";
             this.Simulate1Button.Size = new System.Drawing.Size(29, 23);
             this.Simulate1Button.TabIndex = 39;
@@ -267,7 +218,7 @@
             // 
             // SimulateBattle2Button
             // 
-            this.SimulateBattle2Button.Location = new System.Drawing.Point(335, 253);
+            this.SimulateBattle2Button.Location = new System.Drawing.Point(329, 214);
             this.SimulateBattle2Button.Name = "SimulateBattle2Button";
             this.SimulateBattle2Button.Size = new System.Drawing.Size(31, 23);
             this.SimulateBattle2Button.TabIndex = 40;
@@ -280,7 +231,7 @@
             // SetSoundButton
             // 
             this.SetSoundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SetSoundButton.Location = new System.Drawing.Point(376, 142);
+            this.SetSoundButton.Location = new System.Drawing.Point(370, 103);
             this.SetSoundButton.Name = "SetSoundButton";
             this.SetSoundButton.Size = new System.Drawing.Size(22, 18);
             this.SetSoundButton.TabIndex = 41;
@@ -291,7 +242,7 @@
             // 
             // CloseDialogNumericUpDown
             // 
-            this.CloseDialogNumericUpDown.Location = new System.Drawing.Point(336, 184);
+            this.CloseDialogNumericUpDown.Location = new System.Drawing.Point(330, 145);
             this.CloseDialogNumericUpDown.Maximum = new decimal(new int[] {
             99,
             0,
@@ -315,7 +266,7 @@
             // CloseDialogTimeCheckBox
             // 
             this.CloseDialogTimeCheckBox.AutoSize = true;
-            this.CloseDialogTimeCheckBox.Location = new System.Drawing.Point(303, 166);
+            this.CloseDialogTimeCheckBox.Location = new System.Drawing.Point(297, 127);
             this.CloseDialogTimeCheckBox.Name = "CloseDialogTimeCheckBox";
             this.CloseDialogTimeCheckBox.Size = new System.Drawing.Size(106, 17);
             this.CloseDialogTimeCheckBox.TabIndex = 43;
@@ -327,7 +278,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(306, 186);
+            this.label1.Location = new System.Drawing.Point(300, 147);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(28, 13);
             this.label1.TabIndex = 44;
@@ -336,7 +287,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(373, 186);
+            this.label2.Location = new System.Drawing.Point(367, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 45;
@@ -350,7 +301,7 @@
             // 
             this.BlackListChListBox.FormattingEnabled = true;
             this.BlackListChListBox.IntegralHeight = false;
-            this.BlackListChListBox.Location = new System.Drawing.Point(12, 195);
+            this.BlackListChListBox.Location = new System.Drawing.Point(6, 156);
             this.BlackListChListBox.Name = "BlackListChListBox";
             this.BlackListChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.BlackListChListBox.Size = new System.Drawing.Size(120, 64);
@@ -361,7 +312,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 179);
+            this.label3.Location = new System.Drawing.Point(3, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 47;
@@ -371,7 +322,7 @@
             // 
             this.ErrorLabel.AutoSize = true;
             this.ErrorLabel.ForeColor = System.Drawing.Color.Red;
-            this.ErrorLabel.Location = new System.Drawing.Point(158, 313);
+            this.ErrorLabel.Location = new System.Drawing.Point(152, 274);
             this.ErrorLabel.Name = "ErrorLabel";
             this.ErrorLabel.Size = new System.Drawing.Size(263, 13);
             this.ErrorLabel.TabIndex = 48;
@@ -385,7 +336,7 @@
             this.MapSizeDomainUpDown.Items.Add("small");
             this.MapSizeDomainUpDown.Items.Add("norm");
             this.MapSizeDomainUpDown.Items.Add("big");
-            this.MapSizeDomainUpDown.Location = new System.Drawing.Point(354, 117);
+            this.MapSizeDomainUpDown.Location = new System.Drawing.Point(348, 78);
             this.MapSizeDomainUpDown.Name = "MapSizeDomainUpDown";
             this.MapSizeDomainUpDown.ReadOnly = true;
             this.MapSizeDomainUpDown.Size = new System.Drawing.Size(44, 20);
@@ -395,7 +346,7 @@
             // mapSizeLabel
             // 
             this.mapSizeLabel.AutoSize = true;
-            this.mapSizeLabel.Location = new System.Drawing.Point(306, 119);
+            this.mapSizeLabel.Location = new System.Drawing.Point(300, 80);
             this.mapSizeLabel.Name = "mapSizeLabel";
             this.mapSizeLabel.Size = new System.Drawing.Size(48, 13);
             this.mapSizeLabel.TabIndex = 50;
@@ -421,10 +372,6 @@
             this.Controls.Add(this.PlaySoundCheckBox);
             this.Controls.Add(this.ShowMapCheckBox);
             this.Controls.Add(this.AddDesignerButton);
-            this.Controls.Add(this.NavigateToCurrentBattleButton);
-            this.Controls.Add(this.NavigateToSettingsButton);
-            this.Controls.Add(this.NavigateToChatButton);
-            this.Controls.Add(this.SeparatorLabel);
             this.Controls.Add(this.DesignersLabel);
             this.Controls.Add(this.NotificationDurationTrackBar);
             this.Controls.Add(this.StartNotificationButton);
@@ -435,7 +382,7 @@
             this.Controls.Add(this.BattleTypesChListBox);
             this.Controls.Add(this.SearchDesignerTextBox);
             this.Name = "MainPanel";
-            this.Size = new System.Drawing.Size(439, 339);
+            this.Size = new System.Drawing.Size(413, 297);
             this.Load += new System.EventHandler(this.MainPanel_Load);
             this.Click += new System.EventHandler(this.MainPanel_Click);
             ((System.ComponentModel.ISupportInitialize)(this.NotificationDurationTrackBar)).EndInit();
@@ -447,10 +394,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button NavigateToCurrentBattleButton;
-        private System.Windows.Forms.Button NavigateToSettingsButton;
-        private System.Windows.Forms.Button NavigateToChatButton;
-        private System.Windows.Forms.Label SeparatorLabel;
         private System.Windows.Forms.Label DesignersLabel;
         private System.Windows.Forms.Button StartNotificationButton;
         private System.Windows.Forms.Button ClearBattleTypesButton;

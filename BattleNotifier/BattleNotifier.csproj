@@ -48,6 +48,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ThemeColorPicker">
+      <HintPath>..\ThemeColorPicker\ThemeColorPicker.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\BattleNotifierController.cs" />
@@ -90,6 +93,12 @@
     <Compile Include="View\MapNotification.Designer.cs">
       <DependentUpon>MapNotification.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SettingsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\SettingsPanel.Designer.cs">
+      <DependentUpon>SettingsPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\TransDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MapNotification.resx">
       <DependentUpon>MapNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SettingsPanel.resx">
+      <DependentUpon>SettingsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TransDialog.resx">
       <DependentUpon>TransDialog.cs</DependentUpon>

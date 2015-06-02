@@ -158,16 +158,6 @@ namespace BattleNotifier.View
             return hours[trackValue] * 1000 * 60 * 60;
         }
 
-        private void NavigateToCurrentBattleButton_MouseEnter(object sender, EventArgs e)
-        {
-            NavigateToCurrentBattleButton.Text = "⋀ Current Battle ⋀";
-        }
-
-        private void NavigateToCurrentBattleButton_MouseLeave(object sender, EventArgs e)
-        {
-            NavigateToCurrentBattleButton.Text = "∧ Current Battle ∧";
-        }
-
         private void ClearBattleTypesButton_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < BattleTypesChListBox.Items.Count; i++)

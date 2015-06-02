@@ -13,6 +13,7 @@ namespace BattleNotifier.View
     {
         private BattleNotifierController battleNotifier;
         private MainPanel mainPanel;
+        private SettingsPanel settingsPanel;
 
         private ContextMenu contextMenu;
         private MenuItem exitMenuItem;
@@ -32,7 +33,20 @@ namespace BattleNotifier.View
             mainPanel = new MainPanel(battleNotifier);
             BackgroundPanel.Controls.Add(mainPanel);
 
+            settingsPanel = new SettingsPanel();
+            NavigateHomeButton.Visible = false;
+
             LoadUserSettings();
+        }
+
+        private void NavigateToCurrentBattleButton_MouseEnter(object sender, EventArgs e)
+        {
+            NavigateToCurrentBattleButton.Text = "⋀ Current Battle ⋀";
+        }
+
+        private void NavigateToCurrentBattleButton_MouseLeave(object sender, EventArgs e)
+        {
+            NavigateToCurrentBattleButton.Text = "∧ Current Battle ∧";
         }
 
         #region IMain implementation
@@ -281,5 +295,21 @@ namespace BattleNotifier.View
             settings.Save();
         }
         #endregion
+
+        private void NavigateToSettingsButton_Click(object sender, EventArgs e)
+        {
+            BackgroundPanel.Controls.Clear();
+            BackgroundPanel.Controls.Add(settingsPanel);
+            NavigateToSettingsButton.Visible = false;
+            NavigateHomeButton.Visible = true;
+        }
+
+        private void NavigateHomeButton_Click(object sender, EventArgs e)
+        {
+            BackgroundPanel.Controls.Clear();
+            BackgroundPanel.Controls.Add(mainPanel);
+            NavigateToSettingsButton.Visible = true;
+            NavigateHomeButton.Visible = false;
+        }
     }
 }
