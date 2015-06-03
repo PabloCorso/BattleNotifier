@@ -199,5 +199,173 @@ namespace BattleNotifier.Properties {
                 return ((bool)(this["NeedsUpgrade"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool NotifyOnStartup {
+            get {
+                return ((bool)(this["NotifyOnStartup"]));
+            }
+            set {
+                this["NotifyOnStartup"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HideToTraybar {
+            get {
+                return ((bool)(this["HideToTraybar"]));
+            }
+            set {
+                this["HideToTraybar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseFadeEffect {
+            get {
+                return ((bool)(this["UseFadeEffect"]));
+            }
+            set {
+                this["UseFadeEffect"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowOnTop {
+            get {
+                return ((bool)(this["ShowOnTop"]));
+            }
+            set {
+                this["ShowOnTop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TransparentStyle {
+            get {
+                return ((bool)(this["TransparentStyle"]));
+            }
+            set {
+                this["TransparentStyle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HidePrintMap {
+            get {
+                return ((bool)(this["HidePrintMap"]));
+            }
+            set {
+                this["HidePrintMap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int DefaultSound {
+            get {
+                return ((int)(this["DefaultSound"]));
+            }
+            set {
+                this["DefaultSound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseCustomSound {
+            get {
+                return ((bool)(this["UseCustomSound"]));
+            }
+            set {
+                this["UseCustomSound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OnMapLevel {
+            get {
+                return ((bool)(this["OnMapLevel"]));
+            }
+            set {
+                this["OnMapLevel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OnMapDesigner {
+            get {
+                return ((bool)(this["OnMapDesigner"]));
+            }
+            set {
+                this["OnMapDesigner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OnMapType {
+            get {
+                return ((bool)(this["OnMapType"]));
+            }
+            set {
+                this["OnMapType"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OnMapTimer {
+            get {
+                return ((bool)(this["OnMapTimer"]));
+            }
+            set {
+                this["OnMapTimer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OnMapAttributes {
+            get {
+                return ((bool)(this["OnMapAttributes"]));
+            }
+            set {
+                this["OnMapAttributes"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color OnMapColor {
+            get {
+                return ((global::System.Drawing.Color)(this["OnMapColor"]));
+            }
+            set {
+                this["OnMapColor"] = value;
+            }
+        }
     }
 }

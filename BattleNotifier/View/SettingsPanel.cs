@@ -15,24 +15,27 @@ namespace BattleNotifier.View
         public SettingsPanel()
         {
             InitializeComponent();
+            this.ShowOnMapGroup.Click += new EventHandler(SettingsPanel_Click);
+            this.GeneralSettingsGroup.Click += new EventHandler(SettingsPanel_Click);
+            this.NotificationSoundGroup.Click += new EventHandler(SettingsPanel_Click);
             InitializeColorPicker();
         }
 
         private void ResetButton_Click(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Accept to reset all settings to default configuration.\nAll your settings and designers list will be deleted.\nThe program will be restarted to complete this operation.",
+            var confirmResult = MessageBox.Show("Accept to reset all settings to default configuration.\nAll your settings and filters will be deleted.",
                                      "Reset to default settings",
                                      MessageBoxButtons.OKCancel);
-            if (confirmResult == DialogResult.Yes)
+            if (confirmResult == DialogResult.OK)
             {
-                // If 'Yes', do something here.
+                ConfigStorageBroker.ResetUserSettings();
             }
         }
 
         #region ColorPicker
         private void InitializeColorPicker()
         {
-            foreach(Button button in ColorButtons)
+            foreach (Button button in ColorButtons)
                 button.Click += new System.EventHandler(ColorPicked);
         }
 
@@ -65,9 +68,20 @@ namespace BattleNotifier.View
             }
         }
 
-        private void ShowColorButtons(){ foreach(Button b in ColorButtons) b.Visible = true; }
+        private void ShowColorButtons() { foreach (Button b in ColorButtons) b.Visible = true; }
         private void HideColorButtons() { foreach (Button b in ColorButtons) b.Visible = false; }
-        private bool ColorButtonsVisible(){ return b1.Visible; }
-#endregion
+        private bool ColorButtonsVisible() { return b1.Visible; }
+        #endregion
+
+        private void SetSoundButton_Click(object sender, EventArgs e)
+        {
+            SoundOpenFileDialog.ShowDialog();
+            CustomSoundPathTextBox.Text = SoundOpenFileDialog.FileName;
+        }
+
+        private void SettingsPanel_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = null;
+        }
     }
 }

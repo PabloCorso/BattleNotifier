@@ -5,7 +5,6 @@ using BattleNotifier.Utils;
 using System;
 using System.Text;
 using System.Windows.Forms;
-using Settings = BattleNotifier.Properties.Settings;
 
 namespace BattleNotifier.View
 {
@@ -36,7 +35,9 @@ namespace BattleNotifier.View
             settingsPanel = new SettingsPanel();
             NavigateHomeButton.Visible = false;
 
-            LoadUserSettings();
+            ConfigStorageBroker.InitializeConfigStorageBroker(this, mainPanel, settingsPanel);
+
+            ConfigStorageBroker.LoadUserSettings();
         }
 
         private void NavigateToCurrentBattleButton_MouseEnter(object sender, EventArgs e)
@@ -55,7 +56,7 @@ namespace BattleNotifier.View
             get { return this.mainPanel; }
         }
 
-        public BattleNotificationSettings GetNotificationSettings() 
+        public BattleNotificationSettings GetNotificationSettings()
         {
             return MainPanel.BattleNotificationSettings;
         }
@@ -91,7 +92,7 @@ namespace BattleNotifier.View
 
         protected override void OnClosed(EventArgs e)
         {
-            SaveUserSettings();
+            ConfigStorageBroker.SaveUserSettings();
             ShutDownNotifyIcon();
             base.OnClosed(e);
         }
@@ -200,101 +201,7 @@ namespace BattleNotifier.View
 
         #endregion
 
-        #region User settings
-        public void ResetUserSettings()
-        {
-            Settings.Default.Reset();
-        }
-
-        private void LoadUserSettings()
-        {
-            Settings settings = Settings.Default;
-            mainPanel.PlaySoundCheckBox.Checked = settings.PlayNotificationSound;
-            mainPanel.ShowBattleCheckBox.Checked = settings.ShowBattleDialog;
-            mainPanel.ShowMapCheckBox.Checked = settings.ShowMapDialog;
-            mainPanel.CloseDialogTimeCheckBox.Checked = settings.CloseDialogTime;
-            mainPanel.CloseDialogNumericUpDown.Value = settings.DialogLifeSeconds;
-            mainPanel.NotificationDurationTrackBar.Value = settings.NotificationDuration;
-            mainPanel.SoundPath = settings.SoundPath;
-            mainPanel.MapSizeDomainUpDown.SelectedIndex = settings.MapSize;
-
-            string[] aux = settings.BattleTypes.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            for (int i = 0; i < aux.Length; i++)
-            {
-                if (!string.IsNullOrEmpty(aux[i]))
-                    mainPanel.BattleTypesChListBox.Items.Add(aux[i].Substring(1), Convert.ToInt32(aux[i].Substring(0, 1)) == 1);
-            }
-
-            aux = settings.Designers.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            for (int i = 0; i < aux.Length; i++)
-            {
-                if (!string.IsNullOrEmpty(aux[i]))
-                    mainPanel.DesignersChListBox.Items.Add(aux[i].Substring(1), Convert.ToInt32(aux[i].Substring(0, 1)) == 1);
-            }
-
-            aux = settings.BlackList.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            for (int i = 0; i < aux.Length; i++)
-            {
-                if (!string.IsNullOrEmpty(aux[i]))
-                    mainPanel.BlackListChListBox.Items.Add(aux[i].Substring(1), Convert.ToInt32(aux[i].Substring(0, 1)) == 1);
-            }
-
-            aux = settings.AutocompleteKuskis.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            for (int i = 0; i < aux.Length; i++)
-            {
-                if (!string.IsNullOrEmpty(aux[i]))
-                    mainPanel.AutocompleteKuskisList.Add(aux[i]);
-            }
-        }
-
-        private void SaveUserSettings()
-        {
-            //Main panel user settings.
-            Settings settings = Settings.Default;
-            settings.PlayNotificationSound = mainPanel.PlaySoundCheckBox.Checked;
-            settings.ShowBattleDialog = mainPanel.ShowBattleCheckBox.Checked;
-            settings.ShowMapDialog = mainPanel.ShowMapCheckBox.Checked;
-            settings.CloseDialogTime = mainPanel.CloseDialogTimeCheckBox.Checked;
-            settings.DialogLifeSeconds = mainPanel.CloseDialogNumericUpDown.Value;
-            settings.NotificationDuration = mainPanel.NotificationDurationTrackBar.Value;
-            settings.SoundPath = mainPanel.SoundPath;
-            settings.MapSize = mainPanel.MapSizeDomainUpDown.SelectedIndex;
-
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < mainPanel.BattleTypesChListBox.Items.Count; i++)
-            {
-                bool isChecked = mainPanel.BattleTypesChListBox.GetItemChecked(i);
-                string value = ChListExtensions.GetText(mainPanel.BattleTypesChListBox, i);
-                builder.AppendLine((isChecked ? "1" : "0") + value);
-            }
-            settings.BattleTypes = builder.ToString();
-
-            builder = new StringBuilder();
-            for (int i = 0; i < mainPanel.DesignersChListBox.Items.Count; i++)
-            {
-                bool isChecked = mainPanel.DesignersChListBox.GetItemChecked(i);
-                string value = ChListExtensions.GetText(mainPanel.DesignersChListBox, i);
-                builder.AppendLine((isChecked ? "1" : "0") + value);
-            }
-            settings.Designers = builder.ToString();
-
-            builder = new StringBuilder();
-            for (int i = 0; i < mainPanel.BlackListChListBox.Items.Count; i++)
-            {
-                bool isChecked = mainPanel.BlackListChListBox.GetItemChecked(i);
-                string value = ChListExtensions.GetText(mainPanel.BlackListChListBox, i);
-                builder.AppendLine((isChecked ? "1" : "0") + value);
-            }
-            settings.BlackList = builder.ToString();
-
-            builder = new StringBuilder();
-            for (int i = 0; i < mainPanel.AutocompleteKuskisList.Count; i++)
-                builder.AppendLine(mainPanel.AutocompleteKuskisList[i]);
-            settings.AutocompleteKuskis = builder.ToString();
-
-            settings.Save();
-        }
-        #endregion
+        
 
         private void NavigateToSettingsButton_Click(object sender, EventArgs e)
         {

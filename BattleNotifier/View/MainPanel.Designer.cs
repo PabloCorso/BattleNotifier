@@ -45,12 +45,10 @@
             this.ShowBattleCheckBox = new System.Windows.Forms.CheckBox();
             this.Simulate1Button = new System.Windows.Forms.Button();
             this.SimulateBattle2Button = new System.Windows.Forms.Button();
-            this.SetSoundButton = new System.Windows.Forms.Button();
             this.CloseDialogNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CloseDialogTimeCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.SoundOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.BlackListChListBox = new System.Windows.Forms.CheckedListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ErrorLabel = new System.Windows.Forms.Label();
@@ -228,18 +226,6 @@
             this.SimulateBattle2Button.Visible = false;
             this.SimulateBattle2Button.Click += new System.EventHandler(this.SimulateBattle2Button_Click);
             // 
-            // SetSoundButton
-            // 
-            this.SetSoundButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SetSoundButton.Location = new System.Drawing.Point(370, 103);
-            this.SetSoundButton.Name = "SetSoundButton";
-            this.SetSoundButton.Size = new System.Drawing.Size(22, 18);
-            this.SetSoundButton.TabIndex = 41;
-            this.SetSoundButton.TabStop = false;
-            this.SetSoundButton.Text = "...";
-            this.SetSoundButton.UseVisualStyleBackColor = true;
-            this.SetSoundButton.Click += new System.EventHandler(this.SetSoundButton_Click);
-            // 
             // CloseDialogNumericUpDown
             // 
             this.CloseDialogNumericUpDown.Location = new System.Drawing.Point(330, 145);
@@ -292,10 +278,6 @@
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 45;
             this.label2.Text = "secs.";
-            // 
-            // SoundOpenFileDialog
-            // 
-            this.SoundOpenFileDialog.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
             // 
             // BlackListChListBox
             // 
@@ -365,7 +347,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CloseDialogTimeCheckBox);
             this.Controls.Add(this.CloseDialogNumericUpDown);
-            this.Controls.Add(this.SetSoundButton);
             this.Controls.Add(this.SimulateBattle2Button);
             this.Controls.Add(this.Simulate1Button);
             this.Controls.Add(this.ShowBattleCheckBox);
@@ -403,7 +384,6 @@
         private System.Windows.Forms.Label NotificationLabel;
         private System.Windows.Forms.Button Simulate1Button;
         private System.Windows.Forms.Button SimulateBattle2Button;
-        private System.Windows.Forms.Button SetSoundButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.CheckBox ShowMapCheckBox;
@@ -414,7 +394,6 @@
         public System.Windows.Forms.TrackBar NotificationDurationTrackBar;
         public System.Windows.Forms.CheckedListBox DesignersChListBox;
         public System.Windows.Forms.CheckedListBox BattleTypesChListBox;
-        private System.Windows.Forms.OpenFileDialog SoundOpenFileDialog;
         public System.Windows.Forms.CheckedListBox BlackListChListBox;
         private System.Windows.Forms.Label label3;
         internal System.Windows.Forms.TextBox SearchDesignerTextBox;

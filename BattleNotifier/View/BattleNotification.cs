@@ -17,7 +17,7 @@ namespace BattleNotifier.View
         private bool showToolTip = true;
         private string fullAttributesText;
         private int maxAttributesLength = 70;
-
+        public BattleNotification() { }
         // TODO hacer que se pueda mantener abierto.
         public BattleNotification(Battle battle, int timeLeft, BattleNotificationSettings settings)
         {

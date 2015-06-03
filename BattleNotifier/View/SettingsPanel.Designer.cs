@@ -85,6 +85,7 @@
             this.ResetLabel = new System.Windows.Forms.Label();
             this.SimulateLabel = new System.Windows.Forms.Label();
             this.NewBattleButton = new System.Windows.Forms.Button();
+            this.SoundOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.GeneralSettingsGroup.SuspendLayout();
             this.NotificationSoundGroup.SuspendLayout();
             this.ShowOnMapGroup.SuspendLayout();
@@ -189,6 +190,7 @@
             this.SetSoundButton.TabStop = false;
             this.SetSoundButton.Text = "...";
             this.SetSoundButton.UseVisualStyleBackColor = true;
+            this.SetSoundButton.Click += new System.EventHandler(this.SetSoundButton_Click);
             // 
             // UseCustomSoundCheckBox
             // 
@@ -219,6 +221,8 @@
             // DefaultSoundComboBox
             // 
             this.DefaultSoundComboBox.FormattingEnabled = true;
+            this.DefaultSoundComboBox.Items.AddRange(new object[] {
+            "default"});
             this.DefaultSoundComboBox.Location = new System.Drawing.Point(84, 18);
             this.DefaultSoundComboBox.Name = "DefaultSoundComboBox";
             this.DefaultSoundComboBox.Size = new System.Drawing.Size(97, 21);
@@ -296,6 +300,7 @@
             this.b25.Name = "b25";
             this.b25.Size = new System.Drawing.Size(13, 13);
             this.b25.TabIndex = 76;
+            this.b25.TabStop = false;
             this.b25.UseVisualStyleBackColor = false;
             this.b25.Visible = false;
             // 
@@ -308,6 +313,7 @@
             this.b26.Name = "b26";
             this.b26.Size = new System.Drawing.Size(13, 13);
             this.b26.TabIndex = 75;
+            this.b26.TabStop = false;
             this.b26.UseVisualStyleBackColor = false;
             this.b26.Visible = false;
             // 
@@ -320,6 +326,7 @@
             this.b27.Name = "b27";
             this.b27.Size = new System.Drawing.Size(13, 13);
             this.b27.TabIndex = 74;
+            this.b27.TabStop = false;
             this.b27.UseVisualStyleBackColor = false;
             this.b27.Visible = false;
             // 
@@ -332,6 +339,7 @@
             this.b28.Name = "b28";
             this.b28.Size = new System.Drawing.Size(13, 13);
             this.b28.TabIndex = 73;
+            this.b28.TabStop = false;
             this.b28.UseVisualStyleBackColor = false;
             this.b28.Visible = false;
             // 
@@ -344,6 +352,7 @@
             this.b29.Name = "b29";
             this.b29.Size = new System.Drawing.Size(13, 13);
             this.b29.TabIndex = 72;
+            this.b29.TabStop = false;
             this.b29.UseVisualStyleBackColor = false;
             this.b29.Visible = false;
             // 
@@ -356,6 +365,7 @@
             this.b30.Name = "b30";
             this.b30.Size = new System.Drawing.Size(13, 13);
             this.b30.TabIndex = 71;
+            this.b30.TabStop = false;
             this.b30.UseVisualStyleBackColor = false;
             this.b30.Visible = false;
             // 
@@ -368,6 +378,7 @@
             this.b31.Name = "b31";
             this.b31.Size = new System.Drawing.Size(13, 13);
             this.b31.TabIndex = 70;
+            this.b31.TabStop = false;
             this.b31.UseVisualStyleBackColor = false;
             this.b31.Visible = false;
             // 
@@ -380,6 +391,7 @@
             this.b32.Name = "b32";
             this.b32.Size = new System.Drawing.Size(13, 13);
             this.b32.TabIndex = 69;
+            this.b32.TabStop = false;
             this.b32.UseVisualStyleBackColor = false;
             this.b32.Visible = false;
             // 
@@ -392,6 +404,7 @@
             this.b13.Name = "b13";
             this.b13.Size = new System.Drawing.Size(13, 13);
             this.b13.TabIndex = 68;
+            this.b13.TabStop = false;
             this.b13.UseVisualStyleBackColor = false;
             this.b13.Visible = false;
             // 
@@ -404,6 +417,7 @@
             this.b14.Name = "b14";
             this.b14.Size = new System.Drawing.Size(13, 13);
             this.b14.TabIndex = 67;
+            this.b14.TabStop = false;
             this.b14.UseVisualStyleBackColor = false;
             this.b14.Visible = false;
             // 
@@ -416,6 +430,7 @@
             this.b15.Name = "b15";
             this.b15.Size = new System.Drawing.Size(13, 13);
             this.b15.TabIndex = 66;
+            this.b15.TabStop = false;
             this.b15.UseVisualStyleBackColor = false;
             this.b15.Visible = false;
             // 
@@ -428,6 +443,7 @@
             this.b16.Name = "b16";
             this.b16.Size = new System.Drawing.Size(13, 13);
             this.b16.TabIndex = 65;
+            this.b16.TabStop = false;
             this.b16.UseVisualStyleBackColor = false;
             this.b16.Visible = false;
             // 
@@ -440,6 +456,7 @@
             this.b17.Name = "b17";
             this.b17.Size = new System.Drawing.Size(13, 13);
             this.b17.TabIndex = 64;
+            this.b17.TabStop = false;
             this.b17.UseVisualStyleBackColor = false;
             this.b17.Visible = false;
             // 
@@ -452,6 +469,7 @@
             this.b18.Name = "b18";
             this.b18.Size = new System.Drawing.Size(13, 13);
             this.b18.TabIndex = 63;
+            this.b18.TabStop = false;
             this.b18.UseVisualStyleBackColor = false;
             this.b18.Visible = false;
             // 
@@ -464,6 +482,7 @@
             this.b19.Name = "b19";
             this.b19.Size = new System.Drawing.Size(13, 13);
             this.b19.TabIndex = 62;
+            this.b19.TabStop = false;
             this.b19.UseVisualStyleBackColor = false;
             this.b19.Visible = false;
             // 
@@ -476,6 +495,7 @@
             this.b20.Name = "b20";
             this.b20.Size = new System.Drawing.Size(13, 13);
             this.b20.TabIndex = 61;
+            this.b20.TabStop = false;
             this.b20.UseVisualStyleBackColor = false;
             this.b20.Visible = false;
             // 
@@ -488,6 +508,7 @@
             this.b21.Name = "b21";
             this.b21.Size = new System.Drawing.Size(13, 13);
             this.b21.TabIndex = 60;
+            this.b21.TabStop = false;
             this.b21.UseVisualStyleBackColor = false;
             this.b21.Visible = false;
             // 
@@ -500,6 +521,7 @@
             this.b22.Name = "b22";
             this.b22.Size = new System.Drawing.Size(13, 13);
             this.b22.TabIndex = 59;
+            this.b22.TabStop = false;
             this.b22.UseVisualStyleBackColor = false;
             this.b22.Visible = false;
             // 
@@ -512,6 +534,7 @@
             this.b23.Name = "b23";
             this.b23.Size = new System.Drawing.Size(13, 13);
             this.b23.TabIndex = 58;
+            this.b23.TabStop = false;
             this.b23.UseVisualStyleBackColor = false;
             this.b23.Visible = false;
             // 
@@ -524,6 +547,7 @@
             this.b24.Name = "b24";
             this.b24.Size = new System.Drawing.Size(13, 13);
             this.b24.TabIndex = 57;
+            this.b24.TabStop = false;
             this.b24.UseVisualStyleBackColor = false;
             this.b24.Visible = false;
             // 
@@ -536,6 +560,7 @@
             this.b9.Name = "b9";
             this.b9.Size = new System.Drawing.Size(13, 13);
             this.b9.TabIndex = 56;
+            this.b9.TabStop = false;
             this.b9.UseVisualStyleBackColor = false;
             this.b9.Visible = false;
             // 
@@ -548,6 +573,7 @@
             this.b10.Name = "b10";
             this.b10.Size = new System.Drawing.Size(13, 13);
             this.b10.TabIndex = 55;
+            this.b10.TabStop = false;
             this.b10.UseVisualStyleBackColor = false;
             this.b10.Visible = false;
             // 
@@ -560,6 +586,7 @@
             this.b11.Name = "b11";
             this.b11.Size = new System.Drawing.Size(13, 13);
             this.b11.TabIndex = 54;
+            this.b11.TabStop = false;
             this.b11.UseVisualStyleBackColor = false;
             this.b11.Visible = false;
             // 
@@ -572,6 +599,7 @@
             this.b12.Name = "b12";
             this.b12.Size = new System.Drawing.Size(13, 13);
             this.b12.TabIndex = 53;
+            this.b12.TabStop = false;
             this.b12.UseVisualStyleBackColor = false;
             this.b12.Visible = false;
             // 
@@ -584,6 +612,7 @@
             this.b5.Name = "b5";
             this.b5.Size = new System.Drawing.Size(13, 13);
             this.b5.TabIndex = 52;
+            this.b5.TabStop = false;
             this.b5.UseVisualStyleBackColor = false;
             this.b5.Visible = false;
             // 
@@ -596,6 +625,7 @@
             this.b6.Name = "b6";
             this.b6.Size = new System.Drawing.Size(13, 13);
             this.b6.TabIndex = 51;
+            this.b6.TabStop = false;
             this.b6.UseVisualStyleBackColor = false;
             this.b6.Visible = false;
             // 
@@ -608,6 +638,7 @@
             this.b7.Name = "b7";
             this.b7.Size = new System.Drawing.Size(13, 13);
             this.b7.TabIndex = 50;
+            this.b7.TabStop = false;
             this.b7.UseVisualStyleBackColor = false;
             this.b7.Visible = false;
             // 
@@ -620,6 +651,7 @@
             this.b8.Name = "b8";
             this.b8.Size = new System.Drawing.Size(13, 13);
             this.b8.TabIndex = 49;
+            this.b8.TabStop = false;
             this.b8.UseVisualStyleBackColor = false;
             this.b8.Visible = false;
             // 
@@ -632,6 +664,7 @@
             this.b4.Name = "b4";
             this.b4.Size = new System.Drawing.Size(13, 13);
             this.b4.TabIndex = 48;
+            this.b4.TabStop = false;
             this.b4.UseVisualStyleBackColor = false;
             this.b4.Visible = false;
             // 
@@ -644,6 +677,7 @@
             this.b3.Name = "b3";
             this.b3.Size = new System.Drawing.Size(13, 13);
             this.b3.TabIndex = 47;
+            this.b3.TabStop = false;
             this.b3.UseVisualStyleBackColor = false;
             this.b3.Visible = false;
             // 
@@ -656,6 +690,7 @@
             this.b2.Name = "b2";
             this.b2.Size = new System.Drawing.Size(13, 13);
             this.b2.TabIndex = 46;
+            this.b2.TabStop = false;
             this.b2.UseVisualStyleBackColor = false;
             this.b2.Visible = false;
             // 
@@ -668,6 +703,7 @@
             this.b1.Name = "b1";
             this.b1.Size = new System.Drawing.Size(13, 13);
             this.b1.TabIndex = 45;
+            this.b1.TabStop = false;
             this.b1.UseVisualStyleBackColor = false;
             this.b1.Visible = false;
             // 
@@ -766,6 +802,10 @@
             this.NewBattleButton.Text = "New battle";
             this.NewBattleButton.UseVisualStyleBackColor = true;
             // 
+            // SoundOpenFileDialog
+            // 
+            this.SoundOpenFileDialog.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
+            // 
             // SettingsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -779,6 +819,7 @@
             this.Controls.Add(this.GeneralSettingsGroup);
             this.Name = "SettingsPanel";
             this.Size = new System.Drawing.Size(413, 297);
+            this.Click += new System.EventHandler(this.SettingsPanel_Click);
             this.GeneralSettingsGroup.ResumeLayout(false);
             this.GeneralSettingsGroup.PerformLayout();
             this.NotificationSoundGroup.ResumeLayout(false);
@@ -848,6 +889,7 @@
         private System.Windows.Forms.Button b6;
         private System.Windows.Forms.Button b7;
         private System.Windows.Forms.Button b8;
-        private System.Windows.Forms.Button ColorPicker;
+        public System.Windows.Forms.Button ColorPicker;
+        private System.Windows.Forms.OpenFileDialog SoundOpenFileDialog;
     }
 }

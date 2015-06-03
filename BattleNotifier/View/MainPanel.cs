@@ -10,7 +10,6 @@ namespace BattleNotifier.View
 {
     public partial class MainPanel : UserControl, IMainPanel
     {
-        public string SoundPath { get; set; }
         public List<string> AutocompleteKuskisList { get; set; }
 
         private BattleNotifierController battleNotifier;
@@ -78,7 +77,6 @@ namespace BattleNotifier.View
                 else
                     settings.Basic.LifeSeconds = 0;
                 settings.Basic.PlaySound = PlaySoundCheckBox.Checked;
-                settings.Basic.SoundPath = SoundPath;
                 settings.Basic.MapSize = MapSizeDomainUpDown.SelectedIndex;
 
                 return settings;
@@ -174,12 +172,6 @@ namespace BattleNotifier.View
         private void SimulateBattle2Button_Click(object sender, EventArgs e)
         {
             battleNotifier.SimulateBattleNotification2();
-        }
-
-        private void SetSoundButton_Click(object sender, EventArgs e)
-        {
-            SoundOpenFileDialog.ShowDialog();
-            SoundPath = SoundOpenFileDialog.FileName;
         }
 
         private void MainPanel_Click(object sender, EventArgs e)

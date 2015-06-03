@@ -1,26 +1,25 @@
-﻿using System;
+﻿using BattleNotifier.Model;
+using System;
 using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace BattleNotifier.View
 {
-    /// <summary>
-    /// Base class that gives any form that derives from it the effect of slowly 
-    /// appearing and then disapperaing. Much like outlook email notification pop-ups
-    /// </summary>
-    public class TransDialog : Form
+    public class TransBattleNotification : BattleNotification
     {
         #region Constructor
-        public TransDialog()
+        public TransBattleNotification(Battle battle, int timeLeft, BattleNotificationSettings settings)
+            : base(battle, timeLeft, settings)
         {
-			InitializeComponents();
+            Initialize();
         }
-		public TransDialog(bool disposeAtEnd)
-		{
-			m_bDisposeAtEnd = disposeAtEnd;
-            InitializeComponents();
-		}
-        void InitializeComponents()
+        public TransBattleNotification(Battle battle, int timeLeft, BattleNotificationSettings settings, bool disposeAtEnd)
+            : base(battle, timeLeft, settings)
+        {
+            m_bDisposeAtEnd = disposeAtEnd;
+            Initialize();
+        }
+        void Initialize()
 		{
             this.components = new System.ComponentModel.Container();
             this.m_clock =  new Timer(this.components);

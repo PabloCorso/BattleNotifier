@@ -9,6 +9,8 @@ namespace BattleNotifier.View
 {
     public partial class MapNotification : Form
     {
+        public MapNotification() { }
+
         // TODO diferentes resolusiones de mapa. small medium big or ress.
         public MapNotification(int startHeight, int mapDesiredWidth)
         {
