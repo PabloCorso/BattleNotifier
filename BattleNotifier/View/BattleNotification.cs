@@ -6,6 +6,7 @@ using System.Drawing.Printing;
 using BattleNotifier.Utils;
 using System.Diagnostics;
 using BattleNotifier.Controller;
+using System.Drawing;
 
 namespace BattleNotifier.View
 {
@@ -28,6 +29,13 @@ namespace BattleNotifier.View
 
             if (timeLeft > 0)
                 StartBattleCountdown(timeLeft);
+
+            //MinimizeButton.Visible = true;
+            //CloseButton.Visible = true;
+            //BackColor = Color.Gray;
+            //this.TransparencyKey = Color.Gray;
+            //Height += 20;
+            //FormBorderStyle = FormBorderStyle.None;
         }
 
         private delegate void BlankDelegate();
@@ -163,6 +171,16 @@ namespace BattleNotifier.View
         {
             // Send the URL to the operating system.
             Process.Start(e.Link.LinkData as string);
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

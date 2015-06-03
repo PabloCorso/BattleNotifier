@@ -39,6 +39,7 @@
             this.PictureBox.Size = new System.Drawing.Size(320, 240);
             this.PictureBox.TabIndex = 0;
             this.PictureBox.TabStop = false;
+            this.PictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
             // 
             // MapNotification
             // 
@@ -51,6 +52,7 @@
             this.Text = "MapNotification";
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapNotification_FormClosed);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapNotification_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
 

@@ -35,11 +35,13 @@
             this.AttributesToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.MapCheckBox = new System.Windows.Forms.CheckBox();
             this.CountdownLabel = new System.Windows.Forms.Label();
-            this.PrintMapButton = new System.Windows.Forms.Button();
             this.DurationLabel = new System.Windows.Forms.Label();
             this.BattleTypeLabel = new System.Windows.Forms.Label();
             this.AttributesLabel = new System.Windows.Forms.Label();
             this.HeadlineLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.MinimizeButton = new System.Windows.Forms.Button();
+            this.CloseButton = new System.Windows.Forms.Button();
+            this.PrintMapButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // PrintMapDialog
@@ -83,19 +85,6 @@
             this.CountdownLabel.Size = new System.Drawing.Size(0, 17);
             this.CountdownLabel.TabIndex = 5;
             // 
-            // PrintMapButton
-            // 
-            this.PrintMapButton.BackgroundImage = global::BattleNotifier.Properties.Resources.printer;
-            this.PrintMapButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.PrintMapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PrintMapButton.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.PrintMapButton.Location = new System.Drawing.Point(201, 70);
-            this.PrintMapButton.Name = "PrintMapButton";
-            this.PrintMapButton.Size = new System.Drawing.Size(21, 20);
-            this.PrintMapButton.TabIndex = 4;
-            this.PrintMapButton.UseVisualStyleBackColor = true;
-            this.PrintMapButton.Click += new System.EventHandler(this.PrintMapButton_Click);
-            // 
             // DurationLabel
             // 
             this.DurationLabel.AutoSize = true;
@@ -109,6 +98,7 @@
             // BattleTypeLabel
             // 
             this.BattleTypeLabel.AutoSize = true;
+            this.BattleTypeLabel.BackColor = System.Drawing.Color.Transparent;
             this.BattleTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BattleTypeLabel.Location = new System.Drawing.Point(8, 25);
             this.BattleTypeLabel.Name = "BattleTypeLabel";
@@ -142,11 +132,58 @@
             this.HeadlineLinkLabel.Text = "Pob0984 by Pab";
             this.HeadlineLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.HeadlineLinkLabel_LinkClicked);
             // 
+            // MinimizeButton
+            // 
+            this.MinimizeButton.BackColor = System.Drawing.SystemColors.Control;
+            this.MinimizeButton.BackgroundImage = global::BattleNotifier.Properties.Resources.minimize_window_16;
+            this.MinimizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.MinimizeButton.FlatAppearance.BorderSize = 0;
+            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeButton.Location = new System.Drawing.Point(193, 1);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(20, 17);
+            this.MinimizeButton.TabIndex = 8;
+            this.MinimizeButton.TabStop = false;
+            this.MinimizeButton.UseVisualStyleBackColor = false;
+            this.MinimizeButton.Visible = false;
+            this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.SystemColors.Control;
+            this.CloseButton.BackgroundImage = global::BattleNotifier.Properties.Resources.close_window_16;
+            this.CloseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CloseButton.FlatAppearance.BorderSize = 0;
+            this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CloseButton.Location = new System.Drawing.Point(214, 1);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(20, 17);
+            this.CloseButton.TabIndex = 7;
+            this.CloseButton.TabStop = false;
+            this.CloseButton.UseVisualStyleBackColor = false;
+            this.CloseButton.Visible = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // PrintMapButton
+            // 
+            this.PrintMapButton.BackgroundImage = global::BattleNotifier.Properties.Resources.printer;
+            this.PrintMapButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.PrintMapButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PrintMapButton.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.PrintMapButton.Location = new System.Drawing.Point(201, 70);
+            this.PrintMapButton.Name = "PrintMapButton";
+            this.PrintMapButton.Size = new System.Drawing.Size(21, 20);
+            this.PrintMapButton.TabIndex = 4;
+            this.PrintMapButton.UseVisualStyleBackColor = true;
+            this.PrintMapButton.Click += new System.EventHandler(this.PrintMapButton_Click);
+            // 
             // BattleNotification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(234, 96);
+            this.Controls.Add(this.MinimizeButton);
+            this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.MapCheckBox);
             this.Controls.Add(this.CountdownLabel);
             this.Controls.Add(this.PrintMapButton);
@@ -178,5 +215,7 @@
         private System.Windows.Forms.Label CountdownLabel;
         private System.Windows.Forms.ToolTip AttributesToolTip;
         private System.Windows.Forms.CheckBox MapCheckBox;
+        private System.Windows.Forms.Button CloseButton;
+        private System.Windows.Forms.Button MinimizeButton;
     }
 }
