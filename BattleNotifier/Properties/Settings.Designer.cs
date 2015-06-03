@@ -193,25 +193,13 @@ namespace BattleNotifier.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.5")]
-        public string AppVersion {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool NeedsUpgrade {
             get {
-                return ((string)(this["AppVersion"]));
+                return ((bool)(this["NeedsUpgrade"]));
             }
             set {
-                this["AppVersion"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool FirstLaunch {
-            get {
-                return ((bool)(this["FirstLaunch"]));
-            }
-            set {
-                this["FirstLaunch"] = value;
+                this["NeedsUpgrade"] = value;
             }
         }
     }
