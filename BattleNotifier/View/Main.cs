@@ -55,9 +55,9 @@ namespace BattleNotifier.View
             get { return this.mainPanel; }
         }
 
-        public void ShowBattleNotificationDialog(Battle battle, int timeLeft)
+        public BattleNotificationSettings GetNotificationSettings() 
         {
-            NotificationsController.Instance.ShowBattleNotification(battle, timeLeft, MainPanel.BattleNotificationSettings);
+            return MainPanel.BattleNotificationSettings;
         }
         #endregion
 

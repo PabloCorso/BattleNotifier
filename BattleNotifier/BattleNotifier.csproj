@@ -155,6 +155,7 @@
   <ItemGroup>
     <Content Include="Assets\close_window.png" />
     <None Include="Assets\close_window_16.png" />
+    <None Include="Assets\color_picker.png" />
     <Content Include="Assets\helmet_notify_icon.ico" />
     <Content Include="Assets\minimize_window.png" />
     <None Include="Assets\minimize_window_16.png" />

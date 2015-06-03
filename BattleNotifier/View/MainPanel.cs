@@ -71,15 +71,15 @@ namespace BattleNotifier.View
             get
             {
                 BattleNotificationSettings settings = new BattleNotificationSettings();
-                settings.ShowBattleDialog = ShowBattleCheckBox.Checked;
-                settings.ShowMapDialog = ShowMapCheckBox.Checked;
+                settings.Basic.ShowBattleDialog = ShowBattleCheckBox.Checked;
+                settings.Basic.ShowMapDialog = ShowMapCheckBox.Checked;
                 if (CloseDialogTimeCheckBox.Checked)
-                    settings.LifeSeconds = Convert.ToInt32(CloseDialogNumericUpDown.Value);
+                    settings.Basic.LifeSeconds = Convert.ToInt32(CloseDialogNumericUpDown.Value);
                 else
-                    settings.LifeSeconds = 0;
-                settings.PlaySound = PlaySoundCheckBox.Checked;
-                settings.SoundPath = SoundPath;
-                settings.MapSize = MapSizeDomainUpDown.SelectedIndex;
+                    settings.Basic.LifeSeconds = 0;
+                settings.Basic.PlaySound = PlaySoundCheckBox.Checked;
+                settings.Basic.SoundPath = SoundPath;
+                settings.Basic.MapSize = MapSizeDomainUpDown.SelectedIndex;
 
                 return settings;
             }

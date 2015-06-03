@@ -83,6 +83,16 @@ namespace BattleNotifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap color_picker {
+            get {
+                object obj = ResourceManager.GetObject("color_picker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap minimize_window_16 {
             get {
                 object obj = ResourceManager.GetObject("minimize_window_16", resourceCulture);

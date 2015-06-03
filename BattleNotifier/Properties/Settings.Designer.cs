@@ -191,15 +191,12 @@ namespace BattleNotifier.Properties {
             }
         }
         
-        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool NeedsUpgrade {
             get {
                 return ((bool)(this["NeedsUpgrade"]));
-            }
-            set {
-                this["NeedsUpgrade"] = value;
             }
         }
     }

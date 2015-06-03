@@ -35,35 +35,35 @@ namespace BattleNotifier.Controller
             }
         }
 
-        public void ShowBattleNotification(Battle battle, int timeLeft, BattleNotificationSettings settings)
+        public void ShowBattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
         {
             ClearBattleNotification();
 
-            if (settings.ShowBattleDialog || settings.ShowMapDialog)
+            if (settings.Basic.ShowBattleDialog || settings.Basic.ShowMapDialog)
             {
                 Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl);
 
-                if(settings.ShowBattleDialog)
-                    bn = new BattleNotification(battle, timeLeft, settings);
-                if(settings.ShowMapDialog)
-                    mn = new MapNotification(bn.Height, MapSizeIndexToWidth(settings.MapSize));
+                if (settings.Basic.ShowBattleDialog)
+                    bn = new BattleNotification(battle, Convert.ToInt32(timeLeft), settings);
+                if (settings.Basic.ShowMapDialog)
+                    mn = new MapNotification(bn.Height, MapSizeIndexToWidth(settings.Basic.MapSize));
             }
 
-            if (settings.ShowBattleDialog)
-                bn.Show();
-            if (settings.ShowMapDialog)
+            if (settings.Basic.ShowMapDialog)
                 mn.Show();
+            if (settings.Basic.ShowBattleDialog)
+                bn.Show();
 
             // Play sound.
-            if (settings.PlaySound)
-                if (!string.IsNullOrEmpty(settings.SoundPath) && File.Exists(settings.SoundPath))
-                    PlaySound(settings.SoundPath);
+            if (settings.Basic.PlaySound)
+                if (!string.IsNullOrEmpty(settings.Basic.SoundPath) && File.Exists(settings.Basic.SoundPath))
+                    PlaySound(settings.Basic.SoundPath);
                 else
                     PlayDefaultSound();
 
-            if (settings.LifeSeconds > 0)
+            if (settings.Basic.LifeSeconds > 0)
             {
-                notificationTimer.Interval = new TimeSpan(0,0,settings.LifeSeconds).TotalMilliseconds;
+                notificationTimer.Interval = new TimeSpan(0, 0, settings.Basic.LifeSeconds).TotalMilliseconds;
                 notificationTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
                 notificationTimer.Start();
             }
