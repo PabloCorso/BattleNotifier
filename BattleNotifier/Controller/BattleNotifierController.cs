@@ -134,10 +134,6 @@ namespace BattleNotifier.Controller
                 if (!battle.Equals(currentBattle))
                 {
                     currentBattle = battle;
-#if DEBUG
-                    File.AppendAllText(@"D:\Desktop\Update.txt", "Duration: " + currentBattle.Duration + "\n");
-                    File.AppendAllText(@"D:\Desktop\Update.txt", "Started: " + currentBattle.StartedDateTime.ToString() + "\n" + "\n");
-#endif
                 }
 
                 // Notificate battle.
@@ -146,15 +142,9 @@ namespace BattleNotifier.Controller
                     NotificationsController.Instance.ShowBattleNotification(currentBattle, timeLeft);
                     currentNotified = true;
                 }
-#if DEBUG
-                File.AppendAllText(@"D:\Desktop\Update.txt", "Time Left: " + timeLeft + " (" + timeLeft / 60 + ")" + "\n");
-                File.AppendAllText(@"D:\Desktop\Update.txt", "Time Passed: " + timePassed + " (" + timePassed / 60 + ")" + "\n");
-#endif
+
                 if (timeLeft < 1)
                 {
-#if DEBUG
-                    File.AppendAllText(@"D:\Desktop\Update.txt", "1 or less Time Left case happend" + "\n");
-#endif
                     nextUpdate = 1;
                     currentFinishedNormally = true;
                 }
@@ -178,12 +168,7 @@ namespace BattleNotifier.Controller
                         nextUpdate = currentBattle.Duration * 60 * 0.20;
                 }
             }
-#if DEBUG
-            File.AppendAllText(@"D:\Desktop\Update.txt", "Next Update: " + nextUpdate + " (" + nextUpdate / 60 + ")\n");
-            DateTime now = DateTime.Now;
-            File.AppendAllText(@"D:\Desktop\Update.txt", "Time: " + now.TimeOfDay + "\n");
-            File.AppendAllText(@"D:\Desktop\Update.txt", "Next Update Expected: " + now.AddSeconds(nextUpdate).TimeOfDay + "\n" + "\n");
-#endif
+
             return nextUpdate;
         }
 
@@ -197,9 +182,6 @@ namespace BattleNotifier.Controller
             {
                 XmlDocument xmlDoc = WebRequestHelper.GetXmlFromUrl(AppSettings.AppSettings["CurrentBattleApiUrl"]);
 
-#if DEBUG
-                xmlDoc.Save(@"D:\Desktop\DomiTest.txt");
-#endif
                 CurrentDateTime = DateTime.Now;
                 if (xmlDoc.FirstChild.HasChildNodes)
                 {

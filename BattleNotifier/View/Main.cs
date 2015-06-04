@@ -38,6 +38,9 @@ namespace BattleNotifier.View
             UserSettings.InitializeConfigStorageBroker(this, mainPanel, settingsPanel);
 
             UserSettings.Load();
+
+            if (UserSettings.Instance.NotifyOnStartup())
+                mainPanel.NotificateBattles();
         }
 
         private void NavigateToCurrentBattleButton_MouseEnter(object sender, EventArgs e)
@@ -195,8 +198,6 @@ namespace BattleNotifier.View
         }
 
         #endregion
-
-        
 
         private void NavigateToSettingsButton_Click(object sender, EventArgs e)
         {

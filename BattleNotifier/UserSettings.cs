@@ -31,7 +31,7 @@ namespace BattleNotifier
             }
         }
 
-        private UserSettings(Main mainView, MainPanel mainPanel, SettingsPanel settingsPanel) 
+        private UserSettings(Main mainView, MainPanel mainPanel, SettingsPanel settingsPanel)
         {
             this.mainView = mainView;
             this.mainPanel = mainPanel;
@@ -73,6 +73,12 @@ namespace BattleNotifier
             settings.Map.ShowAttributes = sp.OnMapAttsCheckBox.Checked;
 
             return settings;
+        }
+
+        public bool NotifyOnStartup()
+        {
+            Settings settings = Settings.Default;
+            return settings.NotifyOnStartup;
         }
 
         #region User settings persistance

@@ -109,6 +109,7 @@
             this.Controls.Add(this.NavigateHomeButton);
             this.Controls.Add(this.BackgroundPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Main";

@@ -20,6 +20,10 @@ namespace BattleNotifier.View
             this.GeneralSettingsGroup.Click += new EventHandler(SettingsPanel_Click);
             this.NotificationSoundGroup.Click += new EventHandler(SettingsPanel_Click);
             InitializeColorPicker();
+
+#if DEBUG
+            RandomNewBattleCheckBox.Visible = true;
+#endif
         }
 
         private void ResetButton_Click(object sender, EventArgs e)
@@ -87,6 +91,13 @@ namespace BattleNotifier.View
 
         private void NewBattleButton_Click(object sender, EventArgs e)
         {
+#if DEBUG
+            if (RandomNewBattleCheckBox.Checked)
+            {
+                NotificationsController.Instance.SimulateRandomBattle();
+                return;
+            }
+#endif
             NotificationsController.Instance.SimulateNewBattle();
         }
     }

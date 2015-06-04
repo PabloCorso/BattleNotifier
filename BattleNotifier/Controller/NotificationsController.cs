@@ -36,12 +36,33 @@ namespace BattleNotifier.Controller
             }
         }
 
-        public void SimulateNewBattle() 
+        public void SimulateRandomBattle() 
         {
+            Random random = new Random();
+            int map = Convert.ToInt32(random.NextDouble() * (91323 - 1) + 1);
+            int id = Convert.ToInt32(random.NextDouble() * (91323 - 1) + 1);
+            int duration = Convert.ToInt32(random.NextDouble() * (60 - 1) + 1);
             Battle battle = new Battle()
             {
                 FileName = "Pob0989.lev",
-                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + "308356",
+                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + map,
+                Duration = duration,
+                Attributes = (BattleAttribute)15,
+                Type = 0,
+                StartedDateTime = DateTime.Now,
+                Desginer = "Pab",
+                Id = id
+            };
+
+            this.ShowBattleNotification(battle, duration * 60);
+        }
+
+        public void SimulateNewBattle() 
+        {   
+            Battle battle = new Battle()
+            {
+                FileName = "Pob0989.lev",
+                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + "90000",
                 Duration = 20,
                 Attributes = (BattleAttribute)15,
                 Type = 0,
@@ -61,7 +82,14 @@ namespace BattleNotifier.Controller
 
             if (settings.Basic.ShowBattleDialog || settings.Basic.ShowMapDialog)
             {
-                Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl);
+                try
+                {
+                    Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl);
+                }
+                catch (Exception) 
+                {
+                    //no image, put default.
+                }
 
                 if (settings.Basic.ShowBattleDialog)
                     if (settings.General.UseFadeEffect)

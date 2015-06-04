@@ -26,11 +26,6 @@ namespace BattleNotifier.View
             this.battleNotifier = battleNotifier;
 
             AutocompleteKuskisList = new List<string>();
-            
-#if DEBUG
-            Simulate1Button.Visible = true;
-            SimulateBattle2Button.Visible = true;
-#endif
         }
 
         private void MainPanel_Load(object sender, EventArgs e)

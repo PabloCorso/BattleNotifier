@@ -43,8 +43,6 @@
             this.ShowMapCheckBox = new System.Windows.Forms.CheckBox();
             this.PlaySoundCheckBox = new System.Windows.Forms.CheckBox();
             this.ShowBattleCheckBox = new System.Windows.Forms.CheckBox();
-            this.Simulate1Button = new System.Windows.Forms.Button();
-            this.SimulateBattle2Button = new System.Windows.Forms.Button();
             this.CloseDialogNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CloseDialogTimeCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -202,30 +200,6 @@
             this.ShowBattleCheckBox.UseVisualStyleBackColor = true;
             this.ShowBattleCheckBox.CheckedChanged += new System.EventHandler(this.ShowBattleCheckBox_CheckedChanged);
             // 
-            // Simulate1Button
-            // 
-            this.Simulate1Button.Location = new System.Drawing.Point(294, 214);
-            this.Simulate1Button.Name = "Simulate1Button";
-            this.Simulate1Button.Size = new System.Drawing.Size(29, 23);
-            this.Simulate1Button.TabIndex = 39;
-            this.Simulate1Button.TabStop = false;
-            this.Simulate1Button.Text = "1";
-            this.Simulate1Button.UseVisualStyleBackColor = true;
-            this.Simulate1Button.Visible = false;
-            this.Simulate1Button.Click += new System.EventHandler(this.Simulate1Button_Click);
-            // 
-            // SimulateBattle2Button
-            // 
-            this.SimulateBattle2Button.Location = new System.Drawing.Point(329, 214);
-            this.SimulateBattle2Button.Name = "SimulateBattle2Button";
-            this.SimulateBattle2Button.Size = new System.Drawing.Size(31, 23);
-            this.SimulateBattle2Button.TabIndex = 40;
-            this.SimulateBattle2Button.TabStop = false;
-            this.SimulateBattle2Button.Text = "2";
-            this.SimulateBattle2Button.UseVisualStyleBackColor = true;
-            this.SimulateBattle2Button.Visible = false;
-            this.SimulateBattle2Button.Click += new System.EventHandler(this.SimulateBattle2Button_Click);
-            // 
             // CloseDialogNumericUpDown
             // 
             this.CloseDialogNumericUpDown.Location = new System.Drawing.Point(330, 145);
@@ -347,8 +321,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CloseDialogTimeCheckBox);
             this.Controls.Add(this.CloseDialogNumericUpDown);
-            this.Controls.Add(this.SimulateBattle2Button);
-            this.Controls.Add(this.Simulate1Button);
             this.Controls.Add(this.ShowBattleCheckBox);
             this.Controls.Add(this.PlaySoundCheckBox);
             this.Controls.Add(this.ShowMapCheckBox);
@@ -382,8 +354,6 @@
         private System.Windows.Forms.Button AddDesignerButton;
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.Label NotificationLabel;
-        private System.Windows.Forms.Button Simulate1Button;
-        private System.Windows.Forms.Button SimulateBattle2Button;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         public System.Windows.Forms.CheckBox ShowMapCheckBox;

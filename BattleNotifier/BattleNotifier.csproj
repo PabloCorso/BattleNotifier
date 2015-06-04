@@ -163,6 +163,8 @@
     <Content Include="Assets\helmet_notify_icon.ico" />
     <Content Include="Assets\minimize_window.png" />
     <None Include="Assets\minimize_window_16.png" />
+    <Content Include="Assets\notify_icon.ico" />
+    <Content Include="Assets\notify_icon.png" />
     <Content Include="Assets\printer.ico" />
     <Content Include="Assets\printer.png" />
     <EmbeddedResource Include="HtmlAgilityPack.dll" />
