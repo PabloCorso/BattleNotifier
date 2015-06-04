@@ -289,9 +289,11 @@
             // 
             this.MapSizeDomainUpDown.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.MapSizeDomainUpDown.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.MapSizeDomainUpDown.Items.Add("small");
-            this.MapSizeDomainUpDown.Items.Add("norm");
+            this.MapSizeDomainUpDown.Items.Add("huge");
             this.MapSizeDomainUpDown.Items.Add("big");
+            this.MapSizeDomainUpDown.Items.Add("norm");
+            this.MapSizeDomainUpDown.Items.Add("small");
+            this.MapSizeDomainUpDown.Items.Add("tiny");
             this.MapSizeDomainUpDown.Location = new System.Drawing.Point(348, 78);
             this.MapSizeDomainUpDown.Name = "MapSizeDomainUpDown";
             this.MapSizeDomainUpDown.ReadOnly = true;

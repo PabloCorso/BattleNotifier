@@ -211,11 +211,15 @@ namespace BattleNotifier.Controller
             switch (mapSize)
             {
                 case 0:
-                    return 180;
+                    return 600;
                 case 1:
-                    return 320;
-                case 2:
                     return 480;
+                case 2:
+                    return 320;
+                case 3:
+                    return 200;
+                case 4:
+                    return 160;
                 default:
                     return 320;
             }
