@@ -97,10 +97,13 @@ namespace BattleNotifier.Controller
                     else
                         bn = new BattleNotification(battle, Convert.ToInt32(timeLeft), settings);
                 if (settings.Basic.ShowMapDialog)
+                {
+                    int height = bn == null ? 0 : bn.Height;
                     if (settings.General.UseFadeEffect)
-                        mn = new TransMapNotification(bn.Height, MapSizeIndexToWidth(settings.Basic.MapSize), true);
+                        mn = new TransMapNotification(height, MapSizeIndexToWidth(settings.Basic.MapSize), true);
                     else
-                        mn = new MapNotification(bn.Height, MapSizeIndexToWidth(settings.Basic.MapSize));
+                        mn = new MapNotification(height, MapSizeIndexToWidth(settings.Basic.MapSize));
+                }
             }
 
             if (!settings.General.ShowOnTop) 

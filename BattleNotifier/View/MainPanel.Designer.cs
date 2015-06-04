@@ -190,7 +190,6 @@
             // ShowBattleCheckBox
             // 
             this.ShowBattleCheckBox.AutoSize = true;
-            this.ShowBattleCheckBox.Enabled = false;
             this.ShowBattleCheckBox.Location = new System.Drawing.Point(297, 36);
             this.ShowBattleCheckBox.Name = "ShowBattleCheckBox";
             this.ShowBattleCheckBox.Size = new System.Drawing.Size(102, 17);
