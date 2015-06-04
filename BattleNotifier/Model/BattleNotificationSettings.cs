@@ -29,7 +29,7 @@ namespace BattleNotifier.Model
         public string SoundPath { get; set; }
         public int LifeSeconds { get; set; }
         public int MapSize { get; set; }
-        public string DefaultSound { get; set; }
+        public int DefaultSound { get; set; }
         public bool UseCustomSound { get; set; }
     }
 

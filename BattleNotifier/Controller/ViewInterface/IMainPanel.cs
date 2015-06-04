@@ -11,6 +11,5 @@ namespace BattleNotifier.Controller.ViewInterface
         List<string> CheckedBlackList { get; }
         bool HasAllBattleTypesChecked();
         List<string> CheckedBattleTypes { get; }
-        BattleNotificationSettings BattleNotificationSettings { get; }
     }
 }

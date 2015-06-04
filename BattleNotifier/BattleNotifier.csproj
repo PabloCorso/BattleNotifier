@@ -53,7 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigStorageBroker.cs" />
+    <Compile Include="UserSettings.cs" />
     <Compile Include="Controller\BattleNotifierController.cs" />
     <Compile Include="Controller\NotificationsController.cs" />
     <Compile Include="Controller\ViewInterface\IMain.cs" />

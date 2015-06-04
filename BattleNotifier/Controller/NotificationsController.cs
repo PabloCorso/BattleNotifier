@@ -8,6 +8,7 @@ using System.IO;
 using System.Media;
 using System.Windows.Forms;
 using System.Timers;
+using AppSettings = System.Configuration.ConfigurationManager;
 
 namespace BattleNotifier.Controller
 {
@@ -35,18 +36,43 @@ namespace BattleNotifier.Controller
             }
         }
 
-        public void ShowBattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
+        public void SimulateNewBattle() 
+        {
+            Battle battle = new Battle()
+            {
+                FileName = "Pob0989.lev",
+                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + "308356",
+                Duration = 20,
+                Attributes = (BattleAttribute)15,
+                Type = 0,
+                StartedDateTime = DateTime.Now,
+                Desginer = "Pab",
+                Id = 90431
+            };
+
+            this.ShowBattleNotification(battle, 20 * 60);
+        }
+
+        public void ShowBattleNotification(Battle battle, double timeLeft)
         {
             ClearBattleNotification();
+
+            BattleNotificationSettings settings = UserSettings.Instance.GetBattleNotificationSettings();
 
             if (settings.Basic.ShowBattleDialog || settings.Basic.ShowMapDialog)
             {
                 Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl);
 
                 if (settings.Basic.ShowBattleDialog)
-                    bn = new BattleNotification(battle, Convert.ToInt32(timeLeft), settings);
+                    if (settings.General.UseFadeEffect)
+                        bn = new TransBattleNotification(battle, Convert.ToInt32(timeLeft), settings, true);
+                    else
+                        bn = new BattleNotification(battle, Convert.ToInt32(timeLeft), settings);
                 if (settings.Basic.ShowMapDialog)
-                    mn = new MapNotification(bn.Height, MapSizeIndexToWidth(settings.Basic.MapSize));
+                    if (settings.General.UseFadeEffect)
+                        mn = new TransMapNotification(bn.Height, MapSizeIndexToWidth(settings.Basic.MapSize), true);
+                    else
+                        mn = new MapNotification(bn.Height, MapSizeIndexToWidth(settings.Basic.MapSize));
             }
 
             if (settings.Basic.ShowMapDialog)
@@ -137,24 +163,24 @@ namespace BattleNotifier.Controller
                 mn.Show();
         }
 
-        private void EndBattleNotification() 
+        private void EndBattleNotification()
         {
             ClearBattleNotification();
         }
 
         public void BattleNotificationClosed()
         {
-            
+
         }
 
         public void MapNotificationClosed()
         {
-            
+
         }
 
         private int MapSizeIndexToWidth(int mapSize)
         {
-            switch (mapSize) 
+            switch (mapSize)
             {
                 case 0:
                     return 180;

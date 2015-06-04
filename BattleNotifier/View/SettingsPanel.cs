@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BattleNotifier.Controller;
 
 namespace BattleNotifier.View
 {
@@ -28,7 +29,7 @@ namespace BattleNotifier.View
                                      MessageBoxButtons.OKCancel);
             if (confirmResult == DialogResult.OK)
             {
-                ConfigStorageBroker.ResetUserSettings();
+                UserSettings.Reset();
             }
         }
 
@@ -82,6 +83,11 @@ namespace BattleNotifier.View
         private void SettingsPanel_Click(object sender, EventArgs e)
         {
             this.ActiveControl = null;
+        }
+
+        private void NewBattleButton_Click(object sender, EventArgs e)
+        {
+            NotificationsController.Instance.SimulateNewBattle();
         }
     }
 }

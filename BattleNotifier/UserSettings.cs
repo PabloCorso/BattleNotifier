@@ -1,4 +1,5 @@
-﻿using BattleNotifier.Utils;
+﻿using BattleNotifier.Model;
+using BattleNotifier.Utils;
 using BattleNotifier.View;
 using System;
 using System.Collections.Generic;
@@ -9,20 +10,20 @@ using Settings = BattleNotifier.Properties.Settings;
 
 namespace BattleNotifier
 {
-    public class ConfigStorageBroker
+    public class UserSettings
     {
         Main mainView;
         MainPanel mainPanel;
         SettingsPanel settingsPanel;
-        private static ConfigStorageBroker instance;
+        private static UserSettings instance;
 
         public static void InitializeConfigStorageBroker(Main mainView, MainPanel mainPanel, SettingsPanel settingsPanel)
         {
             if (instance == null)
-                instance = new ConfigStorageBroker(mainView, mainPanel, settingsPanel);
+                instance = new UserSettings(mainView, mainPanel, settingsPanel);
         }
 
-        public static ConfigStorageBroker Instance
+        public static UserSettings Instance
         {
             get
             {
@@ -30,24 +31,62 @@ namespace BattleNotifier
             }
         }
 
-        private ConfigStorageBroker(Main mainView, MainPanel mainPanel, SettingsPanel settingsPanel) 
+        private UserSettings(Main mainView, MainPanel mainPanel, SettingsPanel settingsPanel) 
         {
             this.mainView = mainView;
             this.mainPanel = mainPanel;
             this.settingsPanel = settingsPanel;
         }
 
-        #region User settings
-        public static void ResetUserSettings()
+        public BattleNotificationSettings GetBattleNotificationSettings()
+        {
+            MainPanel mp = instance.mainPanel;
+            SettingsPanel sp = instance.settingsPanel;
+
+            BattleNotificationSettings settings = new BattleNotificationSettings();
+
+            //Main panel settings.
+            settings.Basic.ShowBattleDialog = mp.ShowBattleCheckBox.Checked;
+            settings.Basic.ShowMapDialog = mp.ShowMapCheckBox.Checked;
+            if (mp.CloseDialogTimeCheckBox.Checked)
+                settings.Basic.LifeSeconds = Convert.ToInt32(mp.CloseDialogNumericUpDown.Value);
+            else
+                settings.Basic.LifeSeconds = 0;
+            settings.Basic.PlaySound = mp.PlaySoundCheckBox.Checked;
+            settings.Basic.MapSize = mp.MapSizeDomainUpDown.SelectedIndex;
+
+            //Settings panel settings.
+            settings.Basic.DefaultSound = sp.DefaultSoundComboBox.SelectedIndex;
+            settings.Basic.SoundPath = sp.CustomSoundPathTextBox.Text;
+            settings.Basic.UseCustomSound = sp.UseCustomSoundCheckBox.Checked;
+
+            settings.General.ShowOnTop = sp.ShowOnTopCheckBox.Checked;
+            settings.General.UseFadeEffect = sp.FadeCheckBox.Checked;
+            settings.General.HidePrintMap = sp.HidePrintCheckBox.Checked;
+            settings.General.TransparentStyle = sp.TransparentCheckBox.Checked;
+
+            settings.Map.TextMapColor = sp.ColorPicker.BackColor;
+            settings.Map.ShowLevelName = sp.OnMapLevelCheckBox.Checked;
+            settings.Map.ShowDesigner = sp.OnMapDesignerCheckBox.Checked;
+            settings.Map.ShowType = sp.OnMapTypeCheckBox.Checked;
+            settings.Map.ShowLifeSeconds = sp.OnMapTimeCheckBox.Checked;
+            settings.Map.ShowAttributes = sp.OnMapAttsCheckBox.Checked;
+
+            return settings;
+        }
+
+        #region User settings persistance
+        public static void Reset()
         {
             Settings.Default.Reset();
             instance.mainPanel.BlackListChListBox.Items.Clear();
             instance.mainPanel.DesignersChListBox.Items.Clear();
             instance.mainPanel.BattleTypesChListBox.Items.Clear();
-            LoadUserSettings();
+            instance.mainPanel.AutocompleteKuskisList.Clear();
+            Load();
         }
 
-        public static void LoadUserSettings()
+        public static void Load()
         {
             Settings settings = Settings.Default;
             MainPanel mainPanel = instance.mainPanel;
@@ -112,7 +151,7 @@ namespace BattleNotifier
             settingsPanel.OnMapAttsCheckBox.Checked = settings.OnMapAttributes;
         }
 
-        public static void SaveUserSettings()
+        public static void Save()
         {
             Settings settings = Settings.Default;
             MainPanel mainPanel = instance.mainPanel;

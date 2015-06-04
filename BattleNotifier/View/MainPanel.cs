@@ -64,24 +64,6 @@ namespace BattleNotifier.View
         {
             get { return Timer.Enabled; }
         }
-
-        public BattleNotificationSettings BattleNotificationSettings
-        {
-            get
-            {
-                BattleNotificationSettings settings = new BattleNotificationSettings();
-                settings.Basic.ShowBattleDialog = ShowBattleCheckBox.Checked;
-                settings.Basic.ShowMapDialog = ShowMapCheckBox.Checked;
-                if (CloseDialogTimeCheckBox.Checked)
-                    settings.Basic.LifeSeconds = Convert.ToInt32(CloseDialogNumericUpDown.Value);
-                else
-                    settings.Basic.LifeSeconds = 0;
-                settings.Basic.PlaySound = PlaySoundCheckBox.Checked;
-                settings.Basic.MapSize = MapSizeDomainUpDown.SelectedIndex;
-
-                return settings;
-            }
-        }
         #endregion
 
         public void NotificateBattles()

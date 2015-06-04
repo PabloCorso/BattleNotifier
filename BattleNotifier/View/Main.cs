@@ -35,9 +35,9 @@ namespace BattleNotifier.View
             settingsPanel = new SettingsPanel();
             NavigateHomeButton.Visible = false;
 
-            ConfigStorageBroker.InitializeConfigStorageBroker(this, mainPanel, settingsPanel);
+            UserSettings.InitializeConfigStorageBroker(this, mainPanel, settingsPanel);
 
-            ConfigStorageBroker.LoadUserSettings();
+            UserSettings.Load();
         }
 
         private void NavigateToCurrentBattleButton_MouseEnter(object sender, EventArgs e)
@@ -54,11 +54,6 @@ namespace BattleNotifier.View
         public IMainPanel MainPanel
         {
             get { return this.mainPanel; }
-        }
-
-        public BattleNotificationSettings GetNotificationSettings()
-        {
-            return MainPanel.BattleNotificationSettings;
         }
         #endregion
 
@@ -92,7 +87,7 @@ namespace BattleNotifier.View
 
         protected override void OnClosed(EventArgs e)
         {
-            ConfigStorageBroker.SaveUserSettings();
+            UserSettings.Save();
             ShutDownNotifyIcon();
             base.OnClosed(e);
         }

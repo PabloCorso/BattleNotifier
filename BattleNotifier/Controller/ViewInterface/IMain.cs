@@ -4,6 +4,5 @@ namespace BattleNotifier.Controller.ViewInterface
     public interface IMain
     {
         IMainPanel MainPanel { get; }
-        BattleNotificationSettings GetNotificationSettings();
     }
 }

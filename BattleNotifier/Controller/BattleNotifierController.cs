@@ -143,7 +143,7 @@ namespace BattleNotifier.Controller
                 // Notificate battle.
                 if (FilterBattle(currentBattle) && !currentNotified)
                 {
-                    NotificationsController.Instance.ShowBattleNotification(currentBattle, timeLeft, MainView.GetNotificationSettings());
+                    NotificationsController.Instance.ShowBattleNotification(currentBattle, timeLeft);
                     currentNotified = true;
                 }
 #if DEBUG
@@ -324,7 +324,7 @@ namespace BattleNotifier.Controller
                 Id = 90431
             };
 
-            NotificationsController.Instance.ShowBattleNotification(battle, 20 * 60, MainView.GetNotificationSettings());
+            NotificationsController.Instance.ShowBattleNotification(battle, 20 * 60);
         }
 
         public void SimulateBattleNotification2()
@@ -340,8 +340,8 @@ namespace BattleNotifier.Controller
                 Desginer = "Long Kuski Name",
                 Id = 90431
             };
-            NotificationsController.Instance.ShowBattleNotification(battle, 605, MainView.GetNotificationSettings());
 
+            NotificationsController.Instance.ShowBattleNotification(battle, 605);
         }
     }
 }

@@ -801,6 +801,7 @@
             this.NewBattleButton.TabIndex = 7;
             this.NewBattleButton.Text = "New battle";
             this.NewBattleButton.UseVisualStyleBackColor = true;
+            this.NewBattleButton.Click += new System.EventHandler(this.NewBattleButton_Click);
             // 
             // SoundOpenFileDialog
             // 
