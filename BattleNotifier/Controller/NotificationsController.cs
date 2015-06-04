@@ -22,22 +22,21 @@ namespace BattleNotifier.Controller
         private MapNotification mn;
         private WMPLib.WindowsMediaPlayer player;
         public Image Map { get; set; }
-        private NotificationsController()
-        {
-        }
+
+        private NotificationsController() { }
 
         public static NotificationsController Instance
         {
             get
             {
-                if (instance == null) 
+                if (instance == null)
                     instance = new NotificationsController();
 
                 return instance;
             }
         }
 
-        public void SimulateRandomBattle() 
+        public void SimulateRandomBattle()
         {
             Random random = new Random();
             int map = Convert.ToInt32(random.NextDouble() * (91323 - 1) + 1);
@@ -58,8 +57,8 @@ namespace BattleNotifier.Controller
             //this.ShowBattleNotification(battle, duration * 60);
         }
 
-        public void SimulateNewBattle() 
-        {   
+        public void SimulateNewBattle()
+        {
             Battle battle = new Battle()
             {
                 FileName = "Pob0989.lev",
@@ -87,7 +86,7 @@ namespace BattleNotifier.Controller
                 {
                     Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl);
                 }
-                catch (Exception) 
+                catch (Exception)
                 {
                     Map = (Image)Properties.Resources.close_window;
                 }
@@ -107,7 +106,7 @@ namespace BattleNotifier.Controller
                 }
             }
 
-            if (!settings.General.ShowOnTop) 
+            if (!settings.General.ShowOnTop)
             {
                 mn.TopMost = false;
                 bn.TopMost = false;

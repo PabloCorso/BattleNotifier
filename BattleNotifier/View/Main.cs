@@ -31,7 +31,8 @@ namespace BattleNotifier.View
             CenterToScreen();
 
             // Initialize battle controller.
-            battleNotifier = new BattleNotifierController(this);
+            BattleNotifierController.InitializeBattleNotifierController(this);
+            battleNotifier = BattleNotifierController.Instance;
 
             // Initialize Main Panel.
             mainPanel = new MainPanel(battleNotifier);

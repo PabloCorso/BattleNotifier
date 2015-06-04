@@ -15,6 +15,8 @@ namespace BattleNotifier.Controller
 {
     public class BattleNotifierController
     {
+        private static BattleNotifierController instance;
+
         // Battle notification.
         private Timer notificationTimer = new System.Timers.Timer();
         private object lockSet = new object();
@@ -39,7 +41,15 @@ namespace BattleNotifier.Controller
         /// </summary>
         public bool IsNotifyingBattle { get; private set; }
 
-        public BattleNotifierController(IMain view)
+        public static BattleNotifierController Instance { get { return instance; } }
+
+        public static void InitializeBattleNotifierController(IMain view)
+        {
+            if (instance == null)
+                instance = new BattleNotifierController(view);
+        }
+
+        private BattleNotifierController(IMain view)
         {
             this.MainView = view;
             notificationTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
