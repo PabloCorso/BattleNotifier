@@ -7,9 +7,9 @@ using System.Linq;
 using System.Xml;
 using System.Timers;
 using BattleNotifier.Utils;
-using AppSettings = System.Configuration.ConfigurationManager;
 using Microsoft.Win32;
 using BattleNotifier.View;
+using Settings = BattleNotifier.Properties.Settings;
 
 namespace BattleNotifier.Controller
 {
@@ -180,7 +180,7 @@ namespace BattleNotifier.Controller
         {
             try
             {
-                XmlDocument xmlDoc = WebRequestHelper.GetXmlFromUrl(AppSettings.AppSettings["CurrentBattleApiUrl"]);
+                XmlDocument xmlDoc = WebRequestHelper.GetXmlFromUrl(Settings.Default.CurrentBattleApiUrl);
 
                 CurrentDateTime = DateTime.Now;
                 if (xmlDoc.FirstChild.HasChildNodes)
@@ -207,12 +207,12 @@ namespace BattleNotifier.Controller
 
                             battle.LevelUrl = document.DocumentNode.Descendants("a")
                                                                 .Select(e => e.GetAttributeValue("href", null))
-                                                                .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(AppSettings.AppSettings["EOLLevelUrl"]))
+                                                                .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLLevelUrl))
                                                                 .FirstOrDefault();
 
                             battle.MapUrl = document.DocumentNode.Descendants("img")
                                                             .Select(e => e.GetAttributeValue("src", null))
-                                                            .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(AppSettings.AppSettings["EOLMapsUrl"]))
+                                                            .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLMapsUrl))
                                                             .FirstOrDefault();
                             eolDataLoaded = true;
                         }
@@ -297,7 +297,7 @@ namespace BattleNotifier.Controller
             Battle battle = new Battle()
             {
                 FileName = "Pob0989.lev",
-                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + "308356",
+                MapUrl = Settings.Default.EOLMapsUrl + "308356",
                 Duration = 20,
                 Attributes = (BattleAttribute)15,
                 Type = 0,
@@ -314,7 +314,7 @@ namespace BattleNotifier.Controller
             Battle battle = new Battle()
             {
                 FileName = "WWWWWWWW.lev",
-                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + "308342",
+                MapUrl = Settings.Default.EOLMapsUrl + "308342",
                 Duration = 10,
                 Attributes = (BattleAttribute)1023,
                 Type = (BattleType)2,

@@ -296,9 +296,6 @@ zwor</Value>
     <Setting Name="MapSize" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">2</Value>
     </Setting>
-    <Setting Name="NeedsUpgrade" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
     <Setting Name="NotifyOnStartup" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -312,7 +309,7 @@ zwor</Value>
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="TransparentStyle" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="HidePrintMap" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -340,6 +337,24 @@ zwor</Value>
     </Setting>
     <Setting Name="OnMapColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="EOLUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://elmaonline.net/</Value>
+    </Setting>
+    <Setting Name="EOLBattlesUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://elmaonline.net/battles/</Value>
+    </Setting>
+    <Setting Name="EOLMapsUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://elmaonline.net/images/map/</Value>
+    </Setting>
+    <Setting Name="EOLLevelUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://elmaonline.net/downloads/lev/</Value>
+    </Setting>
+    <Setting Name="CurrentBattleApiUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://elma.seamy.ru:8880/current_battle/</Value>
+    </Setting>
+    <Setting Name="NeedsUpdate" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

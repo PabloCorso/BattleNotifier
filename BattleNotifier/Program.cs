@@ -15,6 +15,7 @@ namespace BattleNotifier
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             AppDomain.CurrentDomain.AssemblyResolve += (Object sender, ResolveEventArgs args) =>
             {
                 String thisExe = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;

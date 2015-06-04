@@ -191,15 +191,6 @@ namespace BattleNotifier.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool NeedsUpgrade {
-            get {
-                return ((bool)(this["NeedsUpgrade"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
@@ -250,7 +241,7 @@ namespace BattleNotifier.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool TransparentStyle {
             get {
                 return ((bool)(this["TransparentStyle"]));
@@ -365,6 +356,60 @@ namespace BattleNotifier.Properties {
             }
             set {
                 this["OnMapColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://elmaonline.net/")]
+        public string EOLUrl {
+            get {
+                return ((string)(this["EOLUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://elmaonline.net/battles/")]
+        public string EOLBattlesUrl {
+            get {
+                return ((string)(this["EOLBattlesUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://elmaonline.net/images/map/")]
+        public string EOLMapsUrl {
+            get {
+                return ((string)(this["EOLMapsUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://elmaonline.net/downloads/lev/")]
+        public string EOLLevelUrl {
+            get {
+                return ((string)(this["EOLLevelUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://elma.seamy.ru:8880/current_battle/")]
+        public string CurrentBattleApiUrl {
+            get {
+                return ((string)(this["CurrentBattleApiUrl"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool NeedsUpdate {
+            get {
+                return ((bool)(this["NeedsUpdate"]));
             }
         }
     }

@@ -8,7 +8,7 @@ using System.IO;
 using System.Media;
 using System.Windows.Forms;
 using System.Timers;
-using AppSettings = System.Configuration.ConfigurationManager;
+using Settings = BattleNotifier.Properties.Settings;
 
 namespace BattleNotifier.Controller
 {
@@ -45,7 +45,7 @@ namespace BattleNotifier.Controller
             Battle battle = new Battle()
             {
                 FileName = "Pob0989.lev",
-                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + map,
+                MapUrl = Settings.Default.EOLMapsUrl + map,
                 Duration = duration,
                 Attributes = (BattleAttribute)15,
                 Type = 0,
@@ -62,7 +62,7 @@ namespace BattleNotifier.Controller
             Battle battle = new Battle()
             {
                 FileName = "Pob0989.lev",
-                MapUrl = AppSettings.AppSettings["EOLMapsUrl"] + "90000",
+                MapUrl = Settings.Default.EOLMapsUrl + "90000",
                 Duration = 20,
                 Attributes = (BattleAttribute)15,
                 Type = 0,
@@ -88,7 +88,7 @@ namespace BattleNotifier.Controller
                 }
                 catch (Exception) 
                 {
-                    //no image, put default.
+                    Map = (Image)Properties.Resources.close_window;
                 }
 
                 if (settings.Basic.ShowBattleDialog)
@@ -101,6 +101,12 @@ namespace BattleNotifier.Controller
                         mn = new TransMapNotification(bn.Height, MapSizeIndexToWidth(settings.Basic.MapSize), true);
                     else
                         mn = new MapNotification(bn.Height, MapSizeIndexToWidth(settings.Basic.MapSize));
+            }
+
+            if (!settings.General.ShowOnTop) 
+            {
+                mn.TopMost = false;
+                bn.TopMost = false;
             }
 
             if (settings.Basic.ShowMapDialog)

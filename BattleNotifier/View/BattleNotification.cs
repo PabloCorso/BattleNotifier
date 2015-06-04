@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing.Printing;
 using BattleNotifier.Utils;
 using System.Diagnostics;
+using System.Reflection;
 using BattleNotifier.Controller;
 using System.Drawing;
 
@@ -30,12 +31,15 @@ namespace BattleNotifier.View
             if (timeLeft > 0)
                 StartBattleCountdown(timeLeft);
 
-            //MinimizeButton.Visible = true;
-            //CloseButton.Visible = true;
-            //BackColor = Color.Gray;
-            //this.TransparencyKey = Color.Gray;
-            //Height += 20;
-            //FormBorderStyle = FormBorderStyle.None;
+            if (settings.General.TransparentStyle)
+            {
+                MinimizeButton.Visible = true;
+                CloseButton.Visible = true;
+                BackColor = Color.Gray;
+                this.TransparencyKey = Color.Gray;
+                Height += 20;
+                FormBorderStyle = FormBorderStyle.None;
+            }
         }
 
         private delegate void BlankDelegate();

@@ -3,6 +3,7 @@ using BattleNotifier.Controller.ViewInterface;
 using BattleNotifier.Model;
 using BattleNotifier.Utils;
 using System;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 
