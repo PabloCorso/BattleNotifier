@@ -44,7 +44,6 @@
             this.NotifyIcon.BalloonTipText = "Battle Notifier";
             this.NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("NotifyIcon.Icon")));
             this.NotifyIcon.Text = "Battle Notifier";
-            this.NotifyIcon.Visible = true;
             this.NotifyIcon.DoubleClick += new System.EventHandler(this.NotifyIcon_DoubleClick);
             this.NotifyIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.NotifyIcon_MouseDown);
             // 

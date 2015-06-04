@@ -39,7 +39,7 @@ namespace BattleNotifier.View
 
             UserSettings.Load();
 
-            if (UserSettings.Instance.NotifyOnStartup())
+            if (UserSettings.Instance.MustNotifyOnStartup())
                 mainPanel.NotificateBattles();
         }
 
@@ -78,13 +78,16 @@ namespace BattleNotifier.View
 
         private void Main_Resize(object sender, EventArgs e)
         {
-            // When minimized hide from task bar and show NotifyIcon.
+            // When minimized hide from task bar and show NotifyIcon if must hide.
             if (WindowState == FormWindowState.Minimized)
             {
-                ShowInTaskbar = false;
-                NotifyIcon.Visible = true;
-                NotifyIcon.ShowBalloonTip(1000);
-                UpdateTrayNotifyIcon();
+                if (UserSettings.Instance.MustHideToTraybar())
+                {
+                    ShowInTaskbar = false;
+                    NotifyIcon.Visible = true;
+                    NotifyIcon.ShowBalloonTip(1000);
+                    UpdateTrayNotifyIcon();
+                }
             }
         }
 
@@ -98,8 +101,6 @@ namespace BattleNotifier.View
         #region NotifyIcon
         private void InitializeNotifyIcon()
         {
-            NotifyIcon.Visible = false;
-
             contextMenu = new System.Windows.Forms.ContextMenu();
             exitMenuItem = new System.Windows.Forms.MenuItem();
             stopMenuItem = new System.Windows.Forms.MenuItem();

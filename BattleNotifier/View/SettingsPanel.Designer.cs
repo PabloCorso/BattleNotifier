@@ -166,6 +166,7 @@
             this.HideToTraybarCheckBox.TabIndex = 0;
             this.HideToTraybarCheckBox.Text = "Hide to tray bar when minimized";
             this.HideToTraybarCheckBox.UseVisualStyleBackColor = true;
+            this.HideToTraybarCheckBox.CheckedChanged += new System.EventHandler(this.HideToTraybarCheckBox_CheckedChanged);
             // 
             // NotificationSoundGroup
             // 

@@ -100,5 +100,10 @@ namespace BattleNotifier.View
 #endif
             NotificationsController.Instance.SimulateNewBattle();
         }
+
+        private void HideToTraybarCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            UserSettings.Instance.SetHideToTraybarValue(HideToTraybarCheckBox.Checked);
+        }
     }
 }

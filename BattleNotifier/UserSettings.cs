@@ -16,6 +16,7 @@ namespace BattleNotifier
         MainPanel mainPanel;
         SettingsPanel settingsPanel;
         private static UserSettings instance;
+        private Settings settings = Settings.Default;
 
         public static void InitializeConfigStorageBroker(Main mainView, MainPanel mainPanel, SettingsPanel settingsPanel)
         {
@@ -75,10 +76,19 @@ namespace BattleNotifier
             return settings;
         }
 
-        public bool NotifyOnStartup()
+        public bool MustNotifyOnStartup()
         {
-            Settings settings = Settings.Default;
             return settings.NotifyOnStartup;
+        }
+
+        public bool MustHideToTraybar() 
+        {
+            return settings.HideToTraybar;
+        }
+
+        public void SetHideToTraybarValue(bool value) 
+        {
+            settings.HideToTraybar = value;
         }
 
         #region User settings persistance
