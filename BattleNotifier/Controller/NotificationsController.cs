@@ -9,6 +9,7 @@ using System.Media;
 using System.Windows.Forms;
 using System.Timers;
 using Settings = BattleNotifier.Properties.Settings;
+using BattleNotifier.Controller.ViewInterface;
 
 namespace BattleNotifier.Controller
 {
@@ -20,7 +21,7 @@ namespace BattleNotifier.Controller
         private BattleNotification bn;
         private MapNotification mn;
         private WMPLib.WindowsMediaPlayer player;
-        public Image Map { get; private set; }
+        public Image Map { get; set; }
         private NotificationsController()
         {
         }
@@ -29,7 +30,7 @@ namespace BattleNotifier.Controller
         {
             get
             {
-                if (instance == null)
+                if (instance == null) 
                     instance = new NotificationsController();
 
                 return instance;
@@ -54,7 +55,7 @@ namespace BattleNotifier.Controller
                 Id = id
             };
 
-            this.ShowBattleNotification(battle, duration * 60);
+            //this.ShowBattleNotification(battle, duration * 60);
         }
 
         public void SimulateNewBattle() 
@@ -62,7 +63,7 @@ namespace BattleNotifier.Controller
             Battle battle = new Battle()
             {
                 FileName = "Pob0989.lev",
-                MapUrl = Settings.Default.EOLMapsUrl + "90000",
+                MapUrl = Settings.Default.EOLMapsUrl + "309883",
                 Duration = 20,
                 Attributes = (BattleAttribute)15,
                 Type = 0,
@@ -71,10 +72,10 @@ namespace BattleNotifier.Controller
                 Id = 90431
             };
 
-            this.ShowBattleNotification(battle, 20 * 60);
+            //this.ShowBattleNotification(battle, 20 * 60);
         }
 
-        public void ShowBattleNotification(Battle battle, double timeLeft)
+        public void ShowBattleNotification(IMain m, Battle battle, double timeLeft)
         {
             ClearBattleNotification();
 
@@ -113,9 +114,9 @@ namespace BattleNotifier.Controller
             }
 
             if (settings.Basic.ShowMapDialog)
-                mn.Show();
+                m.ShowMapNotification(mn);
             if (settings.Basic.ShowBattleDialog)
-                bn.Show();
+                m.ShowBattleNotification(bn);
 
             // Play sound.
             if (settings.Basic.PlaySound)

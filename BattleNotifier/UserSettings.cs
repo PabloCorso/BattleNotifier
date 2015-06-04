@@ -16,7 +16,6 @@ namespace BattleNotifier
         MainPanel mainPanel;
         SettingsPanel settingsPanel;
         private static UserSettings instance;
-        private Settings settings = Settings.Default;
 
         public static void InitializeConfigStorageBroker(Main mainView, MainPanel mainPanel, SettingsPanel settingsPanel)
         {
@@ -41,53 +40,63 @@ namespace BattleNotifier
 
         public BattleNotificationSettings GetBattleNotificationSettings()
         {
-            MainPanel mp = instance.mainPanel;
-            SettingsPanel sp = instance.settingsPanel;
+            try
+            {
+                MainPanel mp = instance.mainPanel;
+                SettingsPanel sp = instance.settingsPanel;
 
-            BattleNotificationSettings settings = new BattleNotificationSettings();
+                BattleNotificationSettings settings = new BattleNotificationSettings();
 
-            //Main panel settings.
-            settings.Basic.ShowBattleDialog = mp.ShowBattleCheckBox.Checked;
-            settings.Basic.ShowMapDialog = mp.ShowMapCheckBox.Checked;
-            if (mp.CloseDialogTimeCheckBox.Checked)
-                settings.Basic.LifeSeconds = Convert.ToInt32(mp.CloseDialogNumericUpDown.Value);
-            else
-                settings.Basic.LifeSeconds = 0;
-            settings.Basic.PlaySound = mp.PlaySoundCheckBox.Checked;
-            settings.Basic.MapSize = mp.MapSizeDomainUpDown.SelectedIndex;
+                //Main panel settings.
+                settings.Basic.ShowBattleDialog = mp.ShowBattleCheckBox.Checked;
+                settings.Basic.ShowMapDialog = mp.ShowMapCheckBox.Checked;
+                if (mp.CloseDialogTimeCheckBox.Checked)
+                    settings.Basic.LifeSeconds = Convert.ToInt32(mp.CloseDialogNumericUpDown.Value);
+                else
+                    settings.Basic.LifeSeconds = 0;
+                settings.Basic.PlaySound = mp.PlaySoundCheckBox.Checked;
+                settings.Basic.MapSize = mp.MapSizeDomainUpDown.SelectedIndex;
 
-            //Settings panel settings.
-            settings.Basic.DefaultSound = sp.DefaultSoundComboBox.SelectedIndex;
-            settings.Basic.SoundPath = sp.CustomSoundPathTextBox.Text;
-            settings.Basic.UseCustomSound = sp.UseCustomSoundCheckBox.Checked;
+                //Settings panel settings.
+                //settings.Basic.DefaultSound = sp.DefaultSoundComboBox.SelectedIndex;
+                settings.Basic.SoundPath = sp.CustomSoundPathTextBox.Text;
+                settings.Basic.UseCustomSound = sp.UseCustomSoundCheckBox.Checked;
 
-            settings.General.ShowOnTop = sp.ShowOnTopCheckBox.Checked;
-            settings.General.UseFadeEffect = sp.FadeCheckBox.Checked;
-            settings.General.HidePrintMap = sp.HidePrintCheckBox.Checked;
-            settings.General.TransparentStyle = sp.TransparentCheckBox.Checked;
+                settings.General.ShowOnTop = sp.ShowOnTopCheckBox.Checked;
+                settings.General.UseFadeEffect = sp.FadeCheckBox.Checked;
+                settings.General.HidePrintMap = sp.HidePrintCheckBox.Checked;
+                settings.General.TransparentStyle = sp.TransparentCheckBox.Checked;
 
-            settings.Map.TextMapColor = sp.ColorPicker.BackColor;
-            settings.Map.ShowLevelName = sp.OnMapLevelCheckBox.Checked;
-            settings.Map.ShowDesigner = sp.OnMapDesignerCheckBox.Checked;
-            settings.Map.ShowType = sp.OnMapTypeCheckBox.Checked;
-            settings.Map.ShowLifeSeconds = sp.OnMapTimeCheckBox.Checked;
-            settings.Map.ShowAttributes = sp.OnMapAttsCheckBox.Checked;
+                settings.Map.TextMapColor = sp.ColorPicker.BackColor;
+                settings.Map.ShowLevelName = sp.OnMapLevelCheckBox.Checked;
+                settings.Map.ShowDesigner = sp.OnMapDesignerCheckBox.Checked;
+                settings.Map.ShowType = sp.OnMapTypeCheckBox.Checked;
+                settings.Map.ShowLifeSeconds = sp.OnMapTimeCheckBox.Checked;
+                settings.Map.ShowAttributes = sp.OnMapAttsCheckBox.Checked;
 
-            return settings;
+                return settings;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public bool MustNotifyOnStartup()
         {
+            Settings settings = Settings.Default;
             return settings.NotifyOnStartup;
         }
 
-        public bool MustHideToTraybar() 
+        public bool MustHideToTraybar()
         {
+            Settings settings = Settings.Default;
             return settings.HideToTraybar;
         }
 
-        public void SetHideToTraybarValue(bool value) 
+        public void SetHideToTraybarValue(bool value)
         {
+            Settings settings = Settings.Default;
             settings.HideToTraybar = value;
         }
 

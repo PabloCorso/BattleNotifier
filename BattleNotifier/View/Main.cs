@@ -3,8 +3,12 @@ using BattleNotifier.Controller.ViewInterface;
 using BattleNotifier.Model;
 using BattleNotifier.Utils;
 using System;
+using System.Drawing;
+using System.IO;
+using System.Media;
 using System.Reflection;
 using System.Text;
+using System.Timers;
 using System.Windows.Forms;
 
 namespace BattleNotifier.View
@@ -215,6 +219,31 @@ namespace BattleNotifier.View
             BackgroundPanel.Controls.Add(mainPanel);
             NavigateToSettingsButton.Visible = true;
             NavigateHomeButton.Visible = false;
+        }
+
+
+        public void ShowBattleNotification(BattleNotification bn)
+        {
+            if (this.InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate() { ShowBattleNotification(bn); }));
+            }
+            else
+            {
+                bn.Show();
+            }
+        }
+
+        public void ShowMapNotification(MapNotification mn)
+        {
+            if (this.InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate() { ShowMapNotification(mn); }));
+            }
+            else
+            {
+                mn.Show();
+            }
         }
     }
 }
