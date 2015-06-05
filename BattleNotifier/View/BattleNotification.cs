@@ -1,5 +1,6 @@
 ﻿using System;
 using BattleNotifier.Model;
+using BattleNotifier.View.Controls;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Drawing.Printing;
@@ -8,6 +9,7 @@ using System.Diagnostics;
 using System.Reflection;
 using BattleNotifier.Controller;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace BattleNotifier.View
 {
@@ -26,27 +28,52 @@ namespace BattleNotifier.View
             InitializeComponent();
             SetupDialogLocation();
             SetupControls(battle);
+            if (settings.General.TransparentStyle)
+                SetupOutlineLabels();
 
             battleDuration = battle.Duration;
 
             if (timeLeft > 0)
                 StartBattleCountdown(Convert.ToInt32(timeLeft));
 
-            if (settings.General.TransparentStyle)
-            {
-                MinimizeButton.Visible = true;
-                CloseButton.Visible = true;
-                BackColor = Color.Gray;
-                this.TransparencyKey = Color.Gray;
-                Height += 20;
-                FormBorderStyle = FormBorderStyle.None;
-            }
-
             if (settings.General.HidePrintMap)
             {
                 PrintMapButton.Visible = false;
                 MapCheckBox.Location = new Point(PrintMapButton.Location.X - (MapCheckBox.Width - PrintMapButton.Width), MapCheckBox.Location.Y);
             }
+        }
+
+        private void SetupOutlineLabels()
+        {
+            FormBorderStyle = FormBorderStyle.None;
+            Height += 20;
+
+            MinimizeButton.Visible = true;
+            CloseButton.Visible = true;
+            BackColor = Color.Gray;
+            this.TransparencyKey = Color.Gray;
+            CloseButton.BackColor = Color.Gray;
+            MinimizeButton.BackColor = Color.Gray;
+            PrintMapButton.BackColor = Color.Gray;
+            MapCheckBox.BackgroundImage = Properties.Resources.wu;
+
+            HeadlineOutlineLabel.Text = HeadlineLinkLabel.Text;
+            HeadlineOutlineLabel.Visible = true;
+            HeadlineLinkLabel.Visible = false;
+
+            BattleTypeOutlineLabel.Text = BattleTypeLabel.Text;
+            BattleTypeOutlineLabel.Visible = true;
+            BattleTypeLabel.Visible = false;
+
+            DurationOutlineLabel.Text = DurationLabel.Text;
+            DurationOutlineLabel.Visible = true;
+            DurationLabel.Visible = false;
+
+            CountdownOutlineLabel.Visible = true;
+            CountdownLabel.Visible = false;
+
+            AttributesOutlineLabel.Visible = true;
+            AttributesLabel.Visible = false;
         }
 
         private delegate void BlankDelegate();
@@ -80,7 +107,11 @@ namespace BattleNotifier.View
                 if (countdown == 0)
                     BattleCountdownTimer.Stop();
                 TimeSpan time = new TimeSpan(0, 0, countdown);
-                CountdownLabel.Text = "(" + GetCountdownDisplayText(countdown) + ")";
+                string display = "(" + GetCountdownDisplayText(countdown) + ")";
+                if (CountdownLabel.Visible)
+                    CountdownLabel.Text = display;
+                else
+                    CountdownOutlineLabel.Text = display;
             }
 
             countdown--;
@@ -194,6 +225,17 @@ namespace BattleNotifier.View
         private void CloseButton_Click(object sender, EventArgs e)
         {
             NotificationsController.Instance.BattleNotificationClosed();
+        }
+
+        private void HeadlineOutlineLabel_Click(object sender, EventArgs e)
+        {
+            string link = HeadlineLinkLabel.Links[0].LinkData.ToString();
+            System.Diagnostics.Process.Start(link);
+        }
+
+        private void MinimizeButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            MinimizeButton.Focus();
         }
     }
 }

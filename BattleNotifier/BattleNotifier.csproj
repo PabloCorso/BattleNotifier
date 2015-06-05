@@ -76,6 +76,9 @@
     <Compile Include="View\BattleNotification.Designer.cs">
       <DependentUpon>BattleNotification.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\OutlineLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +157,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\wu.png" />
     <EmbeddedResource Include="Assets\apple.wav" />
     <None Include="Assets\close.png" />
     <Content Include="Assets\close_window.png" />
@@ -165,6 +169,7 @@
     <EmbeddedResource Include="Assets\flower.wav" />
     <Content Include="Assets\helmet_notify_icon.ico" />
     <None Include="Assets\minimize.png" />
+    <None Include="Assets\map.png" />
     <Content Include="Assets\minimize_window.png" />
     <None Include="Assets\minimize_window_16.png" />
     <Content Include="Assets\notify_icon.ico" />

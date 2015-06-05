@@ -122,9 +122,9 @@
             this.TransparentCheckBox.AutoSize = true;
             this.TransparentCheckBox.Location = new System.Drawing.Point(7, 111);
             this.TransparentCheckBox.Name = "TransparentCheckBox";
-            this.TransparentCheckBox.Size = new System.Drawing.Size(161, 17);
+            this.TransparentCheckBox.Size = new System.Drawing.Size(107, 17);
             this.TransparentCheckBox.TabIndex = 4;
-            this.TransparentCheckBox.Text = "Transparent notification style";
+            this.TransparentCheckBox.Text = "Transparent style";
             this.TransparentCheckBox.UseVisualStyleBackColor = true;
             // 
             // ShowOnTopCheckBox
@@ -283,7 +283,7 @@
             // 
             // ColorPicker
             // 
-            this.ColorPicker.BackColor = System.Drawing.Color.Black;
+            this.ColorPicker.BackColor = System.Drawing.Color.White;
             this.ColorPicker.BackgroundImage = global::BattleNotifier.Properties.Resources.color_picker;
             this.ColorPicker.FlatAppearance.BorderSize = 0;
             this.ColorPicker.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
