@@ -23,6 +23,7 @@ namespace BattleNotifier.View
         private MenuItem exitMenuItem;
         private MenuItem stopMenuItem;
         private MenuItem startMenuItem;
+        private MenuItem restartMenuItem;
 
         public Main()
         {
@@ -107,25 +108,31 @@ namespace BattleNotifier.View
         #region NotifyIcon
         private void InitializeNotifyIcon()
         {
-            contextMenu = new System.Windows.Forms.ContextMenu();
-            exitMenuItem = new System.Windows.Forms.MenuItem();
-            stopMenuItem = new System.Windows.Forms.MenuItem();
-            startMenuItem = new System.Windows.Forms.MenuItem();
+            contextMenu = new ContextMenu();
+            exitMenuItem = new MenuItem();
+            stopMenuItem = new MenuItem();
+            startMenuItem = new MenuItem();
+            restartMenuItem = new MenuItem();
 
             // Initialize StopMenuItem
-            stopMenuItem.Index = 0;
+            stopMenuItem.Index = 1;
             stopMenuItem.Text = "Stop";
-            stopMenuItem.Click += new System.EventHandler(StopMenuItem_Click);
+            stopMenuItem.Click += new EventHandler(StopMenuItem_Click);
 
             // Initialize StartMenuItem
-            startMenuItem.Index = 0;
+            startMenuItem.Index = 1;
             startMenuItem.Text = "Start";
-            startMenuItem.Click += new System.EventHandler(StartMenuItem_Click);
+            startMenuItem.Click += new EventHandler(StartMenuItem_Click);
 
             // Initialize ExitMenuItem
-            exitMenuItem.Index = 1;
+            restartMenuItem.Index = 2;
+            restartMenuItem.Text = "Restart";
+            restartMenuItem.Click += new System.EventHandler(RestartMenuItem_Click);
+
+            // Initialize ExitMenuItem
+            exitMenuItem.Index = 0;
             exitMenuItem.Text = "Exit";
-            exitMenuItem.Click += new System.EventHandler(ExitMenuItem_Click);
+            exitMenuItem.Click += new EventHandler(ExitMenuItem_Click);
 
             // Set Start and Exit as startup options.
             contextMenu.MenuItems.Add(startMenuItem);
@@ -134,6 +141,12 @@ namespace BattleNotifier.View
             // The ContextMenu property sets the menu that will 
             // appear when the systray icon is right clicked.
             NotifyIcon.ContextMenu = contextMenu;
+        }
+
+        private void RestartMenuItem_Click(object sender, EventArgs e)
+        {
+            if (battleNotifier.IsNotifyingBattle)
+                battleNotifier.RestartNotifying();
         }
 
         private void StopMenuItem_Click(object sender, EventArgs e)
@@ -192,6 +205,7 @@ namespace BattleNotifier.View
         {
             if (battleNotifier.IsNotifyingBattle)
             {
+                contextMenu.MenuItems.Add(1, restartMenuItem);
                 contextMenu.MenuItems.Add(1, stopMenuItem);
                 if (contextMenu.MenuItems.Contains(startMenuItem))
                     contextMenu.MenuItems.Remove(startMenuItem);
@@ -201,6 +215,8 @@ namespace BattleNotifier.View
                 contextMenu.MenuItems.Add(1, startMenuItem);
                 if (contextMenu.MenuItems.Contains(stopMenuItem))
                     contextMenu.MenuItems.Remove(stopMenuItem);
+                if (contextMenu.MenuItems.Contains(restartMenuItem))
+                    contextMenu.MenuItems.Remove(restartMenuItem);
             }
         }
 
