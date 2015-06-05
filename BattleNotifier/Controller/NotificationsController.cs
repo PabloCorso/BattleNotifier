@@ -44,13 +44,13 @@ namespace BattleNotifier.Controller
             int duration = Convert.ToInt32(random.NextDouble() * (60 - 1) + 1);
             Battle battle = new Battle()
             {
-                FileName = "Pob0989.lev",
+                FileName = "LONGNAME.lev",
                 MapUrl = Settings.Default.EOLMapsUrl + map,
                 Duration = duration,
                 Attributes = (BattleAttribute)15,
                 Type = 0,
                 StartedDateTime = DateTime.Now,
-                Desginer = "Pab",
+                Desginer = "Long Kuski Nickname",
                 Id = id
             };
 
@@ -120,9 +120,9 @@ namespace BattleNotifier.Controller
             // Play sound.
             if (settings.Basic.PlaySound)
                 if (!string.IsNullOrEmpty(settings.Basic.SoundPath) && File.Exists(settings.Basic.SoundPath))
-                    PlaySound(settings.Basic.SoundPath);
+                    PlaySound(settings.Basic.SoundPath, settings.Basic.DefaultSound);
                 else
-                    PlayDefaultSound();
+                    PlayDefaultSound(settings.Basic.DefaultSound);
 
             if (settings.Basic.LifeSeconds > 0)
             {
@@ -137,7 +137,7 @@ namespace BattleNotifier.Controller
             notificationTimer.Stop();
         }
 
-        private void PlaySound(string path)
+        private void PlaySound(string path, int defaultSound = 0)
         {
             try
             {
@@ -147,7 +147,7 @@ namespace BattleNotifier.Controller
             }
             catch (Exception)
             {
-                PlayDefaultSound();
+                PlayDefaultSound(defaultSound);
             }
         }
 
@@ -164,9 +164,9 @@ namespace BattleNotifier.Controller
             }
         }
 
-        private void PlayDefaultSound()
+        private void PlayDefaultSound(int defaultSound)
         {
-            SoundPlayer sound = new SoundPlayer(Properties.Resources.smb_1_up);
+            SoundPlayer sound = new SoundPlayer(IndexToDefaultSound(defaultSound));
             sound.Play();
         }
 
@@ -231,6 +231,27 @@ namespace BattleNotifier.Controller
                     return 160;
                 default:
                     return 320;
+            }
+        }
+
+        private Stream IndexToDefaultSound(int index)
+        {
+            switch (index)
+            {
+                case 0:
+                    return Properties.Resources.apple;
+                case 1:
+                    return Properties.Resources.flower;
+                case 2:
+                    return Properties.Resources.wroom;
+                case 3:
+                    return Properties.Resources.deaded;
+                case 4:
+                    Random random = new Random();
+                    int randomCase = random.Next(0, 4);
+                    return IndexToDefaultSound(randomCase);
+                default:
+                    return Properties.Resources.smb_1_up;
             }
         }
     }

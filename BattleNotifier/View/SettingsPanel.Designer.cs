@@ -224,7 +224,10 @@
             // 
             this.DefaultSoundComboBox.FormattingEnabled = true;
             this.DefaultSoundComboBox.Items.AddRange(new object[] {
-            "default"});
+            "apple",
+            "flower",
+            "wroom",
+            "deaded"});
             this.DefaultSoundComboBox.Location = new System.Drawing.Point(84, 18);
             this.DefaultSoundComboBox.Name = "DefaultSoundComboBox";
             this.DefaultSoundComboBox.Size = new System.Drawing.Size(97, 21);

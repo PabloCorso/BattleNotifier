@@ -40,7 +40,7 @@ namespace BattleNotifier.View
                     TimerLabel.Parent = PictureBox;
                     TimerLabel.Visible = true;
                     StartBattleCountdown(Convert.ToInt32(timeLeft));
-                    locate.BottomCenter(TimerLabel, 5);
+                    locate.BottomCenter(TimerLabel, 20);
                 }
 
             if (settings.ShowLevelName || settings.ShowDesigner)

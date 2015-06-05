@@ -26,6 +26,14 @@ namespace BattleNotifier.View
 #endif
         }
 
+        public int GetSelecetedDefaultSound()
+        {
+            if (DefaultSoundComboBox.InvokeRequired)
+                return (int)DefaultSoundComboBox.Invoke(new Func<int>(GetSelecetedDefaultSound));
+            else
+                return DefaultSoundComboBox.SelectedIndex;
+        }
+
         private void ResetButton_Click(object sender, EventArgs e)
         {
             var confirmResult = MessageBox.Show("Accept to reset all settings to default configuration.\nAll your settings and filters will be deleted.",

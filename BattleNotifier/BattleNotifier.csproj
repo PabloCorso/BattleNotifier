@@ -154,10 +154,14 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Assets\apple.wav" />
     <Content Include="Assets\close_window.png" />
+    <EmbeddedResource Include="Assets\wroom.wav" />
     <EmbeddedResource Include="HtmlAgilityPack.dll" />
     <None Include="Assets\close_window_16.png" />
     <None Include="Assets\color_picker.png" />
+    <EmbeddedResource Include="Assets\deaded.wav" />
+    <EmbeddedResource Include="Assets\flower.wav" />
     <Content Include="Assets\helmet_notify_icon.ico" />
     <Content Include="Assets\minimize_window.png" />
     <None Include="Assets\minimize_window_16.png" />

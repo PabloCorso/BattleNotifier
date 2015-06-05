@@ -61,6 +61,15 @@ namespace BattleNotifier.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream apple {
+            get {
+                return ResourceManager.GetStream("apple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap close_window {
@@ -91,6 +100,24 @@ namespace BattleNotifier.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream deaded {
+            get {
+                return ResourceManager.GetStream("deaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream flower {
+            get {
+                return ResourceManager.GetStream("flower", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap minimize_window_16 {
@@ -116,6 +143,15 @@ namespace BattleNotifier.Properties {
         internal static System.IO.UnmanagedMemoryStream smb_1_up {
             get {
                 return ResourceManager.GetStream("smb_1_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream wroom {
+            get {
+                return ResourceManager.GetStream("wroom", resourceCulture);
             }
         }
     }

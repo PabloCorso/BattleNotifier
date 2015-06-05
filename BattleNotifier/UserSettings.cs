@@ -10,6 +10,7 @@ using Settings = BattleNotifier.Properties.Settings;
 
 namespace BattleNotifier
 {
+    // Fix this shit, make forms return the settings.
     public class UserSettings
     {
         Main mainView;
@@ -58,7 +59,8 @@ namespace BattleNotifier
                 settings.Basic.MapSize = mp.MapSizeDomainUpDown.SelectedIndex;
 
                 //Settings panel settings.
-                //settings.Basic.DefaultSound = sp.DefaultSoundComboBox.SelectedIndex;
+
+                settings.Basic.DefaultSound = sp.GetSelecetedDefaultSound();
                 settings.Basic.SoundPath = sp.CustomSoundPathTextBox.Text;
                 settings.Basic.UseCustomSound = sp.UseCustomSoundCheckBox.Checked;
 
