@@ -82,14 +82,7 @@ namespace BattleNotifier.Controller
 
             if (settings.Basic.ShowBattleDialog || settings.Basic.ShowMapDialog)
             {
-                try
-                {
-                    Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl);
-                }
-                catch (Exception)
-                {
-                    Map = (Image)Properties.Resources.close_window;
-                }
+                SetMap(battle.MapUrl);
 
                 if (settings.Basic.ShowBattleDialog)
                     if (settings.General.UseFadeEffect)
@@ -131,6 +124,26 @@ namespace BattleNotifier.Controller
                 notificationTimer.Start();
             }
         }
+
+        private void SetMap(string mapUrl) 
+        {
+            try
+            {
+                Map = WebRequestHelper.GetImageFromUrl(mapUrl + "/600");
+            }
+            catch (Exception)
+            {
+                try
+                {
+                    Map = WebRequestHelper.GetImageFromUrl(mapUrl);
+                }
+                catch
+                {
+                    Map = (Image)Properties.Resources.close_window;
+                }
+            }
+        }
+
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
             if (notificationTimer.Enabled)
