@@ -43,10 +43,10 @@
             this.MapCheckBox = new System.Windows.Forms.CheckBox();
             this.PrintMapButton = new System.Windows.Forms.Button();
             this.AttributesOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
-            this.HeadlineOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
             this.CountdownOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
-            this.DurationOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
+            this.HeadlineOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
             this.BattleTypeOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
+            this.DurationOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
             this.SuspendLayout();
             // 
             // PrintMapDialog
@@ -199,6 +199,19 @@
             this.AttributesOutlineLabel.Visible = false;
             this.AttributesOutlineLabel.Click += new System.EventHandler(this.AttributesLabel_Click);
             // 
+            // CountdownOutlineLabel
+            // 
+            this.CountdownOutlineLabel.AutoSize = true;
+            this.CountdownOutlineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.CountdownOutlineLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.CountdownOutlineLabel.Location = new System.Drawing.Point(65, 70);
+            this.CountdownOutlineLabel.Name = "CountdownOutlineLabel";
+            this.CountdownOutlineLabel.OutlineForeColor = System.Drawing.Color.Black;
+            this.CountdownOutlineLabel.OutlineWidth = 1.5F;
+            this.CountdownOutlineLabel.Size = new System.Drawing.Size(0, 17);
+            this.CountdownOutlineLabel.TabIndex = 12;
+            this.CountdownOutlineLabel.Visible = false;
+            // 
             // HeadlineOutlineLabel
             // 
             this.HeadlineOutlineLabel.AutoSize = true;
@@ -215,17 +228,19 @@
             this.HeadlineOutlineLabel.Visible = false;
             this.HeadlineOutlineLabel.Click += new System.EventHandler(this.HeadlineOutlineLabel_Click);
             // 
-            // CountdownOutlineLabel
+            // BattleTypeOutlineLabel
             // 
-            this.CountdownOutlineLabel.AutoSize = true;
-            this.CountdownOutlineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.CountdownOutlineLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.CountdownOutlineLabel.Location = new System.Drawing.Point(65, 70);
-            this.CountdownOutlineLabel.Name = "CountdownOutlineLabel";
-            this.CountdownOutlineLabel.OutlineForeColor = System.Drawing.Color.Black;
-            this.CountdownOutlineLabel.OutlineWidth = 1.5F;
-            this.CountdownOutlineLabel.Size = new System.Drawing.Size(0, 17);
-            this.CountdownOutlineLabel.TabIndex = 12;
+            this.BattleTypeOutlineLabel.AutoSize = true;
+            this.BattleTypeOutlineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.BattleTypeOutlineLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.BattleTypeOutlineLabel.Location = new System.Drawing.Point(8, 25);
+            this.BattleTypeOutlineLabel.Name = "BattleTypeOutlineLabel";
+            this.BattleTypeOutlineLabel.OutlineForeColor = System.Drawing.Color.Black;
+            this.BattleTypeOutlineLabel.OutlineWidth = 1.5F;
+            this.BattleTypeOutlineLabel.Size = new System.Drawing.Size(76, 17);
+            this.BattleTypeOutlineLabel.TabIndex = 9;
+            this.BattleTypeOutlineLabel.Text = "First Finish";
+            this.BattleTypeOutlineLabel.Visible = false;
             // 
             // DurationOutlineLabel
             // 
@@ -241,20 +256,6 @@
             this.DurationOutlineLabel.Text = "25 mins";
             this.DurationOutlineLabel.Visible = false;
             // 
-            // BattleTypeOutlineLabel
-            // 
-            this.BattleTypeOutlineLabel.AutoSize = true;
-            this.BattleTypeOutlineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.BattleTypeOutlineLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.BattleTypeOutlineLabel.Location = new System.Drawing.Point(8, 25);
-            this.BattleTypeOutlineLabel.Name = "BattleTypeOutlineLabel";
-            this.BattleTypeOutlineLabel.OutlineForeColor = System.Drawing.Color.Black;
-            this.BattleTypeOutlineLabel.OutlineWidth = 1.5F;
-            this.BattleTypeOutlineLabel.Size = new System.Drawing.Size(76, 17);
-            this.BattleTypeOutlineLabel.TabIndex = 9;
-            this.BattleTypeOutlineLabel.Text = "First Finish";
-            this.BattleTypeOutlineLabel.Visible = false;
-            // 
             // BattleNotification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,11 +263,6 @@
             this.ClientSize = new System.Drawing.Size(234, 96);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.MinimizeButton);
-            this.Controls.Add(this.AttributesOutlineLabel);
-            this.Controls.Add(this.HeadlineOutlineLabel);
-            this.Controls.Add(this.CountdownOutlineLabel);
-            this.Controls.Add(this.DurationOutlineLabel);
-            this.Controls.Add(this.BattleTypeOutlineLabel);
             this.Controls.Add(this.MapCheckBox);
             this.Controls.Add(this.CountdownLabel);
             this.Controls.Add(this.PrintMapButton);
@@ -274,6 +270,11 @@
             this.Controls.Add(this.BattleTypeLabel);
             this.Controls.Add(this.AttributesLabel);
             this.Controls.Add(this.HeadlineLinkLabel);
+            this.Controls.Add(this.HeadlineOutlineLabel);
+            this.Controls.Add(this.BattleTypeOutlineLabel);
+            this.Controls.Add(this.DurationOutlineLabel);
+            this.Controls.Add(this.CountdownOutlineLabel);
+            this.Controls.Add(this.AttributesOutlineLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "BattleNotification";

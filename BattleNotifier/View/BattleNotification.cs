@@ -15,6 +15,7 @@ namespace BattleNotifier.View
 {
     public partial class BattleNotification : Form
     {
+        private bool transparentStyle = false;
         private bool closing = false;
         private int battleDuration;
         private int countdown;
@@ -45,6 +46,7 @@ namespace BattleNotifier.View
 
         private void SetupOutlineLabels()
         {
+            transparentStyle = true;
             FormBorderStyle = FormBorderStyle.None;
             Height += 20;
 
@@ -108,10 +110,10 @@ namespace BattleNotifier.View
                     BattleCountdownTimer.Stop();
                 TimeSpan time = new TimeSpan(0, 0, countdown);
                 string display = "(" + GetCountdownDisplayText(countdown) + ")";
-                if (CountdownLabel.Visible)
-                    CountdownLabel.Text = display;
-                else
+                if (transparentStyle)
                     CountdownOutlineLabel.Text = display;
+                else
+                    CountdownLabel.Text = display;
             }
 
             countdown--;
@@ -120,7 +122,7 @@ namespace BattleNotifier.View
         private string GetCountdownDisplayText(int seconds)
         {
             if (seconds <= 0)
-                return "Battle finished";
+                return "Finished";
 
             TimeSpan time = new TimeSpan(0, 0, seconds);
             string hours = time.Hours == 0 ? "" : time.Hours + ":";

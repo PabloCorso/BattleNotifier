@@ -8,11 +8,14 @@ using System.Reflection;
 using BattleNotifier.Model;
 using BattleNotifier.Utils;
 using System.Text;
+using System.Collections.Generic;
 
 namespace BattleNotifier.View
 {
     public partial class MapNotification : Form
     {
+        private bool tooSmallMap = false;
+        private bool showOnlyTimerAndType = false;
         private bool closing = false;
         private int countdown;
         private int battleDuration;
@@ -55,6 +58,7 @@ namespace BattleNotifier.View
                 if (settings.ShowDesigner)
                     text.Append(" by " + battle.Desginer);
                 HeaderLabel.Text = text.ToString();
+                HeaderLabel.MaximumSize = new Size(PictureBox.Width, PictureBox.Height);
                 locate.BottomRight(HeaderLabel, 5);
             }
 
@@ -67,27 +71,74 @@ namespace BattleNotifier.View
                 locate.BottomLeft(TypeLabel, 5);
             }
 
-            if (settings.ShowLifeSeconds) 
-            {
-                DurationLabel.ForeColor = color;
-                DurationLabel.Parent = PictureBox;
-                DurationLabel.Visible = true;
-                DurationLabel.Text = battle.Duration + " mins";
-                if (settings.ShowType)
-                {
-                    locate.BottomLeft(DurationLabel, 5);
-                    DurationLabel.Location = new Point(TypeLabel.Width + 5, DurationLabel.Location.Y);
-                }
-                else
-                    locate.BottomLeft(DurationLabel, 5);
-            }
-
             if (settings.ShowAttributes)
             {
                 AttributesLabel.ForeColor = color;
                 AttributesLabel.Parent = PictureBox;
                 AttributesLabel.Visible = true;
-                AttributesLabel.Text = "battle.Attributes";
+                List<string> attributes = new List<string>();
+                foreach (BattleAttribute att in EnumExtensions.GetFlags(battle.Attributes))
+                    attributes.Add(EnumExtensions.GetDescription(att));
+
+                AttributesLabel.Text = Util.FirstCharToUpper(string.Join(", ", attributes).ToLower());
+                AttributesLabel.MaximumSize = new Size(PictureBox.Width, PictureBox.Height);
+                int margin = AttributesLabel.Height + 2;
+                locate.BottomCenter(AttributesLabel, 20);
+                locate.MoveUp(TimerLabel, margin);
+            }
+
+            // Check for collisions.
+            if ((settings.ShowDesigner || settings.ShowLevelName) && settings.ShowType
+                && HeaderLabel.Width > PictureBox.Width - TypeLabel.Width - 10)
+            {
+                locate.ToLeft(HeaderLabel, 5);
+                locate.MoveUp(TypeLabel, HeaderLabel.Height + 2);
+                if (settings.ShowAttributes)
+                {
+                    locate.BottomRight(AttributesLabel, 5);
+                    locate.MoveUp(AttributesLabel, HeaderLabel.Height + 2);
+                    locate.BottomRight(TimerLabel, 5);
+                    locate.MoveUp(TimerLabel, AttributesLabel.Height + HeaderLabel.Height + 2);
+                    if (AttributesLabel.Width > PictureBox.Width - TypeLabel.Width - 10)
+                    {
+                        locate.ToLeft(AttributesLabel, 5);
+                        locate.MoveUp(TypeLabel, AttributesLabel.Height + 2);
+                    }
+                }
+                else if (settings.ShowLifeSeconds && TimerLabel.Location.Y + TimerLabel.Height > HeaderLabel.Location.Y)
+                {
+                    // Timer is over Header, take out designer to fit everything.
+                    if (!showOnlyTimerAndType)
+                    {
+                        showOnlyTimerAndType = true;
+                        HeaderLabel.Visible = false;
+                        settings.ShowDesigner = false;
+                        tooSmallMap = true;
+                        SetupTextOverMap(battle, timeLeft, settings);
+                    }
+                }
+            }
+
+            // Check if important information is not shown.
+            if (settings.ShowLifeSeconds)
+            {
+                if (TimerLabel.Location.Y < 0)
+                {
+                    if (!tooSmallMap)
+                    {
+                        tooSmallMap = true;
+                        AttributesLabel.Visible = false;
+                        settings.ShowAttributes = false;
+                        SetupTextOverMap(battle, timeLeft, settings);
+                    }
+                    else
+                    {
+                        HeaderLabel.Visible = false;
+                        locate.BottomRight(TimerLabel, 5);
+                        if (settings.ShowType)
+                            locate.BottomLeft(TypeLabel, 5);
+                    }
+                }
             }
         }
 
@@ -107,7 +158,8 @@ namespace BattleNotifier.View
                 if (countdown == 0)
                     BattleCountdownTimer.Stop();
                 TimeSpan time = new TimeSpan(0, 0, countdown);
-                TimerLabel.Text = GetCountdownDisplayText(countdown);
+                string display = GetCountdownDisplayText(countdown);
+                TimerLabel.Text = display + " / " + battleDuration + ":00";
             }
 
             countdown--;
@@ -116,7 +168,7 @@ namespace BattleNotifier.View
         private string GetCountdownDisplayText(int seconds)
         {
             if (seconds <= 0)
-                return "Battle finished";
+                return "-";
 
             TimeSpan time = new TimeSpan(0, 0, seconds);
             string hours = time.Hours == 0 ? "" : time.Hours + ":";
@@ -216,6 +268,18 @@ namespace BattleNotifier.View
         {
             this.width = width;
             this.height = height;
+        }
+        public void ToLeft(Control control, int margin = 0)
+        {
+            control.Location = new Point(0 + margin, control.Location.Y);
+        }
+        public void ToRight(Control control, int margin = 0)
+        {
+            control.Location = new Point(width - control.Width - margin, control.Location.Y);
+        }
+        public void MoveUp(Control control, int margin)
+        {
+            control.Location = new Point(control.Location.X, control.Location.Y - margin);
         }
         public void TopLeft(Control control, int margin = 0)
         {
