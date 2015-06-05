@@ -133,8 +133,11 @@ namespace BattleNotifier.Controller
         }
         private void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            EndBattleNotification();
-            notificationTimer.Stop();
+            if (notificationTimer.Enabled)
+            {
+                EndBattleNotification();
+                notificationTimer.Stop();
+            }
         }
 
         private void PlaySound(string path, int defaultSound = 0)
@@ -174,13 +177,24 @@ namespace BattleNotifier.Controller
         {
             try
             {
-                if (bn != null)
-                    bn.CloseForm();
-                if (mn != null)
-                    mn.CloseForm();
+                try
+                {
+                    if (mn != null)
+                        mn.CloseForm();
+                }
+                catch (Exception) { }
+                try
+                {
+                    if (bn != null)
+                        bn.CloseForm();
+                }
+                catch (Exception) { }
+
+
                 StopSound();
                 Map = null;
-
+                if (notificationTimer.Enabled)
+                    notificationTimer.Stop();
             }
             catch (Exception)
             {
@@ -207,12 +221,18 @@ namespace BattleNotifier.Controller
 
         public void BattleNotificationClosed()
         {
-
+            ClearBattleNotification();
         }
 
         public void MapNotificationClosed()
         {
-
+            if (mn.WindowState == FormWindowState.Minimized)
+                ClearBattleNotification();
+            else
+                if (bn == null)
+                    ClearBattleNotification();
+                else
+                    mn.Hide();
         }
 
         private int MapSizeIndexToWidth(int mapSize)

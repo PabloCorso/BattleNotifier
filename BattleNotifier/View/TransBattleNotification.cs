@@ -29,7 +29,7 @@ namespace BattleNotifier.View
             this.m_clock.Tick += new EventHandler(Animate);
             //TransDialog
             this.Load += new EventHandler(TransDialog_Load);
-            this.Closing += new CancelEventHandler(TransDialog_Closing);
+            //this.Closing += new CancelEventHandler(TransDialog_Closing);
             this.ResumeLayout(false);
             this.PerformLayout();
 		}
@@ -44,7 +44,7 @@ namespace BattleNotifier.View
             m_clock.Start();
         }
 
-        private void TransDialog_Closing(object sender, CancelEventArgs e)
+        /*private void TransDialog_Closing(object sender, CancelEventArgs e)
         {
 			if (!m_bForceClose)
 			{
@@ -57,7 +57,7 @@ namespace BattleNotifier.View
 			{
 				this.DialogResult = m_origDialogResult;
 			}
-        }
+        }*/
 
         #endregion
 

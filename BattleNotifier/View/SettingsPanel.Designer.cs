@@ -724,7 +724,7 @@
             // OnMapTypeCheckBox
             // 
             this.OnMapTypeCheckBox.AutoSize = true;
-            this.OnMapTypeCheckBox.Location = new System.Drawing.Point(7, 85);
+            this.OnMapTypeCheckBox.Location = new System.Drawing.Point(7, 84);
             this.OnMapTypeCheckBox.Name = "OnMapTypeCheckBox";
             this.OnMapTypeCheckBox.Size = new System.Drawing.Size(76, 17);
             this.OnMapTypeCheckBox.TabIndex = 4;
@@ -734,7 +734,7 @@
             // OnMapAttsCheckBox
             // 
             this.OnMapAttsCheckBox.AutoSize = true;
-            this.OnMapAttsCheckBox.Location = new System.Drawing.Point(7, 131);
+            this.OnMapAttsCheckBox.Location = new System.Drawing.Point(7, 130);
             this.OnMapAttsCheckBox.Name = "OnMapAttsCheckBox";
             this.OnMapAttsCheckBox.Size = new System.Drawing.Size(106, 17);
             this.OnMapAttsCheckBox.TabIndex = 3;
@@ -754,7 +754,7 @@
             // OnMapTimeCheckBox
             // 
             this.OnMapTimeCheckBox.AutoSize = true;
-            this.OnMapTimeCheckBox.Location = new System.Drawing.Point(7, 108);
+            this.OnMapTimeCheckBox.Location = new System.Drawing.Point(7, 107);
             this.OnMapTimeCheckBox.Name = "OnMapTimeCheckBox";
             this.OnMapTimeCheckBox.Size = new System.Drawing.Size(99, 17);
             this.OnMapTimeCheckBox.TabIndex = 1;
@@ -764,7 +764,7 @@
             // OnMapDesignerCheckBox
             // 
             this.OnMapDesignerCheckBox.AutoSize = true;
-            this.OnMapDesignerCheckBox.Location = new System.Drawing.Point(7, 62);
+            this.OnMapDesignerCheckBox.Location = new System.Drawing.Point(7, 61);
             this.OnMapDesignerCheckBox.Name = "OnMapDesignerCheckBox";
             this.OnMapDesignerCheckBox.Size = new System.Drawing.Size(68, 17);
             this.OnMapDesignerCheckBox.TabIndex = 0;

@@ -13,6 +13,7 @@ namespace BattleNotifier.View
 {
     public partial class MapNotification : Form
     {
+        private bool closing = false;
         private int countdown;
         private int battleDuration;
 
@@ -65,6 +66,22 @@ namespace BattleNotifier.View
                 TypeLabel.Text = EnumExtensions.GetDescription(battle.Type);
                 locate.BottomLeft(TypeLabel, 5);
             }
+
+            if (settings.ShowLifeSeconds) 
+            {
+                DurationLabel.ForeColor = color;
+                DurationLabel.Parent = PictureBox;
+                DurationLabel.Visible = true;
+                DurationLabel.Text = battle.Duration + " mins";
+                if (settings.ShowType)
+                {
+                    locate.BottomLeft(DurationLabel, 5);
+                    DurationLabel.Location = new Point(TypeLabel.Width + 5, DurationLabel.Location.Y);
+                }
+                else
+                    locate.BottomLeft(DurationLabel, 5);
+            }
+
             if (settings.ShowAttributes)
             {
                 AttributesLabel.ForeColor = color;
@@ -143,7 +160,8 @@ namespace BattleNotifier.View
 
         private void MapNotification_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Dispose();
+            if (!closing)
+                CloseForm();
         }
 
         private delegate void BlankDelegate();
@@ -155,7 +173,9 @@ namespace BattleNotifier.View
             }
             else
             {
+                closing = true;
                 this.Close();
+                this.Dispose();
             }
         }
 

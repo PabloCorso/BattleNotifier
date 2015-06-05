@@ -35,6 +35,7 @@
             this.TimerLabel = new System.Windows.Forms.Label();
             this.AttributesLabel = new System.Windows.Forms.Label();
             this.BattleCountdownTimer = new System.Windows.Forms.Timer(this.components);
+            this.DurationLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,11 +98,23 @@
             this.BattleCountdownTimer.Interval = 1000;
             this.BattleCountdownTimer.Tick += new System.EventHandler(this.BattleCountdownTimer_Tick);
             // 
+            // DurationLabel
+            // 
+            this.DurationLabel.AutoSize = true;
+            this.DurationLabel.BackColor = System.Drawing.Color.Transparent;
+            this.DurationLabel.Location = new System.Drawing.Point(12, 172);
+            this.DurationLabel.Name = "DurationLabel";
+            this.DurationLabel.Size = new System.Drawing.Size(43, 13);
+            this.DurationLabel.TabIndex = 5;
+            this.DurationLabel.Text = "10 mins";
+            this.DurationLabel.Visible = false;
+            // 
             // MapNotification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(320, 240);
+            this.Controls.Add(this.DurationLabel);
             this.Controls.Add(this.AttributesLabel);
             this.Controls.Add(this.TimerLabel);
             this.Controls.Add(this.HeaderLabel);
@@ -109,7 +122,6 @@
             this.Controls.Add(this.PictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MapNotification";
-            this.Text = "MapNotification";
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapNotification_FormClosed);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapNotification_MouseDown);
@@ -127,5 +139,6 @@
         private System.Windows.Forms.Label TimerLabel;
         private System.Windows.Forms.Label AttributesLabel;
         private System.Windows.Forms.Timer BattleCountdownTimer;
+        private System.Windows.Forms.Label DurationLabel;
     }
 }

@@ -13,6 +13,7 @@ namespace BattleNotifier.View
 {
     public partial class BattleNotification : Form
     {
+        private bool closing = false;
         private int battleDuration;
         private int countdown;
         private bool showToolTip = true;
@@ -40,6 +41,12 @@ namespace BattleNotifier.View
                 Height += 20;
                 FormBorderStyle = FormBorderStyle.None;
             }
+
+            if (settings.General.HidePrintMap)
+            {
+                PrintMapButton.Visible = false;
+                MapCheckBox.Location = new Point(PrintMapButton.Location.X - (MapCheckBox.Width - PrintMapButton.Width), MapCheckBox.Location.Y);
+            }
         }
 
         private delegate void BlankDelegate();
@@ -51,7 +58,9 @@ namespace BattleNotifier.View
             }
             else
             {
+                closing = true;
                 this.Close();
+                this.Dispose();
             }
         }
 
@@ -162,8 +171,8 @@ namespace BattleNotifier.View
 
         private void BattleNotification_FormClosed_1(object sender, FormClosedEventArgs e)
         {
-            NotificationsController.Instance.BattleNotificationClosed();
-            this.Dispose();
+            if (!closing)
+                NotificationsController.Instance.BattleNotificationClosed();
         }
 
         private void MapCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -184,7 +193,7 @@ namespace BattleNotifier.View
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            Close();
+            NotificationsController.Instance.BattleNotificationClosed();
         }
     }
 }
