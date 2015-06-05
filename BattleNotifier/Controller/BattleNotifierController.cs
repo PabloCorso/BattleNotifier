@@ -28,7 +28,7 @@ namespace BattleNotifier.Controller
         private bool powerModeSuspended = false;
         private DateTime CurrentDateTime { get; set; }
 
-        private IMain MainView { get; set; }
+        public IMain MainView { get; private set; }
         private IMainPanel MainPanel { get { return MainView.MainPanel; } }
 
         /// <summary>

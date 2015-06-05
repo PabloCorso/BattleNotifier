@@ -28,7 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.PictureBox = new System.Windows.Forms.PictureBox();
+            this.TypeLabel = new System.Windows.Forms.Label();
+            this.HeaderLabel = new System.Windows.Forms.Label();
+            this.TimerLabel = new System.Windows.Forms.Label();
+            this.AttributesLabel = new System.Windows.Forms.Label();
+            this.BattleCountdownTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,11 +47,65 @@
             this.PictureBox.TabStop = false;
             this.PictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
             // 
+            // TypeLabel
+            // 
+            this.TypeLabel.AutoSize = true;
+            this.TypeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TypeLabel.Location = new System.Drawing.Point(12, 218);
+            this.TypeLabel.Name = "TypeLabel";
+            this.TypeLabel.Size = new System.Drawing.Size(61, 13);
+            this.TypeLabel.TabIndex = 1;
+            this.TypeLabel.Text = "Battle Type";
+            this.TypeLabel.Visible = false;
+            // 
+            // HeaderLabel
+            // 
+            this.HeaderLabel.AutoSize = true;
+            this.HeaderLabel.BackColor = System.Drawing.Color.Transparent;
+            this.HeaderLabel.Location = new System.Drawing.Point(79, 218);
+            this.HeaderLabel.Name = "HeaderLabel";
+            this.HeaderLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.HeaderLabel.Size = new System.Drawing.Size(145, 13);
+            this.HeaderLabel.TabIndex = 2;
+            this.HeaderLabel.Text = "Level001 by Kuski Nickname";
+            this.HeaderLabel.Visible = false;
+            // 
+            // TimerLabel
+            // 
+            this.TimerLabel.AutoSize = true;
+            this.TimerLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TimerLabel.Location = new System.Drawing.Point(274, 218);
+            this.TimerLabel.Name = "TimerLabel";
+            this.TimerLabel.Size = new System.Drawing.Size(34, 13);
+            this.TimerLabel.TabIndex = 3;
+            this.TimerLabel.Text = "60:00";
+            this.TimerLabel.Visible = false;
+            // 
+            // AttributesLabel
+            // 
+            this.AttributesLabel.AutoSize = true;
+            this.AttributesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.AttributesLabel.Location = new System.Drawing.Point(12, 196);
+            this.AttributesLabel.Name = "AttributesLabel";
+            this.AttributesLabel.Size = new System.Drawing.Size(278, 13);
+            this.AttributesLabel.TabIndex = 4;
+            this.AttributesLabel.Text = "Others shown, allow started, one wheel, no brake, no volt";
+            this.AttributesLabel.Visible = false;
+            // 
+            // BattleCountdownTimer
+            // 
+            this.BattleCountdownTimer.Interval = 1000;
+            this.BattleCountdownTimer.Tick += new System.EventHandler(this.BattleCountdownTimer_Tick);
+            // 
             // MapNotification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(320, 240);
+            this.Controls.Add(this.AttributesLabel);
+            this.Controls.Add(this.TimerLabel);
+            this.Controls.Add(this.HeaderLabel);
+            this.Controls.Add(this.TypeLabel);
             this.Controls.Add(this.PictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MapNotification";
@@ -55,11 +115,17 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapNotification_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox PictureBox;
+        private System.Windows.Forms.Label TypeLabel;
+        private System.Windows.Forms.Label HeaderLabel;
+        private System.Windows.Forms.Label TimerLabel;
+        private System.Windows.Forms.Label AttributesLabel;
+        private System.Windows.Forms.Timer BattleCountdownTimer;
     }
 }

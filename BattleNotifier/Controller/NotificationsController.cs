@@ -54,7 +54,7 @@ namespace BattleNotifier.Controller
                 Id = id
             };
 
-            //this.ShowBattleNotification(battle, duration * 60);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, duration * 60);
         }
 
         public void SimulateNewBattle()
@@ -71,7 +71,7 @@ namespace BattleNotifier.Controller
                 Id = 90431
             };
 
-            //this.ShowBattleNotification(battle, 20 * 60);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, 20 * 60);
         }
 
         public void ShowBattleNotification(IMain m, Battle battle, double timeLeft)
@@ -93,16 +93,16 @@ namespace BattleNotifier.Controller
 
                 if (settings.Basic.ShowBattleDialog)
                     if (settings.General.UseFadeEffect)
-                        bn = new TransBattleNotification(battle, Convert.ToInt32(timeLeft), settings, true);
+                        bn = new TransBattleNotification(battle, timeLeft, settings, true);
                     else
-                        bn = new BattleNotification(battle, Convert.ToInt32(timeLeft), settings);
+                        bn = new BattleNotification(battle, timeLeft, settings);
                 if (settings.Basic.ShowMapDialog)
                 {
                     int height = bn == null ? 0 : bn.Height;
                     if (settings.General.UseFadeEffect)
-                        mn = new TransMapNotification(height, MapSizeIndexToWidth(settings.Basic.MapSize), true);
+                        mn = new TransMapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), settings.Map, true);
                     else
-                        mn = new MapNotification(height, MapSizeIndexToWidth(settings.Basic.MapSize));
+                        mn = new MapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), settings.Map);
                 }
             }
 

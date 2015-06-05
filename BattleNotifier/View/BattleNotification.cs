@@ -20,7 +20,7 @@ namespace BattleNotifier.View
         private int maxAttributesLength = 70;
         public BattleNotification() { }
         // TODO hacer que se pueda mantener abierto.
-        public BattleNotification(Battle battle, int timeLeft, BattleNotificationSettings settings)
+        public BattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
         {
             InitializeComponent();
             SetupDialogLocation();
@@ -29,7 +29,7 @@ namespace BattleNotifier.View
             battleDuration = battle.Duration;
 
             if (timeLeft > 0)
-                StartBattleCountdown(timeLeft);
+                StartBattleCountdown(Convert.ToInt32(timeLeft));
 
             if (settings.General.TransparentStyle)
             {

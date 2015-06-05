@@ -336,7 +336,7 @@ zwor</Value>
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="OnMapColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">Black</Value>
+      <Value Profile="(Default)">White</Value>
     </Setting>
     <Setting Name="EOLUrl" Type="System.String" Scope="Application">
       <Value Profile="(Default)">http://elmaonline.net/</Value>

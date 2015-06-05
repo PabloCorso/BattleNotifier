@@ -8,12 +8,12 @@ namespace BattleNotifier.View
     public class TransBattleNotification : BattleNotification
     {
         #region Constructor
-        public TransBattleNotification(Battle battle, int timeLeft, BattleNotificationSettings settings)
+        public TransBattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
             : base(battle, timeLeft, settings)
         {
             Initialize();
         }
-        public TransBattleNotification(Battle battle, int timeLeft, BattleNotificationSettings settings, bool disposeAtEnd)
+        public TransBattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings, bool disposeAtEnd)
             : base(battle, timeLeft, settings)
         {
             m_bDisposeAtEnd = disposeAtEnd;
