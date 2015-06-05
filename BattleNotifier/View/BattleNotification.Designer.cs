@@ -135,15 +135,16 @@
             // MinimizeButton
             // 
             this.MinimizeButton.BackColor = System.Drawing.SystemColors.Control;
-            this.MinimizeButton.BackgroundImage = global::BattleNotifier.Properties.Resources.minimize_window_16;
+            this.MinimizeButton.BackgroundImage = global::BattleNotifier.Properties.Resources.minimize;
             this.MinimizeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.MinimizeButton.FlatAppearance.BorderSize = 0;
             this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeButton.Location = new System.Drawing.Point(193, 1);
+            this.MinimizeButton.Location = new System.Drawing.Point(186, 2);
             this.MinimizeButton.Name = "MinimizeButton";
-            this.MinimizeButton.Size = new System.Drawing.Size(20, 17);
+            this.MinimizeButton.Size = new System.Drawing.Size(21, 17);
             this.MinimizeButton.TabIndex = 8;
             this.MinimizeButton.TabStop = false;
+            this.MinimizeButton.Text = "_";
             this.MinimizeButton.UseVisualStyleBackColor = false;
             this.MinimizeButton.Visible = false;
             this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
@@ -151,13 +152,13 @@
             // CloseButton
             // 
             this.CloseButton.BackColor = System.Drawing.SystemColors.Control;
-            this.CloseButton.BackgroundImage = global::BattleNotifier.Properties.Resources.close_window_16;
+            this.CloseButton.BackgroundImage = global::BattleNotifier.Properties.Resources.close;
             this.CloseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.CloseButton.FlatAppearance.BorderSize = 0;
             this.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseButton.Location = new System.Drawing.Point(214, 1);
+            this.CloseButton.Location = new System.Drawing.Point(211, 2);
             this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(20, 17);
+            this.CloseButton.Size = new System.Drawing.Size(21, 17);
             this.CloseButton.TabIndex = 7;
             this.CloseButton.TabStop = false;
             this.CloseButton.UseVisualStyleBackColor = false;

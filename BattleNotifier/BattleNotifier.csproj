@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Assets\apple.wav" />
+    <None Include="Assets\close.png" />
     <Content Include="Assets\close_window.png" />
     <EmbeddedResource Include="Assets\wroom.wav" />
     <EmbeddedResource Include="HtmlAgilityPack.dll" />
@@ -163,6 +164,7 @@
     <EmbeddedResource Include="Assets\deaded.wav" />
     <EmbeddedResource Include="Assets\flower.wav" />
     <Content Include="Assets\helmet_notify_icon.ico" />
+    <None Include="Assets\minimize.png" />
     <Content Include="Assets\minimize_window.png" />
     <None Include="Assets\minimize_window_16.png" />
     <Content Include="Assets\notify_icon.ico" />
