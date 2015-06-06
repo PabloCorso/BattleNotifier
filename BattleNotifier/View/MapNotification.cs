@@ -189,31 +189,33 @@ namespace BattleNotifier.View
 
             return hours + mins + ":" + secs;
         }
-        
+
         private void InitializePicture(int desiredWidth)
         {
             // TODO InvalidOperationException? lock map?
-            Image map = NotificationsController.Instance.Map;
-            int newWidth = desiredWidth;
-            int aux = (desiredWidth * 100) / map.Width;
-            int newHeight = (aux * map.Height) / 100;
-            Image newImage = null;
 
             try
             {
+                Image map = NotificationsController.Instance.Map;
+                int newWidth = desiredWidth;
+                int aux = (desiredWidth * 100) / map.Width;
+                int newHeight = (aux * map.Height) / 100;
+                Image newImage = null;
+
                 newImage = map.Resize(newWidth, newHeight);
+
+
+                this.Width = newImage.Width;
+                this.Height = newImage.Height;
+                PictureBox.Width = Width;
+                PictureBox.Height = Height;
+
+                PictureBox.Image = newImage;
             }
-            catch (Exception) 
+            catch (Exception)
             {
-            
+
             }
-
-            this.Width = newImage.Width;
-            this.Height = newImage.Height;
-            PictureBox.Width = Width;
-            PictureBox.Height = Height;
-
-            PictureBox.Image = newImage;
         }
 
         private void SetupDialogLocation(int startHeight)
@@ -266,7 +268,7 @@ namespace BattleNotifier.View
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
-            else if (e.Button == MouseButtons.Right) 
+            else if (e.Button == MouseButtons.Right)
             {
                 ContextMenu contextMenu = new ContextMenu();
                 MenuItem closeMenuItem = new MenuItem();
@@ -287,7 +289,7 @@ namespace BattleNotifier.View
                 contextMenu.MenuItems.Add(minimizeMenuItem);
                 contextMenu.Show(this, e.Location);
             }
-            else if (e.Button == MouseButtons.Middle) 
+            else if (e.Button == MouseButtons.Middle)
             {
                 MapNotification_FormClosed(null, null);
             }
@@ -302,7 +304,7 @@ namespace BattleNotifier.View
         {
             MapNotification_FormClosed(null, null);
         }
-        
+
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             MapNotification_MouseDown(sender, e);

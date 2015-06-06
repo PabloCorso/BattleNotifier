@@ -183,12 +183,12 @@ namespace BattleNotifier.View
 
         private void PrintMapDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            /*Image map = NotificationsController.Instance.Map;
+            Image map = NotificationsController.Instance.Map;
             map = map.ChangeColor(Color.FromArgb(48, 112, 212), Color.White);
             map = map.ChangeColor(Color.FromArgb(23, 18, 60), Color.LightGray);
             map = map.ChangeColor(Color.Gray, new List<Color>() { Color.White, Color.LightGray });
             e.Graphics.DrawImage(map, 0, 0);
-            e.HasMorePages = false;*/
+            e.HasMorePages = false;
         }
 
         private void AttributesLabel_Click(object sender, EventArgs e)
