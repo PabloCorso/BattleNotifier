@@ -240,8 +240,43 @@ namespace BattleNotifier.View
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+            else if (e.Button == MouseButtons.Right) 
+            {
+                ContextMenu contextMenu = new ContextMenu();
+                MenuItem closeMenuItem = new MenuItem();
+                MenuItem minimizeMenuItem = new MenuItem();
+
+                // Initialize closeMenuItem
+                closeMenuItem.Index = 0;
+                closeMenuItem.Text = "Close";
+                closeMenuItem.Click += new EventHandler(CloseMenuItem_Click);
+
+                // Initialize minimizeMenuItem
+                minimizeMenuItem.Index = 1;
+                minimizeMenuItem.Text = "Minimize";
+                minimizeMenuItem.Click += new EventHandler(MinimizeMenuItem_Click);
+
+                // Set Start and Exit as startup options.
+                contextMenu.MenuItems.Add(closeMenuItem);
+                contextMenu.MenuItems.Add(minimizeMenuItem);
+                contextMenu.Show(this, e.Location);
+            }
+            else if (e.Button == MouseButtons.Middle) 
+            {
+                MapNotification_FormClosed(null, null);
+            }
         }
 
+        private void MinimizeMenuItem_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void CloseMenuItem_Click(object sender, EventArgs e)
+        {
+            MapNotification_FormClosed(null, null);
+        }
+        
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             MapNotification_MouseDown(sender, e);

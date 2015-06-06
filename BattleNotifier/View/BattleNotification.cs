@@ -231,7 +231,7 @@ namespace BattleNotifier.View
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            NotificationsController.Instance.BattleNotificationClosed();
+            BattleNotification_FormClosed_1(null, null);
         }
 
         private void HeadlineOutlineLabel_Click(object sender, EventArgs e)
