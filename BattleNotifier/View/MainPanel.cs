@@ -55,9 +55,9 @@ namespace BattleNotifier.View
         }
 
         #region IMainPanel implementation
-        public bool TimerEnabled
+        public bool TimerStoppedNotifications
         {
-            get { return Timer.Enabled; }
+            get { return !Timer.Enabled && NotificationDurationTrackBar.Value != 0; }
         }
         #endregion
 

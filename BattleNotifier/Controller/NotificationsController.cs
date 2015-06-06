@@ -73,7 +73,7 @@ namespace BattleNotifier.Controller
                 Id = 90431
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, duration * 60);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20);
         }
 
         public void ShowBattleNotification(IMain m, Battle battle, double timeLeft, bool simulation = false)

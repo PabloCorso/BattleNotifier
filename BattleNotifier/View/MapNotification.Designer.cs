@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.PictureBox = new System.Windows.Forms.PictureBox();
             this.TypeLabel = new System.Windows.Forms.Label();
             this.HeaderLabel = new System.Windows.Forms.Label();
             this.TimerLabel = new System.Windows.Forms.Label();
             this.AttributesLabel = new System.Windows.Forms.Label();
-            this.BattleCountdownTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,11 +90,6 @@
             this.AttributesLabel.Text = "Others shown, allow started, one wheel, no brake, no volt";
             this.AttributesLabel.Visible = false;
             // 
-            // BattleCountdownTimer
-            // 
-            this.BattleCountdownTimer.Interval = 1000;
-            this.BattleCountdownTimer.Tick += new System.EventHandler(this.BattleCountdownTimer_Tick);
-            // 
             // MapNotification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -125,6 +118,5 @@
         private System.Windows.Forms.Label HeaderLabel;
         private System.Windows.Forms.Label TimerLabel;
         private System.Windows.Forms.Label AttributesLabel;
-        private System.Windows.Forms.Timer BattleCountdownTimer;
     }
 }

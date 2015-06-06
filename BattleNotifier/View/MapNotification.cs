@@ -9,11 +9,13 @@ using BattleNotifier.Model;
 using BattleNotifier.Utils;
 using System.Text;
 using System.Collections.Generic;
+using System.Timers;
 
 namespace BattleNotifier.View
 {
     public partial class MapNotification : Form
     {
+        private System.Timers.Timer timer;
         private bool tooSmallMap = false;
         private bool showOnlyTimerAndType = false;
         private bool closing = false;
@@ -145,24 +147,34 @@ namespace BattleNotifier.View
         private void StartBattleCountdown(int startTime)
         {
             countdown = startTime;
+            timer = new System.Timers.Timer(1000);
+            timer.Enabled = true;
+            timer.Elapsed += new ElapsedEventHandler(BattleCountdownTimer_Tick);
             BattleCountdownTimer_Tick(null, null);
-            BattleCountdownTimer.Start();
+            timer.Start();
         }
 
         private void BattleCountdownTimer_Tick(object sender, EventArgs e)
         {
-            if (countdown > battleDuration * 60)
-                TimerLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate() { BattleCountdownTimer_Tick(sender, e); }));
+            }
             else
             {
-                if (countdown == 0)
-                    BattleCountdownTimer.Stop();
-                TimeSpan time = new TimeSpan(0, 0, countdown);
-                string display = GetCountdownDisplayText(countdown);
-                TimerLabel.Text = display + " / " + battleDuration + ":00";
-            }
+                if (countdown > battleDuration * 60)
+                    TimerLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
+                else
+                {
+                    if (countdown == 0)
+                        timer.Stop();
+                    TimeSpan time = new TimeSpan(0, 0, countdown);
+                    string display = GetCountdownDisplayText(countdown);
+                    TimerLabel.Text = display + " / " + battleDuration + ":00";
+                }
 
-            countdown--;
+                countdown--;
+            }
         }
 
         private string GetCountdownDisplayText(int seconds)
@@ -180,12 +192,21 @@ namespace BattleNotifier.View
         
         private void InitializePicture(int desiredWidth)
         {
+            // TODO InvalidOperationException? lock map?
             Image map = NotificationsController.Instance.Map;
             int newWidth = desiredWidth;
             int aux = (desiredWidth * 100) / map.Width;
             int newHeight = (aux * map.Height) / 100;
+            Image newImage = null;
 
-            Image newImage = map.Resize(newWidth, newHeight);
+            try
+            {
+                newImage = map.Resize(newWidth, newHeight);
+            }
+            catch (Exception) 
+            {
+            
+            }
 
             this.Width = newImage.Width;
             this.Height = newImage.Height;
@@ -207,7 +228,12 @@ namespace BattleNotifier.View
         private void MapNotification_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (!closing)
+            {
                 CloseForm();
+                Image i = PictureBox.Image;
+                PictureBox.Image = null;
+                i.Dispose();
+            }
         }
 
         private delegate void BlankDelegate();

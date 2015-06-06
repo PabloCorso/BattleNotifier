@@ -5,7 +5,7 @@ namespace BattleNotifier.Controller.ViewInterface
 {
     public interface IMainPanel
     {
-        bool TimerEnabled { get; }
+        bool TimerStoppedNotifications { get; }
         bool HasAllDesignersChecked();
         List<string> CheckedDesigners { get; }
         List<string> CheckedBlackList { get; }

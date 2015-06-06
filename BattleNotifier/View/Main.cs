@@ -48,6 +48,11 @@ namespace BattleNotifier.View
 
             if (UserSettings.Instance.MustNotifyOnStartup())
                 mainPanel.NotificateBattles();
+
+#if DEBUG
+            NavigateToCurrentBattleButton.Enabled = true;
+            NavigateToCurrentBattleButton.Visible = true;
+#endif
         }
 
         private void NavigateToCurrentBattleButton_MouseEnter(object sender, EventArgs e)
@@ -102,6 +107,7 @@ namespace BattleNotifier.View
         {
             UserSettings.Save();
             ShutDownNotifyIcon();
+            battleNotifier.Dispose();
             base.OnClosed(e);
         }
 
@@ -261,6 +267,11 @@ namespace BattleNotifier.View
             {
                 mn.Show();
             }
+        }
+
+        private void NavigateToCurrentBattleButton_Click(object sender, EventArgs e)
+        {
+            battleNotifier.Test();
         }
     }
 }

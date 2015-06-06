@@ -73,6 +73,7 @@
             this.NavigateToCurrentBattleButton.Text = "∧ Current Battle ∧";
             this.NavigateToCurrentBattleButton.UseVisualStyleBackColor = true;
             this.NavigateToCurrentBattleButton.Visible = false;
+            this.NavigateToCurrentBattleButton.Click += new System.EventHandler(this.NavigateToCurrentBattleButton_Click);
             // 
             // NavigateToSettingsButton
             // 

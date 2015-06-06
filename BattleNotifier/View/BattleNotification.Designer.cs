@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.PrintMapDialog = new System.Windows.Forms.PrintDialog();
             this.PrintMapDocument = new System.Drawing.Printing.PrintDocument();
-            this.BattleCountdownTimer = new System.Windows.Forms.Timer(this.components);
             this.AttributesToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.CountdownLabel = new System.Windows.Forms.Label();
             this.DurationLabel = new System.Windows.Forms.Label();
@@ -57,11 +56,6 @@
             // 
             this.PrintMapDocument.OriginAtMargins = true;
             this.PrintMapDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintMapDocument_PrintPage);
-            // 
-            // BattleCountdownTimer
-            // 
-            this.BattleCountdownTimer.Interval = 1000;
-            this.BattleCountdownTimer.Tick += new System.EventHandler(this.BattleCountdownTimer_Tick);
             // 
             // AttributesToolTip
             // 
@@ -294,7 +288,6 @@
         private System.Windows.Forms.Button PrintMapButton;
         private System.Windows.Forms.PrintDialog PrintMapDialog;
         private System.Drawing.Printing.PrintDocument PrintMapDocument;
-        private System.Windows.Forms.Timer BattleCountdownTimer;
         private System.Windows.Forms.Label CountdownLabel;
         private System.Windows.Forms.ToolTip AttributesToolTip;
         private System.Windows.Forms.CheckBox MapCheckBox;

@@ -10,11 +10,13 @@ using System.Reflection;
 using BattleNotifier.Controller;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Timers;
 
 namespace BattleNotifier.View
 {
     public partial class BattleNotification : Form
     {
+        private System.Timers.Timer timer;
         private bool transparentStyle = false;
         private bool closing = false;
         private int battleDuration;
@@ -78,45 +80,41 @@ namespace BattleNotifier.View
             AttributesLabel.Visible = false;
         }
 
-        private delegate void BlankDelegate();
-        public void CloseForm()
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new BlankDelegate(this.CloseForm));
-            }
-            else
-            {
-                closing = true;
-                this.Close();
-                this.Dispose();
-            }
-        }
-
         private void StartBattleCountdown(int startTime)
         {
             countdown = startTime;
+            timer = new System.Timers.Timer(1000);
+            timer.Enabled = true;
+            timer.Elapsed += new ElapsedEventHandler(BattleCountdownTimer_Tick);
             BattleCountdownTimer_Tick(null, null);
-            BattleCountdownTimer.Start();
+            timer.Start();
         }
+
 
         private void BattleCountdownTimer_Tick(object sender, EventArgs e)
         {
-            if (countdown > battleDuration * 60)
-                CountdownLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new MethodInvoker(delegate() { BattleCountdownTimer_Tick(sender, e); }));
+            }
             else
             {
-                if (countdown == 0)
-                    BattleCountdownTimer.Stop();
-                TimeSpan time = new TimeSpan(0, 0, countdown);
-                string display = "(" + GetCountdownDisplayText(countdown) + ")";
-                if (transparentStyle)
-                    CountdownOutlineLabel.Text = display;
+                if (countdown > battleDuration * 60)
+                    CountdownLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
                 else
-                    CountdownLabel.Text = display;
-            }
+                {
+                    if (countdown == 0)
+                        timer.Stop();
+                    TimeSpan time = new TimeSpan(0, 0, countdown);
+                    string display = "(" + GetCountdownDisplayText(countdown) + ")";
+                    if (transparentStyle)
+                        CountdownOutlineLabel.Text = display;
+                    else
+                        CountdownLabel.Text = display;
+                }
 
-            countdown--;
+                countdown--;
+            }
         }
 
         private string GetCountdownDisplayText(int seconds)
@@ -185,12 +183,12 @@ namespace BattleNotifier.View
 
         private void PrintMapDocument_PrintPage(object sender, PrintPageEventArgs e)
         {
-            Image map = NotificationsController.Instance.Map;
+            /*Image map = NotificationsController.Instance.Map;
             map = map.ChangeColor(Color.FromArgb(48, 112, 212), Color.White);
             map = map.ChangeColor(Color.FromArgb(23, 18, 60), Color.LightGray);
             map = map.ChangeColor(Color.Gray, new List<Color>() { Color.White, Color.LightGray });
             e.Graphics.DrawImage(map, 0, 0);
-            e.HasMorePages = false;
+            e.HasMorePages = false;*/
         }
 
         private void AttributesLabel_Click(object sender, EventArgs e)
@@ -207,12 +205,6 @@ namespace BattleNotifier.View
             }
         }
 
-        private void BattleNotification_FormClosed_1(object sender, FormClosedEventArgs e)
-        {
-            if (!closing)
-                NotificationsController.Instance.BattleNotificationClosed();
-        }
-
         private void MapCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NotificationsController.Instance.BattleNotificationMapPressed();
@@ -227,6 +219,26 @@ namespace BattleNotifier.View
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private delegate void BlankDelegate();
+        public void CloseForm()
+        {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new BlankDelegate(this.CloseForm));
+            }
+            else
+            {
+                closing = true;
+                this.Close();
+            }
+        }
+
+        private void BattleNotification_FormClosed_1(object sender, FormClosedEventArgs e)
+        {
+            if (!closing)
+                NotificationsController.Instance.BattleNotificationClosed();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

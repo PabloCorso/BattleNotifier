@@ -19,13 +19,13 @@ namespace BattleNotifier.Controller
 
         // Battle notification.
         private Timer notificationTimer = new System.Timers.Timer();
-        private object lockSet = new object();
 
         // Helpers.
         private Battle currentBattle = null;
         private bool currentFinishedNormally = false;
         private bool currentNotified = false;
         private bool powerModeSuspended = false;
+        private bool timerSuspended = false;
         private DateTime CurrentDateTime { get; set; }
 
         public IMain MainView { get; private set; }
@@ -47,6 +47,23 @@ namespace BattleNotifier.Controller
         {
             if (instance == null)
                 instance = new BattleNotifierController(view);
+        }
+
+        public void Dispose()
+        {
+            this.notificationTimer.Elapsed -= OnTimedEvent;
+            SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
+        }
+
+        //TODO delete
+        public void Test()
+        {
+            currentNotified = false;
+            currentBattle = null;
+            currentFinishedNormally = false;
+            currentNotified = false;
+            eolDataLoaded = false;
+            SetNextUpdateInterval(1);
         }
 
         private BattleNotifierController(IMain view)
@@ -149,8 +166,8 @@ namespace BattleNotifier.Controller
                 // Notificate battle.
                 if (FilterBattle(currentBattle) && !currentNotified)
                 {
-                    NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle, timeLeft);
                     currentNotified = true;
+                    NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle, timeLeft);
                 }
 
                 if (timeLeft < 1)
@@ -200,8 +217,15 @@ namespace BattleNotifier.Controller
                     battle.Desginer = xmlDoc.DocumentElement.SelectSingleNode("designer").InnerText;
                     battle.FileName = xmlDoc.DocumentElement.SelectSingleNode("file_name").InnerText;
 
-                    int startDelta = Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("start_delta").InnerText);
-                    battle.StartedDateTime = CurrentDateTime.AddSeconds(startDelta);
+                    int startDelta = 0;
+                    string strDelta = xmlDoc.DocumentElement.SelectSingleNode("start_delta").InnerText;
+                    if (!Int32.TryParse(strDelta, out startDelta))
+                    {
+                        double delta = double.Parse(strDelta, System.Globalization.CultureInfo.InvariantCulture);
+                        startDelta = Convert.ToInt32(delta);
+                    }
+
+                    battle.StartedDateTime = CurrentDateTime.AddSeconds(Convert.ToInt32(startDelta));
 
                     battle.Type = (BattleType)Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("battle_type").InnerText);
                     battle.Attributes = (BattleAttribute)Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("battle_attrs").InnerText);
@@ -288,17 +312,22 @@ namespace BattleNotifier.Controller
 
         private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
-            if (e.Mode == PowerModes.Suspend && notificationTimer.Enabled)
+            if (e.Mode == PowerModes.Suspend)
             {
                 if (notificationTimer.Enabled)
+                {
                     notificationTimer.Stop();
+                    timerSuspended = true;
+                }
                 powerModeSuspended = true;
             }
             else if (powerModeSuspended)
             {
-                if (MainPanel.TimerEnabled && !notificationTimer.Enabled)
-                    notificationTimer.Start();
+                if (MainPanel.TimerStoppedNotifications && timerSuspended)
+                    if (!notificationTimer.Enabled)
+                        notificationTimer.Start();
                 powerModeSuspended = false;
+                timerSuspended = false;
             }
         }
 
