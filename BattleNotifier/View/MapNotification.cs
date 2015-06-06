@@ -177,7 +177,8 @@ namespace BattleNotifier.View
 
                     countdown--;
                 }
-            }catch(ObjectDisposedException)
+            }
+            catch (ObjectDisposedException)
             {
                 // Timer ticked while form being disposed?
             }
