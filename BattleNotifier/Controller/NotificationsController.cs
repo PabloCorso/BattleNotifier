@@ -59,11 +59,13 @@ namespace BattleNotifier.Controller
 
         public void SimulateNewBattle()
         {
+            Random random = new Random();
+            int duration = Convert.ToInt32(random.NextDouble() * (60 - 1) + 1);
             Battle battle = new Battle()
             {
                 FileName = "Pob0989.lev",
-                MapUrl = Settings.Default.EOLMapsUrl + "309883",
-                Duration = 20,
+                MapUrl = null,
+                Duration = duration,
                 Attributes = (BattleAttribute)15,
                 Type = 0,
                 StartedDateTime = DateTime.Now,
@@ -71,10 +73,10 @@ namespace BattleNotifier.Controller
                 Id = 90431
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, 20 * 60);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, duration * 60);
         }
 
-        public void ShowBattleNotification(IMain m, Battle battle, double timeLeft)
+        public void ShowBattleNotification(IMain m, Battle battle, double timeLeft, bool simulation = false)
         {
             ClearBattleNotification();
 
@@ -82,7 +84,7 @@ namespace BattleNotifier.Controller
 
             if (settings.Basic.ShowBattleDialog || settings.Basic.ShowMapDialog)
             {
-                SetMap(battle.MapUrl);
+                SetMap(battle.MapUrl, simulation);
 
                 if (settings.Basic.ShowBattleDialog)
                     if (settings.General.UseFadeEffect)
@@ -125,11 +127,14 @@ namespace BattleNotifier.Controller
             }
         }
 
-        private void SetMap(string mapUrl) 
+        private void SetMap(string mapUrl, bool simulation)
         {
             try
             {
-                Map = WebRequestHelper.GetImageFromUrl(mapUrl + "/600");
+                if (simulation)
+                    Map = Properties.Resources.about;
+                else
+                    Map = WebRequestHelper.GetImageFromUrl(mapUrl + "/600");
             }
             catch (Exception)
             {
@@ -139,7 +144,7 @@ namespace BattleNotifier.Controller
                 }
                 catch
                 {
-                    Map = (Image)Properties.Resources.close_window;
+                    Map = (Image)Properties.Resources.about;
                 }
             }
         }

@@ -35,7 +35,6 @@
             this.TimerLabel = new System.Windows.Forms.Label();
             this.AttributesLabel = new System.Windows.Forms.Label();
             this.BattleCountdownTimer = new System.Windows.Forms.Timer(this.components);
-            this.DurationLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +51,7 @@
             // 
             this.TypeLabel.AutoSize = true;
             this.TypeLabel.BackColor = System.Drawing.Color.Transparent;
-            this.TypeLabel.Location = new System.Drawing.Point(12, 218);
+            this.TypeLabel.Location = new System.Drawing.Point(12, 149);
             this.TypeLabel.Name = "TypeLabel";
             this.TypeLabel.Size = new System.Drawing.Size(61, 13);
             this.TypeLabel.TabIndex = 1;
@@ -63,7 +62,7 @@
             // 
             this.HeaderLabel.AutoSize = true;
             this.HeaderLabel.BackColor = System.Drawing.Color.Transparent;
-            this.HeaderLabel.Location = new System.Drawing.Point(79, 218);
+            this.HeaderLabel.Location = new System.Drawing.Point(12, 115);
             this.HeaderLabel.Name = "HeaderLabel";
             this.HeaderLabel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.HeaderLabel.Size = new System.Drawing.Size(145, 13);
@@ -75,7 +74,7 @@
             // 
             this.TimerLabel.AutoSize = true;
             this.TimerLabel.BackColor = System.Drawing.Color.Transparent;
-            this.TimerLabel.Location = new System.Drawing.Point(274, 218);
+            this.TimerLabel.Location = new System.Drawing.Point(12, 75);
             this.TimerLabel.Name = "TimerLabel";
             this.TimerLabel.Size = new System.Drawing.Size(34, 13);
             this.TimerLabel.TabIndex = 3;
@@ -86,7 +85,7 @@
             // 
             this.AttributesLabel.AutoSize = true;
             this.AttributesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.AttributesLabel.Location = new System.Drawing.Point(12, 196);
+            this.AttributesLabel.Location = new System.Drawing.Point(12, 9);
             this.AttributesLabel.Name = "AttributesLabel";
             this.AttributesLabel.Size = new System.Drawing.Size(278, 13);
             this.AttributesLabel.TabIndex = 4;
@@ -98,23 +97,11 @@
             this.BattleCountdownTimer.Interval = 1000;
             this.BattleCountdownTimer.Tick += new System.EventHandler(this.BattleCountdownTimer_Tick);
             // 
-            // DurationLabel
-            // 
-            this.DurationLabel.AutoSize = true;
-            this.DurationLabel.BackColor = System.Drawing.Color.Transparent;
-            this.DurationLabel.Location = new System.Drawing.Point(12, 172);
-            this.DurationLabel.Name = "DurationLabel";
-            this.DurationLabel.Size = new System.Drawing.Size(43, 13);
-            this.DurationLabel.TabIndex = 5;
-            this.DurationLabel.Text = "10 mins";
-            this.DurationLabel.Visible = false;
-            // 
             // MapNotification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(320, 240);
-            this.Controls.Add(this.DurationLabel);
             this.Controls.Add(this.AttributesLabel);
             this.Controls.Add(this.TimerLabel);
             this.Controls.Add(this.HeaderLabel);
@@ -139,6 +126,5 @@
         private System.Windows.Forms.Label TimerLabel;
         private System.Windows.Forms.Label AttributesLabel;
         private System.Windows.Forms.Timer BattleCountdownTimer;
-        private System.Windows.Forms.Label DurationLabel;
     }
 }

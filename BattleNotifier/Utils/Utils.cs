@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
@@ -24,9 +25,97 @@ namespace BattleNotifier.Utils
         }
     }
 
+    public static class ImageExtensions
+    {
+        public static Image Resize(this Image image, int newWidth, int newHeight) 
+        {
+            Bitmap newImage = new Bitmap(newWidth, newHeight);
+            using (Graphics gr = Graphics.FromImage(newImage))
+            {
+                gr.SmoothingMode = SmoothingMode.HighQuality;
+                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr.DrawImage(image, new Rectangle(0, 0, newWidth, newHeight));
+            }
+
+            return newImage;
+        }
+
+        public static Image ChangeColor(this Image image, Color from, Color to)
+        {
+            image = ChangeColor(new Bitmap(image), from, to);
+            return image;
+        }
+
+        public static Image ChangeColor(this Image image, Color to, List<Color> excluded = null) 
+        {
+            image = ChangeEveryColor(new Bitmap(image), to, excluded);
+            return image;
+        }
+
+        private static Bitmap ChangeColor(Bitmap scrBitmap, Color from, Color to)
+        {
+            Color actualColor = new Color();
+            Bitmap newBitmap = new Bitmap(scrBitmap.Width, scrBitmap.Height);
+            for (int i = 0; i < scrBitmap.Width; i++)
+            {
+                for (int j = 0; j < scrBitmap.Height; j++)
+                {
+                    actualColor = scrBitmap.GetPixel(i, j);
+                    if (actualColor.Equals(from))
+                        newBitmap.SetPixel(i, j, to);
+                    else
+                        newBitmap.SetPixel(i, j, actualColor);
+                }
+            }
+            return newBitmap;
+        }
+
+        private static Bitmap ChangeEveryColor(Bitmap scrBitmap, Color newColor, List<Color> excluded)
+        {
+            Color actualColor = new Color();
+            Bitmap newBitmap = new Bitmap(scrBitmap.Width, scrBitmap.Height);
+            for (int i = 0; i < scrBitmap.Width; i++)
+            {
+                for (int j = 0; j < scrBitmap.Height; j++)
+                {
+                    actualColor = scrBitmap.GetPixel(i, j);
+                    if (excluded != null && excluded.Exists(actualColor))
+                        newBitmap.SetPixel(i, j, actualColor);
+                    else
+                        newBitmap.SetPixel(i, j, newColor);
+                }
+            }
+            return newBitmap;
+        }
+
+        private static bool Exists(this List<Color> colors, Color color)
+        {
+            foreach (Color item in colors)
+            {
+                if (item.ToArgb().Equals(color.ToArgb()))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private static Color Copy(this Color color)
+        {
+            if (color.IsKnownColor)
+                return Color.FromKnownColor(color.ToKnownColor());
+
+            if (color.IsNamedColor)
+                return Color.FromName(color.Name);
+
+            // this is better, then pass A,r,g,b separately
+            return Color.FromArgb(color.ToArgb());
+        }
+    }
+
     public static class ChListExtensions
     {
-        public static bool HasCheckedItems(this CheckedListBox chList) 
+        public static bool HasCheckedItems(this CheckedListBox chList)
         {
             for (int i = 0; i < chList.Items.Count; i++)
             {
@@ -37,7 +126,7 @@ namespace BattleNotifier.Utils
             return false;
         }
 
-        public static List<string> CheckedStringList(this CheckedListBox chList) 
+        public static List<string> CheckedStringList(this CheckedListBox chList)
         {
             List<string> result = new List<string>();
             for (int i = 0; i < chList.Items.Count; i++)

@@ -160,6 +160,7 @@
     <None Include="Assets\wu.png" />
     <EmbeddedResource Include="Assets\apple.wav" />
     <None Include="Assets\close.png" />
+    <None Include="Assets\about.png" />
     <Content Include="Assets\close_window.png" />
     <EmbeddedResource Include="Assets\wroom.wav" />
     <EmbeddedResource Include="HtmlAgilityPack.dll" />

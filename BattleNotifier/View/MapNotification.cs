@@ -177,21 +177,15 @@ namespace BattleNotifier.View
 
             return hours + mins + ":" + secs;
         }
-
+        
         private void InitializePicture(int desiredWidth)
         {
             Image map = NotificationsController.Instance.Map;
             int newWidth = desiredWidth;
             int aux = (desiredWidth * 100) / map.Width;
             int newHeight = (aux * map.Height) / 100;
-            Bitmap newImage = new Bitmap(newWidth, newHeight);
-            using (Graphics gr = Graphics.FromImage(newImage))
-            {
-                gr.SmoothingMode = SmoothingMode.HighQuality;
-                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                gr.DrawImage(map, new Rectangle(0, 0, newWidth, newHeight));
-            }
+
+            Image newImage = map.Resize(newWidth, newHeight);
 
             this.Width = newImage.Width;
             this.Height = newImage.Height;
