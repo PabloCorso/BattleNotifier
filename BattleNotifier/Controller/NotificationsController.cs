@@ -227,9 +227,9 @@ namespace BattleNotifier.Controller
         public void BattleNotificationMapPressed()
         {
             if (mn.Visible)
-                mn.Hide();
+                mn.Visible = false;
             else
-                mn.Show();
+                mn.Visible = true;
         }
 
         private void EndBattleNotification()
@@ -244,13 +244,10 @@ namespace BattleNotifier.Controller
 
         public void MapNotificationClosed()
         {
-            if (mn.WindowState == FormWindowState.Minimized)
+            if (bn == null)
                 ClearBattleNotification();
             else
-                if (bn == null)
-                    ClearBattleNotification();
-                else
-                    mn.Hide();
+                mn.Visible = false;
         }
 
         private int MapSizeIndexToWidth(int mapSize)

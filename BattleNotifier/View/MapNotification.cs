@@ -156,24 +156,30 @@ namespace BattleNotifier.View
 
         private void BattleCountdownTimer_Tick(object sender, EventArgs e)
         {
-            if (this.InvokeRequired)
+            try
             {
-                this.Invoke(new MethodInvoker(delegate() { BattleCountdownTimer_Tick(sender, e); }));
-            }
-            else
-            {
-                if (countdown > battleDuration * 60)
-                    TimerLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { BattleCountdownTimer_Tick(sender, e); }));
+                }
                 else
                 {
-                    if (countdown == 0)
-                        timer.Stop();
-                    TimeSpan time = new TimeSpan(0, 0, countdown);
-                    string display = GetCountdownDisplayText(countdown);
-                    TimerLabel.Text = display + " / " + battleDuration + ":00";
-                }
+                    if (countdown > battleDuration * 60)
+                        TimerLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
+                    else
+                    {
+                        if (countdown == 0)
+                            timer.Stop();
+                        TimeSpan time = new TimeSpan(0, 0, countdown);
+                        string display = GetCountdownDisplayText(countdown);
+                        TimerLabel.Text = display + " / " + battleDuration + ":00";
+                    }
 
-                countdown--;
+                    countdown--;
+                }
+            }catch(ObjectDisposedException)
+            {
+                // Timer ticked while form being disposed?
             }
         }
 
@@ -230,12 +236,7 @@ namespace BattleNotifier.View
         private void MapNotification_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (!closing)
-            {
-                CloseForm();
-                Image i = PictureBox.Image;
-                PictureBox.Image = null;
-                i.Dispose();
-            }
+                NotificationsController.Instance.MapNotificationClosed();
         }
 
         private delegate void BlankDelegate();
@@ -248,9 +249,22 @@ namespace BattleNotifier.View
             else
             {
                 closing = true;
+                if (PictureBox != null)
+                {
+                    Image i = PictureBox.Image;
+                    PictureBox.Image = null;
+                    if (i != null)
+                        i.Dispose();
+                }
+                timer.Enabled = false;
+                timer.Elapsed -= BattleCountdownTimer_Tick;
+                timer = null;
                 this.Close();
-                this.Dispose();
             }
+        }
+        private void CloseMenuItem_Click(object sender, EventArgs e)
+        {
+            MapNotification_FormClosed(null, null);
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -298,11 +312,6 @@ namespace BattleNotifier.View
         private void MinimizeMenuItem_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void CloseMenuItem_Click(object sender, EventArgs e)
-        {
-            MapNotification_FormClosed(null, null);
         }
 
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)

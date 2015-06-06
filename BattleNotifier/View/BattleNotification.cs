@@ -93,27 +93,33 @@ namespace BattleNotifier.View
 
         private void BattleCountdownTimer_Tick(object sender, EventArgs e)
         {
-            if (this.InvokeRequired)
+            try
             {
-                this.Invoke(new MethodInvoker(delegate() { BattleCountdownTimer_Tick(sender, e); }));
-            }
-            else
-            {
-                if (countdown > battleDuration * 60)
-                    CountdownLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(new MethodInvoker(delegate() { BattleCountdownTimer_Tick(sender, e); }));
+                }
                 else
                 {
-                    if (countdown == 0)
-                        timer.Stop();
-                    TimeSpan time = new TimeSpan(0, 0, countdown);
-                    string display = "(" + GetCountdownDisplayText(countdown) + ")";
-                    if (transparentStyle)
-                        CountdownOutlineLabel.Text = display;
+                    if (countdown > battleDuration * 60)
+                        CountdownLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
                     else
-                        CountdownLabel.Text = display;
-                }
+                    {
+                        if (countdown == 0)
+                            timer.Stop();
+                        TimeSpan time = new TimeSpan(0, 0, countdown);
+                        string display = "(" + GetCountdownDisplayText(countdown) + ")";
+                        if (transparentStyle)
+                            CountdownOutlineLabel.Text = display;
+                        else
+                            CountdownLabel.Text = display;
+                    }
 
-                countdown--;
+                    countdown--;
+                }
+            }catch(ObjectDisposedException)
+            {
+                // Timer ticked while form being disposed?
             }
         }
 
@@ -231,6 +237,9 @@ namespace BattleNotifier.View
             else
             {
                 closing = true;
+                timer.Enabled = false;
+                timer.Elapsed -= BattleCountdownTimer_Tick;
+                timer = null;
                 this.Close();
             }
         }
