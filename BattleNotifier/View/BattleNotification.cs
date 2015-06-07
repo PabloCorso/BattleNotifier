@@ -10,13 +10,12 @@ using System.Reflection;
 using BattleNotifier.Controller;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Timers;
 
 namespace BattleNotifier.View
 {
     public partial class BattleNotification : Form
     {
-        private System.Timers.Timer timer;
+        private Timer timer;
         private bool transparentStyle = false;
         private bool closing = false;
         private int battleDuration;
@@ -83,9 +82,9 @@ namespace BattleNotifier.View
         private void StartBattleCountdown(int startTime)
         {
             countdown = startTime;
-            timer = new System.Timers.Timer(1000);
-            timer.Enabled = true;
-            timer.Elapsed += new ElapsedEventHandler(BattleCountdownTimer_Tick);
+            timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += new EventHandler(BattleCountdownTimer_Tick);
             BattleCountdownTimer_Tick(null, null);
             timer.Start();
         }
@@ -120,7 +119,7 @@ namespace BattleNotifier.View
             }
             catch (ObjectDisposedException)
             {
-                // Timer ticked while form being disposed?
+                // Timer ticked while form being disposed. Fixed using forms timer.
             }
         }
 
@@ -238,9 +237,12 @@ namespace BattleNotifier.View
             else
             {
                 closing = true;
-                timer.Enabled = false;
-                timer.Elapsed -= BattleCountdownTimer_Tick;
-                timer = null;
+                if (timer != null)
+                {
+                    timer.Stop();
+                    timer.Tick -= BattleCountdownTimer_Tick;
+                    timer = null;
+                }
                 this.Close();
             }
         }

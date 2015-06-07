@@ -323,7 +323,7 @@ namespace BattleNotifier.Controller
             }
             else if (powerModeSuspended)
             {
-                if (MainPanel.TimerStoppedNotifications && timerSuspended)
+                if (!MainPanel.TimerStoppedNotifications && timerSuspended)
                     if (!notificationTimer.Enabled)
                         notificationTimer.Start();
                 powerModeSuspended = false;

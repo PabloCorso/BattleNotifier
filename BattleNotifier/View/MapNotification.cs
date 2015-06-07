@@ -9,13 +9,12 @@ using BattleNotifier.Model;
 using BattleNotifier.Utils;
 using System.Text;
 using System.Collections.Generic;
-using System.Timers;
 
 namespace BattleNotifier.View
 {
     public partial class MapNotification : Form
     {
-        private System.Timers.Timer timer;
+        private Timer timer;
         private bool tooSmallMap = false;
         private bool showOnlyTimerAndType = false;
         private bool closing = false;
@@ -147,9 +146,9 @@ namespace BattleNotifier.View
         private void StartBattleCountdown(int startTime)
         {
             countdown = startTime;
-            timer = new System.Timers.Timer(1000);
-            timer.Enabled = true;
-            timer.Elapsed += new ElapsedEventHandler(BattleCountdownTimer_Tick);
+            timer = new Timer();
+            timer.Interval = 1000;
+            timer.Tick += new EventHandler(BattleCountdownTimer_Tick);
             BattleCountdownTimer_Tick(null, null);
             timer.Start();
         }
@@ -180,7 +179,7 @@ namespace BattleNotifier.View
             }
             catch (ObjectDisposedException)
             {
-                // Timer ticked while form being disposed?
+                // Timer ticked while form being disposed. Fixed using forms timer.
             }
         }
 
@@ -257,9 +256,12 @@ namespace BattleNotifier.View
                     if (i != null)
                         i.Dispose();
                 }
-                timer.Enabled = false;
-                timer.Elapsed -= BattleCountdownTimer_Tick;
-                timer = null;
+                if (timer != null)
+                {
+                    timer.Stop();
+                    timer.Tick -= BattleCountdownTimer_Tick;
+                    timer = null;
+                }
                 this.Close();
             }
         }
