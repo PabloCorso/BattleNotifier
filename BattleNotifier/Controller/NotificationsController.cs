@@ -75,6 +75,11 @@ namespace BattleNotifier.Controller
             this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20);
         }
 
+        public void HideBattleNotification() 
+        {
+            ClearBattleNotification();
+        }
+
         public void ShowBattleNotification(IMain m, Battle battle, double timeLeft, bool simulation = false)
         {
             ClearBattleNotification();
