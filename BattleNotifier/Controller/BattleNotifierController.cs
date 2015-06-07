@@ -5,11 +5,11 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Xml;
-using System.Timers;
 using BattleNotifier.Utils;
 using Microsoft.Win32;
 using BattleNotifier.View;
 using Settings = BattleNotifier.Properties.Settings;
+using System.Windows.Forms;
 
 namespace BattleNotifier.Controller
 {
@@ -18,7 +18,7 @@ namespace BattleNotifier.Controller
         private static BattleNotifierController instance;
 
         // Battle notification.
-        private Timer notificationTimer = new System.Timers.Timer();
+        private Timer notificationTimer = new Timer();
 
         // Helpers.
         private Battle currentBattle = null;
@@ -51,7 +51,7 @@ namespace BattleNotifier.Controller
 
         public void Dispose()
         {
-            this.notificationTimer.Elapsed -= OnTimedEvent;
+            this.notificationTimer.Tick -= OnTimedEvent;
             SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
         }
 
@@ -69,7 +69,7 @@ namespace BattleNotifier.Controller
         private BattleNotifierController(IMain view)
         {
             this.MainView = view;
-            notificationTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            notificationTimer.Tick += new EventHandler(OnTimedEvent);
             SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
         }
 
@@ -122,11 +122,11 @@ namespace BattleNotifier.Controller
         {
             if (notificationTimer.Enabled)
                 notificationTimer.Stop();
-            notificationTimer.Interval = TimeSpan.FromSeconds(newInterval).TotalMilliseconds;
+            notificationTimer.Interval = Convert.ToInt32(TimeSpan.FromSeconds(newInterval).TotalMilliseconds);
             notificationTimer.Start();
         }
 
-        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        private void OnTimedEvent(object source, EventArgs e)
         {
             SetNextUpdateInterval(NotifyBattle());
         }
@@ -237,7 +237,7 @@ namespace BattleNotifier.Controller
                     {
                         try
                         {
-                            HtmlDocument document = new HtmlWeb().Load(battle.Url);
+                            HtmlAgilityPack.HtmlDocument document = new HtmlWeb().Load(battle.Url);
 
                             battle.LevelUrl = document.DocumentNode.Descendants("a")
                                                                 .Select(e => e.GetAttributeValue("href", null))

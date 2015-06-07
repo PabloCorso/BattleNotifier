@@ -7,7 +7,6 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Media;
 using System.Windows.Forms;
-using System.Timers;
 using Settings = BattleNotifier.Properties.Settings;
 using BattleNotifier.Controller.ViewInterface;
 
@@ -15,7 +14,7 @@ namespace BattleNotifier.Controller
 {
     public class NotificationsController
     {
-        private System.Timers.Timer notificationTimer = new System.Timers.Timer();
+        private Timer notificationTimer = new Timer();
 
         private static NotificationsController instance;
         private BattleNotification bn;
@@ -121,8 +120,8 @@ namespace BattleNotifier.Controller
 
             if (settings.Basic.LifeSeconds > 0)
             {
-                notificationTimer.Interval = new TimeSpan(0, 0, settings.Basic.LifeSeconds).TotalMilliseconds;
-                notificationTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                notificationTimer.Interval = Convert.ToInt32(new TimeSpan(0, 0, settings.Basic.LifeSeconds).TotalMilliseconds);
+                notificationTimer.Tick += new EventHandler(OnTimedEvent);
                 notificationTimer.Start();
             }
         }
@@ -149,7 +148,7 @@ namespace BattleNotifier.Controller
             }
         }
 
-        private void OnTimedEvent(object source, ElapsedEventArgs e)
+        private void OnTimedEvent(object source, EventArgs e)
         {
             if (notificationTimer.Enabled)
             {
