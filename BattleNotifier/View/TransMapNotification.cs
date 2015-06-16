@@ -114,5 +114,19 @@ namespace BattleNotifier.View
         private bool m_bDisposeAtEnd = false;
         #endregion // private variables
 
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TransMapNotification));
+            this.SuspendLayout();
+            // 
+            // TransMapNotification
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "TransMapNotification";
+            this.ResumeLayout(false);
+
+        }
+
     }
 }

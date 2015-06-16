@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BattleNotification));
             this.PrintMapDialog = new System.Windows.Forms.PrintDialog();
             this.PrintMapDocument = new System.Drawing.Printing.PrintDocument();
             this.AttributesToolTip = new System.Windows.Forms.ToolTip(this.components);
@@ -270,6 +271,7 @@
             this.Controls.Add(this.CountdownOutlineLabel);
             this.Controls.Add(this.AttributesOutlineLabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "BattleNotification";
             this.Text = "Battle Notification";

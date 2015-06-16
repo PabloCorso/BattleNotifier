@@ -36,7 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
-      <HintPath>..\HtmlAgilityPack\HtmlAgilityPack.dll</HintPath>
+      <HintPath>.\HtmlAgilityPack.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -137,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\TransBattleNotification.resx">
       <DependentUpon>TransBattleNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TransMapNotification.resx">
+      <DependentUpon>TransMapNotification.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
