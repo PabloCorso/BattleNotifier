@@ -15,6 +15,7 @@ namespace BattleNotifier.View
 {
     public partial class BattleNotification : Form
     {
+        public bool IsPrinting { get; set; }
         private Timer timer;
         private bool transparentStyle = false;
         private bool closing = false;
@@ -174,6 +175,8 @@ namespace BattleNotifier.View
         {
             if (NotificationsController.Instance.Map != null)
             {
+                IsPrinting = true;
+
                 PrintMapDialog.AllowSomePages = true;
                 PrintMapDialog.AllowSelection = false;
                 PrintDocument printDoc = new PrintDocument();
@@ -184,6 +187,8 @@ namespace BattleNotifier.View
                 {
                     PrintMapDocument.Print();
                 }
+
+                IsPrinting = false;
             }
         }
 

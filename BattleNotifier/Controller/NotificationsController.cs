@@ -159,8 +159,11 @@ namespace BattleNotifier.Controller
         {
             if (notificationTimer.Enabled)
             {
-                EndBattleNotification();
-                notificationTimer.Stop();
+                if (bn != null && !bn.IsPrinting)
+                {
+                    EndBattleNotification();
+                    notificationTimer.Stop();
+                }
             }
         }
 

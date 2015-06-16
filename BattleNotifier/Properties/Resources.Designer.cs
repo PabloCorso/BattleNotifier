@@ -82,6 +82,16 @@ namespace BattleNotifier.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bn_icon {
+            get {
+                object obj = ResourceManager.GetObject("bn_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap close {
             get {
                 object obj = ResourceManager.GetObject("close", resourceCulture);
@@ -184,16 +194,6 @@ namespace BattleNotifier.Properties {
             get {
                 object obj = ResourceManager.GetObject("notify_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon notify_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("notify_icon1", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
         

@@ -22,7 +22,7 @@ namespace Utils
         public static void Log(int code, Exception ex)
         {
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            System.IO.StreamWriter file = new System.IO.StreamWriter(executingDirectory + "\bn-log.txt", true);
+            System.IO.StreamWriter file = new System.IO.StreamWriter(executingDirectory + "\\bn-log.txt", true);
             file.WriteLine(code.ToString() + " - " + ex.ToString());
 
             file.Close();
