@@ -141,17 +141,10 @@ namespace BattleNotifier.Controller
                 else
                     Map = WebRequestHelper.GetImageFromUrl(mapUrl + "/600");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                try
-                {
-                    Map = WebRequestHelper.GetImageFromUrl(mapUrl);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log(200, ex);
-                    Map = (Image)Properties.Resources.about;
-                }
+                Logger.Log(200, ex);
+                Map = (Image)Properties.Resources.about;
             }
         }
 
