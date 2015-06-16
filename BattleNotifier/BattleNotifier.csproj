@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Assets\helmet_notify_icon.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\notify_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Utils\Logger.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="Controller\BattleNotifierController.cs" />
     <Compile Include="Controller\NotificationsController.cs" />
@@ -160,6 +161,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="notify_icon.ico" />
     <None Include="Assets\wu.png" />
     <EmbeddedResource Include="Assets\apple.wav" />
     <None Include="Assets\close.png" />

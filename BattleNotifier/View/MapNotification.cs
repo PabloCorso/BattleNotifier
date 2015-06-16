@@ -9,6 +9,7 @@ using BattleNotifier.Model;
 using BattleNotifier.Utils;
 using System.Text;
 using System.Collections.Generic;
+using Utils;
 
 namespace BattleNotifier.View
 {
@@ -177,8 +178,9 @@ namespace BattleNotifier.View
                     countdown--;
                 }
             }
-            catch (ObjectDisposedException)
+            catch (ObjectDisposedException ex)
             {
+                Logger.Log(300, ex);
                 // Timer ticked while form being disposed. Fixed using forms timer.
             }
         }
@@ -198,8 +200,6 @@ namespace BattleNotifier.View
 
         private void InitializePicture(int desiredWidth)
         {
-            // TODO InvalidOperationException? lock map?
-
             try
             {
                 Image map = NotificationsController.Instance.Map;
@@ -218,9 +218,10 @@ namespace BattleNotifier.View
 
                 PictureBox.Image = newImage;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                // InvalidOperationException? lock map?
+                Logger.Log(201, ex);
             }
         }
 

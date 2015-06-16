@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utils;
 using Settings = BattleNotifier.Properties.Settings;
 
 namespace BattleNotifier
@@ -78,8 +79,9 @@ namespace BattleNotifier
 
                 return settings;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Log(400, ex);
                 throw;
             }
         }

@@ -9,6 +9,7 @@ using System.Media;
 using System.Windows.Forms;
 using Settings = BattleNotifier.Properties.Settings;
 using BattleNotifier.Controller.ViewInterface;
+using Utils;
 
 namespace BattleNotifier.Controller
 {
@@ -75,7 +76,7 @@ namespace BattleNotifier.Controller
             this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20);
         }
 
-        public void HideBattleNotification() 
+        public void HideBattleNotification()
         {
             ClearBattleNotification();
         }
@@ -146,8 +147,9 @@ namespace BattleNotifier.Controller
                 {
                     Map = WebRequestHelper.GetImageFromUrl(mapUrl);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Logger.Log(200, ex);
                     Map = (Image)Properties.Resources.about;
                 }
             }
@@ -183,8 +185,9 @@ namespace BattleNotifier.Controller
                 if (player != null && player.controls != null)
                     player.controls.stop();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Log(201, ex);
                 // Nothing happend here, no one saw anything. Get back to work.
             }
         }
@@ -204,22 +207,28 @@ namespace BattleNotifier.Controller
                     if (mn != null)
                         mn.CloseForm();
                 }
-                catch (Exception) { }
+                catch (Exception ex)
+                {
+                    Logger.Log(202, ex);
+                }
                 try
                 {
                     if (bn != null)
                         bn.CloseForm();
                 }
-                catch (Exception) { }
-
+                catch (Exception ex)
+                {
+                    Logger.Log(203, ex);
+                }
 
                 StopSound();
                 Map = null;
                 if (notificationTimer.Enabled)
                     notificationTimer.Stop();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Log(204, ex);
             }
             finally
             {

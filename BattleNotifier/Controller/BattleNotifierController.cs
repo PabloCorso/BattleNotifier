@@ -10,6 +10,7 @@ using Microsoft.Win32;
 using BattleNotifier.View;
 using Settings = BattleNotifier.Properties.Settings;
 using System.Windows.Forms;
+using Utils;
 
 namespace BattleNotifier.Controller
 {
@@ -250,7 +251,10 @@ namespace BattleNotifier.Controller
                                                             .FirstOrDefault();
                             eolDataLoaded = true;
                         }
-                        catch (Exception) { }
+                        catch (Exception ex) 
+                        {
+                            Logger.Log(101,ex);
+                        }
                     }
 
                     return battle;
@@ -261,8 +265,9 @@ namespace BattleNotifier.Controller
                     return null;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Log(100, ex);
                 return null;
             }
         }
