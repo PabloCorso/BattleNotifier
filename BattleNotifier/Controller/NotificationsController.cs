@@ -54,7 +54,7 @@ namespace BattleNotifier.Controller
                 Id = id
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, duration * 60);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, duration * 60, true);
         }
 
         public void SimulateNewBattle()
@@ -73,7 +73,7 @@ namespace BattleNotifier.Controller
                 Id = 90431
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20, true);
         }
 
         public void HideBattleNotification()
@@ -136,14 +136,12 @@ namespace BattleNotifier.Controller
         {
             try
             {
-                if (simulation)
-                    Map = Properties.Resources.about;
-                else
-                    Map = WebRequestHelper.GetImageFromUrl(mapUrl + "/600");
+                Map = WebRequestHelper.GetImageFromUrl(mapUrl + "/600");
             }
             catch (Exception ex)
             {
-                Logger.Log(200, ex);
+                if (!simulation)
+                    Logger.Log(200, ex);
                 Map = (Image)Properties.Resources.about;
             }
         }

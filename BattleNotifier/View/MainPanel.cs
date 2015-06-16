@@ -332,16 +332,19 @@ namespace BattleNotifier.View
         private void ShowBattleCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NotificationsSettingsModified();
+            UpdateErrorLabel();
         }
 
         private void ShowMapCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NotificationsSettingsModified();
+            UpdateErrorLabel();
         }
 
         private void PlaySoundCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NotificationsSettingsModified();
+            UpdateErrorLabel();
         }
 
         private void CloseDialogTimeCheckBox_CheckedChanged(object sender, EventArgs e)
