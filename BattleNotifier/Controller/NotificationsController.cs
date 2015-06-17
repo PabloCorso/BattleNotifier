@@ -293,7 +293,7 @@ namespace BattleNotifier.Controller
                     int randomCase = random.Next(0, 4);
                     return IndexToDefaultSound(randomCase);
                 default:
-                    return Properties.Resources.smb_1_up;
+                    return Properties.Resources.apple;
             }
         }
     }
