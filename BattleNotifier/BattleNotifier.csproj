@@ -166,6 +166,9 @@
   <ItemGroup>
     <Content Include="Assets\bn_icon.ico" />
     <Content Include="Assets\bn_icon.png" />
+    <Content Include="Assets\longmap1280.png" />
+    <Content Include="Assets\tallmap1280.png" />
+    <Content Include="Assets\tallsmallmap.png" />
     <Content Include="bn_icon.ico" />
     <Content Include="Assets\wu.png" />
     <Content Include="Assets\apple.wav" />
