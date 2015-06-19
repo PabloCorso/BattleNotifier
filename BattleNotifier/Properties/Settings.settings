@@ -354,7 +354,7 @@ zwor</Value>
       <Value Profile="(Default)">http://elma.seamy.ru:8880/current_battle/</Value>
     </Setting>
     <Setting Name="NeedsUpdate" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

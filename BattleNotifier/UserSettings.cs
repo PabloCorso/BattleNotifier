@@ -122,6 +122,18 @@ namespace BattleNotifier
             MainPanel mainPanel = instance.mainPanel;
             SettingsPanel settingsPanel = instance.settingsPanel;
 
+            if (settings.NeedsUpdate) 
+            {
+                try
+                {
+                    settings.Upgrade();
+                }
+                catch (Exception) 
+                {
+                    
+                }
+            }
+
             // Main panel user settings.
             mainPanel.PlaySoundCheckBox.Checked = settings.PlayNotificationSound;
             mainPanel.ShowBattleCheckBox.Checked = settings.ShowBattleDialog;
