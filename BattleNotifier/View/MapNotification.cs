@@ -221,7 +221,7 @@ namespace BattleNotifier.View
             catch (Exception ex)
             {
                 // InvalidOperationException? lock map?
-                Logger.Log(201, ex);
+                Logger.Log(301, ex);
             }
         }
 

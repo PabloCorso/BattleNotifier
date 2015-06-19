@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Timers;
 using System.Windows.Forms;
+using Utils;
 
 namespace BattleNotifier.View
 {
@@ -197,8 +198,9 @@ namespace BattleNotifier.View
                     NotifyIcon = null;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Log(600, ex);
                 // You cant handle the truth.
             }
         }

@@ -10,6 +10,7 @@ using System.Reflection;
 using BattleNotifier.Controller;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using Utils;
 
 namespace BattleNotifier.View
 {
@@ -118,8 +119,9 @@ namespace BattleNotifier.View
                     countdown--;
                 }
             }
-            catch (ObjectDisposedException)
+            catch (ObjectDisposedException ex)
             {
+                Logger.Log(500, ex);
                 // Timer ticked while form being disposed. Fixed using forms timer.
             }
         }
