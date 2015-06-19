@@ -54,7 +54,7 @@ namespace BattleNotifier.Controller
                 Id = id
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, duration * 60, true);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true);
         }
 
         public void SimulateNewBattle()
@@ -73,7 +73,7 @@ namespace BattleNotifier.Controller
                 Id = 90431
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20, true);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true);
         }
 
         public void HideBattleNotification()
@@ -86,7 +86,7 @@ namespace BattleNotifier.Controller
 
         }
 
-        public void ShowBattleNotification(IMain m, Battle battle, double timeLeft, bool simulation = false, Image map = null)
+        public void ShowBattleNotification(IMain m, Battle battle, bool simulation = false, Image map = null)
         {
             ClearBattleNotification();
 
@@ -99,6 +99,7 @@ namespace BattleNotifier.Controller
                 else //TODO delete after testing maps.
                     Map = map;
 
+                double timeLeft = battle.TimeLeft;
                 if (settings.Basic.ShowBattleDialog)
                     if (settings.General.UseFadeEffect)
                         bn = new TransBattleNotification(battle, timeLeft, settings, true);

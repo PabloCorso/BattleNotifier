@@ -146,7 +146,7 @@ namespace BattleNotifier.Controller
             if (battle == null || currentFinishedNormally)
             {
                 if (currentFinishedNormally)
-                    nextUpdate = 121;
+                    nextUpdate = 120;
                 else
                     nextUpdate = 5;
                 currentBattle = null;
@@ -168,7 +168,7 @@ namespace BattleNotifier.Controller
                 if (FilterBattle(currentBattle) && !currentNotified)
                 {
                     currentNotified = true;
-                    NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle, timeLeft);
+                    NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle);
                 }
 
                 if (timeLeft < 1)

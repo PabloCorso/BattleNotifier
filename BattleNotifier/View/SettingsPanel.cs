@@ -135,7 +135,7 @@ namespace BattleNotifier.View
                 Id = 90431
             };
 
-            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20, true, Properties.Resources.longmap1280);
+            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true, Properties.Resources.longmap1280);
         
         }
 
@@ -155,7 +155,7 @@ namespace BattleNotifier.View
                 Id = 90431
             };
 
-            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20, true, Properties.Resources.tallmap1280);
+            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true, Properties.Resources.tallmap1280);
         }
 
         private void Simulate3Button_Click(object sender, EventArgs e)
@@ -174,7 +174,7 @@ namespace BattleNotifier.View
                 Id = 90431
             };
 
-            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, (duration * 60) + 20, true, Properties.Resources.tallsmallmap);
+            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true, Properties.Resources.tallsmallmap);
         }
     }
 }
