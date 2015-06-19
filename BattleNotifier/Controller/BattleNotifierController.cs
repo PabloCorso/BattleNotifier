@@ -146,7 +146,7 @@ namespace BattleNotifier.Controller
             if (battle == null || currentFinishedNormally)
             {
                 if (currentFinishedNormally)
-                    nextUpdate = 120;
+                    nextUpdate = 121;
                 else
                     nextUpdate = 5;
                 currentBattle = null;
@@ -155,13 +155,13 @@ namespace BattleNotifier.Controller
             }
             else // Ongoing battle.
             {
-                double timeLeft = battle.TimeLeft;          
+                double timePassed = (CurrentDateTime - battle.StartedDateTime).TotalSeconds;
+                double timeLeft = (battle.Duration * 60) - timePassed;
 
                 // New battle.
                 if (!battle.Equals(currentBattle))
                 {
                     currentBattle = battle;
-
                 }
 
                 // Notificate battle.
@@ -171,14 +171,29 @@ namespace BattleNotifier.Controller
                     NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle, timeLeft);
                 }
 
-                if (timeLeft <= 10)
+                if (timeLeft < 1)
                 {
+                    nextUpdate = 1;
+                    currentFinishedNormally = true;
+                }
+                else if (timePassed < 60) // Started recently.
+                    nextUpdate = 20;
+                else if (currentBattle.Duration < 10)
+                {
+                    // Short battle.
                     nextUpdate = timeLeft;
                     currentFinishedNormally = true;
                 }
                 else
                 {
-                    nextUpdate = 5;
+                    if (timeLeft <= currentBattle.Duration * 60 * 0.20)
+                    {
+                        // Short time left proportional to duration.
+                        nextUpdate = timeLeft;
+                        currentFinishedNormally = true;
+                    }
+                    else
+                        nextUpdate = currentBattle.Duration * 60 * 0.20;
                 }
             }
 
@@ -259,73 +274,6 @@ namespace BattleNotifier.Controller
                 Logger.Log(100, ex);
                 return currentBattle;
             }
-        }
-
-        /// <summary>
-        /// Notificate current battle if any, and return a new interval for the next notification.
-        /// </summary>
-        /// <returns> Next notification interval in seconds. </returns>
-        private double NotifyBattle2()
-        {
-            double nextUpdate = 5; // Seconds.
-
-            Battle battle = GetOngoingBattleIfAny();
-
-            if (battle == null || currentFinishedNormally)
-            {
-                if (currentFinishedNormally)
-                    nextUpdate = 121;
-                else
-                    nextUpdate = 5;
-                currentBattle = null;
-                currentFinishedNormally = false;
-                currentNotified = false;
-            }
-            else // Ongoing battle.
-            {
-                double timePassed = (CurrentDateTime - battle.StartedDateTime).TotalSeconds;
-                double timeLeft = (battle.Duration * 60) - timePassed;
-
-                // New battle.
-                if (!battle.Equals(currentBattle))
-                {
-                    currentBattle = battle;
-                }
-
-                // Notificate battle.
-                if (FilterBattle(currentBattle) && !currentNotified)
-                {
-                    currentNotified = true;
-                    NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle, timeLeft);
-                }
-
-                if (timeLeft < 1)
-                {
-                    nextUpdate = 1;
-                    currentFinishedNormally = true;
-                }
-                else if (timePassed < 60) // Started recently.
-                    nextUpdate = 20;
-                else if (currentBattle.Duration < 10)
-                {
-                    // Short battle.
-                    nextUpdate = timeLeft;
-                    currentFinishedNormally = true;
-                }
-                else
-                {
-                    if (timeLeft <= currentBattle.Duration * 60 * 0.20)
-                    {
-                        // Short time left proportional to duration.
-                        nextUpdate = timeLeft;
-                        currentFinishedNormally = true;
-                    }
-                    else
-                        nextUpdate = currentBattle.Duration * 60 * 0.20;
-                }
-            }
-
-            return nextUpdate;
         }
         #endregion
 
