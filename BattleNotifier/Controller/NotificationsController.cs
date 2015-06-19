@@ -81,6 +81,11 @@ namespace BattleNotifier.Controller
             ClearBattleNotification();
         }
 
+        public void ShowCurrentNotification(IMain m, Battle battle,bool simulation = false, Image map = null) 
+        {
+            
+        }
+
         public void ShowBattleNotification(IMain m, Battle battle, double timeLeft, bool simulation = false, Image map = null)
         {
             ClearBattleNotification();

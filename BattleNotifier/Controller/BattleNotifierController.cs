@@ -146,7 +146,7 @@ namespace BattleNotifier.Controller
             if (battle == null || currentFinishedNormally)
             {
                 if (currentFinishedNormally)
-                    nextUpdate = 121;
+                    nextUpdate = 120;
                 else
                     nextUpdate = 5;
                 currentBattle = null;
@@ -155,13 +155,13 @@ namespace BattleNotifier.Controller
             }
             else // Ongoing battle.
             {
-                double timePassed = (CurrentDateTime - battle.StartedDateTime).TotalSeconds;
-                double timeLeft = (battle.Duration * 60) - timePassed;
+                double timeLeft = battle.TimeLeft;          
 
                 // New battle.
                 if (!battle.Equals(currentBattle))
                 {
                     currentBattle = battle;
+
                 }
 
                 // Notificate battle.
@@ -171,29 +171,14 @@ namespace BattleNotifier.Controller
                     NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle, timeLeft);
                 }
 
-                if (timeLeft < 1)
+                if (timeLeft <= 10)
                 {
-                    nextUpdate = 1;
-                    currentFinishedNormally = true;
-                }
-                else if (timePassed < 60) // Started recently.
-                    nextUpdate = 20;
-                else if (currentBattle.Duration < 10)
-                {
-                    // Short battle.
                     nextUpdate = timeLeft;
                     currentFinishedNormally = true;
                 }
                 else
                 {
-                    if (timeLeft <= currentBattle.Duration * 60 * 0.20)
-                    {
-                        // Short time left proportional to duration.
-                        nextUpdate = timeLeft;
-                        currentFinishedNormally = true;
-                    }
-                    else
-                        nextUpdate = currentBattle.Duration * 60 * 0.20;
+                    nextUpdate = 5;
                 }
             }
 
@@ -250,6 +235,10 @@ namespace BattleNotifier.Controller
                                                             .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLMapsUrl))
                                                             .FirstOrDefault();
                             eolDataLoaded = true;
+
+                            // In case map didn't load the first time battle was caught.
+                            if (currentBattle != null)
+                                currentBattle.MapUrl = battle.Url;
                         }
                         catch (Exception ex) 
                         {
@@ -262,14 +251,81 @@ namespace BattleNotifier.Controller
                 else
                 {
                     eolDataLoaded = false;
-                    return null;
+                    return currentBattle;
                 }
             }
             catch (Exception ex)
             {
                 Logger.Log(100, ex);
-                return null;
+                return currentBattle;
             }
+        }
+
+        /// <summary>
+        /// Notificate current battle if any, and return a new interval for the next notification.
+        /// </summary>
+        /// <returns> Next notification interval in seconds. </returns>
+        private double NotifyBattle2()
+        {
+            double nextUpdate = 5; // Seconds.
+
+            Battle battle = GetOngoingBattleIfAny();
+
+            if (battle == null || currentFinishedNormally)
+            {
+                if (currentFinishedNormally)
+                    nextUpdate = 121;
+                else
+                    nextUpdate = 5;
+                currentBattle = null;
+                currentFinishedNormally = false;
+                currentNotified = false;
+            }
+            else // Ongoing battle.
+            {
+                double timePassed = (CurrentDateTime - battle.StartedDateTime).TotalSeconds;
+                double timeLeft = (battle.Duration * 60) - timePassed;
+
+                // New battle.
+                if (!battle.Equals(currentBattle))
+                {
+                    currentBattle = battle;
+                }
+
+                // Notificate battle.
+                if (FilterBattle(currentBattle) && !currentNotified)
+                {
+                    currentNotified = true;
+                    NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle, timeLeft);
+                }
+
+                if (timeLeft < 1)
+                {
+                    nextUpdate = 1;
+                    currentFinishedNormally = true;
+                }
+                else if (timePassed < 60) // Started recently.
+                    nextUpdate = 20;
+                else if (currentBattle.Duration < 10)
+                {
+                    // Short battle.
+                    nextUpdate = timeLeft;
+                    currentFinishedNormally = true;
+                }
+                else
+                {
+                    if (timeLeft <= currentBattle.Duration * 60 * 0.20)
+                    {
+                        // Short time left proportional to duration.
+                        nextUpdate = timeLeft;
+                        currentFinishedNormally = true;
+                    }
+                    else
+                        nextUpdate = currentBattle.Duration * 60 * 0.20;
+                }
+            }
+
+            return nextUpdate;
         }
         #endregion
 
@@ -334,40 +390,6 @@ namespace BattleNotifier.Controller
                 powerModeSuspended = false;
                 timerSuspended = false;
             }
-        }
-
-        public void SimulateBattleNotification1()
-        {
-            Battle battle = new Battle()
-            {
-                FileName = "Pob0989.lev",
-                MapUrl = Settings.Default.EOLMapsUrl + "308356",
-                Duration = 20,
-                Attributes = (BattleAttribute)15,
-                Type = 0,
-                StartedDateTime = DateTime.Now,
-                Desginer = "Pab",
-                Id = 90431
-            };
-
-            NotificationsController.Instance.ShowBattleNotification(MainView, battle, 20 * 60);
-        }
-
-        public void SimulateBattleNotification2()
-        {
-            Battle battle = new Battle()
-            {
-                FileName = "WWWWWWWW.lev",
-                MapUrl = Settings.Default.EOLMapsUrl + "308342",
-                Duration = 10,
-                Attributes = (BattleAttribute)1023,
-                Type = (BattleType)2,
-                StartedDateTime = DateTime.Now.AddSeconds(-20),
-                Desginer = "Long Kuski Name",
-                Id = 90431
-            };
-
-            NotificationsController.Instance.ShowBattleNotification(MainView, battle, 605);
         }
     }
 }

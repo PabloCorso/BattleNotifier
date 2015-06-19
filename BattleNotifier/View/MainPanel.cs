@@ -28,7 +28,7 @@ namespace BattleNotifier.View
             AutocompleteKuskisList = new List<string>();
         }
 
-        private void MainPanel_Load(object sender, EventArgs e)
+        public void MainPanel_Load(object sender, EventArgs e)
         {
             var acs = SearchDesignerTextBox.AutoCompleteCustomSource;
             foreach (string kuski in AutocompleteKuskisList)
@@ -131,24 +131,6 @@ namespace BattleNotifier.View
             double[] hours = { 0, 0.5, 1, 2, 3, 4, 5, 10, 15, 20, 24 };
 
             return hours[trackValue] * 1000 * 60 * 60;
-        }
-
-        private void ClearBattleTypesButton_Click(object sender, EventArgs e)
-        {
-            for (int i = 0; i < BattleTypesChListBox.Items.Count; i++)
-            {
-                BattleTypesChListBox.SetItemChecked(i, false);
-            }
-        }
-
-        private void Simulate1Button_Click(object sender, EventArgs e)
-        {
-            battleNotifier.SimulateBattleNotification1();
-        }
-
-        private void SimulateBattle2Button_Click(object sender, EventArgs e)
-        {
-            battleNotifier.SimulateBattleNotification2();
         }
 
         private void MainPanel_Click(object sender, EventArgs e)

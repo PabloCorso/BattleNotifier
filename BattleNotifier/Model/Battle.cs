@@ -20,7 +20,7 @@ namespace BattleNotifier.Model
         public string LevelUrl { get; set; }
         public bool IsSpecialBattle
         {
-            get 
+            get
             {
                 if (this.Type.HasFlag(BattleType.FirstFinish) ||
                     this.Type.HasFlag(BattleType.FlagTag) ||
@@ -39,6 +39,15 @@ namespace BattleNotifier.Model
             Battle battle = (Battle)obj;
 
             return Name.Equals(battle.Name);
+        }
+
+        public double TimeLeft
+        {
+            get
+            {
+                double timePassed = (DateTime.Now - this.StartedDateTime).TotalSeconds;
+                return (this.Duration * 60) - timePassed;
+            }
         }
 
         public override int GetHashCode()

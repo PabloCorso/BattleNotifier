@@ -113,6 +113,7 @@ namespace BattleNotifier
             instance.mainPanel.BattleTypesChListBox.Items.Clear();
             instance.mainPanel.AutocompleteKuskisList.Clear();
             Load();
+            instance.mainPanel.MainPanel_Load(null, null);
         }
 
         public static void Load()

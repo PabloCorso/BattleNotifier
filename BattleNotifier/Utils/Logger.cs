@@ -13,7 +13,7 @@ namespace Utils
         public static void Log(String lines)
         {
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            System.IO.StreamWriter file = new System.IO.StreamWriter(executingDirectory + "\bn-log.txt", true);
+            System.IO.StreamWriter file = new System.IO.StreamWriter(executingDirectory + "\\bn-log.txt", true);
             file.WriteLine(lines);
 
             file.Close();

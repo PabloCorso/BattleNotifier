@@ -33,7 +33,6 @@
             this.NotificationDurationTrackBar = new System.Windows.Forms.TrackBar();
             this.StartNotificationButton = new System.Windows.Forms.Button();
             this.DesignersChListBox = new System.Windows.Forms.CheckedListBox();
-            this.ClearBattleTypesButton = new System.Windows.Forms.Button();
             this.BattleTypesLabel = new System.Windows.Forms.Label();
             this.BattleTypesChListBox = new System.Windows.Forms.CheckedListBox();
             this.SearchDesignerTextBox = new System.Windows.Forms.TextBox();
@@ -88,24 +87,13 @@
             this.DesignersChListBox.CheckOnClick = true;
             this.DesignersChListBox.FormattingEnabled = true;
             this.DesignersChListBox.IntegralHeight = false;
-            this.DesignersChListBox.Location = new System.Drawing.Point(6, 55);
+            this.DesignersChListBox.Location = new System.Drawing.Point(6, 54);
             this.DesignersChListBox.Name = "DesignersChListBox";
             this.DesignersChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.DesignersChListBox.Size = new System.Drawing.Size(120, 80);
             this.DesignersChListBox.TabIndex = 27;
             this.DesignersChListBox.TabStop = false;
             this.DesignersChListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DesignersChListBox_MouseDown);
-            // 
-            // ClearBattleTypesButton
-            // 
-            this.ClearBattleTypesButton.Location = new System.Drawing.Point(152, 198);
-            this.ClearBattleTypesButton.Name = "ClearBattleTypesButton";
-            this.ClearBattleTypesButton.Size = new System.Drawing.Size(120, 23);
-            this.ClearBattleTypesButton.TabIndex = 23;
-            this.ClearBattleTypesButton.TabStop = false;
-            this.ClearBattleTypesButton.Text = "Clear selections";
-            this.ClearBattleTypesButton.UseVisualStyleBackColor = true;
-            this.ClearBattleTypesButton.Click += new System.EventHandler(this.ClearBattleTypesButton_Click);
             // 
             // BattleTypesLabel
             // 
@@ -123,7 +111,7 @@
             this.BattleTypesChListBox.Location = new System.Drawing.Point(152, 29);
             this.BattleTypesChListBox.Name = "BattleTypesChListBox";
             this.BattleTypesChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.BattleTypesChListBox.Size = new System.Drawing.Size(120, 154);
+            this.BattleTypesChListBox.Size = new System.Drawing.Size(120, 184);
             this.BattleTypesChListBox.TabIndex = 20;
             this.BattleTypesChListBox.TabStop = false;
             this.BattleTypesChListBox.Click += new System.EventHandler(this.BattleTypesChListBox_Click);
@@ -256,7 +244,7 @@
             // 
             this.BlackListChListBox.FormattingEnabled = true;
             this.BlackListChListBox.IntegralHeight = false;
-            this.BlackListChListBox.Location = new System.Drawing.Point(6, 156);
+            this.BlackListChListBox.Location = new System.Drawing.Point(6, 149);
             this.BlackListChListBox.Name = "BlackListChListBox";
             this.BlackListChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.BlackListChListBox.Size = new System.Drawing.Size(120, 64);
@@ -267,7 +255,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 140);
+            this.label3.Location = new System.Drawing.Point(3, 136);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 47;
@@ -331,7 +319,6 @@
             this.Controls.Add(this.StartNotificationButton);
             this.Controls.Add(this.DesignersChListBox);
             this.Controls.Add(this.NotificationLabel);
-            this.Controls.Add(this.ClearBattleTypesButton);
             this.Controls.Add(this.BattleTypesLabel);
             this.Controls.Add(this.BattleTypesChListBox);
             this.Controls.Add(this.SearchDesignerTextBox);
@@ -350,7 +337,6 @@
 
         private System.Windows.Forms.Label DesignersLabel;
         private System.Windows.Forms.Button StartNotificationButton;
-        private System.Windows.Forms.Button ClearBattleTypesButton;
         private System.Windows.Forms.Label BattleTypesLabel;
         private System.Windows.Forms.Button AddDesignerButton;
         private System.Windows.Forms.Timer Timer;
