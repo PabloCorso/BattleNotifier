@@ -33,7 +33,6 @@
             this.NotifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.BackgroundPanel = new System.Windows.Forms.Panel();
             this.SeparatorLabel = new System.Windows.Forms.Label();
-            this.NavigateToCurrentBattleButton = new System.Windows.Forms.Button();
             this.NavigateToSettingsButton = new System.Windows.Forms.Button();
             this.NavigateHomeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -61,19 +60,6 @@
             this.SeparatorLabel.Name = "SeparatorLabel";
             this.SeparatorLabel.Size = new System.Drawing.Size(420, 2);
             this.SeparatorLabel.TabIndex = 43;
-            // 
-            // NavigateToCurrentBattleButton
-            // 
-            this.NavigateToCurrentBattleButton.Enabled = false;
-            this.NavigateToCurrentBattleButton.Location = new System.Drawing.Point(160, 6);
-            this.NavigateToCurrentBattleButton.Name = "NavigateToCurrentBattleButton";
-            this.NavigateToCurrentBattleButton.Size = new System.Drawing.Size(120, 23);
-            this.NavigateToCurrentBattleButton.TabIndex = 42;
-            this.NavigateToCurrentBattleButton.TabStop = false;
-            this.NavigateToCurrentBattleButton.Text = "∧ Current Battle ∧";
-            this.NavigateToCurrentBattleButton.UseVisualStyleBackColor = true;
-            this.NavigateToCurrentBattleButton.Visible = false;
-            this.NavigateToCurrentBattleButton.Click += new System.EventHandler(this.NavigateToCurrentBattleButton_Click);
             // 
             // NavigateToSettingsButton
             // 
@@ -105,7 +91,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(439, 339);
             this.Controls.Add(this.SeparatorLabel);
-            this.Controls.Add(this.NavigateToCurrentBattleButton);
             this.Controls.Add(this.NavigateToSettingsButton);
             this.Controls.Add(this.NavigateHomeButton);
             this.Controls.Add(this.BackgroundPanel);
@@ -126,7 +111,6 @@
         private System.Windows.Forms.NotifyIcon NotifyIcon;
         private System.Windows.Forms.Panel BackgroundPanel;
         private System.Windows.Forms.Label SeparatorLabel;
-        private System.Windows.Forms.Button NavigateToCurrentBattleButton;
         private System.Windows.Forms.Button NavigateToSettingsButton;
         private System.Windows.Forms.Button NavigateHomeButton;
     }

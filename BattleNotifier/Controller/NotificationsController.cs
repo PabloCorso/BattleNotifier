@@ -81,12 +81,7 @@ namespace BattleNotifier.Controller
             ClearBattleNotification();
         }
 
-        public void ShowCurrentNotification(IMain m, Battle battle, bool simulation = false, Image map = null)
-        {
-
-        }
-
-        public void ShowBattleNotification(IMain m, Battle battle, bool simulation = false, Image map = null)
+        public void ShowBattleNotification(IMain m, Battle battle, bool simulation = false)
         {
             ClearBattleNotification();
 
@@ -94,10 +89,7 @@ namespace BattleNotifier.Controller
 
             if (settings.Basic.ShowBattleDialog || settings.Basic.ShowMapDialog)
             {
-                if (map == null)
-                    SetMap(battle.MapUrl, simulation);
-                else //TODO delete after testing maps.
-                    Map = map;
+                SetMap(battle.MapUrl, simulation);
 
                 double timeLeft = battle.TimeLeft;
                 if (settings.Basic.ShowBattleDialog)

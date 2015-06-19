@@ -203,13 +203,24 @@ namespace BattleNotifier.View
             try
             {
                 Image map = NotificationsController.Instance.Map;
-                int newWidth = desiredWidth;
-                int aux = (desiredWidth * 100) / map.Width;
-                int newHeight = (aux * map.Height) / 100;
+                int newWidth = 0;
+                int newHeight = 0;
+
+                if (map.Width > map.Height)
+                {
+                    newWidth = desiredWidth;
+                    int aux = (desiredWidth * 100) / map.Width;
+                    newHeight = (aux * map.Height) / 100;
+                }
+                else
+                {
+                    newHeight = desiredWidth;
+                    int aux = (desiredWidth * 100) / map.Height;
+                    newWidth = (aux * map.Width) / 100;
+                }
+
                 Image newImage = null;
-
                 newImage = map.Resize(newWidth, newHeight);
-
 
                 this.Width = newImage.Width;
                 this.Height = newImage.Height;

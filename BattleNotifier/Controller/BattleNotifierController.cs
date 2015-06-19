@@ -146,7 +146,7 @@ namespace BattleNotifier.Controller
             if (battle == null || currentFinishedNormally)
             {
                 if (currentFinishedNormally)
-                    nextUpdate = 120;
+                    nextUpdate = 115;
                 else
                     nextUpdate = 5;
                 currentBattle = null;

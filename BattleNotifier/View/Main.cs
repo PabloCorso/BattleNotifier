@@ -50,20 +50,6 @@ namespace BattleNotifier.View
             if (UserSettings.Instance.MustNotifyOnStartup())
                 mainPanel.NotificateBattles();
 
-#if DEBUG
-            NavigateToCurrentBattleButton.Enabled = true;
-            NavigateToCurrentBattleButton.Visible = true;
-#endif
-        }
-
-        private void NavigateToCurrentBattleButton_MouseEnter(object sender, EventArgs e)
-        {
-            NavigateToCurrentBattleButton.Text = "⋀ Current Battle ⋀";
-        }
-
-        private void NavigateToCurrentBattleButton_MouseLeave(object sender, EventArgs e)
-        {
-            NavigateToCurrentBattleButton.Text = "∧ Current Battle ∧";
         }
 
         #region IMain implementation
@@ -269,11 +255,6 @@ namespace BattleNotifier.View
             {
                 mn.Show();
             }
-        }
-
-        private void NavigateToCurrentBattleButton_Click(object sender, EventArgs e)
-        {
-            battleNotifier.Test();
         }
     }
 }

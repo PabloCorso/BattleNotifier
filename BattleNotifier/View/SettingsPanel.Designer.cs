@@ -87,10 +87,6 @@
             this.NewBattleButton = new System.Windows.Forms.Button();
             this.SoundOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.RandomNewBattleCheckBox = new System.Windows.Forms.CheckBox();
-            this.Simulate1Button = new System.Windows.Forms.Button();
-            this.Simulate2Button = new System.Windows.Forms.Button();
-            this.Simulate3Button = new System.Windows.Forms.Button();
-            this.Simulate4Button = new System.Windows.Forms.Button();
             this.GeneralSettingsGroup.SuspendLayout();
             this.NotificationSoundGroup.SuspendLayout();
             this.ShowOnMapGroup.SuspendLayout();
@@ -827,57 +823,10 @@
             this.RandomNewBattleCheckBox.UseVisualStyleBackColor = true;
             this.RandomNewBattleCheckBox.Visible = false;
             // 
-            // Simulate1Button
-            // 
-            this.Simulate1Button.Location = new System.Drawing.Point(148, 197);
-            this.Simulate1Button.Name = "Simulate1Button";
-            this.Simulate1Button.Size = new System.Drawing.Size(17, 23);
-            this.Simulate1Button.TabIndex = 9;
-            this.Simulate1Button.Text = "1";
-            this.Simulate1Button.UseVisualStyleBackColor = true;
-            this.Simulate1Button.Visible = false;
-            this.Simulate1Button.Click += new System.EventHandler(this.Simulate1Button_Click);
-            // 
-            // Simulate2Button
-            // 
-            this.Simulate2Button.Location = new System.Drawing.Point(170, 197);
-            this.Simulate2Button.Name = "Simulate2Button";
-            this.Simulate2Button.Size = new System.Drawing.Size(17, 23);
-            this.Simulate2Button.TabIndex = 10;
-            this.Simulate2Button.Text = "2";
-            this.Simulate2Button.UseVisualStyleBackColor = true;
-            this.Simulate2Button.Visible = false;
-            this.Simulate2Button.Click += new System.EventHandler(this.Simulate2Button_Click);
-            // 
-            // Simulate3Button
-            // 
-            this.Simulate3Button.Location = new System.Drawing.Point(148, 221);
-            this.Simulate3Button.Name = "Simulate3Button";
-            this.Simulate3Button.Size = new System.Drawing.Size(17, 23);
-            this.Simulate3Button.TabIndex = 11;
-            this.Simulate3Button.Text = "3";
-            this.Simulate3Button.UseVisualStyleBackColor = true;
-            this.Simulate3Button.Visible = false;
-            this.Simulate3Button.Click += new System.EventHandler(this.Simulate3Button_Click);
-            // 
-            // Simulate4Button
-            // 
-            this.Simulate4Button.Location = new System.Drawing.Point(170, 221);
-            this.Simulate4Button.Name = "Simulate4Button";
-            this.Simulate4Button.Size = new System.Drawing.Size(17, 23);
-            this.Simulate4Button.TabIndex = 12;
-            this.Simulate4Button.Text = "4";
-            this.Simulate4Button.UseVisualStyleBackColor = true;
-            this.Simulate4Button.Visible = false;
-            // 
             // SettingsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.Simulate4Button);
-            this.Controls.Add(this.Simulate3Button);
-            this.Controls.Add(this.Simulate2Button);
-            this.Controls.Add(this.Simulate1Button);
             this.Controls.Add(this.NewBattleButton);
             this.Controls.Add(this.RandomNewBattleCheckBox);
             this.Controls.Add(this.SimulateLabel);
@@ -961,9 +910,5 @@
         public System.Windows.Forms.Button ColorPicker;
         private System.Windows.Forms.OpenFileDialog SoundOpenFileDialog;
         private System.Windows.Forms.CheckBox RandomNewBattleCheckBox;
-        private System.Windows.Forms.Button Simulate1Button;
-        private System.Windows.Forms.Button Simulate2Button;
-        private System.Windows.Forms.Button Simulate3Button;
-        private System.Windows.Forms.Button Simulate4Button;
     }
 }

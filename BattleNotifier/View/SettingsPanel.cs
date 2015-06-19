@@ -23,10 +23,6 @@ namespace BattleNotifier.View
             InitializeColorPicker();
 
 #if DEBUG
-            Simulate1Button.Visible = true;
-            Simulate2Button.Visible = true;
-            Simulate3Button.Visible = true;
-            Simulate4Button.Visible = true;
             RandomNewBattleCheckBox.Visible = true;
 #endif
         }
@@ -117,64 +113,6 @@ namespace BattleNotifier.View
         private void HideToTraybarCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             UserSettings.Instance.SetHideToTraybarValue(HideToTraybarCheckBox.Checked);
-        }
-
-        private void Simulate1Button_Click(object sender, EventArgs e)
-        {
-            Random random = new Random();
-            int duration = Convert.ToInt32(random.NextDouble() * (60 - 1) + 1);
-            Battle battle = new Battle()
-            {
-                FileName = "Pob0989.lev",
-                MapUrl = null,
-                Duration = duration,
-                Attributes = (BattleAttribute)15,
-                Type = 0,
-                StartedDateTime = DateTime.Now,
-                Desginer = "Pab",
-                Id = 90431
-            };
-
-            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true, Properties.Resources.longmap1280);
-        
-        }
-
-        private void Simulate2Button_Click(object sender, EventArgs e)
-        {
-            Random random = new Random();
-            int duration = Convert.ToInt32(random.NextDouble() * (60 - 1) + 1);
-            Battle battle = new Battle()
-            {
-                FileName = "Pob0989.lev",
-                MapUrl = null,
-                Duration = duration,
-                Attributes = (BattleAttribute)15,
-                Type = 0,
-                StartedDateTime = DateTime.Now,
-                Desginer = "Pab",
-                Id = 90431
-            };
-
-            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true, Properties.Resources.tallmap1280);
-        }
-
-        private void Simulate3Button_Click(object sender, EventArgs e)
-        {
-            Random random = new Random();
-            int duration = Convert.ToInt32(random.NextDouble() * (60 - 1) + 1);
-            Battle battle = new Battle()
-            {
-                FileName = "Pob0989.lev",
-                MapUrl = null,
-                Duration = duration,
-                Attributes = (BattleAttribute)15,
-                Type = 0,
-                StartedDateTime = DateTime.Now,
-                Desginer = "Pab",
-                Id = 90431
-            };
-
-            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true, Properties.Resources.tallsmallmap);
         }
     }
 }
