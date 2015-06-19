@@ -255,7 +255,7 @@ namespace BattleNotifier.View
         private void BattleNotification_FormClosed_1(object sender, FormClosedEventArgs e)
         {
             if (!closing)
-                NotificationsController.Instance.BattleNotificationClosed();
+                NotificationsController.Instance.EndBattleNotification();
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

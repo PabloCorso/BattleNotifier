@@ -128,9 +128,9 @@ namespace BattleNotifier
                 {
                     settings.Upgrade();
                 }
-                catch (Exception) 
+                catch (Exception ex) 
                 {
-                    
+                    Logger.Log(401, ex);
                 }
             }
 

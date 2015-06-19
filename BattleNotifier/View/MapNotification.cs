@@ -237,7 +237,7 @@ namespace BattleNotifier.View
         private void MapNotification_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (!closing)
-                NotificationsController.Instance.MapNotificationClosed();
+                NotificationsController.Instance.EndBattleNotification();
         }
 
         private delegate void BlankDelegate();

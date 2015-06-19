@@ -81,9 +81,9 @@ namespace BattleNotifier.Controller
             ClearBattleNotification();
         }
 
-        public void ShowCurrentNotification(IMain m, Battle battle,bool simulation = false, Image map = null) 
+        public void ShowCurrentNotification(IMain m, Battle battle, bool simulation = false, Image map = null)
         {
-            
+
         }
 
         public void ShowBattleNotification(IMain m, Battle battle, double timeLeft, bool simulation = false, Image map = null)
@@ -247,22 +247,9 @@ namespace BattleNotifier.Controller
                 mn.Visible = true;
         }
 
-        private void EndBattleNotification()
+        public void EndBattleNotification()
         {
             ClearBattleNotification();
-        }
-
-        public void BattleNotificationClosed()
-        {
-            ClearBattleNotification();
-        }
-
-        public void MapNotificationClosed()
-        {
-            if (bn == null)
-                ClearBattleNotification();
-            else
-                mn.Visible = false;
         }
 
         private int MapSizeIndexToWidth(int mapSize)
