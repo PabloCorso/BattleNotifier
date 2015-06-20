@@ -51,6 +51,9 @@
             this.ErrorLabel = new System.Windows.Forms.Label();
             this.MapSizeDomainUpDown = new System.Windows.Forms.DomainUpDown();
             this.mapSizeLabel = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.DisplayScreenButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NotificationDurationTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseDialogNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +66,7 @@
             this.DesignersLabel.Size = new System.Drawing.Size(54, 13);
             this.DesignersLabel.TabIndex = 31;
             this.DesignersLabel.Text = "Designers";
+            this.toolTip1.SetToolTip(this.DesignersLabel, "Helping text m8.\r\n\r\nMore text.");
             // 
             // NotificationDurationTrackBar
             // 
@@ -297,10 +301,35 @@
             this.mapSizeLabel.TabIndex = 50;
             this.mapSizeLabel.Text = "map size";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(294, 173);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(76, 13);
+            this.label4.TabIndex = 52;
+            this.label4.Text = "Display screen";
+            // 
+            // DisplayScreenButton
+            // 
+            this.DisplayScreenButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DisplayScreenButton.FlatAppearance.BorderSize = 0;
+            this.DisplayScreenButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DisplayScreenButton.Location = new System.Drawing.Point(370, 171);
+            this.DisplayScreenButton.Name = "DisplayScreenButton";
+            this.DisplayScreenButton.Size = new System.Drawing.Size(24, 20);
+            this.DisplayScreenButton.TabIndex = 53;
+            this.DisplayScreenButton.TabStop = false;
+            this.DisplayScreenButton.Text = "0";
+            this.DisplayScreenButton.UseVisualStyleBackColor = false;
+            this.DisplayScreenButton.Click += new System.EventHandler(this.DisplayScreenButton_Click);
+            // 
             // MainPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DisplayScreenButton);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.mapSizeLabel);
             this.Controls.Add(this.MapSizeDomainUpDown);
             this.Controls.Add(this.ErrorLabel);
@@ -357,5 +386,8 @@
         private System.Windows.Forms.Label ErrorLabel;
         private System.Windows.Forms.Label mapSizeLabel;
         public System.Windows.Forms.DomainUpDown MapSizeDomainUpDown;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.Button DisplayScreenButton;
     }
 }

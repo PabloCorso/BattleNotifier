@@ -30,7 +30,7 @@ namespace BattleNotifier.View
         public BattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
         {
             InitializeComponent();
-            SetupDialogLocation();
+            SetupDialogLocation(settings.Basic.DisplayScreen);
             SetupControls(battle);
             if (settings.General.TransparentStyle)
                 SetupOutlineLabels();
@@ -164,12 +164,15 @@ namespace BattleNotifier.View
             DurationLabel.Text = battle.Duration + " mins";
         }
 
-        private void SetupDialogLocation()
+        private void SetupDialogLocation(int displayScreen)
         {
             StartPosition = FormStartPosition.Manual;
-            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
-            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
-            Left = screenWidth - this.Width;
+            Screen screen = Screen.PrimaryScreen;
+            if(displayScreen <= Screen.AllScreens.Length && displayScreen > 0)
+                  screen = Screen.AllScreens[displayScreen - 1];
+            int screenWidth = screen.WorkingArea.Width;
+            int screenHeight = screen.WorkingArea.Height;
+            Left = screen.WorkingArea.Left + screenWidth - this.Width;
             Top = screenHeight - this.Height;
         }
 

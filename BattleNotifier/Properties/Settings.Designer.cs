@@ -412,5 +412,17 @@ namespace BattleNotifier.Properties {
                 return ((bool)(this["NeedsUpdate"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int DisplayScreen {
+            get {
+                return ((int)(this["DisplayScreen"]));
+            }
+            set {
+                this["DisplayScreen"] = value;
+            }
+        }
     }
 }

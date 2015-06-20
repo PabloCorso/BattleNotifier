@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Utils;
 using Settings = BattleNotifier.Properties.Settings;
 
@@ -58,6 +59,7 @@ namespace BattleNotifier
                     settings.Basic.LifeSeconds = 0;
                 settings.Basic.PlaySound = mp.PlaySoundCheckBox.Checked;
                 settings.Basic.MapSize = mp.MapSizeDomainUpDown.SelectedIndex;
+                settings.Basic.DisplayScreen = Convert.ToInt32(mp.DisplayScreenButton.Text);
 
                 //Settings panel settings.
 
@@ -122,13 +124,13 @@ namespace BattleNotifier
             MainPanel mainPanel = instance.mainPanel;
             SettingsPanel settingsPanel = instance.settingsPanel;
 
-            if (settings.NeedsUpdate) 
+            if (settings.NeedsUpdate)
             {
                 try
                 {
                     settings.Upgrade();
                 }
-                catch (Exception ex) 
+                catch (Exception ex)
                 {
                     Logger.Log(401, ex);
                 }
@@ -142,6 +144,10 @@ namespace BattleNotifier
             mainPanel.CloseDialogNumericUpDown.Value = settings.DialogLifeSeconds;
             mainPanel.NotificationDurationTrackBar.Value = settings.NotificationDuration;
             mainPanel.MapSizeDomainUpDown.SelectedIndex = settings.MapSize;
+
+            if (settings.DisplayScreen == 0)
+                settings.DisplayScreen = Screen.AllScreens.ToList().IndexOf(Screen.PrimaryScreen) + 1;
+            mainPanel.DisplayScreenButton.Text = settings.DisplayScreen.ToString();
 
             string[] aux = settings.BattleTypes.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
             for (int i = 0; i < aux.Length; i++)
@@ -207,6 +213,7 @@ namespace BattleNotifier
             settings.DialogLifeSeconds = mainPanel.CloseDialogNumericUpDown.Value;
             settings.NotificationDuration = mainPanel.NotificationDurationTrackBar.Value;
             settings.MapSize = mainPanel.MapSizeDomainUpDown.SelectedIndex;
+            settings.DisplayScreen = Convert.ToInt32(mainPanel.DisplayScreenButton.Text);
 
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < mainPanel.BattleTypesChListBox.Items.Count; i++)

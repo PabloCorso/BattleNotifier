@@ -24,14 +24,14 @@ namespace BattleNotifier.View
 
         public MapNotification() { }
 
-        public MapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, MapSettings settings)
+        public MapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, BattleNotificationSettings settings)
         {
             InitializeComponent();
             InitializePicture(mapDesiredWidth);
-            SetupDialogLocation(startHeight);
+            SetupDialogLocation(settings.Basic.DisplayScreen, startHeight);
 
             battleDuration = battle.Duration;
-            SetupTextOverMap(battle, timeLeft, settings);
+            SetupTextOverMap(battle, timeLeft, settings.Map);
         }
 
         private void SetupTextOverMap(Battle battle, double timeLeft, MapSettings settings)
@@ -236,13 +236,16 @@ namespace BattleNotifier.View
             }
         }
 
-        private void SetupDialogLocation(int startHeight)
+        private void SetupDialogLocation(int displayScreen, int startHeight)
         {
             StartPosition = FormStartPosition.Manual;
-            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
-            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
-            Left = screenWidth - Width;
-            Top = screenHeight - Height - startHeight - 20; ;
+            Screen screen = Screen.PrimaryScreen;
+            if (displayScreen <= Screen.AllScreens.Length && displayScreen > 0)
+                screen = Screen.AllScreens[displayScreen - 1];
+            int screenWidth = screen.WorkingArea.Width;
+            int screenHeight = screen.WorkingArea.Height;
+            Left = screen.WorkingArea.Left + screenWidth - Width;
+            Top = screenHeight - Height - startHeight - 20;
         }
 
         private void MapNotification_FormClosed(object sender, FormClosedEventArgs e)

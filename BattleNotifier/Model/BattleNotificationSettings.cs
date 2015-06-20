@@ -31,6 +31,7 @@ namespace BattleNotifier.Model
         public int MapSize { get; set; }
         public int DefaultSound { get; set; }
         public bool UseCustomSound { get; set; }
+        public int DisplayScreen { get; set; }
     }
 
     public class GeneralSettings

@@ -334,5 +334,19 @@ namespace BattleNotifier.View
             NotificationsSettingsModified();
             bool test = CloseDialogTimeCheckBox.Checked;
         }
+
+        private void DisplayScreenButton_Click(object sender, EventArgs e)
+        {
+            int currentScreen = Convert.ToInt32(DisplayScreenButton.Text);
+
+            int screensCount = Screen.AllScreens.Length;
+
+            if (currentScreen < screensCount)
+                currentScreen++;
+            else
+                currentScreen = 1;
+
+            DisplayScreenButton.Text = currentScreen.ToString();
+        }
     }
 }
