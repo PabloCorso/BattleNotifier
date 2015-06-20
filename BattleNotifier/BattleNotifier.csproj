@@ -53,6 +53,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="Controller\BattleNotifierController.cs" />
@@ -61,11 +66,6 @@
     <Compile Include="Controller\ViewInterface\IMainPanel.cs" />
     <Compile Include="Model\Battle.cs" />
     <Compile Include="Model\BattleNotificationSettings.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -166,11 +166,7 @@
   <ItemGroup>
     <Content Include="Assets\bn_icon.ico" />
     <Content Include="Assets\bn_icon.png" />
-    <Content Include="Assets\longmap1280.png" />
-    <Content Include="Assets\tallmap1280.png" />
-    <Content Include="Assets\tallsmallmap.png" />
     <Content Include="bn_icon.ico" />
-    <Content Include="Assets\wu.png" />
     <Content Include="Assets\apple.wav" />
     <Content Include="Assets\close.png" />
     <Content Include="Assets\about.png" />

@@ -60,7 +60,6 @@ namespace BattleNotifier.View
             CloseButton.BackColor = Color.Gray;
             MinimizeButton.BackColor = Color.Gray;
             PrintMapButton.BackColor = Color.Gray;
-            MapCheckBox.BackgroundImage = Properties.Resources.wu;
 
             HeadlineOutlineLabel.Text = HeadlineLinkLabel.Text;
             HeadlineOutlineLabel.Visible = true;

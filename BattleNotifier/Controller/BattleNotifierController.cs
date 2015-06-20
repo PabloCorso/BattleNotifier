@@ -238,26 +238,21 @@ namespace BattleNotifier.Controller
                     {
                         try
                         {
-                            HtmlAgilityPack.HtmlDocument document = new HtmlWeb().Load(battle.Url);
+                            SetBattleUrls(battle);
 
-                            battle.LevelUrl = document.DocumentNode.Descendants("a")
-                                                                .Select(e => e.GetAttributeValue("href", null))
-                                                                .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLLevelUrl))
-                                                                .FirstOrDefault();
-
-                            battle.MapUrl = document.DocumentNode.Descendants("img")
-                                                            .Select(e => e.GetAttributeValue("src", null))
-                                                            .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLMapsUrl))
-                                                            .FirstOrDefault();
                             eolDataLoaded = true;
-
-                            // In case map didn't load the first time battle was caught.
-                            if (currentBattle != null)
-                                currentBattle.MapUrl = battle.Url;
                         }
                         catch (Exception ex) 
                         {
-                            Logger.Log(101,ex);
+                            try
+                            {
+                                SetBattleUrls(battle);
+                                Logger.Log(101, ex);
+                            }
+                            catch (Exception iex) 
+                            {
+                                Logger.Log(103, iex);
+                            }
                         }
                     }
 
@@ -266,14 +261,29 @@ namespace BattleNotifier.Controller
                 else
                 {
                     eolDataLoaded = false;
-                    return currentBattle;
+                    return null;
                 }
             }
             catch (Exception ex)
             {
                 Logger.Log(100, ex);
-                return currentBattle;
+                return null;
             }
+        }
+
+        private void SetBattleUrls(Battle battle)
+        {
+            HtmlAgilityPack.HtmlDocument document = new HtmlWeb().Load(battle.Url);
+
+            battle.LevelUrl = document.DocumentNode.Descendants("a")
+                                                .Select(e => e.GetAttributeValue("href", null))
+                                                .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLLevelUrl))
+                                                .FirstOrDefault();
+
+            battle.MapUrl = document.DocumentNode.Descendants("img")
+                                            .Select(e => e.GetAttributeValue("src", null))
+                                            .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLMapsUrl))
+                                            .FirstOrDefault();
         }
         #endregion
 
