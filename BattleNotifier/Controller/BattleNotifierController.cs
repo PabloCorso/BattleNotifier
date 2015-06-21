@@ -56,17 +56,6 @@ namespace BattleNotifier.Controller
             SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
         }
 
-        //TODO delete
-        public void Test()
-        {
-            currentNotified = false;
-            currentBattle = null;
-            currentFinishedNormally = false;
-            currentNotified = false;
-            eolDataLoaded = false;
-            SetNextUpdateInterval(1);
-        }
-
         private BattleNotifierController(IMain view)
         {
             this.MainView = view;

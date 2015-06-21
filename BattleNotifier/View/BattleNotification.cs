@@ -26,7 +26,7 @@ namespace BattleNotifier.View
         private string fullAttributesText;
         private int maxAttributesLength = 70;
         public BattleNotification() { }
-        // TODO hacer que se pueda mantener abierto.
+
         public BattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
         {
             InitializeComponent();

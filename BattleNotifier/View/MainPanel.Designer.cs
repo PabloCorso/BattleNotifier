@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPanel));
             this.DesignersLabel = new System.Windows.Forms.Label();
             this.NotificationDurationTrackBar = new System.Windows.Forms.TrackBar();
             this.StartNotificationButton = new System.Windows.Forms.Button();
@@ -51,7 +52,7 @@
             this.ErrorLabel = new System.Windows.Forms.Label();
             this.MapSizeDomainUpDown = new System.Windows.Forms.DomainUpDown();
             this.mapSizeLabel = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.DisplayScreenButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NotificationDurationTrackBar)).BeginInit();
@@ -63,10 +64,11 @@
             this.DesignersLabel.AutoSize = true;
             this.DesignersLabel.Location = new System.Drawing.Point(3, 10);
             this.DesignersLabel.Name = "DesignersLabel";
-            this.DesignersLabel.Size = new System.Drawing.Size(54, 13);
+            this.DesignersLabel.Size = new System.Drawing.Size(77, 13);
             this.DesignersLabel.TabIndex = 31;
-            this.DesignersLabel.Text = "Designers";
-            this.toolTip1.SetToolTip(this.DesignersLabel, "Helping text m8.\r\n\r\nMore text.");
+            this.DesignersLabel.Text = "Filter designers";
+            this.ToolTip.SetToolTip(this.DesignersLabel, resources.GetString("DesignersLabel.ToolTip"));
+            this.DesignersLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowToolTip);
             // 
             // NotificationDurationTrackBar
             // 
@@ -104,9 +106,9 @@
             this.BattleTypesLabel.AutoSize = true;
             this.BattleTypesLabel.Location = new System.Drawing.Point(149, 10);
             this.BattleTypesLabel.Name = "BattleTypesLabel";
-            this.BattleTypesLabel.Size = new System.Drawing.Size(62, 13);
+            this.BattleTypesLabel.Size = new System.Drawing.Size(86, 13);
             this.BattleTypesLabel.TabIndex = 21;
-            this.BattleTypesLabel.Text = "Battle types";
+            this.BattleTypesLabel.Text = "Filter battle types";
             // 
             // BattleTypesChListBox
             // 
@@ -151,9 +153,9 @@
             this.NotificationLabel.AutoSize = true;
             this.NotificationLabel.Location = new System.Drawing.Point(294, 10);
             this.NotificationLabel.Name = "NotificationLabel";
-            this.NotificationLabel.Size = new System.Drawing.Size(60, 13);
+            this.NotificationLabel.Size = new System.Drawing.Size(65, 13);
             this.NotificationLabel.TabIndex = 26;
-            this.NotificationLabel.Text = "Notification";
+            this.NotificationLabel.Text = "Notifications";
             // 
             // ShowMapCheckBox
             // 
@@ -301,6 +303,12 @@
             this.mapSizeLabel.TabIndex = 50;
             this.mapSizeLabel.Text = "map size";
             // 
+            // ToolTip
+            // 
+            this.ToolTip.AutoPopDelay = 32000;
+            this.ToolTip.InitialDelay = 500;
+            this.ToolTip.ReshowDelay = 100;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -386,7 +394,7 @@
         private System.Windows.Forms.Label ErrorLabel;
         private System.Windows.Forms.Label mapSizeLabel;
         public System.Windows.Forms.DomainUpDown MapSizeDomainUpDown;
-        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.Button DisplayScreenButton;
     }

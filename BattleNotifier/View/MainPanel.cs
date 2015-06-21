@@ -5,6 +5,7 @@ using BattleNotifier.Controller;
 using System.Collections.Generic;
 using BattleNotifier.Model;
 using BattleNotifier.Utils;
+using System.Drawing;
 
 namespace BattleNotifier.View
 {
@@ -50,7 +51,7 @@ namespace BattleNotifier.View
         /// </summary>
         private void NotificationsSettingsModified()
         {
-            if(battleNotifier.IsNotifyingBattle)
+            if (battleNotifier.IsNotifyingBattle)
                 battleNotifier.UpdateNotifying();
         }
 
@@ -347,6 +348,14 @@ namespace BattleNotifier.View
                 currentScreen = 1;
 
             DisplayScreenButton.Text = currentScreen.ToString();
+        }
+
+        private void ShowToolTip(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                ToolTip.Show(ToolTip.GetToolTip((Control)sender).ToString(), (Control)sender);
+            }
         }
     }
 }
