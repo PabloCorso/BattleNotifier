@@ -37,7 +37,7 @@ namespace BattleNotifier.View
             battleNotifier = BattleNotifierController.Instance;
 
             // Initialize Main Panel.
-            mainPanel = new MainPanel(battleNotifier);
+            mainPanel = new MainPanel();
             BackgroundPanel.Controls.Add(mainPanel);
 
             settingsPanel = new SettingsPanel();

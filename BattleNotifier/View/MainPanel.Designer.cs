@@ -306,7 +306,7 @@
             // ToolTip
             // 
             this.ToolTip.AutoPopDelay = 32000;
-            this.ToolTip.InitialDelay = 500;
+            this.ToolTip.InitialDelay = 32000;
             this.ToolTip.ReshowDelay = 100;
             // 
             // label4

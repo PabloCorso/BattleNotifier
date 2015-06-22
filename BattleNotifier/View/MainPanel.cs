@@ -21,10 +21,10 @@ namespace BattleNotifier.View
         private const string allDesigners = "All designers";
         private const string allBattleTypes = "All battle types";
 
-        public MainPanel(BattleNotifierController battleNotifier)
+        public MainPanel()
         {
             InitializeComponent();
-            this.battleNotifier = battleNotifier;
+            this.battleNotifier = BattleNotifierController.Instance;
 
             AutocompleteKuskisList = new List<string>();
         }
