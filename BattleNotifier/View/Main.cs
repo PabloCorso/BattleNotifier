@@ -49,7 +49,6 @@ namespace BattleNotifier.View
 
             if (UserSettings.Instance.MustNotifyOnStartup())
                 mainPanel.NotificateBattles();
-
         }
 
         #region IMain implementation
@@ -57,13 +56,52 @@ namespace BattleNotifier.View
         {
             get { return this.mainPanel; }
         }
+
+        public void ShowBattleNotification(BattleNotification bn)
+        {
+            if (this.InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate() { ShowBattleNotification(bn); }));
+            }
+            else
+            {
+                bn.Show();
+            }
+        }
+
+        public void ShowMapNotification(MapNotification mn)
+        {
+            if (this.InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate() { ShowMapNotification(mn); }));
+            }
+            else
+            {
+                mn.Show();
+            }
+        }
+
+        public void ShowHelpDescription(string desc, int type = 1)
+        {
+            if (type == 1)
+                HelpLabel1.Text = desc;
+            else
+                HelpLabel2.Text = desc;
+        }
+
+        public void ClearHelpDescription()
+        {
+            HelpLabel1.Text = string.Empty;
+            HelpLabel2.Text = string.Empty;
+
+        }
         #endregion
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == (Keys.Control | Keys.R))
             {
-                battleNotifier.RestartNotifying();
+                mainPanel.ReStartNotifying();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -230,31 +268,6 @@ namespace BattleNotifier.View
             BackgroundPanel.Controls.Add(mainPanel);
             NavigateToSettingsButton.Visible = true;
             NavigateHomeButton.Visible = false;
-        }
-
-
-        public void ShowBattleNotification(BattleNotification bn)
-        {
-            if (this.InvokeRequired)
-            {
-                Invoke(new MethodInvoker(delegate() { ShowBattleNotification(bn); }));
-            }
-            else
-            {
-                bn.Show();
-            }
-        }
-
-        public void ShowMapNotification(MapNotification mn)
-        {
-            if (this.InvokeRequired)
-            {
-                Invoke(new MethodInvoker(delegate() { ShowMapNotification(mn); }));
-            }
-            else
-            {
-                mn.Show();
-            }
         }
     }
 }

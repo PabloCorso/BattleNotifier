@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.GeneralSettingsGroup = new System.Windows.Forms.GroupBox();
             this.HidePrintCheckBox = new System.Windows.Forms.CheckBox();
             this.TransparentCheckBox = new System.Windows.Forms.CheckBox();
@@ -87,6 +88,7 @@
             this.NewBattleButton = new System.Windows.Forms.Button();
             this.SoundOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.RandomNewBattleCheckBox = new System.Windows.Forms.CheckBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.GeneralSettingsGroup.SuspendLayout();
             this.NotificationSoundGroup.SuspendLayout();
             this.ShowOnMapGroup.SuspendLayout();
@@ -115,6 +117,7 @@
             this.HidePrintCheckBox.Size = new System.Drawing.Size(126, 17);
             this.HidePrintCheckBox.TabIndex = 5;
             this.HidePrintCheckBox.Text = "Hide print map option";
+            this.ToolTip.SetToolTip(this.HidePrintCheckBox, "\r\nHide the print map option at battle\'s information window.");
             this.HidePrintCheckBox.UseVisualStyleBackColor = true;
             // 
             // TransparentCheckBox
@@ -125,6 +128,7 @@
             this.TransparentCheckBox.Size = new System.Drawing.Size(107, 17);
             this.TransparentCheckBox.TabIndex = 4;
             this.TransparentCheckBox.Text = "Transparent style";
+            this.ToolTip.SetToolTip(this.TransparentCheckBox, "\r\nShow battle\'s information window with transparent style.");
             this.TransparentCheckBox.UseVisualStyleBackColor = true;
             // 
             // ShowOnTopCheckBox
@@ -135,6 +139,7 @@
             this.ShowOnTopCheckBox.Size = new System.Drawing.Size(145, 17);
             this.ShowOnTopCheckBox.TabIndex = 3;
             this.ShowOnTopCheckBox.Text = "Show notifications on top";
+            this.ToolTip.SetToolTip(this.ShowOnTopCheckBox, "\r\nShow notification windows over every other active window.");
             this.ShowOnTopCheckBox.UseVisualStyleBackColor = true;
             // 
             // StartupCheckBox
@@ -145,6 +150,7 @@
             this.StartupCheckBox.Size = new System.Drawing.Size(140, 17);
             this.StartupCheckBox.TabIndex = 2;
             this.StartupCheckBox.Text = "Start notifying on startup";
+            this.ToolTip.SetToolTip(this.StartupCheckBox, "\r\nStart battle notifications when Battle Notifier is launched.");
             this.StartupCheckBox.UseVisualStyleBackColor = true;
             // 
             // FadeCheckBox
@@ -155,6 +161,7 @@
             this.FadeCheckBox.Size = new System.Drawing.Size(149, 17);
             this.FadeCheckBox.TabIndex = 1;
             this.FadeCheckBox.Text = "Fade effect on notification";
+            this.ToolTip.SetToolTip(this.FadeCheckBox, "\r\nMake fade in effect for notification windows.");
             this.FadeCheckBox.UseVisualStyleBackColor = true;
             // 
             // HideToTraybarCheckBox
@@ -165,6 +172,7 @@
             this.HideToTraybarCheckBox.Size = new System.Drawing.Size(175, 17);
             this.HideToTraybarCheckBox.TabIndex = 0;
             this.HideToTraybarCheckBox.Text = "Hide to tray bar when minimized";
+            this.ToolTip.SetToolTip(this.HideToTraybarCheckBox, "\r\nHide Battle Notifier to tray bar (bottom right corner) when minimized.");
             this.HideToTraybarCheckBox.UseVisualStyleBackColor = true;
             this.HideToTraybarCheckBox.CheckedChanged += new System.EventHandler(this.HideToTraybarCheckBox_CheckedChanged);
             // 
@@ -181,6 +189,8 @@
             this.NotificationSoundGroup.TabIndex = 3;
             this.NotificationSoundGroup.TabStop = false;
             this.NotificationSoundGroup.Text = "Notification sound";
+            this.ToolTip.SetToolTip(this.NotificationSoundGroup, "When \"Use custom sound\" is unchecked or the choosen custom sound\r\ncannot be playe" +
+        "d the selected default sound is played instead.");
             // 
             // SetSoundButton
             // 
@@ -219,6 +229,8 @@
             this.DefaultSoundLabel.Size = new System.Drawing.Size(73, 13);
             this.DefaultSoundLabel.TabIndex = 1;
             this.DefaultSoundLabel.Text = "Default sound";
+            this.ToolTip.SetToolTip(this.DefaultSoundLabel, "When \"Use custom sound\" is unchecked or the choosen custom sound\r\ncannot be playe" +
+        "d the selected default sound is played instead.");
             // 
             // DefaultSoundComboBox
             // 
@@ -280,6 +292,8 @@
             this.ShowOnMapGroup.TabIndex = 3;
             this.ShowOnMapGroup.TabStop = false;
             this.ShowOnMapGroup.Text = "Show on Map";
+            this.ToolTip.SetToolTip(this.ShowOnMapGroup, "Select the text color and which battle\'s information to show at\r\nmap notification" +
+        " window.");
             // 
             // ColorPicker
             // 
@@ -717,9 +731,9 @@
             this.MapTextLabel.AutoSize = true;
             this.MapTextLabel.Location = new System.Drawing.Point(6, 20);
             this.MapTextLabel.Name = "MapTextLabel";
-            this.MapTextLabel.Size = new System.Drawing.Size(104, 13);
+            this.MapTextLabel.Size = new System.Drawing.Size(101, 13);
             this.MapTextLabel.TabIndex = 44;
-            this.MapTextLabel.Text = "Text over map color:";
+            this.MapTextLabel.Text = "Text over map color";
             // 
             // OnMapTypeCheckBox
             // 
@@ -805,6 +819,7 @@
             this.NewBattleButton.Size = new System.Drawing.Size(75, 23);
             this.NewBattleButton.TabIndex = 7;
             this.NewBattleButton.Text = "New battle";
+            this.ToolTip.SetToolTip(this.NewBattleButton, "\r\nTest your current settings by simulating an incoming battle.");
             this.NewBattleButton.UseVisualStyleBackColor = true;
             this.NewBattleButton.Click += new System.EventHandler(this.NewBattleButton_Click);
             // 
@@ -822,6 +837,10 @@
             this.RandomNewBattleCheckBox.Text = "rand";
             this.RandomNewBattleCheckBox.UseVisualStyleBackColor = true;
             this.RandomNewBattleCheckBox.Visible = false;
+            // 
+            // ToolTip
+            // 
+            this.ToolTip.Active = false;
             // 
             // SettingsPanel
             // 
@@ -910,5 +929,6 @@
         public System.Windows.Forms.Button ColorPicker;
         private System.Windows.Forms.OpenFileDialog SoundOpenFileDialog;
         private System.Windows.Forms.CheckBox RandomNewBattleCheckBox;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }

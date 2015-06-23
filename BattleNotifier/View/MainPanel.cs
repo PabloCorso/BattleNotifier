@@ -27,6 +27,45 @@ namespace BattleNotifier.View
             this.battleNotifier = BattleNotifierController.Instance;
 
             AutocompleteKuskisList = new List<string>();
+            InitializeHelpDescriptions();
+        }
+
+        private void InitializeHelpDescriptions()
+        {
+            SearchDesignerTextBox.MouseEnter += ShowHelpDescription;
+            SearchDesignerTextBox.MouseLeave += ClearHelpDescription;
+            DesignersChListBox.MouseEnter += ShowHelpDescription;
+            DesignersChListBox.MouseLeave += ClearHelpDescription;
+            StartNotificationButton.MouseEnter += ShowHelpDescription;
+            StartNotificationButton.MouseLeave += ClearHelpDescription;
+            CloseDialogTimeCheckBox.MouseEnter += ShowHelpDescription;
+            CloseDialogTimeCheckBox.MouseLeave += ClearHelpDescription;
+            ShowMapCheckBox.MouseEnter += ShowHelpDescription;
+            ShowMapCheckBox.MouseLeave += ClearHelpDescription;
+            NotificationDurationTrackBar.MouseEnter += ShowHelpDescription;
+            NotificationDurationTrackBar.MouseLeave += ClearHelpDescription;
+            ShowBattleCheckBox.MouseEnter += ShowHelpDescription;
+            ShowBattleCheckBox.MouseLeave += ClearHelpDescription;
+            PlaySoundCheckBox.MouseEnter += ShowHelpDescription;
+            PlaySoundCheckBox.MouseLeave += ClearHelpDescription;
+            BlackListChListBox.MouseEnter += ShowHelpDescription;
+            BlackListChListBox.MouseLeave += ClearHelpDescription;
+            BattleTypesChListBox.MouseEnter += ShowHelpDescription;
+            BattleTypesChListBox.MouseLeave += ClearHelpDescription;
+            DisplayScreenLabel.MouseEnter += ShowHelpDescription;
+            DisplayScreenLabel.MouseLeave += ClearHelpDescription;
+            DisplayScreenButton.MouseEnter += ShowHelpDescription;
+            DisplayScreenButton.MouseLeave += ClearHelpDescription;
+        }
+
+        private void ShowHelpDescription(object sender, EventArgs e)
+        {
+            battleNotifier.MainView.ShowHelpDescription(ToolTip.GetToolTip((Control)sender).ToString());
+        }
+
+        private void ClearHelpDescription(object sender, EventArgs e)
+        {
+            battleNotifier.MainView.ClearHelpDescription();
         }
 
         public void MainPanel_Load(object sender, EventArgs e)
@@ -84,6 +123,19 @@ namespace BattleNotifier.View
                 battleNotifier.StartNotifying();
             }
         }
+
+        public void ReStartNotifying()
+        {
+            if (battleNotifier.IsNotifyingBattle) 
+            {
+                battleNotifier.RestartNotifying();
+            }
+            else 
+            {
+                NotificateBattles();
+            }
+        }
+
         private void Timer_Tick(object sender, EventArgs e)
         {
             NotificateBattles();
@@ -195,7 +247,8 @@ namespace BattleNotifier.View
         {
             if (e.KeyCode == Keys.Enter && !String.IsNullOrEmpty(SearchDesignerTextBox.Text.Trim()))
             {
-                AddDesignerButton.Focus();
+                //AddDesignerButton.Focus();
+                AddDesignerButton_Click(sender, e);
             }
         }
 

@@ -35,7 +35,8 @@
             this.SeparatorLabel = new System.Windows.Forms.Label();
             this.NavigateToSettingsButton = new System.Windows.Forms.Button();
             this.NavigateHomeButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.HelpLabel1 = new System.Windows.Forms.Label();
+            this.HelpLabel2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // NotifyIcon
@@ -86,20 +87,29 @@
             this.NavigateHomeButton.UseVisualStyleBackColor = true;
             this.NavigateHomeButton.Click += new System.EventHandler(this.NavigateHomeButton_Click);
             // 
-            // label1
+            // HelpLabel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 44;
+            this.HelpLabel1.AutoSize = true;
+            this.HelpLabel1.Location = new System.Drawing.Point(12, 4);
+            this.HelpLabel1.Name = "HelpLabel1";
+            this.HelpLabel1.Size = new System.Drawing.Size(0, 13);
+            this.HelpLabel1.TabIndex = 44;
+            // 
+            // HelpLabel2
+            // 
+            this.HelpLabel2.AutoSize = true;
+            this.HelpLabel2.Location = new System.Drawing.Point(95, 4);
+            this.HelpLabel2.Name = "HelpLabel2";
+            this.HelpLabel2.Size = new System.Drawing.Size(0, 13);
+            this.HelpLabel2.TabIndex = 45;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(439, 339);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.HelpLabel2);
+            this.Controls.Add(this.HelpLabel1);
             this.Controls.Add(this.SeparatorLabel);
             this.Controls.Add(this.NavigateToSettingsButton);
             this.Controls.Add(this.NavigateHomeButton);
@@ -124,7 +134,8 @@
         private System.Windows.Forms.Label SeparatorLabel;
         private System.Windows.Forms.Button NavigateToSettingsButton;
         private System.Windows.Forms.Button NavigateHomeButton;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label HelpLabel1;
+        private System.Windows.Forms.Label HelpLabel2;
     }
 }
 

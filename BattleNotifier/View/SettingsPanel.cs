@@ -14,17 +14,70 @@ namespace BattleNotifier.View
 {
     public partial class SettingsPanel : UserControl
     {
+        BattleNotifierController battleNotifier;
         public SettingsPanel()
         {
             InitializeComponent();
+            this.battleNotifier = BattleNotifierController.Instance;
             this.ShowOnMapGroup.Click += new EventHandler(SettingsPanel_Click);
             this.GeneralSettingsGroup.Click += new EventHandler(SettingsPanel_Click);
             this.NotificationSoundGroup.Click += new EventHandler(SettingsPanel_Click);
             InitializeColorPicker();
+            InitializeHelpDescriptions();
 
 #if DEBUG
             RandomNewBattleCheckBox.Visible = true;
 #endif
+        }
+
+        private void InitializeHelpDescriptions()
+        {
+            NotificationSoundGroup.MouseEnter += ShowHelpDescription;
+            NotificationSoundGroup.MouseLeave += ClearSoundGroupHelpDescription;
+            ShowOnMapGroup.MouseEnter += ShowHelpDescription;
+            ShowOnMapGroup.MouseLeave += ClearMapGroupHelpDescription;
+            ShowOnTopCheckBox.MouseEnter += ShowHelpDescription;
+            ShowOnTopCheckBox.MouseLeave += ClearHelpDescription;
+            StartupCheckBox.MouseEnter += ShowHelpDescription;
+            StartupCheckBox.MouseLeave += ClearHelpDescription;
+            FadeCheckBox.MouseEnter += ShowHelpDescription;
+            FadeCheckBox.MouseLeave += ClearHelpDescription;
+            HideToTraybarCheckBox.MouseEnter += ShowHelpDescription;
+            HideToTraybarCheckBox.MouseLeave += ClearHelpDescription;
+            TransparentCheckBox.MouseEnter += ShowHelpDescription;
+            TransparentCheckBox.MouseLeave += ClearHelpDescription;
+            HidePrintCheckBox.MouseEnter += ShowHelpDescription;
+            HidePrintCheckBox.MouseLeave += ClearHelpDescription;
+            NewBattleButton.MouseEnter += ShowHelpDescription;
+            NewBattleButton.MouseLeave += ClearHelpDescription;
+        }
+
+        private void ShowHelpDescription(object sender, EventArgs e)
+        {
+            battleNotifier.MainView.ShowHelpDescription(ToolTip.GetToolTip((Control)sender).ToString(), 2);
+        }
+
+        private void ClearHelpDescription(object sender, EventArgs e)
+        {
+            battleNotifier.MainView.ClearHelpDescription();
+        }
+
+        private void ClearSoundGroupHelpDescription(object sender, EventArgs e)
+        {
+            Control control = this.GetChildAtPoint(this.PointToClient(MousePosition));
+            if (control != NotificationSoundGroup)
+            {
+                battleNotifier.MainView.ClearHelpDescription();
+            }
+        }
+
+        private void ClearMapGroupHelpDescription(object sender, EventArgs e)
+        {
+            Control control = this.GetChildAtPoint(this.PointToClient(MousePosition));
+            if (control != ShowOnMapGroup)
+            {
+                battleNotifier.MainView.ClearHelpDescription();
+            }
         }
 
         public int GetSelecetedDefaultSound()

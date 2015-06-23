@@ -7,5 +7,7 @@ namespace BattleNotifier.Controller.ViewInterface
         IMainPanel MainPanel { get; }
         void ShowBattleNotification(BattleNotification noty);
         void ShowMapNotification(MapNotification noty);
+        void ShowHelpDescription(string desc, int type = 1);
+        void ClearHelpDescription();
     }
 }

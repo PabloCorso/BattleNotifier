@@ -45,15 +45,15 @@
             this.ShowBattleCheckBox = new System.Windows.Forms.CheckBox();
             this.CloseDialogNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.CloseDialogTimeCheckBox = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.CloseDialogTimeLabel1 = new System.Windows.Forms.Label();
+            this.CloseDialogTimeLabel2 = new System.Windows.Forms.Label();
             this.BlackListChListBox = new System.Windows.Forms.CheckedListBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.BlackListLabel = new System.Windows.Forms.Label();
             this.ErrorLabel = new System.Windows.Forms.Label();
             this.MapSizeDomainUpDown = new System.Windows.Forms.DomainUpDown();
             this.mapSizeLabel = new System.Windows.Forms.Label();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.label4 = new System.Windows.Forms.Label();
+            this.DisplayScreenLabel = new System.Windows.Forms.Label();
             this.DisplayScreenButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NotificationDurationTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseDialogNumericUpDown)).BeginInit();
@@ -76,6 +76,8 @@
             this.NotificationDurationTrackBar.Name = "NotificationDurationTrackBar";
             this.NotificationDurationTrackBar.Size = new System.Drawing.Size(277, 45);
             this.NotificationDurationTrackBar.TabIndex = 3;
+            this.ToolTip.SetToolTip(this.NotificationDurationTrackBar, "Set a timer to stop notifying. Time is show on Start button.\r\nFirst value of the " +
+        "track bar means no timer is set.");
             this.NotificationDurationTrackBar.ValueChanged += new System.EventHandler(this.NotificationDurationTrackBar_ValueChanged);
             // 
             // StartNotificationButton
@@ -85,6 +87,7 @@
             this.StartNotificationButton.Size = new System.Drawing.Size(120, 45);
             this.StartNotificationButton.TabIndex = 2;
             this.StartNotificationButton.Text = "▶ Start";
+            this.ToolTip.SetToolTip(this.StartNotificationButton, "Start battle notifications! Ctrl+R shortcut for start/restart.");
             this.StartNotificationButton.UseVisualStyleBackColor = true;
             this.StartNotificationButton.Click += new System.EventHandler(this.StartNotificationButton_Click);
             // 
@@ -99,6 +102,8 @@
             this.DesignersChListBox.Size = new System.Drawing.Size(120, 80);
             this.DesignersChListBox.TabIndex = 27;
             this.DesignersChListBox.TabStop = false;
+            this.ToolTip.SetToolTip(this.DesignersChListBox, "Press right click over a kuski to move from this list to the black list\r\nand vice" +
+        "versa. Press middle click over a kukist to remove him.");
             this.DesignersChListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DesignersChListBox_MouseDown);
             // 
             // BattleTypesLabel
@@ -120,6 +125,8 @@
             this.BattleTypesChListBox.Size = new System.Drawing.Size(120, 184);
             this.BattleTypesChListBox.TabIndex = 20;
             this.BattleTypesChListBox.TabStop = false;
+            this.ToolTip.SetToolTip(this.BattleTypesChListBox, "Only checked battle types will be notificated unless \"All battle types\"\r\nis check" +
+        "ed, in this case all battle types will be taken into account.");
             this.BattleTypesChListBox.Click += new System.EventHandler(this.BattleTypesChListBox_Click);
             // 
             // SearchDesignerTextBox
@@ -130,6 +137,7 @@
             this.SearchDesignerTextBox.Name = "SearchDesignerTextBox";
             this.SearchDesignerTextBox.Size = new System.Drawing.Size(92, 20);
             this.SearchDesignerTextBox.TabIndex = 1;
+            this.ToolTip.SetToolTip(this.SearchDesignerTextBox, "\r\nWrite a kuski name and press enter or + button to add him to the list.");
             this.SearchDesignerTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SearchDesignerTextBox_KeyDown);
             // 
             // AddDesignerButton
@@ -139,6 +147,7 @@
             this.AddDesignerButton.Size = new System.Drawing.Size(22, 20);
             this.AddDesignerButton.TabIndex = 2;
             this.AddDesignerButton.Text = "+";
+            this.ToolTip.SetToolTip(this.AddDesignerButton, "\r\n");
             this.AddDesignerButton.UseVisualStyleBackColor = true;
             this.AddDesignerButton.Click += new System.EventHandler(this.AddDesignerButton_Click);
             this.AddDesignerButton.Enter += new System.EventHandler(this.AddDesignerButton_Enter);
@@ -166,6 +175,8 @@
             this.ShowMapCheckBox.TabIndex = 36;
             this.ShowMapCheckBox.TabStop = false;
             this.ShowMapCheckBox.Text = "Show level map";
+            this.ToolTip.SetToolTip(this.ShowMapCheckBox, "Show battle\'s map at notifications with the desired size.\r\nTip: press right click" +
+        " over a map to see minimize/close options.");
             this.ShowMapCheckBox.UseVisualStyleBackColor = true;
             this.ShowMapCheckBox.CheckedChanged += new System.EventHandler(this.ShowMapCheckBox_CheckedChanged);
             // 
@@ -178,6 +189,7 @@
             this.PlaySoundCheckBox.TabIndex = 37;
             this.PlaySoundCheckBox.TabStop = false;
             this.PlaySoundCheckBox.Text = "Play sound";
+            this.ToolTip.SetToolTip(this.PlaySoundCheckBox, "\r\nPlay a sound at notifications.");
             this.PlaySoundCheckBox.UseVisualStyleBackColor = true;
             this.PlaySoundCheckBox.CheckedChanged += new System.EventHandler(this.PlaySoundCheckBox_CheckedChanged);
             // 
@@ -190,6 +202,7 @@
             this.ShowBattleCheckBox.TabIndex = 38;
             this.ShowBattleCheckBox.TabStop = false;
             this.ShowBattleCheckBox.Text = "Show battle info";
+            this.ToolTip.SetToolTip(this.ShowBattleCheckBox, "\r\nShow battle\'s information window at notifications.");
             this.ShowBattleCheckBox.UseVisualStyleBackColor = true;
             this.ShowBattleCheckBox.CheckedChanged += new System.EventHandler(this.ShowBattleCheckBox_CheckedChanged);
             // 
@@ -210,6 +223,7 @@
             this.CloseDialogNumericUpDown.Size = new System.Drawing.Size(35, 20);
             this.CloseDialogNumericUpDown.TabIndex = 42;
             this.CloseDialogNumericUpDown.TabStop = false;
+            this.ToolTip.SetToolTip(this.CloseDialogNumericUpDown, "\r\nClose notifications after a choosen amount of seconds.");
             this.CloseDialogNumericUpDown.Value = new decimal(new int[] {
             10,
             0,
@@ -225,26 +239,29 @@
             this.CloseDialogTimeCheckBox.TabIndex = 43;
             this.CloseDialogTimeCheckBox.TabStop = false;
             this.CloseDialogTimeCheckBox.Text = "Close notification";
+            this.ToolTip.SetToolTip(this.CloseDialogTimeCheckBox, "\r\nClose notifications after a choosen amount of seconds.");
             this.CloseDialogTimeCheckBox.UseVisualStyleBackColor = true;
             this.CloseDialogTimeCheckBox.CheckedChanged += new System.EventHandler(this.CloseDialogTimeCheckBox_CheckedChanged);
             // 
-            // label1
+            // CloseDialogTimeLabel1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(300, 147);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(28, 13);
-            this.label1.TabIndex = 44;
-            this.label1.Text = "after";
+            this.CloseDialogTimeLabel1.AutoSize = true;
+            this.CloseDialogTimeLabel1.Location = new System.Drawing.Point(300, 147);
+            this.CloseDialogTimeLabel1.Name = "CloseDialogTimeLabel1";
+            this.CloseDialogTimeLabel1.Size = new System.Drawing.Size(28, 13);
+            this.CloseDialogTimeLabel1.TabIndex = 44;
+            this.CloseDialogTimeLabel1.Text = "after";
+            this.ToolTip.SetToolTip(this.CloseDialogTimeLabel1, "\r\nClose notifications after a choosen amount of seconds.");
             // 
-            // label2
+            // CloseDialogTimeLabel2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(367, 147);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(32, 13);
-            this.label2.TabIndex = 45;
-            this.label2.Text = "secs.";
+            this.CloseDialogTimeLabel2.AutoSize = true;
+            this.CloseDialogTimeLabel2.Location = new System.Drawing.Point(367, 147);
+            this.CloseDialogTimeLabel2.Name = "CloseDialogTimeLabel2";
+            this.CloseDialogTimeLabel2.Size = new System.Drawing.Size(29, 13);
+            this.CloseDialogTimeLabel2.TabIndex = 45;
+            this.CloseDialogTimeLabel2.Text = "secs";
+            this.ToolTip.SetToolTip(this.CloseDialogTimeLabel2, "\r\nClose notifications after a choosen amount of seconds.");
             // 
             // BlackListChListBox
             // 
@@ -256,16 +273,20 @@
             this.BlackListChListBox.Size = new System.Drawing.Size(120, 64);
             this.BlackListChListBox.TabIndex = 46;
             this.BlackListChListBox.TabStop = false;
+            this.ToolTip.SetToolTip(this.BlackListChListBox, "Kuskis on the black list wont be taken into account for notifications,\r\neven when" +
+        " \"All designers\" is checked.");
             this.BlackListChListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BlackListChListBox_MouseDown);
             // 
-            // label3
+            // BlackListLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 136);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
-            this.label3.TabIndex = 47;
-            this.label3.Text = "Black list";
+            this.BlackListLabel.AutoSize = true;
+            this.BlackListLabel.Location = new System.Drawing.Point(3, 136);
+            this.BlackListLabel.Name = "BlackListLabel";
+            this.BlackListLabel.Size = new System.Drawing.Size(49, 13);
+            this.BlackListLabel.TabIndex = 47;
+            this.BlackListLabel.Text = "Black list";
+            this.ToolTip.SetToolTip(this.BlackListLabel, "Kuskis on the black list wont be taken into account for \r\nnotifications, even whe" +
+        "n \"All designers\" is checked.");
             // 
             // ErrorLabel
             // 
@@ -293,6 +314,7 @@
             this.MapSizeDomainUpDown.Size = new System.Drawing.Size(44, 20);
             this.MapSizeDomainUpDown.TabIndex = 49;
             this.MapSizeDomainUpDown.TabStop = false;
+            this.ToolTip.SetToolTip(this.MapSizeDomainUpDown, "\r\nShow battle\'s map on notifications and choose it\'s size.");
             // 
             // mapSizeLabel
             // 
@@ -302,21 +324,24 @@
             this.mapSizeLabel.Size = new System.Drawing.Size(48, 13);
             this.mapSizeLabel.TabIndex = 50;
             this.mapSizeLabel.Text = "map size";
+            this.ToolTip.SetToolTip(this.mapSizeLabel, "\r\nShow battle\'s map on notifications and choose it\'s size.");
             // 
             // ToolTip
             // 
+            this.ToolTip.Active = false;
             this.ToolTip.AutoPopDelay = 32000;
             this.ToolTip.InitialDelay = 32000;
             this.ToolTip.ReshowDelay = 100;
             // 
-            // label4
+            // DisplayScreenLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(294, 173);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 13);
-            this.label4.TabIndex = 52;
-            this.label4.Text = "Display screen";
+            this.DisplayScreenLabel.AutoSize = true;
+            this.DisplayScreenLabel.Location = new System.Drawing.Point(294, 173);
+            this.DisplayScreenLabel.Name = "DisplayScreenLabel";
+            this.DisplayScreenLabel.Size = new System.Drawing.Size(76, 13);
+            this.DisplayScreenLabel.TabIndex = 52;
+            this.DisplayScreenLabel.Text = "Display screen";
+            this.ToolTip.SetToolTip(this.DisplayScreenLabel, "\r\nChoose in which screen notifications will be shown.");
             // 
             // DisplayScreenButton
             // 
@@ -329,6 +354,7 @@
             this.DisplayScreenButton.TabIndex = 53;
             this.DisplayScreenButton.TabStop = false;
             this.DisplayScreenButton.Text = "0";
+            this.ToolTip.SetToolTip(this.DisplayScreenButton, "\r\nChoose in which screen notifications will be shown.");
             this.DisplayScreenButton.UseVisualStyleBackColor = false;
             this.DisplayScreenButton.Click += new System.EventHandler(this.DisplayScreenButton_Click);
             // 
@@ -337,14 +363,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.DisplayScreenButton);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.DisplayScreenLabel);
             this.Controls.Add(this.mapSizeLabel);
             this.Controls.Add(this.MapSizeDomainUpDown);
             this.Controls.Add(this.ErrorLabel);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.BlackListLabel);
             this.Controls.Add(this.BlackListChListBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CloseDialogTimeLabel2);
+            this.Controls.Add(this.CloseDialogTimeLabel1);
             this.Controls.Add(this.CloseDialogTimeCheckBox);
             this.Controls.Add(this.CloseDialogNumericUpDown);
             this.Controls.Add(this.ShowBattleCheckBox);
@@ -378,8 +404,8 @@
         private System.Windows.Forms.Button AddDesignerButton;
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.Label NotificationLabel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label CloseDialogTimeLabel1;
+        private System.Windows.Forms.Label CloseDialogTimeLabel2;
         public System.Windows.Forms.CheckBox ShowMapCheckBox;
         public System.Windows.Forms.CheckBox PlaySoundCheckBox;
         public System.Windows.Forms.CheckBox ShowBattleCheckBox;
@@ -389,13 +415,13 @@
         public System.Windows.Forms.CheckedListBox DesignersChListBox;
         public System.Windows.Forms.CheckedListBox BattleTypesChListBox;
         public System.Windows.Forms.CheckedListBox BlackListChListBox;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label BlackListLabel;
         internal System.Windows.Forms.TextBox SearchDesignerTextBox;
         private System.Windows.Forms.Label ErrorLabel;
         private System.Windows.Forms.Label mapSizeLabel;
         public System.Windows.Forms.DomainUpDown MapSizeDomainUpDown;
         private System.Windows.Forms.ToolTip ToolTip;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label DisplayScreenLabel;
         public System.Windows.Forms.Button DisplayScreenButton;
     }
 }
