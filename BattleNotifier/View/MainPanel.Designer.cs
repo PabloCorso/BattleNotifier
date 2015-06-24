@@ -68,7 +68,6 @@
             this.DesignersLabel.TabIndex = 31;
             this.DesignersLabel.Text = "Filter designers";
             this.ToolTip.SetToolTip(this.DesignersLabel, resources.GetString("DesignersLabel.ToolTip"));
-            this.DesignersLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ShowToolTip);
             // 
             // NotificationDurationTrackBar
             // 
@@ -202,7 +201,8 @@
             this.ShowBattleCheckBox.TabIndex = 38;
             this.ShowBattleCheckBox.TabStop = false;
             this.ShowBattleCheckBox.Text = "Show battle info";
-            this.ToolTip.SetToolTip(this.ShowBattleCheckBox, "\r\nShow battle\'s information window at notifications.");
+            this.ToolTip.SetToolTip(this.ShowBattleCheckBox, "Show battle\'s information window at notifications.\r\nTip: click the level\'s name t" +
+        "o see the battle on elmaoline.");
             this.ShowBattleCheckBox.UseVisualStyleBackColor = true;
             this.ShowBattleCheckBox.CheckedChanged += new System.EventHandler(this.ShowBattleCheckBox_CheckedChanged);
             // 

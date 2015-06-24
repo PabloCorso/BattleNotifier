@@ -402,13 +402,5 @@ namespace BattleNotifier.View
 
             DisplayScreenButton.Text = currentScreen.ToString();
         }
-
-        private void ShowToolTip(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Right)
-            {
-                ToolTip.Show(ToolTip.GetToolTip((Control)sender).ToString(), (Control)sender);
-            }
-        }
     }
 }

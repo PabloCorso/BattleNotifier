@@ -42,11 +42,11 @@
             this.CloseButton = new System.Windows.Forms.Button();
             this.MapCheckBox = new System.Windows.Forms.CheckBox();
             this.PrintMapButton = new System.Windows.Forms.Button();
-            this.AttributesOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
-            this.CountdownOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
             this.HeadlineOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
             this.BattleTypeOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
             this.DurationOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
+            this.CountdownOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
+            this.AttributesOutlineLabel = new BattleNotifier.View.Controls.OutlineLabel();
             this.SuspendLayout();
             // 
             // PrintMapDialog
@@ -180,33 +180,6 @@
             this.PrintMapButton.UseVisualStyleBackColor = true;
             this.PrintMapButton.Click += new System.EventHandler(this.PrintMapButton_Click);
             // 
-            // AttributesOutlineLabel
-            // 
-            this.AttributesOutlineLabel.AutoSize = true;
-            this.AttributesOutlineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.AttributesOutlineLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.AttributesOutlineLabel.Location = new System.Drawing.Point(8, 42);
-            this.AttributesOutlineLabel.Name = "AttributesOutlineLabel";
-            this.AttributesOutlineLabel.OutlineForeColor = System.Drawing.Color.Black;
-            this.AttributesOutlineLabel.OutlineWidth = 1.5F;
-            this.AttributesOutlineLabel.Size = new System.Drawing.Size(0, 13);
-            this.AttributesOutlineLabel.TabIndex = 14;
-            this.AttributesOutlineLabel.Visible = false;
-            this.AttributesOutlineLabel.Click += new System.EventHandler(this.AttributesLabel_Click);
-            // 
-            // CountdownOutlineLabel
-            // 
-            this.CountdownOutlineLabel.AutoSize = true;
-            this.CountdownOutlineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.CountdownOutlineLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.CountdownOutlineLabel.Location = new System.Drawing.Point(65, 70);
-            this.CountdownOutlineLabel.Name = "CountdownOutlineLabel";
-            this.CountdownOutlineLabel.OutlineForeColor = System.Drawing.Color.Black;
-            this.CountdownOutlineLabel.OutlineWidth = 1.5F;
-            this.CountdownOutlineLabel.Size = new System.Drawing.Size(0, 17);
-            this.CountdownOutlineLabel.TabIndex = 12;
-            this.CountdownOutlineLabel.Visible = false;
-            // 
             // HeadlineOutlineLabel
             // 
             this.HeadlineOutlineLabel.AutoSize = true;
@@ -250,6 +223,33 @@
             this.DurationOutlineLabel.TabIndex = 11;
             this.DurationOutlineLabel.Text = "25 mins";
             this.DurationOutlineLabel.Visible = false;
+            // 
+            // CountdownOutlineLabel
+            // 
+            this.CountdownOutlineLabel.AutoSize = true;
+            this.CountdownOutlineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.CountdownOutlineLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.CountdownOutlineLabel.Location = new System.Drawing.Point(65, 70);
+            this.CountdownOutlineLabel.Name = "CountdownOutlineLabel";
+            this.CountdownOutlineLabel.OutlineForeColor = System.Drawing.Color.Black;
+            this.CountdownOutlineLabel.OutlineWidth = 1.5F;
+            this.CountdownOutlineLabel.Size = new System.Drawing.Size(0, 17);
+            this.CountdownOutlineLabel.TabIndex = 12;
+            this.CountdownOutlineLabel.Visible = false;
+            // 
+            // AttributesOutlineLabel
+            // 
+            this.AttributesOutlineLabel.AutoSize = true;
+            this.AttributesOutlineLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.AttributesOutlineLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.AttributesOutlineLabel.Location = new System.Drawing.Point(8, 42);
+            this.AttributesOutlineLabel.Name = "AttributesOutlineLabel";
+            this.AttributesOutlineLabel.OutlineForeColor = System.Drawing.Color.Black;
+            this.AttributesOutlineLabel.OutlineWidth = 1.5F;
+            this.AttributesOutlineLabel.Size = new System.Drawing.Size(0, 13);
+            this.AttributesOutlineLabel.TabIndex = 14;
+            this.AttributesOutlineLabel.Visible = false;
+            this.AttributesOutlineLabel.Click += new System.EventHandler(this.AttributesLabel_Click);
             // 
             // BattleNotification
             // 
