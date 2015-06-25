@@ -189,8 +189,8 @@
             this.NotificationSoundGroup.TabIndex = 3;
             this.NotificationSoundGroup.TabStop = false;
             this.NotificationSoundGroup.Text = "Notification sound";
-            this.ToolTip.SetToolTip(this.NotificationSoundGroup, "When \"Use custom sound\" is unchecked or the choosen custom sound\r\ncannot be playe" +
-        "d, the selected default sound is played instead.");
+            this.ToolTip.SetToolTip(this.NotificationSoundGroup, "When \"Use custom sound\" is unchecked or the picked custom sound\r\ncannot be played" +
+        ", the selected default sound is played instead.");
             // 
             // SetSoundButton
             // 
