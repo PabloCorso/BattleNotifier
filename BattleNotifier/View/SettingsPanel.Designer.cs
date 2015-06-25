@@ -172,7 +172,7 @@
             this.HideToTraybarCheckBox.Size = new System.Drawing.Size(175, 17);
             this.HideToTraybarCheckBox.TabIndex = 0;
             this.HideToTraybarCheckBox.Text = "Hide to tray bar when minimized";
-            this.ToolTip.SetToolTip(this.HideToTraybarCheckBox, "\r\nHide Battle Notifier to tray bar (bottom right corner) when minimized.");
+            this.ToolTip.SetToolTip(this.HideToTraybarCheckBox, "\r\nHide Battle Notifier to tray bar (bottom right corner) when it is minimized.");
             this.HideToTraybarCheckBox.UseVisualStyleBackColor = true;
             this.HideToTraybarCheckBox.CheckedChanged += new System.EventHandler(this.HideToTraybarCheckBox_CheckedChanged);
             // 

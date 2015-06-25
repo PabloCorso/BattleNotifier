@@ -75,8 +75,8 @@
             this.NotificationDurationTrackBar.Name = "NotificationDurationTrackBar";
             this.NotificationDurationTrackBar.Size = new System.Drawing.Size(277, 45);
             this.NotificationDurationTrackBar.TabIndex = 3;
-            this.ToolTip.SetToolTip(this.NotificationDurationTrackBar, "Set a timer to stop notifying. Time is show on Start button.\r\nFirst value of the " +
-        "track bar means no timer is set.");
+            this.ToolTip.SetToolTip(this.NotificationDurationTrackBar, "Set a timer to stop notifying. Time is shown on Start button.\r\nFirst value of the" +
+        " track bar means no timer is set.");
             this.NotificationDurationTrackBar.ValueChanged += new System.EventHandler(this.NotificationDurationTrackBar_ValueChanged);
             // 
             // StartNotificationButton
@@ -86,7 +86,7 @@
             this.StartNotificationButton.Size = new System.Drawing.Size(120, 45);
             this.StartNotificationButton.TabIndex = 2;
             this.StartNotificationButton.Text = "▶ Start";
-            this.ToolTip.SetToolTip(this.StartNotificationButton, "Start battle notifications! Ctrl+R shortcut for start/restart.");
+            this.ToolTip.SetToolTip(this.StartNotificationButton, "\r\nStart battle notifications! Ctrl+R shortcut for start/restart.");
             this.StartNotificationButton.UseVisualStyleBackColor = true;
             this.StartNotificationButton.Click += new System.EventHandler(this.StartNotificationButton_Click);
             // 
@@ -101,8 +101,8 @@
             this.DesignersChListBox.Size = new System.Drawing.Size(120, 80);
             this.DesignersChListBox.TabIndex = 27;
             this.DesignersChListBox.TabStop = false;
-            this.ToolTip.SetToolTip(this.DesignersChListBox, "Press right click over a kuski to move from this list to the black list\r\nand vice" +
-        "versa. Press middle click over a kukist to remove him.");
+            this.ToolTip.SetToolTip(this.DesignersChListBox, "Press right click over a kuski to move him from this list to the black \r\nlist and" +
+        " viceversa. Press middle click over a kuski to remove him.");
             this.DesignersChListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DesignersChListBox_MouseDown);
             // 
             // BattleTypesLabel
@@ -174,7 +174,7 @@
             this.ShowMapCheckBox.TabIndex = 36;
             this.ShowMapCheckBox.TabStop = false;
             this.ShowMapCheckBox.Text = "Show level map";
-            this.ToolTip.SetToolTip(this.ShowMapCheckBox, "Show battle\'s map at notifications with the desired size.\r\nTip: Middle click over" +
+            this.ToolTip.SetToolTip(this.ShowMapCheckBox, "Show battle\'s map at notifications with the desired size.\r\nTip: middle click over" +
         " it to close or right click too see more options.");
             this.ShowMapCheckBox.UseVisualStyleBackColor = true;
             this.ShowMapCheckBox.CheckedChanged += new System.EventHandler(this.ShowMapCheckBox_CheckedChanged);
@@ -188,7 +188,7 @@
             this.PlaySoundCheckBox.TabIndex = 37;
             this.PlaySoundCheckBox.TabStop = false;
             this.PlaySoundCheckBox.Text = "Play sound";
-            this.ToolTip.SetToolTip(this.PlaySoundCheckBox, "\r\nPlay a sound at notifications.");
+            this.ToolTip.SetToolTip(this.PlaySoundCheckBox, "\r\nPlay a sound at notifications. See settings to select the sound.");
             this.PlaySoundCheckBox.UseVisualStyleBackColor = true;
             this.PlaySoundCheckBox.CheckedChanged += new System.EventHandler(this.PlaySoundCheckBox_CheckedChanged);
             // 
@@ -239,7 +239,7 @@
             this.CloseDialogTimeCheckBox.TabIndex = 43;
             this.CloseDialogTimeCheckBox.TabStop = false;
             this.CloseDialogTimeCheckBox.Text = "Close notification";
-            this.ToolTip.SetToolTip(this.CloseDialogTimeCheckBox, "\r\nClose notifications after a choosen amount of seconds.");
+            this.ToolTip.SetToolTip(this.CloseDialogTimeCheckBox, "\r\nClose notifications after a chosen amount of seconds.");
             this.CloseDialogTimeCheckBox.UseVisualStyleBackColor = true;
             this.CloseDialogTimeCheckBox.CheckedChanged += new System.EventHandler(this.CloseDialogTimeCheckBox_CheckedChanged);
             // 
@@ -273,8 +273,8 @@
             this.BlackListChListBox.Size = new System.Drawing.Size(120, 64);
             this.BlackListChListBox.TabIndex = 46;
             this.BlackListChListBox.TabStop = false;
-            this.ToolTip.SetToolTip(this.BlackListChListBox, "Kuskis on the black list wont be taken into account for notifications,\r\neven when" +
-        " \"All designers\" is checked.");
+            this.ToolTip.SetToolTip(this.BlackListChListBox, "Checked kuskis on the blacklist won\'t be taken into account for \r\nnotifications, " +
+        "even when \"All designers\" is checked.");
             this.BlackListChListBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BlackListChListBox_MouseDown);
             // 
             // BlackListLabel
@@ -282,9 +282,9 @@
             this.BlackListLabel.AutoSize = true;
             this.BlackListLabel.Location = new System.Drawing.Point(3, 136);
             this.BlackListLabel.Name = "BlackListLabel";
-            this.BlackListLabel.Size = new System.Drawing.Size(49, 13);
+            this.BlackListLabel.Size = new System.Drawing.Size(46, 13);
             this.BlackListLabel.TabIndex = 47;
-            this.BlackListLabel.Text = "Black list";
+            this.BlackListLabel.Text = "Blacklist";
             this.ToolTip.SetToolTip(this.BlackListLabel, "Kuskis on the black list wont be taken into account for \r\nnotifications, even whe" +
         "n \"All designers\" is checked.");
             // 
