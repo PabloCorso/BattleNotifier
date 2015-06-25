@@ -66,7 +66,7 @@ namespace BattleNotifier.Controller
             int type = random.Next(0, 11);
             Battle battle = new Battle()
             {
-                FileName = "Battle Notifier!.lev",
+                FileName = "Battle Notifier.lev",
                 MapUrl = null,
                 Duration = duration,
                 Attributes = (BattleAttribute)attributes,

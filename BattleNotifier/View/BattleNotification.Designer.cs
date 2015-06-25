@@ -130,7 +130,6 @@
             this.MinimizeButton.Size = new System.Drawing.Size(21, 17);
             this.MinimizeButton.TabIndex = 8;
             this.MinimizeButton.TabStop = false;
-            this.MinimizeButton.Text = "_";
             this.MinimizeButton.UseVisualStyleBackColor = false;
             this.MinimizeButton.Visible = false;
             this.MinimizeButton.Click += new System.EventHandler(this.MinimizeButton_Click);
@@ -274,7 +273,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "BattleNotification";
-            this.Text = "Battle Notification";
+            this.Text = "New Battle!";
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BattleNotification_FormClosed_1);
             this.ResumeLayout(false);

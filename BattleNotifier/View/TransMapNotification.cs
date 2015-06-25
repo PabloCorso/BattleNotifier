@@ -84,7 +84,7 @@ namespace BattleNotifier.View
                 else
                 {
                     m_clock.Stop();
-                    m_bForceClose = true;
+                    //m_bForceClose = true;
                     this.Close();
                     if (m_bDisposeAtEnd)
                         this.Dispose();
@@ -109,8 +109,8 @@ namespace BattleNotifier.View
         private System.ComponentModel.IContainer components = null;
         private Timer m_clock;
         private bool m_bShowing = true;
-        private bool m_bForceClose = false;
-        private DialogResult m_origDialogResult;
+        //private bool m_bForceClose = false;
+        //private DialogResult m_origDialogResult;
         private bool m_bDisposeAtEnd = false;
         #endregion // private variables
 

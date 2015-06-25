@@ -51,7 +51,7 @@ namespace BattleNotifier.View
         {
             transparentStyle = true;
             FormBorderStyle = FormBorderStyle.None;
-            Height += 20;
+            Height += 15;
 
             MinimizeButton.Visible = true;
             CloseButton.Visible = true;

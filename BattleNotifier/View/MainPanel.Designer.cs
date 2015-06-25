@@ -125,7 +125,7 @@
             this.BattleTypesChListBox.TabIndex = 20;
             this.BattleTypesChListBox.TabStop = false;
             this.ToolTip.SetToolTip(this.BattleTypesChListBox, "Only checked battle types will be notificated unless \"All battle types\"\r\nis check" +
-        "ed, in this case all battle types will be taken into account.");
+        "ed, in that case all battle types will be taken into account.");
             this.BattleTypesChListBox.Click += new System.EventHandler(this.BattleTypesChListBox_Click);
             // 
             // SearchDesignerTextBox
@@ -174,8 +174,8 @@
             this.ShowMapCheckBox.TabIndex = 36;
             this.ShowMapCheckBox.TabStop = false;
             this.ShowMapCheckBox.Text = "Show level map";
-            this.ToolTip.SetToolTip(this.ShowMapCheckBox, "Show battle\'s map at notifications with the desired size.\r\nTip: press right click" +
-        " over a map to see minimize/close options.");
+            this.ToolTip.SetToolTip(this.ShowMapCheckBox, "Show battle\'s map at notifications with the desired size.\r\nTip: Middle click over" +
+        " it to close or right click too see more options.");
             this.ShowMapCheckBox.UseVisualStyleBackColor = true;
             this.ShowMapCheckBox.CheckedChanged += new System.EventHandler(this.ShowMapCheckBox_CheckedChanged);
             // 
