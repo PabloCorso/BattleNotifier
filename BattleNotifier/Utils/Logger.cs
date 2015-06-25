@@ -10,6 +10,7 @@ namespace Utils
 {
     public static class Logger
     {
+#if DEBUG
         public static void Log(String lines)
         {
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
@@ -27,5 +28,6 @@ namespace Utils
 
             file.Close();
         }
+#endif
     }
 }

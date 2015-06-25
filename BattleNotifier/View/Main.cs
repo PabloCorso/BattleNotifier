@@ -224,7 +224,9 @@ namespace BattleNotifier.View
             }
             catch (Exception ex)
             {
+#if DEBUG
                 Logger.Log(600, ex);
+#endif
                 // You cant handle the truth.
             }
         }

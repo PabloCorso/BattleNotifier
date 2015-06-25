@@ -120,7 +120,9 @@ namespace BattleNotifier.View
             }
             catch (ObjectDisposedException ex)
             {
+#if DEBUG
                 Logger.Log(500, ex);
+#endif
                 // Timer ticked while form being disposed. Fixed using forms timer.
             }
         }
@@ -167,8 +169,8 @@ namespace BattleNotifier.View
         {
             StartPosition = FormStartPosition.Manual;
             Screen screen = Screen.PrimaryScreen;
-            if(displayScreen <= Screen.AllScreens.Length && displayScreen > 0)
-                  screen = Screen.AllScreens[displayScreen - 1];
+            if (displayScreen <= Screen.AllScreens.Length && displayScreen > 0)
+                screen = Screen.AllScreens[displayScreen - 1];
             int screenWidth = screen.WorkingArea.Width;
             int screenHeight = screen.WorkingArea.Height;
             Left = screen.WorkingArea.Left + screenWidth - this.Width;

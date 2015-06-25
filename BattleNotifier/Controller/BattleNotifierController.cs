@@ -231,16 +231,20 @@ namespace BattleNotifier.Controller
 
                             eolDataLoaded = true;
                         }
-                        catch (Exception ex) 
+                        catch (Exception ex)
                         {
                             try
                             {
                                 SetBattleUrls(battle);
+#if DEBUG
                                 Logger.Log(101, ex);
+#endif
                             }
-                            catch (Exception iex) 
+                            catch (Exception iex)
                             {
+#if DEBUG
                                 Logger.Log(103, iex);
+#endif
                             }
                         }
                     }
@@ -255,7 +259,9 @@ namespace BattleNotifier.Controller
             }
             catch (Exception ex)
             {
+#if DEBUG
                 Logger.Log(100, ex);
+#endif
                 return null;
             }
         }

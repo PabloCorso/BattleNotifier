@@ -180,7 +180,9 @@ namespace BattleNotifier.View
             }
             catch (ObjectDisposedException ex)
             {
+#if DEBUG
                 Logger.Log(300, ex);
+#endif
                 // Timer ticked while form being disposed. Fixed using forms timer.
             }
         }
@@ -232,7 +234,9 @@ namespace BattleNotifier.View
             catch (Exception ex)
             {
                 // InvalidOperationException? lock map?
+#if DEBUG
                 Logger.Log(301, ex);
+#endif
             }
         }
 
