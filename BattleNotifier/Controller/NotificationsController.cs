@@ -60,17 +60,20 @@ namespace BattleNotifier.Controller
         public void SimulateNewBattle()
         {
             Random random = new Random();
-            int duration = Convert.ToInt32(random.NextDouble() * (60 - 1) + 1);
+            int id = random.Next(0, 92350);
+            int duration = random.Next(1, 61);
+            int attributes = random.Next(1, 2048);
+            int type = random.Next(0, 11);
             Battle battle = new Battle()
             {
-                FileName = "Pob0989.lev",
+                FileName = "Battle Notifier!.lev",
                 MapUrl = null,
                 Duration = duration,
-                Attributes = (BattleAttribute)15,
-                Type = 0,
+                Attributes = (BattleAttribute)attributes,
+                Type = (BattleType)type,
                 StartedDateTime = DateTime.Now,
                 Desginer = "Pab",
-                Id = 90431
+                Id = id
             };
 
             this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true);

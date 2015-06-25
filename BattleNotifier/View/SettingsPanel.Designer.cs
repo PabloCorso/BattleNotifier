@@ -244,6 +244,7 @@
             this.DefaultSoundComboBox.Name = "DefaultSoundComboBox";
             this.DefaultSoundComboBox.Size = new System.Drawing.Size(97, 21);
             this.DefaultSoundComboBox.TabIndex = 0;
+            this.DefaultSoundComboBox.SelectedValueChanged += new System.EventHandler(this.DefaultSoundComboBox_SelectedValueChanged);
             // 
             // ShowOnMapGroup
             // 

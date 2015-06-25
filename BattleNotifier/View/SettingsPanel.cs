@@ -167,5 +167,10 @@ namespace BattleNotifier.View
         {
             UserSettings.Instance.SetHideToTraybarValue(HideToTraybarCheckBox.Checked);
         }
+
+        private void DefaultSoundComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            SettingsPanel_Click(sender, e);
+        }
     }
 }
