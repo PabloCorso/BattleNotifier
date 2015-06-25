@@ -120,9 +120,7 @@ namespace BattleNotifier.View
             }
             catch (ObjectDisposedException ex)
             {
-#if DEBUG
                 Logger.Log(500, ex);
-#endif
                 // Timer ticked while form being disposed. Fixed using forms timer.
             }
         }

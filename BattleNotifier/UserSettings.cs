@@ -83,9 +83,7 @@ namespace BattleNotifier
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Logger.Log(400, ex);
-#endif
                 throw;
             }
         }

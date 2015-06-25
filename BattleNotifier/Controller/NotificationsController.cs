@@ -144,9 +144,7 @@ namespace BattleNotifier.Controller
             {
                 if (!simulation)
                 {
-#if DEBUG
                     Logger.Log(200, ex);
-#endif
                 }
                 Map = (Image)Properties.Resources.about;
             }
@@ -187,9 +185,7 @@ namespace BattleNotifier.Controller
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Logger.Log(201, ex);
-#endif
                 // Nothing happend here, no one saw anything. Get back to work.
             }
         }
@@ -211,9 +207,7 @@ namespace BattleNotifier.Controller
                 }
                 catch (Exception ex)
                 {
-#if DEBUG
                     Logger.Log(202, ex);
-#endif
                 }
                 try
                 {
@@ -222,9 +216,7 @@ namespace BattleNotifier.Controller
                 }
                 catch (Exception ex)
                 {
-#if DEBUG
                     Logger.Log(203, ex);
-#endif
                 }
 
                 StopSound();
@@ -234,9 +226,7 @@ namespace BattleNotifier.Controller
             }
             catch (Exception ex)
             {
-#if DEBUG
                 Logger.Log(204, ex);
-#endif
             }
             finally
             {
