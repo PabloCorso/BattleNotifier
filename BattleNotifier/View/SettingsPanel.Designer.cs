@@ -190,7 +190,7 @@
             this.NotificationSoundGroup.TabStop = false;
             this.NotificationSoundGroup.Text = "Notification sound";
             this.ToolTip.SetToolTip(this.NotificationSoundGroup, "When \"Use custom sound\" is unchecked or the choosen custom sound\r\ncannot be playe" +
-        "d the selected default sound is played instead.");
+        "d, the selected default sound is played instead.");
             // 
             // SetSoundButton
             // 
@@ -826,7 +826,8 @@
             // 
             // SoundOpenFileDialog
             // 
-            this.SoundOpenFileDialog.Filter = "All Supported Audio | *.mp3; *.wma | MP3s | *.mp3 | WMAs | *.wma";
+            this.SoundOpenFileDialog.Filter = "All Supported Audio | *.mp3;*.wma;*.wav; | MP3s | *.mp3 | WMAs | *.wma | WAVs | *" +
+    ".wav";
             // 
             // RandomNewBattleCheckBox
             // 

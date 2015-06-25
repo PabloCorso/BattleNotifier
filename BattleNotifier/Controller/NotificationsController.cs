@@ -121,7 +121,8 @@ namespace BattleNotifier.Controller
 
             // Play sound.
             if (settings.Basic.PlaySound)
-                if (!string.IsNullOrEmpty(settings.Basic.SoundPath) && File.Exists(settings.Basic.SoundPath))
+                if (settings.Basic.UseCustomSound && 
+                    !string.IsNullOrEmpty(settings.Basic.SoundPath) && File.Exists(settings.Basic.SoundPath))
                     PlaySound(settings.Basic.SoundPath, settings.Basic.DefaultSound);
                 else
                     PlayDefaultSound(settings.Basic.DefaultSound);
