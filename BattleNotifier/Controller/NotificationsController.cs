@@ -110,8 +110,10 @@ namespace BattleNotifier.Controller
 
             if (!settings.General.ShowOnTop)
             {
-                mn.TopMost = false;
-                bn.TopMost = false;
+                if (mn != null)
+                    mn.TopMost = false;
+                if (bn != null)
+                    bn.TopMost = false;
             }
 
             if (settings.Basic.ShowMapDialog)
@@ -121,7 +123,7 @@ namespace BattleNotifier.Controller
 
             // Play sound.
             if (settings.Basic.PlaySound)
-                if (settings.Basic.UseCustomSound && 
+                if (settings.Basic.UseCustomSound &&
                     !string.IsNullOrEmpty(settings.Basic.SoundPath) && File.Exists(settings.Basic.SoundPath))
                     PlaySound(settings.Basic.SoundPath, settings.Basic.DefaultSound);
                 else
