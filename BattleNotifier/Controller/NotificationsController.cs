@@ -240,10 +240,11 @@ namespace BattleNotifier.Controller
 
         public void BattleNotificationMapPressed()
         {
-            if (mn.Visible)
-                mn.Visible = false;
-            else
-                mn.Visible = true;
+            if (mn != null)
+                if (mn.Visible)
+                    mn.Visible = false;
+                else
+                    mn.Visible = true;
         }
 
         public void EndBattleNotification()
