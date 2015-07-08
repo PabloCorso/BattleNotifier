@@ -424,5 +424,17 @@ namespace BattleNotifier.Properties {
                 this["DisplayScreen"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool RunOnWinStartup {
+            get {
+                return ((bool)(this["RunOnWinStartup"]));
+            }
+            set {
+                this["RunOnWinStartup"] = value;
+            }
+        }
     }
 }

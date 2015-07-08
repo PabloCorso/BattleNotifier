@@ -89,6 +89,7 @@
             this.SoundOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.RandomNewBattleCheckBox = new System.Windows.Forms.CheckBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.RunOnWinStartupCheckBox = new System.Windows.Forms.CheckBox();
             this.GeneralSettingsGroup.SuspendLayout();
             this.NotificationSoundGroup.SuspendLayout();
             this.ShowOnMapGroup.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // GeneralSettingsGroup
             // 
+            this.GeneralSettingsGroup.Controls.Add(this.RunOnWinStartupCheckBox);
             this.GeneralSettingsGroup.Controls.Add(this.HidePrintCheckBox);
             this.GeneralSettingsGroup.Controls.Add(this.TransparentCheckBox);
             this.GeneralSettingsGroup.Controls.Add(this.ShowOnTopCheckBox);
@@ -104,7 +106,7 @@
             this.GeneralSettingsGroup.Controls.Add(this.HideToTraybarCheckBox);
             this.GeneralSettingsGroup.Location = new System.Drawing.Point(9, 15);
             this.GeneralSettingsGroup.Name = "GeneralSettingsGroup";
-            this.GeneralSettingsGroup.Size = new System.Drawing.Size(188, 163);
+            this.GeneralSettingsGroup.Size = new System.Drawing.Size(188, 179);
             this.GeneralSettingsGroup.TabIndex = 0;
             this.GeneralSettingsGroup.TabStop = false;
             this.GeneralSettingsGroup.Text = "General settings";
@@ -112,7 +114,7 @@
             // HidePrintCheckBox
             // 
             this.HidePrintCheckBox.AutoSize = true;
-            this.HidePrintCheckBox.Location = new System.Drawing.Point(7, 134);
+            this.HidePrintCheckBox.Location = new System.Drawing.Point(6, 154);
             this.HidePrintCheckBox.Name = "HidePrintCheckBox";
             this.HidePrintCheckBox.Size = new System.Drawing.Size(126, 17);
             this.HidePrintCheckBox.TabIndex = 5;
@@ -123,7 +125,7 @@
             // TransparentCheckBox
             // 
             this.TransparentCheckBox.AutoSize = true;
-            this.TransparentCheckBox.Location = new System.Drawing.Point(7, 111);
+            this.TransparentCheckBox.Location = new System.Drawing.Point(6, 132);
             this.TransparentCheckBox.Name = "TransparentCheckBox";
             this.TransparentCheckBox.Size = new System.Drawing.Size(107, 17);
             this.TransparentCheckBox.TabIndex = 4;
@@ -134,7 +136,7 @@
             // ShowOnTopCheckBox
             // 
             this.ShowOnTopCheckBox.AutoSize = true;
-            this.ShowOnTopCheckBox.Location = new System.Drawing.Point(7, 88);
+            this.ShowOnTopCheckBox.Location = new System.Drawing.Point(6, 110);
             this.ShowOnTopCheckBox.Name = "ShowOnTopCheckBox";
             this.ShowOnTopCheckBox.Size = new System.Drawing.Size(145, 17);
             this.ShowOnTopCheckBox.TabIndex = 3;
@@ -145,7 +147,7 @@
             // StartupCheckBox
             // 
             this.StartupCheckBox.AutoSize = true;
-            this.StartupCheckBox.Location = new System.Drawing.Point(7, 22);
+            this.StartupCheckBox.Location = new System.Drawing.Point(6, 22);
             this.StartupCheckBox.Name = "StartupCheckBox";
             this.StartupCheckBox.Size = new System.Drawing.Size(140, 17);
             this.StartupCheckBox.TabIndex = 2;
@@ -156,7 +158,7 @@
             // FadeCheckBox
             // 
             this.FadeCheckBox.AutoSize = true;
-            this.FadeCheckBox.Location = new System.Drawing.Point(7, 66);
+            this.FadeCheckBox.Location = new System.Drawing.Point(6, 88);
             this.FadeCheckBox.Name = "FadeCheckBox";
             this.FadeCheckBox.Size = new System.Drawing.Size(149, 17);
             this.FadeCheckBox.TabIndex = 1;
@@ -167,7 +169,7 @@
             // HideToTraybarCheckBox
             // 
             this.HideToTraybarCheckBox.AutoSize = true;
-            this.HideToTraybarCheckBox.Location = new System.Drawing.Point(7, 44);
+            this.HideToTraybarCheckBox.Location = new System.Drawing.Point(6, 66);
             this.HideToTraybarCheckBox.Name = "HideToTraybarCheckBox";
             this.HideToTraybarCheckBox.Size = new System.Drawing.Size(175, 17);
             this.HideToTraybarCheckBox.TabIndex = 0;
@@ -807,7 +809,7 @@
             // SimulateLabel
             // 
             this.SimulateLabel.AutoSize = true;
-            this.SimulateLabel.Location = new System.Drawing.Point(22, 181);
+            this.SimulateLabel.Location = new System.Drawing.Point(22, 197);
             this.SimulateLabel.Name = "SimulateLabel";
             this.SimulateLabel.Size = new System.Drawing.Size(165, 13);
             this.SimulateLabel.TabIndex = 6;
@@ -815,7 +817,7 @@
             // 
             // NewBattleButton
             // 
-            this.NewBattleButton.Location = new System.Drawing.Point(67, 197);
+            this.NewBattleButton.Location = new System.Drawing.Point(67, 213);
             this.NewBattleButton.Name = "NewBattleButton";
             this.NewBattleButton.Size = new System.Drawing.Size(75, 23);
             this.NewBattleButton.TabIndex = 7;
@@ -832,7 +834,7 @@
             // RandomNewBattleCheckBox
             // 
             this.RandomNewBattleCheckBox.AutoSize = true;
-            this.RandomNewBattleCheckBox.Location = new System.Drawing.Point(16, 200);
+            this.RandomNewBattleCheckBox.Location = new System.Drawing.Point(16, 216);
             this.RandomNewBattleCheckBox.Name = "RandomNewBattleCheckBox";
             this.RandomNewBattleCheckBox.Size = new System.Drawing.Size(47, 17);
             this.RandomNewBattleCheckBox.TabIndex = 8;
@@ -843,6 +845,18 @@
             // ToolTip
             // 
             this.ToolTip.Active = false;
+            // 
+            // RunOnWinStartupCheckBox
+            // 
+            this.RunOnWinStartupCheckBox.AutoSize = true;
+            this.RunOnWinStartupCheckBox.Location = new System.Drawing.Point(6, 44);
+            this.RunOnWinStartupCheckBox.Name = "RunOnWinStartupCheckBox";
+            this.RunOnWinStartupCheckBox.Size = new System.Drawing.Size(140, 17);
+            this.RunOnWinStartupCheckBox.TabIndex = 6;
+            this.RunOnWinStartupCheckBox.Text = "Run at Windows startup";
+            this.ToolTip.SetToolTip(this.RunOnWinStartupCheckBox, "Run Battle Notifier at Windows startup.");
+            this.RunOnWinStartupCheckBox.UseVisualStyleBackColor = true;
+            this.RunOnWinStartupCheckBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RunOnWinStartupCheckBox_MouseUp);
             // 
             // SettingsPanel
             // 
@@ -932,5 +946,6 @@
         private System.Windows.Forms.OpenFileDialog SoundOpenFileDialog;
         private System.Windows.Forms.CheckBox RandomNewBattleCheckBox;
         private System.Windows.Forms.ToolTip ToolTip;
+        public System.Windows.Forms.CheckBox RunOnWinStartupCheckBox;
     }
 }

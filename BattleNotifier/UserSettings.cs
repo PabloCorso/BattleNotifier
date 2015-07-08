@@ -180,6 +180,7 @@ namespace BattleNotifier
 
             // Settings panel user settings.
             settingsPanel.StartupCheckBox.Checked = settings.NotifyOnStartup;
+            settingsPanel.RunOnWinStartupCheckBox.Checked = settings.RunOnWinStartup;
             settingsPanel.HideToTraybarCheckBox.Checked = settings.HideToTraybar;
             settingsPanel.FadeCheckBox.Checked = settings.UseFadeEffect;
             settingsPanel.ShowOnTopCheckBox.Checked = settings.ShowOnTop;
@@ -250,6 +251,7 @@ namespace BattleNotifier
 
             // Settings panel user settings.
             settings.NotifyOnStartup = settingsPanel.StartupCheckBox.Checked;
+            settings.RunOnWinStartup = settingsPanel.RunOnWinStartupCheckBox.Checked;
             settings.HideToTraybar = settingsPanel.HideToTraybarCheckBox.Checked;
             settings.UseFadeEffect = settingsPanel.FadeCheckBox.Checked;
             settings.ShowOnTop = settingsPanel.ShowOnTopCheckBox.Checked;

@@ -9,12 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BattleNotifier.Controller;
 using BattleNotifier.Model;
+using Microsoft.Win32;
+using Utils;
 
 namespace BattleNotifier.View
 {
     public partial class SettingsPanel : UserControl
     {
         BattleNotifierController battleNotifier;
+        // The path to the key where Windows looks for startup applications
+        RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        string thisExe = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+
         public SettingsPanel()
         {
             InitializeComponent();
@@ -171,6 +177,31 @@ namespace BattleNotifier.View
         private void DefaultSoundComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             SettingsPanel_Click(sender, e);
+        }
+
+        private void RunOnWinStartupCheckBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                bool registered = rk.GetValue(thisExe) == null ? false : true;
+
+                if (registered)
+                {
+                    rk.DeleteValue(thisExe, false);
+                    RunOnWinStartupCheckBox.Checked = false;
+                }
+                else
+                {
+                    rk.SetValue(thisExe, Application.ExecutablePath.ToString());
+                    RunOnWinStartupCheckBox.Checked = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sorry, failed to get access to the registry. The operation could not be done.", "Ban Pab!", MessageBoxButtons.OK);
+                RunOnWinStartupCheckBox.Checked = false;
+                Logger.Log(700, ex);
+            }
         }
     }
 }

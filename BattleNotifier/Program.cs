@@ -26,9 +26,9 @@ namespace BattleNotifier
 
                 AppDomain.CurrentDomain.AssemblyResolve += (Object sender, ResolveEventArgs args) =>
                 {
-                    String thisExe = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+                    string thisExe = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
                     System.Reflection.AssemblyName embeddedAssembly = new System.Reflection.AssemblyName(args.Name);
-                    String resourceName = thisExe + "." + embeddedAssembly.Name + ".dll";
+                    string resourceName = thisExe + "." + embeddedAssembly.Name + ".dll";
 
                     using (var stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
                     {
