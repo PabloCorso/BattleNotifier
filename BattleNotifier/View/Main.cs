@@ -176,8 +176,7 @@ namespace BattleNotifier.View
 
         private void RestartMenuItem_Click(object sender, EventArgs e)
         {
-            if (battleNotifier.IsNotifyingBattle)
-                battleNotifier.RestartNotifying();
+            mainPanel.ReStartNotifying();
         }
 
         private void StopMenuItem_Click(object sender, EventArgs e)

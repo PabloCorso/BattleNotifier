@@ -21,15 +21,17 @@ namespace BattleNotifier.View
         private bool closing = false;
         private int countdown;
         private int battleDuration;
+        private bool mapLoaded;
 
         public MapNotification() { }
 
-        public MapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, BattleNotificationSettings settings)
+        public MapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, bool mapLoaded, BattleNotificationSettings settings)
         {
             InitializeComponent();
             InitializePicture(mapDesiredWidth);
             SetupDialogLocation(settings.Basic.DisplayScreen, startHeight);
 
+            this.mapLoaded = mapLoaded;
             battleDuration = battle.Duration;
             SetupTextOverMap(battle, timeLeft, settings.Map);
         }
@@ -303,16 +305,26 @@ namespace BattleNotifier.View
             else if (e.Button == MouseButtons.Right)
             {
                 ContextMenu contextMenu = new ContextMenu();
+                MenuItem reloadMenuItem = new MenuItem();
                 MenuItem closeMenuItem = new MenuItem();
                 MenuItem minimizeMenuItem = new MenuItem();
 
+                if (!mapLoaded)
+                {
+                    // Initialize reloadMenuItem
+                    reloadMenuItem.Index = 0;
+                    reloadMenuItem.Text = "Reload";
+                    reloadMenuItem.Click += new EventHandler(ReloadMenuItem_Click);
+                    contextMenu.MenuItems.Add(reloadMenuItem);
+                }
+
                 // Initialize closeMenuItem
-                closeMenuItem.Index = 0;
+                closeMenuItem.Index = 1;
                 closeMenuItem.Text = "Close";
                 closeMenuItem.Click += new EventHandler(CloseMenuItem_Click);
 
                 // Initialize minimizeMenuItem
-                minimizeMenuItem.Index = 1;
+                minimizeMenuItem.Index = 2;
                 minimizeMenuItem.Text = "Minimize";
                 minimizeMenuItem.Click += new EventHandler(MinimizeMenuItem_Click);
 
@@ -325,6 +337,11 @@ namespace BattleNotifier.View
             {
                 MapNotification_FormClosed(null, null);
             }
+        }
+
+        private void ReloadMenuItem_Click(object sender, EventArgs e)
+        {
+            BattleNotifierController.Instance.MainView.MainPanel.ReStartNotifying();
         }
 
         private void MinimizeMenuItem_Click(object sender, EventArgs e)

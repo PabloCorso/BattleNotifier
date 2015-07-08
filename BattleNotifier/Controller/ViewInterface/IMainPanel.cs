@@ -5,6 +5,7 @@ namespace BattleNotifier.Controller.ViewInterface
 {
     public interface IMainPanel
     {
+        void ReStartNotifying();
         bool TimerStoppedNotifications { get; }
         bool HasAllDesignersChecked();
         List<string> CheckedDesigners { get; }

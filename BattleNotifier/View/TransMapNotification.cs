@@ -8,13 +8,13 @@ namespace BattleNotifier.View
     public class TransMapNotification : MapNotification
     {
         #region Constructor
-        public TransMapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, BattleNotificationSettings settings)
-            : base(battle, timeLeft, startHeight, mapDesiredWidth, settings)
+        public TransMapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, bool mapLoaded, BattleNotificationSettings settings)
+            : base(battle, timeLeft, startHeight, mapDesiredWidth, mapLoaded, settings)
         {
             Initialize();
         }
-        public TransMapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, BattleNotificationSettings settings, bool disposeAtEnd)
-            : base(battle, timeLeft, startHeight, mapDesiredWidth, settings)
+        public TransMapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, bool mapLoaded, BattleNotificationSettings settings, bool disposeAtEnd)
+            : base(battle, timeLeft, startHeight, mapDesiredWidth, mapLoaded, settings)
         {
             m_bDisposeAtEnd = disposeAtEnd;
             Initialize();

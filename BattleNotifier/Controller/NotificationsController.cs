@@ -92,7 +92,7 @@ namespace BattleNotifier.Controller
 
             if (settings.Basic.ShowBattleDialog || settings.Basic.ShowMapDialog)
             {
-                SetMap(battle.MapUrl, simulation);
+                bool mapOK = SetMap(battle.MapUrl, simulation);
 
                 double timeLeft = battle.TimeLeft;
                 if (settings.Basic.ShowBattleDialog)
@@ -103,9 +103,9 @@ namespace BattleNotifier.Controller
 
                 int height = bn == null ? 0 : bn.Height;
                 if (settings.General.UseFadeEffect)
-                    mn = new TransMapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), settings, true);
+                    mn = new TransMapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), mapOK, settings, true);
                 else
-                    mn = new MapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), settings);
+                    mn = new MapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), mapOK, settings);
             }
 
             if (!settings.General.ShowOnTop)
@@ -137,7 +137,7 @@ namespace BattleNotifier.Controller
             }
         }
 
-        private void SetMap(string mapUrl, bool simulation)
+        private bool SetMap(string mapUrl, bool simulation)
         {
             try
             {
@@ -148,9 +148,12 @@ namespace BattleNotifier.Controller
                 if (!simulation)
                 {
                     Logger.Log(200, ex);
+                    return false;
                 }
                 Map = (Image)Properties.Resources.about;
             }
+
+            return true;
         }
 
         private void OnTimedEvent(object source, EventArgs e)
