@@ -368,7 +368,7 @@
             this.ShowCurrentButton.TabIndex = 54;
             this.ShowCurrentButton.Text = "Show last battle";
             this.ToolTip.SetToolTip(this.ShowCurrentButton, "Click to notificate the last started battle, filters don\'t matter.\r\nSet a global " +
-        "hotkey below.");
+        "hotkey below. Click the field and press the desired hotkey.");
             this.ShowCurrentButton.UseVisualStyleBackColor = true;
             this.ShowCurrentButton.Click += new System.EventHandler(this.ShowCurrentButton_Click);
             // 

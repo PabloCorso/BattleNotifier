@@ -406,7 +406,7 @@ namespace BattleNotifier.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool NeedsUpdate {
             get {
                 return ((bool)(this["NeedsUpdate"]));
@@ -458,6 +458,18 @@ namespace BattleNotifier.Properties {
             }
             set {
                 this["CurrentBattleModifiers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HasUpgrade {
+            get {
+                return ((bool)(this["HasUpgrade"]));
+            }
+            set {
+                this["HasUpgrade"] = value;
             }
         }
     }

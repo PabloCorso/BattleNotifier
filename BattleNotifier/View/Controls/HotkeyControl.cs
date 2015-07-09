@@ -317,7 +317,7 @@ namespace BattleNotifier.View.Controls
             string display = this._modifiers.ToString();
             if (display.Contains("Control"))
                 display = display.Replace("Control", "Ctrl");
-            return display.Replace(',', '+');
+            return display.Replace(",", " +");
         }
     }
 }

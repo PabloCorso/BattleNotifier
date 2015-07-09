@@ -354,7 +354,7 @@ zwor</Value>
       <Value Profile="(Default)">http://elma.seamy.ru:8880/current_battle/</Value>
     </Setting>
     <Setting Name="NeedsUpdate" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="DisplayScreen" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -367,6 +367,9 @@ zwor</Value>
     </Setting>
     <Setting Name="CurrentBattleModifiers" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HasUpgrade" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
