@@ -22,12 +22,14 @@ namespace BattleNotifier.View
         private int countdown;
         private int battleDuration;
         private bool mapLoaded;
+        private Battle battle;
 
         public MapNotification() { }
 
         public MapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, bool mapLoaded, BattleNotificationSettings settings)
         {
             InitializeComponent();
+            this.battle = battle;
             InitializePicture(mapDesiredWidth);
             SetupDialogLocation(settings.Basic.DisplayScreen, startHeight);
 
@@ -341,7 +343,8 @@ namespace BattleNotifier.View
 
         private void ReloadMenuItem_Click(object sender, EventArgs e)
         {
-            BattleNotifierController.Instance.MainView.MainPanel.ReStartNotifying();
+            //BattleNotifierController.Instance.MainView.MainPanel.ReStartNotifying();
+            NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle);
         }
 
         private void MinimizeMenuItem_Click(object sender, EventArgs e)
