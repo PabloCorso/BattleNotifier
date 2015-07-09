@@ -363,10 +363,10 @@ zwor</Value>
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="CurrentBattleHotkey" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">65</Value>
     </Setting>
     <Setting Name="CurrentBattleModifiers" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">0</Value>
+      <Value Profile="(Default)">196608</Value>
     </Setting>
     <Setting Name="HasUpgrade" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

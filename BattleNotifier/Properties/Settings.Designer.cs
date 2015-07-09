@@ -439,7 +439,7 @@ namespace BattleNotifier.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("65")]
         public int CurrentBattleHotkey {
             get {
                 return ((int)(this["CurrentBattleHotkey"]));
@@ -451,7 +451,7 @@ namespace BattleNotifier.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("196608")]
         public int CurrentBattleModifiers {
             get {
                 return ((int)(this["CurrentBattleModifiers"]));
