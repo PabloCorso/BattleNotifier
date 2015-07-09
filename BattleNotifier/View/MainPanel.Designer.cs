@@ -55,6 +55,8 @@
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.DisplayScreenLabel = new System.Windows.Forms.Label();
             this.DisplayScreenButton = new System.Windows.Forms.Button();
+            this.ShowCurrentButton = new System.Windows.Forms.Button();
+            this.ShowCurrentHotkeyTextBox = new BattleNotifier.View.Controls.HotkeyTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.NotificationDurationTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseDialogNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -95,7 +97,7 @@
             this.DesignersChListBox.CheckOnClick = true;
             this.DesignersChListBox.FormattingEnabled = true;
             this.DesignersChListBox.IntegralHeight = false;
-            this.DesignersChListBox.Location = new System.Drawing.Point(6, 54);
+            this.DesignersChListBox.Location = new System.Drawing.Point(6, 61);
             this.DesignersChListBox.Name = "DesignersChListBox";
             this.DesignersChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.DesignersChListBox.Size = new System.Drawing.Size(120, 80);
@@ -118,7 +120,7 @@
             // 
             this.BattleTypesChListBox.CheckOnClick = true;
             this.BattleTypesChListBox.FormattingEnabled = true;
-            this.BattleTypesChListBox.Location = new System.Drawing.Point(152, 29);
+            this.BattleTypesChListBox.Location = new System.Drawing.Point(152, 36);
             this.BattleTypesChListBox.Name = "BattleTypesChListBox";
             this.BattleTypesChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.BattleTypesChListBox.Size = new System.Drawing.Size(120, 184);
@@ -132,7 +134,7 @@
             // 
             this.SearchDesignerTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.SearchDesignerTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.SearchDesignerTextBox.Location = new System.Drawing.Point(6, 29);
+            this.SearchDesignerTextBox.Location = new System.Drawing.Point(6, 36);
             this.SearchDesignerTextBox.Name = "SearchDesignerTextBox";
             this.SearchDesignerTextBox.Size = new System.Drawing.Size(92, 20);
             this.SearchDesignerTextBox.TabIndex = 1;
@@ -141,7 +143,7 @@
             // 
             // AddDesignerButton
             // 
-            this.AddDesignerButton.Location = new System.Drawing.Point(104, 29);
+            this.AddDesignerButton.Location = new System.Drawing.Point(104, 36);
             this.AddDesignerButton.Name = "AddDesignerButton";
             this.AddDesignerButton.Size = new System.Drawing.Size(22, 20);
             this.AddDesignerButton.TabIndex = 2;
@@ -267,7 +269,7 @@
             // 
             this.BlackListChListBox.FormattingEnabled = true;
             this.BlackListChListBox.IntegralHeight = false;
-            this.BlackListChListBox.Location = new System.Drawing.Point(6, 149);
+            this.BlackListChListBox.Location = new System.Drawing.Point(6, 156);
             this.BlackListChListBox.Name = "BlackListChListBox";
             this.BlackListChListBox.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.BlackListChListBox.Size = new System.Drawing.Size(120, 64);
@@ -280,7 +282,7 @@
             // BlackListLabel
             // 
             this.BlackListLabel.AutoSize = true;
-            this.BlackListLabel.Location = new System.Drawing.Point(3, 136);
+            this.BlackListLabel.Location = new System.Drawing.Point(3, 143);
             this.BlackListLabel.Name = "BlackListLabel";
             this.BlackListLabel.Size = new System.Drawing.Size(46, 13);
             this.BlackListLabel.TabIndex = 47;
@@ -358,10 +360,40 @@
             this.DisplayScreenButton.UseVisualStyleBackColor = false;
             this.DisplayScreenButton.Click += new System.EventHandler(this.DisplayScreenButton_Click);
             // 
+            // ShowCurrentButton
+            // 
+            this.ShowCurrentButton.Location = new System.Drawing.Point(297, 197);
+            this.ShowCurrentButton.Name = "ShowCurrentButton";
+            this.ShowCurrentButton.Size = new System.Drawing.Size(97, 21);
+            this.ShowCurrentButton.TabIndex = 54;
+            this.ShowCurrentButton.Text = "Show last battle";
+            this.ToolTip.SetToolTip(this.ShowCurrentButton, "Click to notificate the last started battle, filters don\'t matter.\r\nSet a global " +
+        "hotkey below.");
+            this.ShowCurrentButton.UseVisualStyleBackColor = true;
+            this.ShowCurrentButton.Click += new System.EventHandler(this.ShowCurrentButton_Click);
+            // 
+            // ShowCurrentHotkeyTextBox
+            // 
+            this.ShowCurrentHotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ShowCurrentHotkeyTextBox.Hotkey = System.Windows.Forms.Keys.None;
+            this.ShowCurrentHotkeyTextBox.HotkeyModifiers = System.Windows.Forms.Keys.None;
+            this.ShowCurrentHotkeyTextBox.Location = new System.Drawing.Point(298, 221);
+            this.ShowCurrentHotkeyTextBox.Name = "ShowCurrentHotkeyTextBox";
+            this.ShowCurrentHotkeyTextBox.Size = new System.Drawing.Size(96, 20);
+            this.ShowCurrentHotkeyTextBox.TabIndex = 55;
+            this.ShowCurrentHotkeyTextBox.TabStop = false;
+            this.ShowCurrentHotkeyTextBox.Text = "None";
+            this.ToolTip.SetToolTip(this.ShowCurrentHotkeyTextBox, "Set a global hotkey to see last started battle.\r\nClick outside the field once you" +
+        "r hotkey is set.");
+            this.ShowCurrentHotkeyTextBox.Enter += new System.EventHandler(this.ShowCurrentHotkeyTextBox_Enter);
+            this.ShowCurrentHotkeyTextBox.Leave += new System.EventHandler(this.ShowCurrentHotkeyTextBox_Leave);
+            // 
             // MainPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ShowCurrentHotkeyTextBox);
+            this.Controls.Add(this.ShowCurrentButton);
             this.Controls.Add(this.DisplayScreenButton);
             this.Controls.Add(this.DisplayScreenLabel);
             this.Controls.Add(this.mapSizeLabel);
@@ -423,5 +455,7 @@
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.Label DisplayScreenLabel;
         public System.Windows.Forms.Button DisplayScreenButton;
+        private System.Windows.Forms.Button ShowCurrentButton;
+        public Controls.HotkeyTextBox ShowCurrentHotkeyTextBox;
     }
 }

@@ -436,5 +436,29 @@ namespace BattleNotifier.Properties {
                 this["RunOnWinStartup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CurrentBattleHotkey {
+            get {
+                return ((int)(this["CurrentBattleHotkey"]));
+            }
+            set {
+                this["CurrentBattleHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int CurrentBattleModifiers {
+            get {
+                return ((int)(this["CurrentBattleModifiers"]));
+            }
+            set {
+                this["CurrentBattleModifiers"] = value;
+            }
+        }
     }
 }

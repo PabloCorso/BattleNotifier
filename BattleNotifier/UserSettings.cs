@@ -145,6 +145,8 @@ namespace BattleNotifier
             mainPanel.CloseDialogNumericUpDown.Value = settings.DialogLifeSeconds;
             mainPanel.NotificationDurationTrackBar.Value = settings.NotificationDuration;
             mainPanel.MapSizeDomainUpDown.SelectedIndex = settings.MapSize;
+            mainPanel.ShowCurrentHotkeyTextBox.Hotkey = (Keys)settings.CurrentBattleHotkey;
+            mainPanel.ShowCurrentHotkeyTextBox.HotkeyModifiers = (Keys)settings.CurrentBattleModifiers;
 
             if (settings.DisplayScreen == 0)
                 settings.DisplayScreen = Screen.AllScreens.ToList().IndexOf(Screen.PrimaryScreen) + 1;
@@ -216,6 +218,8 @@ namespace BattleNotifier
             settings.NotificationDuration = mainPanel.NotificationDurationTrackBar.Value;
             settings.MapSize = mainPanel.MapSizeDomainUpDown.SelectedIndex;
             settings.DisplayScreen = Convert.ToInt32(mainPanel.DisplayScreenButton.Text);
+            settings.CurrentBattleHotkey = (int)mainPanel.ShowCurrentHotkeyTextBox.Hotkey;
+            settings.CurrentBattleModifiers = (int)mainPanel.ShowCurrentHotkeyTextBox.HotkeyModifiers;
 
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < mainPanel.BattleTypesChListBox.Items.Count; i++)

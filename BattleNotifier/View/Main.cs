@@ -26,6 +26,11 @@ namespace BattleNotifier.View
         private MenuItem startMenuItem;
         private MenuItem restartMenuItem;
 
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, int fsModifiers, int vk);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
         public Main()
         {
             InitializeComponent();
@@ -49,6 +54,24 @@ namespace BattleNotifier.View
 
             if (UserSettings.Instance.MustNotifyOnStartup())
                 mainPanel.NotificateBattles();
+
+            RegisterCurrentBattleHotkeyFromPanel();
+        }
+
+        private void RegisterCurrentBattleHotkeyFromPanel()
+        {
+            if (mainPanel.ShowCurrentHotkeyTextBox.Hotkey != Keys.None)
+                RegisterCurrentBattleHotkey(mainPanel.ShowCurrentHotkeyTextBox.Hotkey, mainPanel.ShowCurrentHotkeyTextBox.HotkeyModifiers);
+        }
+
+        protected override void WndProc(ref Message msg)
+        {
+            base.WndProc(ref msg);
+
+            if (msg.Msg == 0x0312)
+            {
+                NotificationsController.Instance.ShowCurrentBattleNotification(this);
+            }
         }
 
         #region IMain implementation
@@ -95,11 +118,38 @@ namespace BattleNotifier.View
             HelpLabel2.Text = string.Empty;
 
         }
+
+        public void RegisterCurrentBattleHotkey(Keys hotkey, Keys modifiers)
+        {
+            if (this.InvokeRequired)
+            {
+                Invoke(new MethodInvoker(delegate() { RegisterCurrentBattleHotkey(hotkey, modifiers); }));
+            }
+            else
+            {
+                int modifiersValue = 0;
+                if (modifiers.HasFlag(Keys.Control))
+                    modifiersValue += (int)KeyModifier.Control;
+                if (modifiers.HasFlag(Keys.Shift))
+                    modifiersValue += (int)KeyModifier.Shift;
+                if (modifiers.HasFlag(Keys.Alt))
+                    modifiersValue += (int)KeyModifier.Alt;
+                if (modifiers.HasFlag(Keys.LWin) || modifiers.HasFlag(Keys.RWin))
+                    modifiersValue += (int)KeyModifier.WinKey;
+                if (hotkey != Keys.None && modifiers != Keys.None)
+                    RegisterHotKey(this.Handle, 0, (int)modifiersValue, hotkey.GetHashCode());
+            }
+        }
+
+        public void UnregisterCurrentBattleHotkey()
+        {
+            UnregisterHotKey(this.Handle, 0);
+        }
         #endregion
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (keyData == (Keys.Control | Keys.R))
+            if (!mainPanel.ShowCurrentHotkeyTextBox.Focused && keyData == (Keys.Control | Keys.R))
             {
                 mainPanel.ReStartNotifying();
                 return true;
@@ -120,10 +170,12 @@ namespace BattleNotifier.View
             {
                 if (UserSettings.Instance.MustHideToTraybar())
                 {
+                    UnregisterCurrentBattleHotkey();
                     ShowInTaskbar = false;
                     NotifyIcon.Visible = true;
                     NotifyIcon.ShowBalloonTip(1000);
                     UpdateTrayNotifyIcon();
+                    RegisterCurrentBattleHotkeyFromPanel();
                 }
             }
         }
@@ -132,6 +184,7 @@ namespace BattleNotifier.View
         {
             UserSettings.Save();
             ShutDownNotifyIcon();
+            UnregisterCurrentBattleHotkey();
             battleNotifier.Dispose();
             base.OnClosed(e);
         }
@@ -196,6 +249,8 @@ namespace BattleNotifier.View
 
         private void NotifyIcon_DoubleClick(object sender, EventArgs e)
         {
+            UnregisterCurrentBattleHotkey();
+
             // Show the form when the user double clicks on the notify icon. 
             // Set the WindowState to normal if the form is minimized. 
             if (WindowState == FormWindowState.Minimized)
@@ -206,6 +261,8 @@ namespace BattleNotifier.View
 
             // Activate the form. 
             this.Activate();
+
+            RegisterCurrentBattleHotkeyFromPanel();
         }
 
         private void ShutDownNotifyIcon()
@@ -268,5 +325,13 @@ namespace BattleNotifier.View
             NavigateToSettingsButton.Visible = true;
             NavigateHomeButton.Visible = false;
         }
+    }
+    enum KeyModifier
+    {
+        None = 0,
+        Alt = 1,
+        Control = 2,
+        Shift = 4,
+        WinKey = 8
     }
 }

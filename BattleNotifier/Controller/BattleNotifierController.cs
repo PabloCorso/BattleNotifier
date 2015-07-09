@@ -154,10 +154,14 @@ namespace BattleNotifier.Controller
                 }
 
                 // Notificate battle.
-                if (FilterBattle(currentBattle) && !currentNotified)
+                if (!currentNotified)
                 {
-                    currentNotified = true;
-                    NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle);
+                    NotificationsController.Instance.CurrentBattle = currentBattle;
+                    if (FilterBattle(currentBattle))
+                    {
+                        currentNotified = true;
+                        NotificationsController.Instance.ShowBattleNotification(MainView, currentBattle);
+                    }
                 }
 
                 if (timeLeft < 1)

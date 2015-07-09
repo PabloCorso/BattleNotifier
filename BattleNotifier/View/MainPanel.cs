@@ -56,6 +56,10 @@ namespace BattleNotifier.View
             DisplayScreenLabel.MouseLeave += ClearHelpDescription;
             DisplayScreenButton.MouseEnter += ShowHelpDescription;
             DisplayScreenButton.MouseLeave += ClearHelpDescription;
+            ShowCurrentButton.MouseEnter += ShowHelpDescription;
+            ShowCurrentButton.MouseLeave += ClearHelpDescription;
+            ShowCurrentHotkeyTextBox.MouseEnter += ShowHelpDescription;
+            ShowCurrentHotkeyTextBox.MouseLeave += ClearHelpDescription;
         }
 
         private void ShowHelpDescription(object sender, EventArgs e)
@@ -126,11 +130,11 @@ namespace BattleNotifier.View
 
         public void ReStartNotifying()
         {
-            if (battleNotifier.IsNotifyingBattle) 
+            if (battleNotifier.IsNotifyingBattle)
             {
                 battleNotifier.RestartNotifying();
             }
-            else 
+            else
             {
                 NotificateBattles();
             }
@@ -401,6 +405,21 @@ namespace BattleNotifier.View
                 currentScreen = 1;
 
             DisplayScreenButton.Text = currentScreen.ToString();
+        }
+
+        private void ShowCurrentHotkeyTextBox_Enter(object sender, EventArgs e)
+        {
+            battleNotifier.MainView.UnregisterCurrentBattleHotkey();
+        }
+
+        private void ShowCurrentHotkeyTextBox_Leave(object sender, EventArgs e)
+        {
+            battleNotifier.MainView.RegisterCurrentBattleHotkey(ShowCurrentHotkeyTextBox.Hotkey, ShowCurrentHotkeyTextBox.HotkeyModifiers);
+        }
+
+        private void ShowCurrentButton_Click(object sender, EventArgs e)
+        {
+            NotificationsController.Instance.ShowCurrentBattleNotification(battleNotifier.MainView);
         }
     }
 }

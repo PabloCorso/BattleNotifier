@@ -80,6 +80,9 @@
     <Compile Include="View\BattleNotification.Designer.cs">
       <DependentUpon>BattleNotification.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\HotkeyControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Controls\OutlineLabel.cs">
       <SubType>Component</SubType>
     </Compile>

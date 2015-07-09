@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.GeneralSettingsGroup = new System.Windows.Forms.GroupBox();
+            this.RunOnWinStartupCheckBox = new System.Windows.Forms.CheckBox();
             this.HidePrintCheckBox = new System.Windows.Forms.CheckBox();
             this.TransparentCheckBox = new System.Windows.Forms.CheckBox();
             this.ShowOnTopCheckBox = new System.Windows.Forms.CheckBox();
@@ -89,7 +90,6 @@
             this.SoundOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.RandomNewBattleCheckBox = new System.Windows.Forms.CheckBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.RunOnWinStartupCheckBox = new System.Windows.Forms.CheckBox();
             this.GeneralSettingsGroup.SuspendLayout();
             this.NotificationSoundGroup.SuspendLayout();
             this.ShowOnMapGroup.SuspendLayout();
@@ -110,6 +110,18 @@
             this.GeneralSettingsGroup.TabIndex = 0;
             this.GeneralSettingsGroup.TabStop = false;
             this.GeneralSettingsGroup.Text = "General settings";
+            // 
+            // RunOnWinStartupCheckBox
+            // 
+            this.RunOnWinStartupCheckBox.AutoSize = true;
+            this.RunOnWinStartupCheckBox.Location = new System.Drawing.Point(6, 44);
+            this.RunOnWinStartupCheckBox.Name = "RunOnWinStartupCheckBox";
+            this.RunOnWinStartupCheckBox.Size = new System.Drawing.Size(140, 17);
+            this.RunOnWinStartupCheckBox.TabIndex = 6;
+            this.RunOnWinStartupCheckBox.Text = "Run at Windows startup";
+            this.ToolTip.SetToolTip(this.RunOnWinStartupCheckBox, "Run Battle Notifier at Windows startup.");
+            this.RunOnWinStartupCheckBox.UseVisualStyleBackColor = true;
+            this.RunOnWinStartupCheckBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RunOnWinStartupCheckBox_MouseUp);
             // 
             // HidePrintCheckBox
             // 
@@ -187,7 +199,7 @@
             this.NotificationSoundGroup.Controls.Add(this.DefaultSoundComboBox);
             this.NotificationSoundGroup.Location = new System.Drawing.Point(203, 15);
             this.NotificationSoundGroup.Name = "NotificationSoundGroup";
-            this.NotificationSoundGroup.Size = new System.Drawing.Size(192, 91);
+            this.NotificationSoundGroup.Size = new System.Drawing.Size(192, 93);
             this.NotificationSoundGroup.TabIndex = 3;
             this.NotificationSoundGroup.TabStop = false;
             this.NotificationSoundGroup.Text = "Notification sound";
@@ -289,7 +301,7 @@
             this.ShowOnMapGroup.Controls.Add(this.OnMapLevelCheckBox);
             this.ShowOnMapGroup.Controls.Add(this.OnMapTimeCheckBox);
             this.ShowOnMapGroup.Controls.Add(this.OnMapDesignerCheckBox);
-            this.ShowOnMapGroup.Location = new System.Drawing.Point(203, 112);
+            this.ShowOnMapGroup.Location = new System.Drawing.Point(203, 114);
             this.ShowOnMapGroup.Name = "ShowOnMapGroup";
             this.ShowOnMapGroup.Size = new System.Drawing.Size(192, 158);
             this.ShowOnMapGroup.TabIndex = 3;
@@ -790,7 +802,7 @@
             // 
             // ResetButton
             // 
-            this.ResetButton.Location = new System.Drawing.Point(10, 243);
+            this.ResetButton.Location = new System.Drawing.Point(10, 245);
             this.ResetButton.Name = "ResetButton";
             this.ResetButton.Size = new System.Drawing.Size(53, 23);
             this.ResetButton.TabIndex = 4;
@@ -800,7 +812,7 @@
             // 
             // ResetLabel
             // 
-            this.ResetLabel.Location = new System.Drawing.Point(69, 243);
+            this.ResetLabel.Location = new System.Drawing.Point(69, 245);
             this.ResetLabel.Name = "ResetLabel";
             this.ResetLabel.Size = new System.Drawing.Size(128, 27);
             this.ResetLabel.TabIndex = 5;
@@ -845,18 +857,6 @@
             // ToolTip
             // 
             this.ToolTip.Active = false;
-            // 
-            // RunOnWinStartupCheckBox
-            // 
-            this.RunOnWinStartupCheckBox.AutoSize = true;
-            this.RunOnWinStartupCheckBox.Location = new System.Drawing.Point(6, 44);
-            this.RunOnWinStartupCheckBox.Name = "RunOnWinStartupCheckBox";
-            this.RunOnWinStartupCheckBox.Size = new System.Drawing.Size(140, 17);
-            this.RunOnWinStartupCheckBox.TabIndex = 6;
-            this.RunOnWinStartupCheckBox.Text = "Run at Windows startup";
-            this.ToolTip.SetToolTip(this.RunOnWinStartupCheckBox, "Run Battle Notifier at Windows startup.");
-            this.RunOnWinStartupCheckBox.UseVisualStyleBackColor = true;
-            this.RunOnWinStartupCheckBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RunOnWinStartupCheckBox_MouseUp);
             // 
             // SettingsPanel
             // 

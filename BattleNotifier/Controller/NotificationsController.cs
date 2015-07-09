@@ -22,6 +22,7 @@ namespace BattleNotifier.Controller
         private MapNotification mn;
         private WMPLib.WindowsMediaPlayer player;
         public Image Map { get; set; }
+        public Battle CurrentBattle { get; set; }
 
         private NotificationsController() { }
 
@@ -34,6 +35,12 @@ namespace BattleNotifier.Controller
 
                 return instance;
             }
+        }
+
+        public void ShowCurrentBattleNotification(IMain main)
+        {
+            if (CurrentBattle != null)
+                ShowBattleNotification(main, CurrentBattle, true);
         }
 
         public void SimulateRandomBattle()
@@ -54,7 +61,7 @@ namespace BattleNotifier.Controller
                 Id = id
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, false, true);
         }
 
         public void SimulateNewBattle()
@@ -76,7 +83,7 @@ namespace BattleNotifier.Controller
                 Id = id
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, true);
+            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, false, true);
         }
 
         public void HideBattleNotification()
@@ -84,7 +91,7 @@ namespace BattleNotifier.Controller
             ClearBattleNotification();
         }
 
-        public void ShowBattleNotification(IMain m, Battle battle, bool simulation = false)
+        public void ShowBattleNotification(IMain m, Battle battle, bool showCurrent = false, bool simulation = false)
         {
             ClearBattleNotification();
 
@@ -92,7 +99,7 @@ namespace BattleNotifier.Controller
 
             if (settings.Basic.ShowBattleDialog || settings.Basic.ShowMapDialog)
             {
-                bool mapOK = SetMap(battle.MapUrl, simulation);
+                bool mapOK = SetMap(battle, showCurrent, simulation);
 
                 double timeLeft = battle.TimeLeft;
                 if (settings.Basic.ShowBattleDialog)
@@ -137,11 +144,12 @@ namespace BattleNotifier.Controller
             }
         }
 
-        private bool SetMap(string mapUrl, bool simulation)
+        private bool SetMap(Battle battle, bool showCurrent, bool simulation)
         {
             try
             {
-                Map = WebRequestHelper.GetImageFromUrl(mapUrl + "/600");
+                if (!showCurrent || Map == null)
+                    Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl + "/600");
             }
             catch (Exception ex)
             {
@@ -226,7 +234,6 @@ namespace BattleNotifier.Controller
                 }
 
                 StopSound();
-                Map = null;
                 if (notificationTimer.Enabled)
                     notificationTimer.Stop();
             }
