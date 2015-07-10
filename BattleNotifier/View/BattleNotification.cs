@@ -39,6 +39,8 @@ namespace BattleNotifier.View
 
             if (timeLeft > 0)
                 StartBattleCountdown(Convert.ToInt32(timeLeft));
+            else
+                CountdownLabel.Text = GetCountdownDisplayText(Convert.ToInt32(timeLeft)) + " / " + battleDuration + ":00";
 
             if (settings.General.HidePrintMap)
             {

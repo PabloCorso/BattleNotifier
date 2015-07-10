@@ -43,15 +43,17 @@ namespace BattleNotifier.View
             Color color = settings.TextMapColor;
             Locate locate = new Locate(PictureBox.Width, PictureBox.Height);
 
-            if (timeLeft > 0)
-                if (settings.ShowLifeSeconds)
-                {
-                    TimerLabel.ForeColor = color;
-                    TimerLabel.Parent = PictureBox;
-                    TimerLabel.Visible = true;
+            if (settings.ShowLifeSeconds)
+            {
+                TimerLabel.ForeColor = color;
+                TimerLabel.Parent = PictureBox;
+                TimerLabel.Visible = true;
+                if (timeLeft > 0)
                     StartBattleCountdown(Convert.ToInt32(timeLeft));
-                    locate.BottomCenter(TimerLabel, 20);
-                }
+                else
+                    TimerLabel.Text = GetCountdownDisplayText(Convert.ToInt32(timeLeft)) + " / " + battleDuration + ":00";
+                locate.BottomCenter(TimerLabel, 20);
+            }
 
             if (settings.ShowLevelName || settings.ShowDesigner)
             {
@@ -343,7 +345,6 @@ namespace BattleNotifier.View
 
         private void ReloadMenuItem_Click(object sender, EventArgs e)
         {
-            //BattleNotifierController.Instance.MainView.MainPanel.ReStartNotifying();
             NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle);
         }
 
