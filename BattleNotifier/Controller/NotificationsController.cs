@@ -21,6 +21,10 @@ namespace BattleNotifier.Controller
         private BattleNotification bn;
         private MapNotification mn;
         private WMPLib.WindowsMediaPlayer player;
+
+        // parche asqueroso para que cuando se muestra current battle, dice si hay que bajar el 
+        // mapa de nuevo porque el mapa actual fue sobreescrito por una simulación.
+        private bool downloadCurrentMap;
         public Image Map { get; set; }
         public Battle CurrentBattle { get; set; }
 
@@ -148,8 +152,11 @@ namespace BattleNotifier.Controller
         {
             try
             {
-                if (!showCurrent || Map == null)
+                if (!showCurrent || downloadCurrentMap || Map == null)
+                {
+                    downloadCurrentMap = false;
                     Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl + "/600");
+                }
             }
             catch (Exception ex)
             {
@@ -158,6 +165,8 @@ namespace BattleNotifier.Controller
                     Logger.Log(200, ex);
                     return false;
                 }
+                else
+                    downloadCurrentMap = true;
                 Map = (Image)Properties.Resources.about;
             }
 
