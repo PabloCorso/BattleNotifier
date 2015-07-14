@@ -367,8 +367,8 @@
             this.ShowCurrentButton.Size = new System.Drawing.Size(97, 21);
             this.ShowCurrentButton.TabIndex = 54;
             this.ShowCurrentButton.Text = "Show last battle";
-            this.ToolTip.SetToolTip(this.ShowCurrentButton, "Click to notificate the last started battle, filters don\'t matter.\r\nSet a global " +
-        "hotkey below. Click the field and press the desired hotkey.");
+            this.ToolTip.SetToolTip(this.ShowCurrentButton, "Click to notificate the last started battle, filters don\'t matter. Won\'t \r\nshow a" +
+        "nything if never started to notify. Set a global hotkey below.");
             this.ShowCurrentButton.UseVisualStyleBackColor = true;
             this.ShowCurrentButton.Click += new System.EventHandler(this.ShowCurrentButton_Click);
             // 
@@ -383,8 +383,8 @@
             this.ShowCurrentHotkeyTextBox.TabIndex = 55;
             this.ShowCurrentHotkeyTextBox.TabStop = false;
             this.ShowCurrentHotkeyTextBox.Text = "None";
-            this.ToolTip.SetToolTip(this.ShowCurrentHotkeyTextBox, "Set a global hotkey to see last started battle.\r\nClick outside the field once you" +
-        "r hotkey is set.");
+            this.ToolTip.SetToolTip(this.ShowCurrentHotkeyTextBox, "Set a global hotkey to see last started battle. Click the field and press \r\nthe d" +
+        "esired hotkey. Click outside the field once your hotkey is set.");
             this.ShowCurrentHotkeyTextBox.Enter += new System.EventHandler(this.ShowCurrentHotkeyTextBox_Enter);
             this.ShowCurrentHotkeyTextBox.Leave += new System.EventHandler(this.ShowCurrentHotkeyTextBox_Leave);
             // 
