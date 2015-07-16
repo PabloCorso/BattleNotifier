@@ -49,6 +49,11 @@ namespace BattleNotifier.View
             }
         }
 
+        protected override bool ShowWithoutActivation
+        {
+            get { return true; }
+        }
+
         private void SetupOutlineLabels()
         {
             transparentStyle = true;

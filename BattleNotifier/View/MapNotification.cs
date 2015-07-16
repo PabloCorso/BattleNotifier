@@ -38,6 +38,11 @@ namespace BattleNotifier.View
             SetupTextOverMap(battle, timeLeft, settings.Map);
         }
 
+        protected override bool ShowWithoutActivation
+        {
+            get { return true; }
+        }
+
         private void SetupTextOverMap(Battle battle, double timeLeft, MapSettings settings)
         {
             Color color = settings.TextMapColor;
