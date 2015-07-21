@@ -18,6 +18,18 @@ namespace BattleNotifier.Model
         public string Url { get { return battleUrl + Id; } }
         public string MapUrl { get; set; }
         public string LevelUrl { get; set; }
+
+        public string MapId
+        {
+            get
+            {
+                char[] delimiterChars = { '\\' };
+                string[] parse = this.MapUrl.Split(delimiterChars);
+                int lastIndex = parse.Length - 1;
+                return parse[lastIndex];
+            }
+        }
+
         public bool IsSpecialBattle
         {
             get

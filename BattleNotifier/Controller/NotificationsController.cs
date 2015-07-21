@@ -26,6 +26,7 @@ namespace BattleNotifier.Controller
         // mapa de nuevo porque el mapa actual fue sobreescrito por una simulación.
         private bool downloadCurrentMap;
         public Image Map { get; set; }
+        private string lastLoadedMapId { get; set; }
         public Battle CurrentBattle { get; set; }
 
         private NotificationsController() { }
@@ -152,9 +153,10 @@ namespace BattleNotifier.Controller
         {
             try
             {
-                if (!showCurrent || downloadCurrentMap || Map == null)
+                if (!showCurrent || downloadCurrentMap || Map == null || !battle.MapId.Equals(lastLoadedMapId))
                 {
                     downloadCurrentMap = false;
+                    lastLoadedMapId = battle.MapId;
                     Map = WebRequestHelper.GetImageFromUrl(battle.MapUrl + "/600");
                 }
             }
