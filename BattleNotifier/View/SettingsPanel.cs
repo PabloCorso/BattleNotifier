@@ -31,9 +31,9 @@ namespace BattleNotifier.View
             InitializeColorPicker();
             InitializeHelpDescriptions();
 
-#if DEBUG
-            RandomNewBattleCheckBox.Visible = true;
-#endif
+//#if DEBUG
+//            RandomNewBattleCheckBox.Visible = true;
+//#endif
         }
 
         private void InitializeHelpDescriptions()
