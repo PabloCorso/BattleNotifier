@@ -3,7 +3,6 @@ using BattleNotifier.Utils;
 using BattleNotifier.View;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Media;
 using System.Windows.Forms;

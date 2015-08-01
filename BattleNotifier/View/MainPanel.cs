@@ -3,9 +3,7 @@ using System.Windows.Forms;
 using BattleNotifier.Controller.ViewInterface;
 using BattleNotifier.Controller;
 using System.Collections.Generic;
-using BattleNotifier.Model;
 using BattleNotifier.Utils;
-using System.Drawing;
 
 namespace BattleNotifier.View
 {

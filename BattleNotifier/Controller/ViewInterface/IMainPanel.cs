@@ -1,5 +1,4 @@
-﻿using BattleNotifier.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BattleNotifier.Controller.ViewInterface
 {

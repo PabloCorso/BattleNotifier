@@ -1,15 +1,12 @@
 ﻿using System;
 using BattleNotifier.Model;
-using BattleNotifier.View.Controls;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Drawing.Printing;
 using BattleNotifier.Utils;
 using System.Diagnostics;
-using System.Reflection;
 using BattleNotifier.Controller;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using Utils;
 
 namespace BattleNotifier.View

@@ -2,12 +2,10 @@
 using HtmlAgilityPack;
 using BattleNotifier.Model;
 using System;
-using System.IO;
 using System.Linq;
 using System.Xml;
 using BattleNotifier.Utils;
 using Microsoft.Win32;
-using BattleNotifier.View;
 using Settings = BattleNotifier.Properties.Settings;
 using System.Windows.Forms;
 using Utils;

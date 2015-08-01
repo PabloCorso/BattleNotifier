@@ -1,10 +1,8 @@
 ﻿using BattleNotifier.Controller;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Reflection;
 using BattleNotifier.Model;
 using BattleNotifier.Utils;
 using System.Text;

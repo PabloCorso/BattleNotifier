@@ -1,14 +1,6 @@
 ﻿using BattleNotifier.Controller;
 using BattleNotifier.Controller.ViewInterface;
-using BattleNotifier.Model;
-using BattleNotifier.Utils;
 using System;
-using System.Drawing;
-using System.IO;
-using System.Media;
-using System.Reflection;
-using System.Text;
-using System.Timers;
 using System.Windows.Forms;
 using Utils;
 

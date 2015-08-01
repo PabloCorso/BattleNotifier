@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Reflection;
 using BattleNotifier.View;
 using System.Threading;
-using System.Diagnostics;
 
 namespace BattleNotifier
 {

@@ -1,5 +1,4 @@
-﻿using BattleNotifier.Model;
-using BattleNotifier.View;
+﻿using BattleNotifier.View;
 using System.Windows.Forms;
 namespace BattleNotifier.Controller.ViewInterface
 {
