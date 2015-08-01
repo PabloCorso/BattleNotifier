@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.GeneralSettingsGroup = new System.Windows.Forms.GroupBox();
+            this.ShowOverFullScreenCheckBox = new System.Windows.Forms.CheckBox();
             this.RunOnWinStartupCheckBox = new System.Windows.Forms.CheckBox();
             this.HidePrintCheckBox = new System.Windows.Forms.CheckBox();
             this.TransparentCheckBox = new System.Windows.Forms.CheckBox();
@@ -90,7 +91,6 @@
             this.SoundOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.RandomNewBattleCheckBox = new System.Windows.Forms.CheckBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ShowOverFullScreenCheckBox = new System.Windows.Forms.CheckBox();
             this.GeneralSettingsGroup.SuspendLayout();
             this.NotificationSoundGroup.SuspendLayout();
             this.ShowOnMapGroup.SuspendLayout();
@@ -113,6 +113,18 @@
             this.GeneralSettingsGroup.TabStop = false;
             this.GeneralSettingsGroup.Text = "General settings";
             // 
+            // ShowOverFullScreenCheckBox
+            // 
+            this.ShowOverFullScreenCheckBox.AutoSize = true;
+            this.ShowOverFullScreenCheckBox.Location = new System.Drawing.Point(6, 130);
+            this.ShowOverFullScreenCheckBox.Name = "ShowOverFullScreenCheckBox";
+            this.ShowOverFullScreenCheckBox.Size = new System.Drawing.Size(174, 17);
+            this.ShowOverFullScreenCheckBox.TabIndex = 7;
+            this.ShowOverFullScreenCheckBox.Text = "Show over full screen programs";
+            this.ToolTip.SetToolTip(this.ShowOverFullScreenCheckBox, "This option will try  to show the notification over an active full screen\r\nprogra" +
+        "m, it may cause disturbance over games.");
+            this.ShowOverFullScreenCheckBox.UseVisualStyleBackColor = true;
+            // 
             // RunOnWinStartupCheckBox
             // 
             this.RunOnWinStartupCheckBox.AutoSize = true;
@@ -121,7 +133,7 @@
             this.RunOnWinStartupCheckBox.Size = new System.Drawing.Size(140, 17);
             this.RunOnWinStartupCheckBox.TabIndex = 6;
             this.RunOnWinStartupCheckBox.Text = "Run at Windows startup";
-            this.ToolTip.SetToolTip(this.RunOnWinStartupCheckBox, "Run Battle Notifier at Windows startup.");
+            this.ToolTip.SetToolTip(this.RunOnWinStartupCheckBox, "\r\nRun Battle Notifier at Windows startup.");
             this.RunOnWinStartupCheckBox.UseVisualStyleBackColor = true;
             this.RunOnWinStartupCheckBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RunOnWinStartupCheckBox_MouseUp);
             // 
@@ -859,17 +871,6 @@
             // ToolTip
             // 
             this.ToolTip.Active = false;
-            // 
-            // ShowOverFullScreenCheckBox
-            // 
-            this.ShowOverFullScreenCheckBox.AutoSize = true;
-            this.ShowOverFullScreenCheckBox.Location = new System.Drawing.Point(6, 130);
-            this.ShowOverFullScreenCheckBox.Name = "ShowOverFullScreenCheckBox";
-            this.ShowOverFullScreenCheckBox.Size = new System.Drawing.Size(174, 17);
-            this.ShowOverFullScreenCheckBox.TabIndex = 7;
-            this.ShowOverFullScreenCheckBox.Text = "Show over full screen programs";
-            this.ToolTip.SetToolTip(this.ShowOverFullScreenCheckBox, "\r\nShow battle\'s information window with transparent style.");
-            this.ShowOverFullScreenCheckBox.UseVisualStyleBackColor = true;
             // 
             // SettingsPanel
             // 

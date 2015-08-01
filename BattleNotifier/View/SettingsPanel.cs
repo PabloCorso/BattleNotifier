@@ -39,8 +39,12 @@ namespace BattleNotifier.View
             ShowOnMapGroup.MouseLeave += ClearMapGroupHelpDescription;
             ShowOnTopCheckBox.MouseEnter += ShowHelpDescription;
             ShowOnTopCheckBox.MouseLeave += ClearHelpDescription;
+            ShowOverFullScreenCheckBox.MouseEnter += ShowHelpDescription;
+            ShowOverFullScreenCheckBox.MouseLeave += ClearHelpDescription;
             StartupCheckBox.MouseEnter += ShowHelpDescription;
             StartupCheckBox.MouseLeave += ClearHelpDescription;
+            RunOnWinStartupCheckBox.MouseEnter += ShowHelpDescription;
+            RunOnWinStartupCheckBox.MouseLeave += ClearHelpDescription;
             FadeCheckBox.MouseEnter += ShowHelpDescription;
             FadeCheckBox.MouseLeave += ClearHelpDescription;
             HideToTraybarCheckBox.MouseEnter += ShowHelpDescription;
