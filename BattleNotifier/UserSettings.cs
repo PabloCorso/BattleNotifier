@@ -66,6 +66,7 @@ namespace BattleNotifier
                 settings.Basic.UseCustomSound = sp.UseCustomSoundCheckBox.Checked;
 
                 settings.General.ShowOnTop = sp.ShowOnTopCheckBox.Checked;
+                settings.General.ShowOverFullScreen = sp.ShowOverFullScreenCheckBox.Checked;
                 settings.General.UseFadeEffect = sp.FadeCheckBox.Checked;
                 settings.General.HidePrintMap = sp.HidePrintCheckBox.Checked;
                 settings.General.TransparentStyle = sp.TransparentCheckBox.Checked;
@@ -187,6 +188,7 @@ namespace BattleNotifier
             settingsPanel.HideToTraybarCheckBox.Checked = settings.HideToTraybar;
             settingsPanel.FadeCheckBox.Checked = settings.UseFadeEffect;
             settingsPanel.ShowOnTopCheckBox.Checked = settings.ShowOnTop;
+            settingsPanel.ShowOverFullScreenCheckBox.Checked = settings.ShowOverFullScreen;
             settingsPanel.TransparentCheckBox.Checked = settings.TransparentStyle;
             settingsPanel.HidePrintCheckBox.Checked = settings.HidePrintMap;
 
@@ -260,6 +262,7 @@ namespace BattleNotifier
             settings.HideToTraybar = settingsPanel.HideToTraybarCheckBox.Checked;
             settings.UseFadeEffect = settingsPanel.FadeCheckBox.Checked;
             settings.ShowOnTop = settingsPanel.ShowOnTopCheckBox.Checked;
+            settings.ShowOverFullScreen = settingsPanel.ShowOverFullScreenCheckBox.Checked;
             settings.TransparentStyle = settingsPanel.TransparentCheckBox.Checked;
             settings.HidePrintMap = settingsPanel.HidePrintCheckBox.Checked;
 

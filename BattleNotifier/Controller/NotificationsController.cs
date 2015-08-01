@@ -119,7 +119,10 @@ namespace BattleNotifier.Controller
                     mn = new MapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), mapOK, settings);
             }
 
-            if (!settings.General.ShowOnTop)
+            if (!settings.General.ShowOnTop
+                || !settings.General.ShowOverFullScreen
+                && ForegroundWindowHelper.IsForegroundWindowOnDisplayScreen(settings.Basic.DisplayScreen) 
+                && ForegroundWindowHelper.IsForegroundWindowFullScreen())
             {
                 if (mn != null)
                     mn.TopMost = false;

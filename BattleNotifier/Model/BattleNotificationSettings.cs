@@ -35,6 +35,7 @@ namespace BattleNotifier.Model
         public bool HideToTraybar { get; set; }
         public bool UseFadeEffect { get; set; }
         public bool ShowOnTop { get; set; }
+        public bool ShowOverFullScreen { get; set; }
         public bool TransparentStyle { get; set; }
         public bool HidePrintMap { get; set; }
     }
