@@ -124,6 +124,7 @@
             this.ToolTip.SetToolTip(this.ShowOverFullScreenCheckBox, "This option will try  to show the notification over an active full screen\r\nprogra" +
         "m, it may cause disturbance over games.");
             this.ShowOverFullScreenCheckBox.UseVisualStyleBackColor = true;
+            this.ShowOverFullScreenCheckBox.CheckedChanged += new System.EventHandler(this.ShowOverFullScreenCheckBox_CheckedChanged);
             // 
             // RunOnWinStartupCheckBox
             // 
@@ -167,8 +168,10 @@
             this.ShowOnTopCheckBox.Size = new System.Drawing.Size(145, 17);
             this.ShowOnTopCheckBox.TabIndex = 3;
             this.ShowOnTopCheckBox.Text = "Show notifications on top";
-            this.ToolTip.SetToolTip(this.ShowOnTopCheckBox, "\r\nShow notification windows over every other active window.");
+            this.ToolTip.SetToolTip(this.ShowOnTopCheckBox, "Must check this option first to check Show over full screen programs.\r\nShow notif" +
+        "ication windows over every other active window.");
             this.ShowOnTopCheckBox.UseVisualStyleBackColor = true;
+            this.ShowOnTopCheckBox.CheckedChanged += new System.EventHandler(this.ShowOnTopCheckBox_CheckedChanged);
             // 
             // StartupCheckBox
             // 

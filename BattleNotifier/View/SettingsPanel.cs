@@ -26,9 +26,11 @@ namespace BattleNotifier.View
             InitializeColorPicker();
             InitializeHelpDescriptions();
 
-//#if DEBUG
-//            RandomNewBattleCheckBox.Visible = true;
-//#endif
+            if (ShowOverFullScreenCheckBox.Checked)
+                ShowOnTopCheckBox.Checked = true;
+            //#if DEBUG
+            //            RandomNewBattleCheckBox.Visible = true;
+            //#endif
         }
 
         private void InitializeHelpDescriptions()
@@ -201,6 +203,18 @@ namespace BattleNotifier.View
                 RunOnWinStartupCheckBox.Checked = false;
                 Logger.Log(700, ex);
             }
+        }
+
+        private void ShowOnTopCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!ShowOnTopCheckBox.Checked)
+                ShowOverFullScreenCheckBox.Checked = false;
+        }
+
+        private void ShowOverFullScreenCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ShowOverFullScreenCheckBox.Checked)
+                ShowOnTopCheckBox.Checked = true;
         }
     }
 }
