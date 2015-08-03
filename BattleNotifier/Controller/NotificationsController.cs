@@ -121,7 +121,7 @@ namespace BattleNotifier.Controller
 
             if (!settings.General.ShowOnTop
                 || !settings.General.ShowOverFullScreen
-                && ForegroundWindowHelper.IsForegroundWindowOnDisplayScreen(settings.Basic.DisplayScreen) 
+                && ForegroundWindowHelper.IsForegroundWindowOnDisplayScreen(settings.Basic.DisplayScreen)
                 && ForegroundWindowHelper.IsForegroundWindowFullScreen())
             {
                 if (mn != null)
@@ -155,7 +155,9 @@ namespace BattleNotifier.Controller
         {
             try
             {
-                if (!showCurrent || downloadCurrentMap || Map == null || !battle.MapId.Equals(lastLoadedMapId))
+                if (battle.Type.HasFlag(BattleType.OneHourTT))
+                    Map = (Image)Properties.Resources.about;
+                else if (!showCurrent || downloadCurrentMap || Map == null || !battle.MapId.Equals(lastLoadedMapId))
                 {
                     downloadCurrentMap = false;
                     lastLoadedMapId = battle.MapId;
