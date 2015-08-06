@@ -63,19 +63,6 @@ namespace BattleNotifier.View
 
         #endregion
 
-        const int WS_MINIMIZEBOX = 0x20000;
-        const int CS_DBLCLKS = 0x8;
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.Style |= WS_MINIMIZEBOX;
-                cp.ClassStyle |= CS_DBLCLKS;
-                return cp;
-            }
-        }
-
         private void SetupOutlineLabels()
         {
             transparentStyle = true;
@@ -134,6 +121,20 @@ namespace BattleNotifier.View
             DurationLabel.Text = battle.Duration + " mins";
         }
 
+        private void AttributesLabel_Click(object sender, EventArgs e)
+        {
+            if (showToolTip && fullAttributesText.Length > maxAttributesLength)
+            {
+                AttributesToolTip.SetToolTip(AttributesLabel, fullAttributesText);
+                showToolTip = false;
+            }
+            else
+            {
+                AttributesToolTip.RemoveAll();
+                showToolTip = true;
+            }
+        }
+
         private void PrintMapButton_Click(object sender, EventArgs e)
         {
             if (NotificationsController.Instance.Map != null)
@@ -163,20 +164,6 @@ namespace BattleNotifier.View
             map = map.ChangeColor(Color.Gray, new List<Color>() { Color.White, Color.LightGray });
             e.Graphics.DrawImage(map, 0, 0);
             e.HasMorePages = false;
-        }
-
-        private void AttributesLabel_Click(object sender, EventArgs e)
-        {
-            if (showToolTip && fullAttributesText.Length > maxAttributesLength)
-            {
-                AttributesToolTip.SetToolTip(AttributesLabel, fullAttributesText);
-                showToolTip = false;
-            }
-            else
-            {
-                AttributesToolTip.RemoveAll();
-                showToolTip = true;
-            }
         }
 
         private void MapCheckBox_CheckedChanged(object sender, EventArgs e)
