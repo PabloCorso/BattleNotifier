@@ -160,13 +160,6 @@ namespace BattleNotifier.View
 
         private void NewBattleButton_Click(object sender, EventArgs e)
         {
-#if DEBUG
-            if (RandomNewBattleCheckBox.Checked)
-            {
-                NotificationsController.Instance.SimulateRandomBattle();
-                return;
-            }
-#endif
             NotificationsController.Instance.SimulateNewBattle();
         }
 

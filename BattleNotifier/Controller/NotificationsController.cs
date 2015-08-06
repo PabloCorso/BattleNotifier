@@ -47,27 +47,6 @@ namespace BattleNotifier.Controller
                 ShowBattleNotification(main, CurrentBattle, true);
         }
 
-        public void SimulateRandomBattle()
-        {
-            Random random = new Random();
-            int map = Convert.ToInt32(random.NextDouble() * (91323 - 1) + 1);
-            int id = Convert.ToInt32(random.NextDouble() * (91323 - 1) + 1);
-            int duration = Convert.ToInt32(random.NextDouble() * (60 - 1) + 1);
-            Battle battle = new Battle()
-            {
-                FileName = "LONGNAME.lev",
-                MapUrl = Settings.Default.EOLMapsUrl + map,
-                Duration = duration,
-                Attributes = (BattleAttribute)15,
-                Type = 0,
-                StartedDateTime = DateTime.Now,
-                Desginer = "Long Kuski Nickname",
-                Id = id
-            };
-
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, false, true);
-        }
-
         public void SimulateNewBattle()
         {
             Random random = new Random();

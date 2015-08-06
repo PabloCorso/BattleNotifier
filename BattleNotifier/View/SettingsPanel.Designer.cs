@@ -89,7 +89,6 @@
             this.SimulateLabel = new System.Windows.Forms.Label();
             this.NewBattleButton = new System.Windows.Forms.Button();
             this.SoundOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.RandomNewBattleCheckBox = new System.Windows.Forms.CheckBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.GeneralSettingsGroup.SuspendLayout();
             this.NotificationSoundGroup.SuspendLayout();
@@ -860,17 +859,6 @@
             this.SoundOpenFileDialog.Filter = "All Supported Audio | *.mp3;*.wma;*.wav; | MP3s | *.mp3 | WMAs | *.wma | WAVs | *" +
     ".wav";
             // 
-            // RandomNewBattleCheckBox
-            // 
-            this.RandomNewBattleCheckBox.AutoSize = true;
-            this.RandomNewBattleCheckBox.Location = new System.Drawing.Point(15, 228);
-            this.RandomNewBattleCheckBox.Name = "RandomNewBattleCheckBox";
-            this.RandomNewBattleCheckBox.Size = new System.Drawing.Size(47, 17);
-            this.RandomNewBattleCheckBox.TabIndex = 8;
-            this.RandomNewBattleCheckBox.Text = "rand";
-            this.RandomNewBattleCheckBox.UseVisualStyleBackColor = true;
-            this.RandomNewBattleCheckBox.Visible = false;
-            // 
             // ToolTip
             // 
             this.ToolTip.Active = false;
@@ -880,7 +868,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.NewBattleButton);
-            this.Controls.Add(this.RandomNewBattleCheckBox);
             this.Controls.Add(this.SimulateLabel);
             this.Controls.Add(this.ResetLabel);
             this.Controls.Add(this.ResetButton);
@@ -961,7 +948,6 @@
         private System.Windows.Forms.Button b8;
         public System.Windows.Forms.Button ColorPicker;
         private System.Windows.Forms.OpenFileDialog SoundOpenFileDialog;
-        private System.Windows.Forms.CheckBox RandomNewBattleCheckBox;
         private System.Windows.Forms.ToolTip ToolTip;
         public System.Windows.Forms.CheckBox RunOnWinStartupCheckBox;
         public System.Windows.Forms.CheckBox ShowOverFullScreenCheckBox;

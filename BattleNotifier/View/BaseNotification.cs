@@ -15,7 +15,7 @@ namespace BattleNotifier.View
 
         public BaseNotification() { }
 
-        public BaseNotification(BattleNotificationSettings settings, int battleDuration, double timeLeft)
+        public BaseNotification(BattleNotificationSettings settings, int battleDuration)
         {
             InitializeComponent();
             this.settings = settings;

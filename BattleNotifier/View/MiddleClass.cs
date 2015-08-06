@@ -12,8 +12,8 @@ namespace BattleNotifier.View
     {
         public MiddleClass() { }
 
-        public MiddleClass(BattleNotificationSettings settings, int battleDuration, double timeLeft)
-            : base(settings, battleDuration, timeLeft) { }
+        public MiddleClass(BattleNotificationSettings settings, int battleDuration)
+            : base(settings, battleDuration) { }
 
         protected override void CloseFormParticulars()
         {

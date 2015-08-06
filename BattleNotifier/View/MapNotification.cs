@@ -23,7 +23,7 @@ namespace BattleNotifier.View
         private Battle battle;
 
         public MapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, bool mapLoaded, BattleNotificationSettings settings)
-            : base(settings, battle.Duration, timeLeft)
+            : base(settings, battle.Duration)
         {
             InitializeComponent();
 

@@ -7,7 +7,6 @@ using BattleNotifier.Utils;
 using System.Diagnostics;
 using BattleNotifier.Controller;
 using System.Drawing;
-using Utils;
 
 namespace BattleNotifier.View
 {
@@ -24,7 +23,7 @@ namespace BattleNotifier.View
         private int maxAttributesLength = 70;
 
         public BattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
-            : base(settings, battle.Duration, timeLeft)
+            : base(settings, battle.Duration)
         {
             InitializeComponent();
             InitializeBattleTimer(timeLeft);
