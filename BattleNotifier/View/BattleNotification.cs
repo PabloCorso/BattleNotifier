@@ -22,14 +22,16 @@ namespace BattleNotifier.View
         private string fullAttributesText;
         private int maxAttributesLength = 70;
 
-        public BattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
+        public BattleNotification(Battle battle, double timeLeft, int startHeight, BattleNotificationSettings settings)
             : base(settings, battle.Duration)
         {
             InitializeComponent();
-            InitializeBattleTimer(timeLeft);
 
-            SetupDialogLocation(settings.Basic.DisplayScreen);
+            InitializeBattleTimer(timeLeft);
+            SetupDialogLocation(settings.Basic.DisplayScreen, startHeight);
+
             SetupControls(battle);
+
             if (settings.General.TransparentStyle)
                 SetupOutlineLabels();
 
@@ -40,10 +42,7 @@ namespace BattleNotifier.View
             }
         }
 
-        protected override bool ShowWithoutActivation
-        {
-            get { return true; }
-        }
+        #region BaseNotification implementation
 
         protected override string GetCountdownBattleEndedText()
         {
@@ -57,6 +56,12 @@ namespace BattleNotifier.View
             else
                 CountdownLabel.Text = countdownText;
         }
+
+        protected override void CloseFormParticulars()
+        {
+        }
+
+        #endregion
 
         const int WS_MINIMIZEBOX = 0x20000;
         const int CS_DBLCLKS = 0x8;
@@ -129,18 +134,6 @@ namespace BattleNotifier.View
             DurationLabel.Text = battle.Duration + " mins";
         }
 
-        private void SetupDialogLocation(int displayScreen)
-        {
-            StartPosition = FormStartPosition.Manual;
-            Screen screen = Screen.PrimaryScreen;
-            if (displayScreen <= Screen.AllScreens.Length && displayScreen > 0)
-                screen = Screen.AllScreens[displayScreen - 1];
-            int screenWidth = screen.WorkingArea.Width;
-            int screenHeight = screen.WorkingArea.Height;
-            Left = screen.WorkingArea.Left + screenWidth - this.Width;
-            Top = screenHeight - this.Height;
-        }
-
         private void PrintMapButton_Click(object sender, EventArgs e)
         {
             if (NotificationsController.Instance.Map != null)
@@ -200,11 +193,6 @@ namespace BattleNotifier.View
         private void MinimizeButton_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-
-        protected override void CloseFormParticulars()
-        {
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

@@ -26,10 +26,9 @@ namespace BattleNotifier.View
             : base(settings, battle.Duration)
         {
             InitializeComponent();
+            this.battle = battle;
 
             InitializeBattleTimer(timeLeft);
-
-            this.battle = battle;
             InitializePicture(mapDesiredWidth);
             SetupDialogLocation(settings.Basic.DisplayScreen, startHeight);
 
@@ -37,10 +36,7 @@ namespace BattleNotifier.View
             SetupTextOverMap(battle, timeLeft, settings.Map);
         }
 
-        protected override bool ShowWithoutActivation
-        {
-            get { return true; }
-        }
+        #region BaseNotification implementation
 
         protected override string GetCountdownBattleEndedText()
         {
@@ -51,6 +47,19 @@ namespace BattleNotifier.View
         {
             TimerLabel.Text = countdownText;
         }
+
+        protected override void CloseFormParticulars()
+        {
+            if (PictureBox != null)
+            {
+                Image i = PictureBox.Image;
+                PictureBox.Image = null;
+                if (i != null)
+                    i.Dispose();
+            }
+        }
+
+        #endregion
 
         private void SetupTextOverMap(Battle battle, double timeLeft, MapSettings settings)
         {
@@ -195,29 +204,6 @@ namespace BattleNotifier.View
             {
                 // InvalidOperationException? lock map?
                 Logger.Log(301, ex);
-            }
-        }
-
-        private void SetupDialogLocation(int displayScreen, int startHeight)
-        {
-            StartPosition = FormStartPosition.Manual;
-            Screen screen = Screen.PrimaryScreen;
-            if (displayScreen <= Screen.AllScreens.Length && displayScreen > 0)
-                screen = Screen.AllScreens[displayScreen - 1];
-            int screenWidth = screen.WorkingArea.Width;
-            int screenHeight = screen.WorkingArea.Height;
-            Left = screen.WorkingArea.Left + screenWidth - Width;
-            Top = screenHeight - Height - startHeight - 20;
-        }
-
-        protected override void CloseFormParticulars()
-        {
-            if (PictureBox != null)
-            {
-                Image i = PictureBox.Image;
-                PictureBox.Image = null;
-                if (i != null)
-                    i.Dispose();
             }
         }
 

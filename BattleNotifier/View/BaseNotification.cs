@@ -25,6 +25,28 @@ namespace BattleNotifier.View
                 InitializeFadeEffect();
         }
 
+        protected override bool ShowWithoutActivation
+        {
+            get { return true; }
+        }
+
+        #region Dialog Location
+
+        protected void SetupDialogLocation(int displayScreen, int startHeight)
+        {
+            StartPosition = FormStartPosition.Manual;
+            Screen screen = Screen.PrimaryScreen;
+            if (displayScreen <= Screen.AllScreens.Length && displayScreen > 0)
+                screen = Screen.AllScreens[displayScreen - 1];
+
+            int screenWidth = screen.WorkingArea.Width;
+            int screenHeight = screen.WorkingArea.Height;
+            Left = screen.WorkingArea.Left + screenWidth - Width;
+            Top = screenHeight - Height - startHeight;
+        }
+
+        #endregion
+
         #region Fade Effect
         private void InitializeFadeEffect()
         {
@@ -60,9 +82,11 @@ namespace BattleNotifier.View
                 Close();
             }
         }
+
         #endregion
 
         #region Battle Timer
+
         protected void InitializeBattleTimer(double timeLeft)
         {
             if (timeLeft > 0)
@@ -88,9 +112,9 @@ namespace BattleNotifier.View
         {
             try
             {
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                 {
-                    this.Invoke(new MethodInvoker(delegate () { BattleTimer_Tick(sender, e); }));
+                    Invoke(new MethodInvoker(delegate () { BattleTimer_Tick(sender, e); }));
                 }
                 else
                 {
@@ -129,6 +153,7 @@ namespace BattleNotifier.View
 
             return hours + mins + ":" + secs;
         }
+
         #endregion
 
         #region Close Form
@@ -167,6 +192,7 @@ namespace BattleNotifier.View
                 }
             }
         }
+
         #endregion
     }
 }

@@ -86,9 +86,9 @@ namespace BattleNotifier.Controller
 
                 double timeLeft = battle.TimeLeft;
                 if (settings.Basic.ShowBattleDialog)
-                    bn = new BattleNotification(battle, timeLeft, settings);
+                    bn = new BattleNotification(battle, timeLeft, 0, settings);
 
-                int height = bn == null ? 0 : bn.Height;
+                int height = bn == null ? 0 : bn.Height + 20;
                 mn = new MapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), mapOK, settings);
             }
 
