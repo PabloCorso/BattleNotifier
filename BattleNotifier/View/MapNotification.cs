@@ -11,7 +11,7 @@ using Utils;
 
 namespace BattleNotifier.View
 {
-    public partial class MapNotification : BaseNotification
+    public partial class MapNotification : MiddleClass
     {
         private Timer timer;
         private bool tooSmallMap = false;
@@ -20,8 +20,6 @@ namespace BattleNotifier.View
         private int battleDuration;
         private bool mapLoaded;
         private Battle battle;
-
-        public MapNotification() : base(null) { }
 
         public MapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, bool mapLoaded, BattleNotificationSettings settings)
             : base(settings)

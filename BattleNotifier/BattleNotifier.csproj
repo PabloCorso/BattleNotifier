@@ -96,7 +96,7 @@
       <DependentUpon>BaseNotification.cs</DependentUpon>
     </Compile>
     <Compile Include="View\BattleNotification.cs">
-      <SubType>form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\BattleNotification.Designer.cs">
       <DependentUpon>BattleNotification.cs</DependentUpon>
@@ -126,6 +126,9 @@
     </Compile>
     <Compile Include="View\MapNotification.Designer.cs">
       <DependentUpon>MapNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MiddleClass.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\SettingsPanel.cs">
       <SubType>UserControl</SubType>

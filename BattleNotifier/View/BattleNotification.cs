@@ -11,7 +11,7 @@ using Utils;
 
 namespace BattleNotifier.View
 {
-    public partial class BattleNotification : BaseNotification
+    public partial class BattleNotification : MiddleClass
     {
         public bool IsPrinting { get; set; }
         private Timer timer;
@@ -21,7 +21,6 @@ namespace BattleNotifier.View
         private bool showToolTip = true;
         private string fullAttributesText;
         private int maxAttributesLength = 70;
-        public BattleNotification() { }
 
         public BattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
             : base(settings)
