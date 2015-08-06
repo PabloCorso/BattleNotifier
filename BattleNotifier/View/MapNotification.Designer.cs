@@ -105,7 +105,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MapNotification";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapNotification_FormClosed);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MapNotification_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).EndInit();
             this.ResumeLayout(false);

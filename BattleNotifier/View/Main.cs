@@ -72,27 +72,15 @@ namespace BattleNotifier.View
             get { return this.mainPanel; }
         }
 
-        public void ShowBattleNotification(BattleNotification bn)
+        public void ShowNotification(BaseNotification n)
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                Invoke(new MethodInvoker(delegate() { ShowBattleNotification(bn); }));
+                Invoke(new MethodInvoker(delegate () { ShowNotification(n); }));
             }
             else
             {
-                bn.Show();
-            }
-        }
-
-        public void ShowMapNotification(MapNotification mn)
-        {
-            if (this.InvokeRequired)
-            {
-                Invoke(new MethodInvoker(delegate() { ShowMapNotification(mn); }));
-            }
-            else
-            {
-                mn.Show();
+                n.Show();
             }
         }
 
@@ -115,7 +103,7 @@ namespace BattleNotifier.View
         {
             if (this.InvokeRequired)
             {
-                Invoke(new MethodInvoker(delegate() { RegisterCurrentBattleHotkey(hotkey, modifiers); }));
+                Invoke(new MethodInvoker(delegate () { RegisterCurrentBattleHotkey(hotkey, modifiers); }));
             }
             else
             {

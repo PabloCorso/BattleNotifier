@@ -11,12 +11,11 @@ using Utils;
 
 namespace BattleNotifier.View
 {
-    public partial class BattleNotification : Form
+    public partial class BattleNotification : BaseNotification
     {
         public bool IsPrinting { get; set; }
         private Timer timer;
         private bool transparentStyle = false;
-        private bool closing = false;
         private int battleDuration;
         private int countdown;
         private bool showToolTip = true;
@@ -25,6 +24,7 @@ namespace BattleNotifier.View
         public BattleNotification() { }
 
         public BattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
+            : base(settings)
         {
             InitializeComponent();
             SetupDialogLocation(settings.Basic.DisplayScreen);
@@ -107,14 +107,13 @@ namespace BattleNotifier.View
             timer.Start();
         }
 
-
         private void BattleCountdownTimer_Tick(object sender, EventArgs e)
         {
             try
             {
                 if (this.InvokeRequired)
                 {
-                    this.Invoke(new MethodInvoker(delegate() { BattleCountdownTimer_Tick(sender, e); }));
+                    this.Invoke(new MethodInvoker(delegate () { BattleCountdownTimer_Tick(sender, e); }));
                 }
                 else
                 {
@@ -253,35 +252,20 @@ namespace BattleNotifier.View
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private delegate void BlankDelegate();
-        public void CloseForm()
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new BlankDelegate(this.CloseForm));
-            }
-            else
-            {
-                closing = true;
-                if (timer != null)
-                {
-                    timer.Stop();
-                    timer.Tick -= BattleCountdownTimer_Tick;
-                    timer = null;
-                }
-                this.Close();
-            }
-        }
 
-        private void BattleNotification_FormClosed_1(object sender, FormClosedEventArgs e)
+        protected override void CloseFormParticulars()
         {
-            if (!closing)
-                NotificationsController.Instance.EndBattleNotification();
+            if (timer != null)
+            {
+                timer.Stop();
+                timer.Tick -= BattleCountdownTimer_Tick;
+                timer = null;
+            }
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            BattleNotification_FormClosed_1(null, null);
+            NotificationsController.Instance.EndBattleNotification();
         }
 
         private void HeadlineOutlineLabel_Click(object sender, EventArgs e)

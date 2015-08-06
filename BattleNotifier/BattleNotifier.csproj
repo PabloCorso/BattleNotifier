@@ -89,6 +89,12 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="Utils\WebRequestHelper.cs" />
+    <Compile Include="View\BaseNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\BaseNotification.Designer.cs">
+      <DependentUpon>BaseNotification.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\BattleNotification.cs">
       <SubType>form</SubType>
     </Compile>
@@ -127,12 +133,9 @@
     <Compile Include="View\SettingsPanel.Designer.cs">
       <DependentUpon>SettingsPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\TransBattleNotification.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\TransMapNotification.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <EmbeddedResource Include="View\BaseNotification.resx">
+      <DependentUpon>BaseNotification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\BattleNotification.resx">
       <DependentUpon>BattleNotification.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,12 +155,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\SettingsPanel.resx">
       <DependentUpon>SettingsPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\TransBattleNotification.resx">
-      <DependentUpon>TransBattleNotification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\TransMapNotification.resx">
-      <DependentUpon>TransMapNotification.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

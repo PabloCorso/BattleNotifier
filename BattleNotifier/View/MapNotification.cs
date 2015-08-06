@@ -11,22 +11,23 @@ using Utils;
 
 namespace BattleNotifier.View
 {
-    public partial class MapNotification : Form
+    public partial class MapNotification : BaseNotification
     {
         private Timer timer;
         private bool tooSmallMap = false;
         private bool showOnlyTimerAndType = false;
-        private bool closing = false;
         private int countdown;
         private int battleDuration;
         private bool mapLoaded;
         private Battle battle;
 
-        public MapNotification() { }
+        public MapNotification() : base(null) { }
 
         public MapNotification(Battle battle, double timeLeft, int startHeight, int mapDesiredWidth, bool mapLoaded, BattleNotificationSettings settings)
+            : base(settings)
         {
             InitializeComponent();
+
             this.battle = battle;
             InitializePicture(mapDesiredWidth);
             SetupDialogLocation(settings.Basic.DisplayScreen, startHeight);
@@ -169,7 +170,7 @@ namespace BattleNotifier.View
             {
                 if (this.InvokeRequired)
                 {
-                    this.Invoke(new MethodInvoker(delegate() { BattleCountdownTimer_Tick(sender, e); }));
+                    this.Invoke(new MethodInvoker(delegate () { BattleCountdownTimer_Tick(sender, e); }));
                 }
                 else
                 {
@@ -257,41 +258,26 @@ namespace BattleNotifier.View
             Top = screenHeight - Height - startHeight - 20;
         }
 
-        private void MapNotification_FormClosed(object sender, FormClosedEventArgs e)
+        protected override void CloseFormParticulars()
         {
-            if (!closing)
-                NotificationsController.Instance.EndBattleNotification();
+            if (PictureBox != null)
+            {
+                Image i = PictureBox.Image;
+                PictureBox.Image = null;
+                if (i != null)
+                    i.Dispose();
+            }
+            if (timer != null)
+            {
+                timer.Stop();
+                timer.Tick -= BattleCountdownTimer_Tick;
+                timer = null;
+            }
         }
 
-        private delegate void BlankDelegate();
-        public void CloseForm()
-        {
-            if (this.InvokeRequired)
-            {
-                this.Invoke(new BlankDelegate(this.CloseForm));
-            }
-            else
-            {
-                closing = true;
-                if (PictureBox != null)
-                {
-                    Image i = PictureBox.Image;
-                    PictureBox.Image = null;
-                    if (i != null)
-                        i.Dispose();
-                }
-                if (timer != null)
-                {
-                    timer.Stop();
-                    timer.Tick -= BattleCountdownTimer_Tick;
-                    timer = null;
-                }
-                this.Close();
-            }
-        }
         private void CloseMenuItem_Click(object sender, EventArgs e)
         {
-            MapNotification_FormClosed(null, null);
+            NotificationsController.Instance.EndBattleNotification();
         }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -342,7 +328,7 @@ namespace BattleNotifier.View
             }
             else if (e.Button == MouseButtons.Middle)
             {
-                MapNotification_FormClosed(null, null);
+                NotificationsController.Instance.EndBattleNotification();
             }
         }
 

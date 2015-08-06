@@ -17,8 +17,8 @@ namespace BattleNotifier.Controller
         private Timer notificationTimer = new Timer();
 
         private static NotificationsController instance;
-        private BattleNotification bn;
-        private MapNotification mn;
+        private BaseNotification bn;
+        private BaseNotification mn;
         private WMPLib.WindowsMediaPlayer player;
 
         // parche asqueroso para que cuando se muestra current battle, dice si hay que bajar el 
@@ -107,16 +107,10 @@ namespace BattleNotifier.Controller
 
                 double timeLeft = battle.TimeLeft;
                 if (settings.Basic.ShowBattleDialog)
-                    if (settings.General.UseFadeEffect)
-                        bn = new TransBattleNotification(battle, timeLeft, settings, true);
-                    else
-                        bn = new BattleNotification(battle, timeLeft, settings);
+                    bn = new BattleNotification(battle, timeLeft, settings);
 
                 int height = bn == null ? 0 : bn.Height;
-                if (settings.General.UseFadeEffect)
-                    mn = new TransMapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), mapOK, settings, true);
-                else
-                    mn = new MapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), mapOK, settings);
+                mn = new MapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), mapOK, settings);
             }
 
             if (!settings.General.ShowOnTop
@@ -131,9 +125,9 @@ namespace BattleNotifier.Controller
             }
 
             if (settings.Basic.ShowMapDialog)
-                m.ShowMapNotification(mn);
+                m.ShowNotification(mn);
             if (settings.Basic.ShowBattleDialog)
-                m.ShowBattleNotification(bn);
+                m.ShowNotification(bn);
 
             // Play sound.
             if (settings.Basic.PlaySound)
@@ -183,7 +177,7 @@ namespace BattleNotifier.Controller
         {
             if (notificationTimer.Enabled)
             {
-                if (!(bn != null && bn.IsPrinting))
+                if (!(bn != null && ((BattleNotification)bn).IsPrinting))
                 {
                     EndBattleNotification();
                 }

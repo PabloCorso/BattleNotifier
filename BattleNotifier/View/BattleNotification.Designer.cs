@@ -275,7 +275,6 @@
             this.Name = "BattleNotification";
             this.Text = "New Battle!";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BattleNotification_FormClosed_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
