@@ -11,32 +11,28 @@ using Utils;
 
 namespace BattleNotifier.View
 {
+#if DEBUG
     public partial class BattleNotification : MiddleClass
+#else
+    public partial class BattleNotification : BaseNotification
+#endif
     {
         public bool IsPrinting { get; set; }
-        private Timer timer;
         private bool transparentStyle = false;
-        private int battleDuration;
-        private int countdown;
         private bool showToolTip = true;
         private string fullAttributesText;
         private int maxAttributesLength = 70;
 
         public BattleNotification(Battle battle, double timeLeft, BattleNotificationSettings settings)
-            : base(settings)
+            : base(settings, battle.Duration, timeLeft)
         {
             InitializeComponent();
+            InitializeBattleTimer(timeLeft);
+
             SetupDialogLocation(settings.Basic.DisplayScreen);
             SetupControls(battle);
             if (settings.General.TransparentStyle)
                 SetupOutlineLabels();
-
-            battleDuration = battle.Duration;
-
-            if (timeLeft > 0)
-                StartBattleCountdown(Convert.ToInt32(timeLeft));
-            else
-                CountdownLabel.Text = GetCountdownDisplayText(Convert.ToInt32(timeLeft)) + " / " + battleDuration + ":00";
 
             if (settings.General.HidePrintMap)
             {
@@ -48,6 +44,19 @@ namespace BattleNotifier.View
         protected override bool ShowWithoutActivation
         {
             get { return true; }
+        }
+
+        protected override string GetCountdownBattleEndedText()
+        {
+            return "Finished";
+        }
+
+        protected override void SetCountdownText(string countdownText)
+        {
+            if (transparentStyle)
+                CountdownOutlineLabel.Text = countdownText;
+            else
+                CountdownLabel.Text = countdownText;
         }
 
         const int WS_MINIMIZEBOX = 0x20000;
@@ -94,63 +103,6 @@ namespace BattleNotifier.View
 
             AttributesOutlineLabel.Visible = true;
             AttributesLabel.Visible = false;
-        }
-
-        private void StartBattleCountdown(int startTime)
-        {
-            countdown = startTime;
-            timer = new Timer();
-            timer.Interval = 1000;
-            timer.Tick += new EventHandler(BattleCountdownTimer_Tick);
-            BattleCountdownTimer_Tick(null, null);
-            timer.Start();
-        }
-
-        private void BattleCountdownTimer_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (this.InvokeRequired)
-                {
-                    this.Invoke(new MethodInvoker(delegate () { BattleCountdownTimer_Tick(sender, e); }));
-                }
-                else
-                {
-                    if (countdown > battleDuration * 60)
-                        CountdownLabel.Text = "Starts in " + GetCountdownDisplayText(countdown - battleDuration * 60);
-                    else
-                    {
-                        if (countdown == 0)
-                            timer.Stop();
-                        TimeSpan time = new TimeSpan(0, 0, countdown);
-                        string display = "(" + GetCountdownDisplayText(countdown) + ")";
-                        if (transparentStyle)
-                            CountdownOutlineLabel.Text = display;
-                        else
-                            CountdownLabel.Text = display;
-                    }
-
-                    countdown--;
-                }
-            }
-            catch (ObjectDisposedException ex)
-            {
-                Logger.Log(500, ex);
-                // Timer ticked while form being disposed. Fixed using forms timer.
-            }
-        }
-
-        private string GetCountdownDisplayText(int seconds)
-        {
-            if (seconds <= 0)
-                return "Finished";
-
-            TimeSpan time = new TimeSpan(0, 0, seconds);
-            string hours = time.Hours == 0 ? "" : time.Hours + ":";
-            string mins = time.Hours > 0 && time.Minutes < 10 ? "0" + time.Minutes : time.Minutes.ToString();
-            string secs = time.Seconds < 10 ? "0" + time.Seconds : time.Seconds.ToString();
-
-            return hours + mins + ":" + secs;
         }
 
         private void SetupControls(Battle battle)
@@ -254,12 +206,6 @@ namespace BattleNotifier.View
 
         protected override void CloseFormParticulars()
         {
-            if (timer != null)
-            {
-                timer.Stop();
-                timer.Tick -= BattleCountdownTimer_Tick;
-                timer = null;
-            }
         }
 
         private void CloseButton_Click(object sender, EventArgs e)

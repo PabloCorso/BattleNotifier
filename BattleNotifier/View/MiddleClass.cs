@@ -1,4 +1,5 @@
-﻿using BattleNotifier.Model;
+﻿using System;
+using BattleNotifier.Model;
 
 namespace BattleNotifier.View
 {
@@ -11,8 +12,22 @@ namespace BattleNotifier.View
     {
         public MiddleClass() { }
 
-        public MiddleClass(BattleNotificationSettings settings) : base(settings) { }
+        public MiddleClass(BattleNotificationSettings settings, int battleDuration, double timeLeft)
+            : base(settings, battleDuration, timeLeft) { }
 
-        protected override void CloseFormParticulars() { }
+        protected override void CloseFormParticulars()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override string GetCountdownBattleEndedText()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void SetCountdownText(string countdownText)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
