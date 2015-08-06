@@ -61,6 +61,8 @@ namespace BattleNotifier.View
 
         #endregion
 
+        #region Initialize, Labels
+
         private void SetupTextOverMap(Battle battle, double timeLeft, MapSettings settings)
         {
             Color color = settings.TextMapColor;
@@ -207,10 +209,9 @@ namespace BattleNotifier.View
             }
         }
 
-        private void CloseMenuItem_Click(object sender, EventArgs e)
-        {
-            NotificationsController.Instance.EndBattleNotification();
-        }
+        #endregion
+
+        #region Mouse click behaviour
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -264,6 +265,11 @@ namespace BattleNotifier.View
             }
         }
 
+        private void CloseMenuItem_Click(object sender, EventArgs e)
+        {
+            NotificationsController.Instance.EndBattleNotification();
+        }
+
         private void ReloadMenuItem_Click(object sender, EventArgs e)
         {
             NotificationsController.Instance.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle);
@@ -278,6 +284,8 @@ namespace BattleNotifier.View
         {
             MapNotification_MouseDown(sender, e);
         }
+
+        #endregion
     }
 
     /// <summary>

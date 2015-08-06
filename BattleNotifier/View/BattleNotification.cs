@@ -42,6 +42,38 @@ namespace BattleNotifier.View
             }
         }
 
+        private void MapCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            NotificationsController.Instance.BattleNotificationMapPressed();
+        }
+
+        private void HeadlineLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // Send the URL to the operating system.
+            Process.Start(e.Link.LinkData as string);
+        }
+
+        private void MinimizeButton_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            NotificationsController.Instance.EndBattleNotification();
+        }
+
+        private void HeadlineOutlineLabel_Click(object sender, EventArgs e)
+        {
+            string link = HeadlineLinkLabel.Links[0].LinkData.ToString();
+            System.Diagnostics.Process.Start(link);
+        }
+
+        private void MinimizeButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            MinimizeButton.Focus();
+        }
+
         #region BaseNotification implementation
 
         protected override string GetCountdownBattleEndedText()
@@ -62,6 +94,8 @@ namespace BattleNotifier.View
         }
 
         #endregion
+
+        #region Labels
 
         private void SetupOutlineLabels()
         {
@@ -135,6 +169,10 @@ namespace BattleNotifier.View
             }
         }
 
+        #endregion
+
+        #region Print Map
+
         private void PrintMapButton_Click(object sender, EventArgs e)
         {
             if (NotificationsController.Instance.Map != null)
@@ -166,36 +204,6 @@ namespace BattleNotifier.View
             e.HasMorePages = false;
         }
 
-        private void MapCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            NotificationsController.Instance.BattleNotificationMapPressed();
-        }
-
-        private void HeadlineLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // Send the URL to the operating system.
-            Process.Start(e.Link.LinkData as string);
-        }
-
-        private void MinimizeButton_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void CloseButton_Click(object sender, EventArgs e)
-        {
-            NotificationsController.Instance.EndBattleNotification();
-        }
-
-        private void HeadlineOutlineLabel_Click(object sender, EventArgs e)
-        {
-            string link = HeadlineLinkLabel.Links[0].LinkData.ToString();
-            System.Diagnostics.Process.Start(link);
-        }
-
-        private void MinimizeButton_MouseMove(object sender, MouseEventArgs e)
-        {
-            MinimizeButton.Focus();
-        }
+        #endregion
     }
 }
