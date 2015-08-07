@@ -7,9 +7,9 @@ namespace BattleNotifier.Controller.ViewInterface
         void ReStartNotifying();
         bool TimerStoppedNotifications { get; }
         bool HasAllDesignersChecked();
+        bool HasAllBattleTypesChecked();
         List<string> CheckedDesigners { get; }
         List<string> CheckedBlackList { get; }
-        bool HasAllBattleTypesChecked();
         List<string> CheckedBattleTypes { get; }
     }
 }

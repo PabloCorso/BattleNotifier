@@ -13,9 +13,9 @@ namespace BattleNotifier
     // Fix this shit, make forms return the settings.
     public class UserSettings
     {
-        Main mainView;
-        MainPanel mainPanel;
-        SettingsPanel settingsPanel;
+        private Main mainView;
+        private MainPanel mainPanel;
+        private SettingsPanel settingsPanel;
         private static UserSettings instance;
 
         public static void InitializeConfigStorageBroker(Main mainView, MainPanel mainPanel, SettingsPanel settingsPanel)
@@ -60,7 +60,6 @@ namespace BattleNotifier
                 settings.Basic.DisplayScreen = Convert.ToInt32(mp.DisplayScreenButton.Text);
 
                 //Settings panel settings.
-
                 settings.Basic.DefaultSound = sp.GetSelecetedDefaultSound();
                 settings.Basic.SoundPath = sp.CustomSoundPathTextBox.Text;
                 settings.Basic.UseCustomSound = sp.UseCustomSoundCheckBox.Checked;
@@ -106,6 +105,7 @@ namespace BattleNotifier
         }
 
         #region User settings persistance
+
         public static void Reset()
         {
             Settings.Default.Reset();
@@ -279,6 +279,7 @@ namespace BattleNotifier
 
             settings.Save();
         }
+
         #endregion
     }
 }

@@ -42,6 +42,13 @@ namespace BattleNotifier.Controller
 
         public static BattleNotifierController Instance { get { return instance; } }
 
+        private BattleNotifierController(IMain view)
+        {
+            this.MainView = view;
+            notificationTimer.Tick += new EventHandler(OnTimedEvent);
+            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+        }
+
         public static void InitializeBattleNotifierController(IMain view)
         {
             if (instance == null)
@@ -54,12 +61,28 @@ namespace BattleNotifier.Controller
             SystemEvents.PowerModeChanged -= SystemEvents_PowerModeChanged;
         }
 
-        private BattleNotifierController(IMain view)
+        private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
-            this.MainView = view;
-            notificationTimer.Tick += new EventHandler(OnTimedEvent);
-            SystemEvents.PowerModeChanged += SystemEvents_PowerModeChanged;
+            if (e.Mode == PowerModes.Suspend)
+            {
+                if (notificationTimer.Enabled)
+                {
+                    StopNotifying();
+                    NotificationsController.Instance.HideBattleNotification();
+                    timerSuspended = true;
+                }
+                powerModeSuspended = true;
+            }
+            else if (powerModeSuspended)
+            {
+                if (!MainPanel.TimerStoppedNotifications && timerSuspended)
+                    StartNotifying();
+                powerModeSuspended = false;
+                timerSuspended = false;
+            }
         }
+
+        #region Battle notification
 
         /// <summary>
         /// Start notifying battles.
@@ -119,7 +142,10 @@ namespace BattleNotifier.Controller
             SetNextUpdateInterval(NotifyBattle());
         }
 
-        #region Battle notification
+#endregion
+
+        #region Notification methods
+
         /// <summary>
         /// Notificate current battle if any, and return a new interval for the next notification.
         /// </summary>
@@ -276,9 +302,11 @@ namespace BattleNotifier.Controller
                                             .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLMapsUrl))
                                             .FirstOrDefault();
         }
+
         #endregion
 
         #region Filter battle
+
         /// <summary>
         /// Use user preferences to filter wanted battles.
         /// </summary>
@@ -318,27 +346,7 @@ namespace BattleNotifier.Controller
 
             return false;
         }
-        #endregion
 
-        private void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
-        {
-            if (e.Mode == PowerModes.Suspend)
-            {
-                if (notificationTimer.Enabled)
-                {
-                    StopNotifying();
-                    NotificationsController.Instance.HideBattleNotification();
-                    timerSuspended = true;
-                }
-                powerModeSuspended = true;
-            }
-            else if (powerModeSuspended)
-            {
-                if (!MainPanel.TimerStoppedNotifications && timerSuspended)
-                    StartNotifying();
-                powerModeSuspended = false;
-                timerSuspended = false;
-            }
-        }
+        #endregion
     }
 }

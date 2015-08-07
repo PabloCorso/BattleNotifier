@@ -10,7 +10,7 @@ namespace Utils
         {
 #if DEBUG
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            System.IO.StreamWriter file = new System.IO.StreamWriter(executingDirectory + "\\bn-log.txt", true);
+            StreamWriter file = new System.IO.StreamWriter(executingDirectory + "\\bn-log.txt", true);
             file.WriteLine(lines);
 
             file.Close();
@@ -21,7 +21,7 @@ namespace Utils
         {
 #if DEBUG
             var executingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            System.IO.StreamWriter file = new System.IO.StreamWriter(executingDirectory + "\\bn-log.txt", true);
+            StreamWriter file = new StreamWriter(executingDirectory + "\\bn-log.txt", true);
             file.WriteLine(code.ToString() + " - " + ex.ToString());
 
             file.Close();

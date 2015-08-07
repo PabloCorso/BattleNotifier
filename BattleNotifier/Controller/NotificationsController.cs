@@ -6,7 +6,6 @@ using System.Drawing;
 using System.IO;
 using System.Media;
 using System.Windows.Forms;
-using Settings = BattleNotifier.Properties.Settings;
 using BattleNotifier.Controller.ViewInterface;
 using Utils;
 
@@ -47,6 +46,11 @@ namespace BattleNotifier.Controller
                 ShowBattleNotification(main, CurrentBattle, true);
         }
 
+        public void HideBattleNotification()
+        {
+            ClearBattleNotification();
+        }
+
         public void SimulateNewBattle()
         {
             Random random = new Random();
@@ -66,13 +70,76 @@ namespace BattleNotifier.Controller
                 Id = id
             };
 
-            this.ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, false, true);
+            ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, false, true);
         }
 
-        public void HideBattleNotification()
+        private void StopSound()
+        {
+            try
+            {
+                if (player != null && player.controls != null)
+                    player.controls.stop();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(201, ex);
+                // Nothing happend here, no one saw anything. Get back to work.
+            }
+        }
+
+        private void ClearBattleNotification()
+        {
+            try
+            {
+                try
+                {
+                    if (mn != null)
+                        mn.CloseForm();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(202, ex);
+                }
+                try
+                {
+                    if (bn != null)
+                        bn.CloseForm();
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(203, ex);
+                }
+
+                StopSound();
+                if (notificationTimer.Enabled)
+                    notificationTimer.Stop();
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(204, ex);
+            }
+            finally
+            {
+                bn = null;
+                mn = null;
+            }
+        }
+
+        public void BattleNotificationMapPressed()
+        {
+            if (mn != null)
+                if (mn.Visible)
+                    mn.Visible = false;
+                else
+                    mn.Visible = true;
+        }
+
+        public void EndBattleNotification()
         {
             ClearBattleNotification();
         }
+
+        #region Show battle notification
 
         public void ShowBattleNotification(IMain m, Battle battle, bool showCurrent = false, bool simulation = false)
         {
@@ -92,6 +159,29 @@ namespace BattleNotifier.Controller
                 mn = new MapNotification(battle, timeLeft, height, MapSizeIndexToWidth(settings.Basic.MapSize), mapOK, settings);
             }
 
+            SetupWindowsDisplayBehaviour(settings);
+
+            if (settings.Basic.ShowMapDialog)
+                m.ShowNotification(mn);
+            if (settings.Basic.ShowBattleDialog)
+                m.ShowNotification(bn);
+
+            SetupSound(settings);
+            SetupLifeTime(settings);
+        }
+
+        private void SetupLifeTime(BattleNotificationSettings settings)
+        {
+            if (settings.Basic.LifeSeconds > 0)
+            {
+                notificationTimer.Interval = Convert.ToInt32(new TimeSpan(0, 0, settings.Basic.LifeSeconds).TotalMilliseconds);
+                notificationTimer.Tick += new EventHandler(OnTimedEvent);
+                notificationTimer.Start();
+            }
+        }
+
+        private void SetupWindowsDisplayBehaviour(BattleNotificationSettings settings)
+        {
             if (!settings.General.ShowOnTop
                 || !settings.General.ShowOverFullScreen
                 && ForegroundWindowHelper.IsForegroundWindowOnDisplayScreen(settings.Basic.DisplayScreen)
@@ -102,26 +192,16 @@ namespace BattleNotifier.Controller
                 if (bn != null)
                     bn.TopMost = false;
             }
+        }
 
-            if (settings.Basic.ShowMapDialog)
-                m.ShowNotification(mn);
-            if (settings.Basic.ShowBattleDialog)
-                m.ShowNotification(bn);
-
-            // Play sound.
+        private void SetupSound(BattleNotificationSettings settings)
+        {
             if (settings.Basic.PlaySound)
                 if (settings.Basic.UseCustomSound &&
                     !string.IsNullOrEmpty(settings.Basic.SoundPath) && File.Exists(settings.Basic.SoundPath))
                     PlaySound(settings.Basic.SoundPath, settings.Basic.DefaultSound);
                 else
                     PlayDefaultSound(settings.Basic.DefaultSound);
-
-            if (settings.Basic.LifeSeconds > 0)
-            {
-                notificationTimer.Interval = Convert.ToInt32(new TimeSpan(0, 0, settings.Basic.LifeSeconds).TotalMilliseconds);
-                notificationTimer.Tick += new EventHandler(OnTimedEvent);
-                notificationTimer.Start();
-            }
         }
 
         private bool SetMap(Battle battle, bool showCurrent, bool simulation)
@@ -178,76 +258,10 @@ namespace BattleNotifier.Controller
             }
         }
 
-        private void StopSound()
-        {
-            try
-            {
-                if (player != null && player.controls != null)
-                    player.controls.stop();
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(201, ex);
-                // Nothing happend here, no one saw anything. Get back to work.
-            }
-        }
-
         private void PlayDefaultSound(int defaultSound)
         {
             SoundPlayer sound = new SoundPlayer(IndexToDefaultSound(defaultSound));
             sound.Play();
-        }
-
-        private void ClearBattleNotification()
-        {
-            try
-            {
-                try
-                {
-                    if (mn != null)
-                        mn.CloseForm();
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log(202, ex);
-                }
-                try
-                {
-                    if (bn != null)
-                        bn.CloseForm();
-                }
-                catch (Exception ex)
-                {
-                    Logger.Log(203, ex);
-                }
-
-                StopSound();
-                if (notificationTimer.Enabled)
-                    notificationTimer.Stop();
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(204, ex);
-            }
-            finally
-            {
-                bn = null;
-                mn = null;
-            }
-        }
-
-        public void BattleNotificationMapPressed()
-        {
-            if (mn != null)
-                if (mn.Visible)
-                    mn.Visible = false;
-                else
-                    mn.Visible = true;
-        }
-
-        public void EndBattleNotification()
-        {
-            ClearBattleNotification();
         }
 
         private int MapSizeIndexToWidth(int mapSize)
@@ -289,5 +303,7 @@ namespace BattleNotifier.Controller
                     return Properties.Resources.apple;
             }
         }
+
+        #endregion
     }
 }
