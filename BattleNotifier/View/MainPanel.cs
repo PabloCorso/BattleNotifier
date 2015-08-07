@@ -14,19 +14,49 @@ namespace BattleNotifier.View
         private BattleNotifierController battleNotifier;
         private const string playSymbol = "▶";
         private const string stopSymbol = "■";
-        private const string smallPlusSymbol = "+";
-        private const string bigPlusSymbol = "＋";
         private const string allDesigners = "All designers";
         private const string allBattleTypes = "All battle types";
 
         public MainPanel()
         {
             InitializeComponent();
-            this.battleNotifier = BattleNotifierController.Instance;
+            battleNotifier = BattleNotifierController.Instance;
 
             AutocompleteKuskisList = new List<string>();
             InitializeHelpDescriptions();
         }
+
+        public void MainPanel_Load(object sender, EventArgs e)
+        {
+            var acs = SearchDesignerTextBox.AutoCompleteCustomSource;
+            foreach (string kuski in AutocompleteKuskisList)
+                if (!acs.Contains(kuski))
+                    acs.Add(kuski);
+            foreach (string kuski in DesignersChListBox.ToStringList())
+                if (acs.Contains(kuski))
+                    acs.Remove(kuski);
+            foreach (string kuski in BlackListChListBox.ToStringList())
+                if (acs.Contains(kuski))
+                    acs.Remove(kuski);
+
+            UpdateErrorLabel();
+        }
+
+        private void MainPanel_Click(object sender, EventArgs e)
+        {
+            ActiveControl = null;
+        }
+
+        #region IMainPanel implementation
+
+        public bool TimerStoppedNotifications
+        {
+            get { return !Timer.Enabled && NotificationDurationTrackBar.Value != 0; }
+        }
+
+        #endregion
+
+        #region Helping descriptions
 
         private void InitializeHelpDescriptions()
         {
@@ -70,21 +100,9 @@ namespace BattleNotifier.View
             battleNotifier.MainView.ClearHelpDescription();
         }
 
-        public void MainPanel_Load(object sender, EventArgs e)
-        {
-            var acs = SearchDesignerTextBox.AutoCompleteCustomSource;
-            foreach (string kuski in AutocompleteKuskisList)
-                if (!acs.Contains(kuski))
-                    acs.Add(kuski);
-            foreach (string kuski in DesignersChListBox.ToStringList())
-                if (acs.Contains(kuski))
-                    acs.Remove(kuski);
-            foreach (string kuski in BlackListChListBox.ToStringList())
-                if (acs.Contains(kuski))
-                    acs.Remove(kuski);
+        #endregion
 
-            UpdateErrorLabel();
-        }
+        #region Notificate
 
         /// <summary>
         /// Restarts battle notifications if notificatiosn are On.
@@ -95,13 +113,6 @@ namespace BattleNotifier.View
             if (battleNotifier.IsNotifyingBattle)
                 battleNotifier.UpdateNotifying();
         }
-
-        #region IMainPanel implementation
-        public bool TimerStoppedNotifications
-        {
-            get { return !Timer.Enabled && NotificationDurationTrackBar.Value != 0; }
-        }
-        #endregion
 
         public void NotificateBattles()
         {
@@ -188,10 +199,7 @@ namespace BattleNotifier.View
             return hours[trackValue] * 1000 * 60 * 60;
         }
 
-        private void MainPanel_Click(object sender, EventArgs e)
-        {
-            this.ActiveControl = null;
-        }
+        #endregion
 
         #region Battle types list methods
 
@@ -252,18 +260,6 @@ namespace BattleNotifier.View
                 //AddDesignerButton.Focus();
                 AddDesignerButton_Click(sender, e);
             }
-        }
-
-        private void AddDesignerButton_Enter(object sender, EventArgs e)
-        {
-            if (AddDesignerButton.Text.Equals(MainPanel.smallPlusSymbol))
-                AddDesignerButton.Text = MainPanel.bigPlusSymbol;
-        }
-
-        private void AddDesignerButton_Leave(object sender, EventArgs e)
-        {
-            if (AddDesignerButton.Text.Equals(MainPanel.bigPlusSymbol))
-                AddDesignerButton.Text = MainPanel.smallPlusSymbol;
         }
 
         private void AddDesignerButton_Click(object sender, EventArgs e)
@@ -367,6 +363,8 @@ namespace BattleNotifier.View
 
         #endregion
 
+        #region Notification basic settings
+
         private void ShowBattleCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NotificationsSettingsModified();
@@ -419,5 +417,7 @@ namespace BattleNotifier.View
         {
             NotificationsController.Instance.ShowCurrentBattleNotification(battleNotifier.MainView);
         }
+
+        #endregion
     }
 }

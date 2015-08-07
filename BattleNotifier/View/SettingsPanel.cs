@@ -11,27 +11,26 @@ namespace BattleNotifier.View
 {
     public partial class SettingsPanel : UserControl
     {
-        BattleNotifierController battleNotifier;
+        private BattleNotifierController battleNotifier;
         // The path to the key where Windows looks for startup applications
-        RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-        string thisExe = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+        private RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        private string thisExe = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
 
         public SettingsPanel()
         {
             InitializeComponent();
-            this.battleNotifier = BattleNotifierController.Instance;
-            this.ShowOnMapGroup.Click += new EventHandler(SettingsPanel_Click);
-            this.GeneralSettingsGroup.Click += new EventHandler(SettingsPanel_Click);
-            this.NotificationSoundGroup.Click += new EventHandler(SettingsPanel_Click);
+            battleNotifier = BattleNotifierController.Instance;
+            ShowOnMapGroup.Click += new EventHandler(SettingsPanel_Click);
+            GeneralSettingsGroup.Click += new EventHandler(SettingsPanel_Click);
+            NotificationSoundGroup.Click += new EventHandler(SettingsPanel_Click);
             InitializeColorPicker();
             InitializeHelpDescriptions();
 
             if (ShowOverFullScreenCheckBox.Checked)
                 ShowOnTopCheckBox.Checked = true;
-            //#if DEBUG
-            //            RandomNewBattleCheckBox.Visible = true;
-            //#endif
         }
+
+        #region Helping descriptions
 
         private void InitializeHelpDescriptions()
         {
@@ -87,6 +86,16 @@ namespace BattleNotifier.View
             }
         }
 
+        #endregion
+
+        #region Sound settings
+
+        private void SetSoundButton_Click(object sender, EventArgs e)
+        {
+            SoundOpenFileDialog.ShowDialog();
+            CustomSoundPathTextBox.Text = SoundOpenFileDialog.FileName;
+        }
+
         public int GetSelecetedDefaultSound()
         {
             if (DefaultSoundComboBox.InvokeRequired)
@@ -95,18 +104,15 @@ namespace BattleNotifier.View
                 return DefaultSoundComboBox.SelectedIndex;
         }
 
-        private void ResetButton_Click(object sender, EventArgs e)
+        private void DefaultSoundComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Accept to reset all settings to default configuration.\nAll your settings and filters will be deleted.",
-                                     "Reset to default settings",
-                                     MessageBoxButtons.OKCancel);
-            if (confirmResult == DialogResult.OK)
-            {
-                UserSettings.Reset();
-            }
+            SettingsPanel_Click(sender, e);
         }
 
+        #endregion
+
         #region ColorPicker
+
         private void InitializeColorPicker()
         {
             foreach (Button button in ColorButtons)
@@ -145,32 +151,14 @@ namespace BattleNotifier.View
         private void ShowColorButtons() { foreach (Button b in ColorButtons) b.Visible = true; }
         private void HideColorButtons() { foreach (Button b in ColorButtons) b.Visible = false; }
         private bool ColorButtonsVisible() { return b1.Visible; }
+
         #endregion
 
-        private void SetSoundButton_Click(object sender, EventArgs e)
-        {
-            SoundOpenFileDialog.ShowDialog();
-            CustomSoundPathTextBox.Text = SoundOpenFileDialog.FileName;
-        }
-
-        private void SettingsPanel_Click(object sender, EventArgs e)
-        {
-            this.ActiveControl = null;
-        }
-
-        private void NewBattleButton_Click(object sender, EventArgs e)
-        {
-            NotificationsController.Instance.SimulateNewBattle();
-        }
+        #region General settings
 
         private void HideToTraybarCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             UserSettings.Instance.SetHideToTraybarValue(HideToTraybarCheckBox.Checked);
-        }
-
-        private void DefaultSoundComboBox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            SettingsPanel_Click(sender, e);
         }
 
         private void RunOnWinStartupCheckBox_MouseUp(object sender, MouseEventArgs e)
@@ -208,6 +196,29 @@ namespace BattleNotifier.View
         {
             if (ShowOverFullScreenCheckBox.Checked)
                 ShowOnTopCheckBox.Checked = true;
+        }
+
+        #endregion
+
+        private void SettingsPanel_Click(object sender, EventArgs e)
+        {
+            ActiveControl = null;
+        }
+
+        private void ResetButton_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show("Accept to reset all settings to default configuration.\nAll your settings and filters will be deleted.",
+                                     "Reset to default settings",
+                                     MessageBoxButtons.OKCancel);
+            if (confirmResult == DialogResult.OK)
+            {
+                UserSettings.Reset();
+            }
+        }
+
+        private void NewBattleButton_Click(object sender, EventArgs e)
+        {
+            NotificationsController.Instance.SimulateNewBattle();
         }
     }
 }

@@ -151,8 +151,6 @@
             this.ToolTip.SetToolTip(this.AddDesignerButton, "\r\n");
             this.AddDesignerButton.UseVisualStyleBackColor = true;
             this.AddDesignerButton.Click += new System.EventHandler(this.AddDesignerButton_Click);
-            this.AddDesignerButton.Enter += new System.EventHandler(this.AddDesignerButton_Enter);
-            this.AddDesignerButton.Leave += new System.EventHandler(this.AddDesignerButton_Leave);
             // 
             // Timer
             // 

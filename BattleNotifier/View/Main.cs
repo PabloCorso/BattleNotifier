@@ -50,22 +50,6 @@ namespace BattleNotifier.View
             RegisterCurrentBattleHotkeyFromPanel();
         }
 
-        private void RegisterCurrentBattleHotkeyFromPanel()
-        {
-            if (mainPanel.ShowCurrentHotkeyTextBox.Hotkey != Keys.None)
-                RegisterCurrentBattleHotkey(mainPanel.ShowCurrentHotkeyTextBox.Hotkey, mainPanel.ShowCurrentHotkeyTextBox.HotkeyModifiers);
-        }
-
-        protected override void WndProc(ref Message msg)
-        {
-            base.WndProc(ref msg);
-
-            if (msg.Msg == 0x0312)
-            {
-                NotificationsController.Instance.ShowCurrentBattleNotification(this);
-            }
-        }
-
         #region IMain implementation
         public IMainPanel MainPanel
         {
@@ -127,49 +111,8 @@ namespace BattleNotifier.View
         }
         #endregion
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            if (!mainPanel.ShowCurrentHotkeyTextBox.Focused && keyData == (Keys.Control | Keys.R))
-            {
-                mainPanel.ReStartNotifying();
-                return true;
-            }
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-
-        public void DisposeBattleNotification()
-        {
-            if (battleNotifier.IsNotifyingBattle)
-                battleNotifier.StopNotifying();
-        }
-
-        private void Main_Resize(object sender, EventArgs e)
-        {
-            // When minimized hide from task bar and show NotifyIcon if must hide.
-            if (WindowState == FormWindowState.Minimized)
-            {
-                if (UserSettings.Instance.MustHideToTraybar())
-                {
-                    UnregisterCurrentBattleHotkey();
-                    ShowInTaskbar = false;
-                    NotifyIcon.Visible = true;
-                    NotifyIcon.ShowBalloonTip(1000);
-                    UpdateTrayNotifyIcon();
-                    RegisterCurrentBattleHotkeyFromPanel();
-                }
-            }
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            UserSettings.Save();
-            ShutDownNotifyIcon();
-            UnregisterCurrentBattleHotkey();
-            battleNotifier.Dispose();
-            base.OnClosed(e);
-        }
-
         #region NotifyIcon
+
         private void InitializeNotifyIcon()
         {
             contextMenu = new ContextMenu();
@@ -289,6 +232,64 @@ namespace BattleNotifier.View
         }
 
         #endregion
+
+        private void RegisterCurrentBattleHotkeyFromPanel()
+        {
+            if (mainPanel.ShowCurrentHotkeyTextBox.Hotkey != Keys.None)
+                RegisterCurrentBattleHotkey(mainPanel.ShowCurrentHotkeyTextBox.Hotkey, mainPanel.ShowCurrentHotkeyTextBox.HotkeyModifiers);
+        }
+
+        protected override void WndProc(ref Message msg)
+        {
+            base.WndProc(ref msg);
+
+            if (msg.Msg == 0x0312)
+            {
+                NotificationsController.Instance.ShowCurrentBattleNotification(this);
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (!mainPanel.ShowCurrentHotkeyTextBox.Focused && keyData == (Keys.Control | Keys.R))
+            {
+                mainPanel.ReStartNotifying();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            UserSettings.Save();
+            ShutDownNotifyIcon();
+            UnregisterCurrentBattleHotkey();
+            battleNotifier.Dispose();
+            base.OnClosed(e);
+        }
+
+        public void DisposeBattleNotification()
+        {
+            if (battleNotifier.IsNotifyingBattle)
+                battleNotifier.StopNotifying();
+        }
+
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            // When minimized hide from task bar and show NotifyIcon if must hide.
+            if (WindowState == FormWindowState.Minimized)
+            {
+                if (UserSettings.Instance.MustHideToTraybar())
+                {
+                    UnregisterCurrentBattleHotkey();
+                    ShowInTaskbar = false;
+                    NotifyIcon.Visible = true;
+                    NotifyIcon.ShowBalloonTip(1000);
+                    UpdateTrayNotifyIcon();
+                    RegisterCurrentBattleHotkeyFromPanel();
+                }
+            }
+        }
 
         private void NavigateToSettingsButton_Click(object sender, EventArgs e)
         {
