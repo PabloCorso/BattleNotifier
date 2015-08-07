@@ -83,7 +83,6 @@ namespace BattleNotifier.Controller
             catch (Exception ex)
             {
                 Logger.Log(201, ex);
-                // Nothing happend here, no one saw anything. Get back to work.
             }
         }
 
@@ -208,8 +207,8 @@ namespace BattleNotifier.Controller
         {
             try
             {
-                if (battle.Type.HasFlag(BattleType.OneHourTT))
-                    Map = (Image)Properties.Resources.about;
+                if (battle.Type.HasFlag(BattleType.OneHourTT) && !simulation)
+                    Map = Properties.Resources.OneHourTTMap;
                 else if (!showCurrent || downloadCurrentMap || Map == null || !battle.MapId.Equals(lastLoadedMapId))
                 {
                     downloadCurrentMap = false;
@@ -226,7 +225,7 @@ namespace BattleNotifier.Controller
                 }
                 else
                     downloadCurrentMap = true;
-                Map = (Image)Properties.Resources.about;
+                Map = Properties.Resources.about;
             }
 
             return true;

@@ -184,6 +184,7 @@
   <ItemGroup>
     <Content Include="Assets\bn_icon.ico" />
     <Content Include="Assets\bn_icon.png" />
+    <None Include="Assets\OneHourTTMap.PNG" />
     <Content Include="bn_icon.ico" />
     <Content Include="Assets\apple.wav" />
     <Content Include="Assets\close.png" />

@@ -29,6 +29,10 @@ namespace BattleNotifier.View
             InitializeNotifyIcon();
             CenterToScreen();
 
+            // Started from Windows startup, launch minimized.
+            if (Program.LaunchedViaStartup)
+                WindowState = FormWindowState.Minimized;
+
             // Initialize battle controller.
             BattleNotifierController.InitializeBattleNotifierController(this);
             battleNotifier = BattleNotifierController.Instance;
@@ -47,6 +51,7 @@ namespace BattleNotifier.View
             if (UserSettings.Instance.MustNotifyOnStartup())
                 mainPanel.NotificateBattles();
 
+            settingsPanel.UpdateRunOnWinStartupRegistryKey();
             RegisterCurrentBattleHotkeyFromPanel();
         }
 

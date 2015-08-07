@@ -30,6 +30,11 @@ namespace BattleNotifier.View
                 ShowOnTopCheckBox.Checked = true;
         }
 
+        public void UpdateRunOnWinStartupRegistryKey()
+        {
+            RunOnWinStartupCheckBox_MouseUp(null, null);
+        }
+
         #region Helping descriptions
 
         private void InitializeHelpDescriptions()
@@ -168,15 +173,10 @@ namespace BattleNotifier.View
                 bool registered = rk.GetValue(thisExe) == null ? false : true;
 
                 if (registered)
-                {
-                    rk.DeleteValue(thisExe, false);
-                    RunOnWinStartupCheckBox.Checked = false;
-                }
-                else
-                {
-                    rk.SetValue(thisExe, Application.ExecutablePath.ToString());
-                    RunOnWinStartupCheckBox.Checked = true;
-                }
+                    UnregisterFromWinStartup();
+
+                if (RunOnWinStartupCheckBox.Checked)
+                    RegisterToWinStartup();
             }
             catch (Exception ex)
             {
@@ -184,6 +184,16 @@ namespace BattleNotifier.View
                 RunOnWinStartupCheckBox.Checked = false;
                 Logger.Log(700, ex);
             }
+        }
+
+        private void RegisterToWinStartup()
+        {
+            rk.SetValue(thisExe, "\"" + Application.ExecutablePath.ToString() + "\" /startminimized");
+        }
+
+        private void UnregisterFromWinStartup()
+        {
+            rk.DeleteValue(thisExe, false);
         }
 
         private void ShowOnTopCheckBox_CheckedChanged(object sender, EventArgs e)
