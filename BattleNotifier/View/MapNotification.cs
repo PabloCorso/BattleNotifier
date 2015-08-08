@@ -267,7 +267,8 @@ namespace BattleNotifier.View
 
         private void CloseMenuItem_Click(object sender, EventArgs e)
         {
-            NotificationsController.Instance.EndBattleNotification();
+            if (!closing)
+                NotificationsController.Instance.EndBattleNotification();
         }
 
         private void ReloadMenuItem_Click(object sender, EventArgs e)

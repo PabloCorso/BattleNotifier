@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Name = "BaseNotification";
             this.Text = "BaseNotification";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BaseNotification_FormClosed);
             this.ResumeLayout(false);
 
         }

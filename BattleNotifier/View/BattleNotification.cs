@@ -60,7 +60,8 @@ namespace BattleNotifier.View
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            NotificationsController.Instance.EndBattleNotification();
+            if (!closing)
+                NotificationsController.Instance.EndBattleNotification();
         }
 
         private void HeadlineOutlineLabel_Click(object sender, EventArgs e)
@@ -106,7 +107,7 @@ namespace BattleNotifier.View
             MinimizeButton.Visible = true;
             CloseButton.Visible = true;
             BackColor = Color.Gray;
-            this.TransparencyKey = Color.Gray;
+            TransparencyKey = Color.Gray;
             CloseButton.BackColor = Color.Gray;
             MinimizeButton.BackColor = Color.Gray;
             PrintMapButton.BackColor = Color.Gray;

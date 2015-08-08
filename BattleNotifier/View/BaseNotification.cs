@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using BattleNotifier.Controller;
 using BattleNotifier.Model;
 using Utils;
 
@@ -12,6 +13,8 @@ namespace BattleNotifier.View
         private int countdown;
         private int battleDuration;
         private BattleNotificationSettings settings;
+
+        protected bool closing = false;
 
         public BaseNotification() { }
 
@@ -72,28 +75,36 @@ namespace BattleNotifier.View
 
         private void FadeIn(object sender, EventArgs e)
         {
-            if (Opacity < 1)
+            try
             {
-                Opacity += 0.1;
+                if (Opacity < 1)
+                {
+                    Opacity += 0.1;
+                }
+                else
+                {
+                    fadeTimer.Stop();
+                }
             }
-            else
-            {
-                fadeTimer.Stop();
-            }
+            catch (ObjectDisposedException) { }
         }
 
         private void FadeOut(object sender, EventArgs e)
         {
-            if (Opacity > 0)
+            try
             {
-                Opacity -= 0.1;
+                if (Opacity > 0)
+                {
+                    Opacity -= 0.1;
+                }
+                else
+                {
+                    fadeTimer.Stop();
+                    fadeTimer.Tick -= new EventHandler(FadeOut);
+                    Close();
+                }
             }
-            else
-            {
-                fadeTimer.Stop();
-                fadeTimer.Tick -= new EventHandler(FadeOut);
-                Close();
-            }
+            catch (ObjectDisposedException) { }
         }
 
         #endregion
@@ -106,7 +117,6 @@ namespace BattleNotifier.View
                 StartBattleCountdown(Convert.ToInt32(timeLeft));
             else
                 SetCountdownText(GetCountdownDisplayText(Convert.ToInt32(timeLeft)) + " / " + battleDuration + ":00");
-
         }
 
         protected void StartBattleCountdown(int startTime)
@@ -170,6 +180,7 @@ namespace BattleNotifier.View
         #endregion
 
         #region Close Form
+
         protected abstract void CloseFormParticulars();
 
         private delegate void BlankDelegate();
@@ -182,6 +193,7 @@ namespace BattleNotifier.View
             }
             else
             {
+                closing = true;
                 CloseFormParticulars();
 
                 if (battleTimer != null)
@@ -204,6 +216,12 @@ namespace BattleNotifier.View
                     Close();
                 }
             }
+        }
+
+        private void BaseNotification_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!closing)
+                NotificationsController.Instance.EndBattleNotification();
         }
 
         #endregion
