@@ -20,7 +20,8 @@ namespace BattleNotifier
         {
             using (Mutex mutex = new Mutex(false, appGuid))
             {
-                if (!mutex.WaitOne(0, false))
+                bool waitOne = mutex.WaitOne(0, false);
+                if (!waitOne)
                 {
                     MessageBox.Show("An instance of Battle Notifier is already running.", "Calm your horses", MessageBoxButtons.OK);
                     return;
@@ -48,6 +49,8 @@ namespace BattleNotifier
                 Main main = new Main();
                 Application.Run(main);
                 main.DisposeBattleNotification();
+                if (mutex != null && waitOne)
+                    mutex.ReleaseMutex();
             }
         }
     }
