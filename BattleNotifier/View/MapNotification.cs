@@ -122,12 +122,13 @@ namespace BattleNotifier.View
             {
                 locate.ToLeft(HeaderLabel, 5);
                 locate.MoveUp(TypeLabel, HeaderLabel.Height + 2);
+                locate.MoveUp(TimerLabel, HeaderLabel.Height + 2);
                 if (settings.ShowAttributes)
                 {
                     locate.BottomRight(AttributesLabel, 5);
                     locate.MoveUp(AttributesLabel, HeaderLabel.Height + 2);
                     locate.BottomRight(TimerLabel, 5);
-                    locate.MoveUp(TimerLabel, AttributesLabel.Height + HeaderLabel.Height + 2);
+                    locate.MoveUp(TimerLabel, AttributesLabel.Height + HeaderLabel.Height + TypeLabel.Height + 2 );
                     if (AttributesLabel.Width > PictureBox.Width - TypeLabel.Width - 10)
                     {
                         locate.ToLeft(AttributesLabel, 5);
