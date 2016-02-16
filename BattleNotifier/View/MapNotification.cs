@@ -236,14 +236,14 @@ namespace BattleNotifier.View
                 MenuItem closeMenuItem = new MenuItem();
                 MenuItem minimizeMenuItem = new MenuItem();
 
-                if (!mapLoaded)
-                {
+                //if (!mapLoaded)
+                //{
                     // Initialize reloadMenuItem
                     reloadMenuItem.Index = 0;
                     reloadMenuItem.Text = "Reload";
                     reloadMenuItem.Click += new EventHandler(ReloadMenuItem_Click);
                     contextMenu.MenuItems.Add(reloadMenuItem);
-                }
+                //}
 
                 // Initialize closeMenuItem
                 closeMenuItem.Index = 1;
