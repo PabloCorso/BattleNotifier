@@ -397,7 +397,7 @@ namespace BattleNotifier.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://elma.seamy.ru:8880/current_battle/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://108.61.164.75:8880/current_battle")]
         public string CurrentBattleApiUrl {
             get {
                 return ((string)(this["CurrentBattleApiUrl"]));
