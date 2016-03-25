@@ -142,7 +142,7 @@ namespace BattleNotifier.Controller
             SetNextUpdateInterval(NotifyBattle());
         }
 
-#endregion
+        #endregion
 
         #region Notification methods
 
@@ -168,14 +168,9 @@ namespace BattleNotifier.Controller
             }
             else // Ongoing battle.
             {
-                double timePassed = (CurrentDateTime - battle.StartedDateTime).TotalSeconds;
-                double timeLeft = (battle.Duration * 60) - timePassed;
-
                 // New battle.
                 if (!battle.Equals(currentBattle))
-                {
                     currentBattle = battle;
-                }
 
                 // Notificate battle.
                 if (!currentNotified)
@@ -188,12 +183,15 @@ namespace BattleNotifier.Controller
                     }
                 }
 
+                double timePassed = (CurrentDateTime - battle.StartedDateTime).TotalSeconds;
+                double timeLeft = (battle.Duration * 60) - timePassed;
+
                 if (timeLeft < 1)
                 {
                     nextUpdate = 1;
                     currentFinishedNormally = true;
                 }
-                else if (timePassed < 60) // Started recently.
+                else if (timePassed < 60 || battle.Type.HasFlag(BattleType.OneLife)) // Started recently or OneLife.
                     nextUpdate = 20;
                 else if (currentBattle.Duration < 10)
                 {
