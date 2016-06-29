@@ -13,6 +13,7 @@ namespace BattleNotifier.View
         public List<string> AutocompleteKuskisList { get; set; }
 
         private BattleNotifierController battleNotifier;
+        private About about;
         private const string playSymbol = "▶";
         private const string stopSymbol = "■";
         private const string allDesigners = "All designers";
@@ -22,6 +23,7 @@ namespace BattleNotifier.View
         {
             InitializeComponent();
             battleNotifier = BattleNotifierController.Instance;
+            about = new About();
 
             AutocompleteKuskisList = new List<string>();
             InitializeHelpDescriptions();
@@ -63,7 +65,13 @@ namespace BattleNotifier.View
 
         #endregion
 
-        #region Helping descriptions
+        #region Helping descriptions & About
+
+        private void AboutButton_Click(object sender, EventArgs e)
+        {
+            if (!about.Visible)
+                about.ShowDialog();
+        }
 
         private void InitializeHelpDescriptions()
         {

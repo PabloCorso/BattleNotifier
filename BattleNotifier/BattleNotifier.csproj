@@ -89,6 +89,12 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Utils\Utils.cs" />
     <Compile Include="Utils\WebRequestHelper.cs" />
+    <Compile Include="View\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\About.designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\BaseNotification.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     <Compile Include="View\SettingsPanel.Designer.cs">
       <DependentUpon>SettingsPanel.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\BaseNotification.resx">
       <DependentUpon>BaseNotification.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +191,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\about_icon.png" />
     <Content Include="Assets\bn_icon.ico" />
     <Content Include="Assets\bn_icon.png" />
     <None Include="Assets\OneHourTTMap.PNG" />

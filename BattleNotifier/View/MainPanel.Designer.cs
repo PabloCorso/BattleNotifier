@@ -56,6 +56,7 @@
             this.DisplayScreenLabel = new System.Windows.Forms.Label();
             this.DisplayScreenButton = new System.Windows.Forms.Button();
             this.ShowCurrentButton = new System.Windows.Forms.Button();
+            this.AboutButton = new System.Windows.Forms.Button();
             this.ShowCurrentHotkeyTextBox = new BattleNotifier.View.Controls.HotkeyTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.NotificationDurationTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseDialogNumericUpDown)).BeginInit();
@@ -620,6 +621,20 @@
             this.ShowCurrentButton.UseVisualStyleBackColor = true;
             this.ShowCurrentButton.Click += new System.EventHandler(this.ShowCurrentButton_Click);
             // 
+            // AboutButton
+            // 
+            this.AboutButton.BackgroundImage = global::BattleNotifier.Properties.Resources.about_icon;
+            this.AboutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.AboutButton.FlatAppearance.BorderSize = 0;
+            this.AboutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AboutButton.Location = new System.Drawing.Point(378, 10);
+            this.AboutButton.Name = "AboutButton";
+            this.AboutButton.Size = new System.Drawing.Size(14, 14);
+            this.AboutButton.TabIndex = 56;
+            this.AboutButton.TabStop = false;
+            this.AboutButton.UseVisualStyleBackColor = true;
+            this.AboutButton.Click += new System.EventHandler(this.AboutButton_Click);
+            // 
             // ShowCurrentHotkeyTextBox
             // 
             this.ShowCurrentHotkeyTextBox.Cursor = System.Windows.Forms.Cursors.Default;
@@ -640,6 +655,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.AboutButton);
             this.Controls.Add(this.ShowCurrentHotkeyTextBox);
             this.Controls.Add(this.ShowCurrentButton);
             this.Controls.Add(this.DisplayScreenButton);
@@ -705,5 +721,6 @@
         public System.Windows.Forms.Button DisplayScreenButton;
         private System.Windows.Forms.Button ShowCurrentButton;
         public Controls.HotkeyTextBox ShowCurrentHotkeyTextBox;
+        private System.Windows.Forms.Button AboutButton;
     }
 }
