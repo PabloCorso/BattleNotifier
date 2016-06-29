@@ -237,7 +237,7 @@ namespace BattleNotifier.Controller
         {
             if (notificationTimer.Enabled)
             {
-                if (!(bn != null && bn.MaintainShown) && !(mn != null && mn.MaintainShown))
+                if (!(bn != null && bn.KeepShown) && !(mn != null && mn.KeepShown))
                 {
                     EndBattleNotification();
                 }

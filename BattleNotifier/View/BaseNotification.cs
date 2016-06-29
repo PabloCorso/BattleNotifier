@@ -16,7 +16,7 @@ namespace BattleNotifier.View
 
         protected bool closing = false;
 
-        public bool MaintainShown { get; set; }
+        public bool KeepShown { get; private set; }
 
         public BaseNotification() { }
 
@@ -28,6 +28,11 @@ namespace BattleNotifier.View
 
             if (settings.General.UseFadeEffect)
                 InitializeFadeEffect();
+        }
+
+        protected void ForceKeepShown()
+        {
+            KeepShown = true;
         }
 
         protected override bool ShowWithoutActivation

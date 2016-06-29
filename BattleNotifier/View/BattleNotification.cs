@@ -42,6 +42,15 @@ namespace BattleNotifier.View
             }
         }
 
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0xA1) // WM_NCLBUTTONDOWN 
+            {
+                ForceKeepShown();
+            }
+            base.WndProc(ref m);
+        }
+
         private void MapCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             NotificationsController.Instance.BattleNotificationMapPressed();
@@ -49,6 +58,7 @@ namespace BattleNotifier.View
 
         private void HeadlineLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            ForceKeepShown();
             // Send the URL to the operating system.
             Process.Start(e.Link.LinkData as string);
         }
@@ -77,7 +87,7 @@ namespace BattleNotifier.View
 
         private void BattleNotification_MouseDown(object sender, MouseEventArgs e)
         {
-            MaintainShown = true;
+            ForceKeepShown();
         }
 
         #region BaseNotification implementation
@@ -181,7 +191,7 @@ namespace BattleNotifier.View
 
         private void PrintMapButton_Click(object sender, EventArgs e)
         {
-            MaintainShown = true;
+            ForceKeepShown();
             if (NotificationsController.Instance.Map != null)
             {
                 IsPrinting = true;

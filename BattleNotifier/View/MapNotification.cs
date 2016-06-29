@@ -128,7 +128,7 @@ namespace BattleNotifier.View
                     locate.BottomRight(AttributesLabel, 5);
                     locate.MoveUp(AttributesLabel, HeaderLabel.Height + 2);
                     locate.BottomRight(TimerLabel, 5);
-                    locate.MoveUp(TimerLabel, AttributesLabel.Height + HeaderLabel.Height + TypeLabel.Height + 2 );
+                    locate.MoveUp(TimerLabel, AttributesLabel.Height + HeaderLabel.Height + TypeLabel.Height + 2);
                     if (AttributesLabel.Width > PictureBox.Width - TypeLabel.Width - 10)
                     {
                         locate.ToLeft(AttributesLabel, 5);
@@ -224,8 +224,7 @@ namespace BattleNotifier.View
 
         private void MapNotification_MouseDown(object sender, MouseEventArgs e)
         {
-            MaintainShown = true;
-
+            ForceKeepShown();
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();
@@ -238,14 +237,11 @@ namespace BattleNotifier.View
                 MenuItem closeMenuItem = new MenuItem();
                 MenuItem minimizeMenuItem = new MenuItem();
 
-                //if (!mapLoaded)
-                //{
-                    // Initialize reloadMenuItem
-                    reloadMenuItem.Index = 0;
-                    reloadMenuItem.Text = "Reload";
-                    reloadMenuItem.Click += new EventHandler(ReloadMenuItem_Click);
-                    contextMenu.MenuItems.Add(reloadMenuItem);
-                //}
+                // Initialize reloadMenuItem
+                reloadMenuItem.Index = 0;
+                reloadMenuItem.Text = "Reload";
+                reloadMenuItem.Click += new EventHandler(ReloadMenuItem_Click);
+                contextMenu.MenuItems.Add(reloadMenuItem);
 
                 // Initialize closeMenuItem
                 closeMenuItem.Index = 1;
