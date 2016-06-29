@@ -224,6 +224,8 @@ namespace BattleNotifier.View
 
         private void MapNotification_MouseDown(object sender, MouseEventArgs e)
         {
+            MaintainShown = true;
+
             if (e.Button == MouseButtons.Left)
             {
                 ReleaseCapture();

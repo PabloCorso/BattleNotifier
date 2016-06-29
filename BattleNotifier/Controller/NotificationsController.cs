@@ -237,7 +237,7 @@ namespace BattleNotifier.Controller
         {
             if (notificationTimer.Enabled)
             {
-                if (!(bn != null && ((BattleNotification)bn).IsPrinting))
+                if (!(bn != null && bn.MaintainShown) && !(mn != null && mn.MaintainShown))
                 {
                     EndBattleNotification();
                 }

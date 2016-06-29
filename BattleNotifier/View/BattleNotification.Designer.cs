@@ -275,6 +275,7 @@
             this.Name = "BattleNotification";
             this.Text = "New Battle!";
             this.TopMost = true;
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BattleNotification_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

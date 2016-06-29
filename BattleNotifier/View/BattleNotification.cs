@@ -75,6 +75,11 @@ namespace BattleNotifier.View
             MinimizeButton.Focus();
         }
 
+        private void BattleNotification_MouseDown(object sender, MouseEventArgs e)
+        {
+            MaintainShown = true;
+        }
+
         #region BaseNotification implementation
 
         protected override string GetCountdownBattleEndedText()
@@ -176,6 +181,7 @@ namespace BattleNotifier.View
 
         private void PrintMapButton_Click(object sender, EventArgs e)
         {
+            MaintainShown = true;
             if (NotificationsController.Instance.Map != null)
             {
                 IsPrinting = true;

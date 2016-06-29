@@ -16,6 +16,8 @@ namespace BattleNotifier.View
 
         protected bool closing = false;
 
+        public bool MaintainShown { get; set; }
+
         public BaseNotification() { }
 
         public BaseNotification(BattleNotificationSettings settings, int battleDuration)
