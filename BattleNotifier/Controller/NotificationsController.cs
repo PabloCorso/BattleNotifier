@@ -142,7 +142,9 @@ namespace BattleNotifier.Controller
 
         public void ShowBattleNotification(IMain m, Battle battle, bool showCurrent = false, bool simulation = false)
         {
+            bool returnAfterClear = showCurrent && (bn != null || mn != null);
             ClearBattleNotification();
+            if (returnAfterClear) return;
 
             BattleNotificationSettings settings = UserSettings.Instance.GetBattleNotificationSettings();
 
