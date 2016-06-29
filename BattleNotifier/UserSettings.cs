@@ -173,14 +173,7 @@ namespace BattleNotifier
             {
                 if (!string.IsNullOrEmpty(aux[i]))
                     mainPanel.BlackListChListBox.Items.Add(aux[i].Substring(1), Convert.ToInt32(aux[i].Substring(0, 1)) == 1);
-            }
-
-            aux = settings.AutocompleteKuskis.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
-            for (int i = 0; i < aux.Length; i++)
-            {
-                if (!string.IsNullOrEmpty(aux[i]))
-                    mainPanel.AutocompleteKuskisList.Add(aux[i]);
-            }
+            }   
 
             // Settings panel user settings.
             settingsPanel.StartupCheckBox.Checked = settings.NotifyOnStartup;
@@ -204,6 +197,15 @@ namespace BattleNotifier
             settingsPanel.OnMapTypeCheckBox.Checked = settings.OnMapType;
             settingsPanel.OnMapTimeCheckBox.Checked = settings.OnMapTimer;
             settingsPanel.OnMapAttsCheckBox.Checked = settings.OnMapAttributes;
+        }
+
+        public static void LoadAutocompleteKuskis() {
+            string[] aux = Settings.Default.AutocompleteKuskis.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            for (int i = 0; i < aux.Length; i++)
+            {
+                if (!string.IsNullOrEmpty(aux[i]))
+                    instance.mainPanel.AutocompleteKuskisList.Add(aux[i]);
+            }
         }
 
         public static void Save()
@@ -250,11 +252,6 @@ namespace BattleNotifier
                 builder.AppendLine((isChecked ? "1" : "0") + value);
             }
             settings.BlackList = builder.ToString();
-
-            builder = new StringBuilder();
-            for (int i = 0; i < mainPanel.AutocompleteKuskisList.Count; i++)
-                builder.AppendLine(mainPanel.AutocompleteKuskisList[i]);
-            settings.AutocompleteKuskis = builder.ToString();
 
             // Settings panel user settings.
             settings.NotifyOnStartup = settingsPanel.StartupCheckBox.Checked;

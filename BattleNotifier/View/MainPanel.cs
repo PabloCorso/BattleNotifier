@@ -4,6 +4,7 @@ using BattleNotifier.Controller.ViewInterface;
 using BattleNotifier.Controller;
 using System.Collections.Generic;
 using BattleNotifier.Utils;
+using System.Threading.Tasks;
 
 namespace BattleNotifier.View
 {
@@ -28,6 +29,14 @@ namespace BattleNotifier.View
 
         public void MainPanel_Load(object sender, EventArgs e)
         {
+            InitializeSearchDesignerTextBox();
+
+            UpdateErrorLabel();
+        }
+
+        private void InitializeSearchDesignerTextBox()
+        {
+            UserSettings.LoadAutocompleteKuskis();
             var acs = SearchDesignerTextBox.AutoCompleteCustomSource;
             foreach (string kuski in AutocompleteKuskisList)
                 if (!acs.Contains(kuski))
@@ -38,8 +47,6 @@ namespace BattleNotifier.View
             foreach (string kuski in BlackListChListBox.ToStringList())
                 if (acs.Contains(kuski))
                     acs.Remove(kuski);
-
-            UpdateErrorLabel();
         }
 
         private void MainPanel_Click(object sender, EventArgs e)
@@ -251,7 +258,12 @@ namespace BattleNotifier.View
 
         #endregion
 
-        #region Search button methods
+        #region Search designer methods
+
+        private void SearchDesignerTextBox_Enter(object sender, EventArgs e)
+        {
+
+        }
 
         private void SearchDesignerTextBox_KeyDown(object sender, KeyEventArgs e)
         {
