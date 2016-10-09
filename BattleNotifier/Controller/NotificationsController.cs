@@ -4,7 +4,6 @@ using BattleNotifier.View;
 using System;
 using System.Drawing;
 using System.IO;
-using System.Media;
 using System.Windows.Forms;
 using BattleNotifier.Controller.ViewInterface;
 using Utils;
@@ -18,7 +17,7 @@ namespace BattleNotifier.Controller
         private static NotificationsController instance;
         private BaseNotification bn;
         private BaseNotification mn;
-        private WMPLib.WindowsMediaPlayer player;
+        private SoundHelper player = new SoundHelper();
 
         // parche asqueroso para que cuando se muestra current battle, dice si hay que bajar el 
         // mapa de nuevo porque el mapa actual fue sobreescrito por una simulación.
@@ -73,19 +72,6 @@ namespace BattleNotifier.Controller
             ShowBattleNotification(BattleNotifierController.Instance.MainView, battle, false, true);
         }
 
-        private void StopSound()
-        {
-            try
-            {
-                if (player != null && player.controls != null)
-                    player.controls.stop();
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(201, ex);
-            }
-        }
-
         private void ClearBattleNotification()
         {
             try
@@ -109,7 +95,7 @@ namespace BattleNotifier.Controller
                     Logger.Log(203, ex);
                 }
 
-                StopSound();
+                player.StopSound();
                 if (notificationTimer.Enabled)
                     notificationTimer.Stop();
             }
@@ -200,9 +186,9 @@ namespace BattleNotifier.Controller
             if (settings.Basic.PlaySound)
                 if (settings.Basic.UseCustomSound &&
                     !string.IsNullOrEmpty(settings.Basic.SoundPath) && File.Exists(settings.Basic.SoundPath))
-                    PlaySound(settings.Basic.SoundPath, settings.Basic.DefaultSound);
+                    player.PlaySound(settings.Basic.SoundPath, settings.Basic.DefaultSound);
                 else
-                    PlayDefaultSound(settings.Basic.DefaultSound);
+                    player.PlayDefaultSound(settings.Basic.DefaultSound);
         }
 
         private bool SetMap(Battle battle, bool showCurrent, bool simulation)
@@ -245,26 +231,6 @@ namespace BattleNotifier.Controller
             }
         }
 
-        private void PlaySound(string path, int defaultSound = 0)
-        {
-            try
-            {
-                player = new WMPLib.WindowsMediaPlayer();
-                player.URL = path;
-                player.controls.play();
-            }
-            catch (Exception)
-            {
-                PlayDefaultSound(defaultSound);
-            }
-        }
-
-        private void PlayDefaultSound(int defaultSound)
-        {
-            SoundPlayer sound = new SoundPlayer(IndexToDefaultSound(defaultSound));
-            sound.Play();
-        }
-
         private int MapSizeIndexToWidth(int mapSize)
         {
             switch (mapSize)
@@ -281,27 +247,6 @@ namespace BattleNotifier.Controller
                     return 160;
                 default:
                     return 320;
-            }
-        }
-
-        private Stream IndexToDefaultSound(int index)
-        {
-            switch (index)
-            {
-                case 0:
-                    return Properties.Resources.apple;
-                case 1:
-                    return Properties.Resources.flower;
-                case 2:
-                    return Properties.Resources.wroom;
-                case 3:
-                    return Properties.Resources.deaded;
-                case 4:
-                    Random random = new Random();
-                    int randomCase = random.Next(0, 4);
-                    return IndexToDefaultSound(randomCase);
-                default:
-                    return Properties.Resources.apple;
             }
         }
 
