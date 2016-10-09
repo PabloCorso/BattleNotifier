@@ -1,14 +1,10 @@
 ﻿using BattleNotifier.Controller.ViewInterface;
-using HtmlAgilityPack;
 using BattleNotifier.Model;
 using System;
-using System.Linq;
-using System.Xml;
 using BattleNotifier.Utils;
 using Microsoft.Win32;
-using Settings = BattleNotifier.Properties.Settings;
 using System.Windows.Forms;
-using Utils;
+using BattleNotifier.BusinessLogic;
 
 namespace BattleNotifier.Controller
 {
@@ -21,6 +17,7 @@ namespace BattleNotifier.Controller
 
         // Helpers.
         private Battle currentBattle = null;
+        private CurrentBattleApi CurrentBattleApi = new CurrentBattleApi();
         private bool currentFinishedNormally = false;
         private bool currentNotified = false;
         private bool powerModeSuspended = false;
@@ -29,11 +26,6 @@ namespace BattleNotifier.Controller
 
         public IMain MainView { get; private set; }
         private IMainPanel MainPanel { get { return MainView.MainPanel; } }
-
-        /// <summary>
-        /// This flag helps to use elmaonline only once per battle and not spam/abuse.
-        /// </summary>
-        private bool eolDataLoaded = false;
 
         /// <summary>
         /// True if the controller is notifying new battles, else false.
@@ -107,7 +99,7 @@ namespace BattleNotifier.Controller
             currentNotified = false;
             currentFinishedNormally = false;
             currentBattle = null;
-            eolDataLoaded = false;
+            CurrentBattleApi.Clear();
         }
 
         public void UpdateNotifying()
@@ -154,7 +146,7 @@ namespace BattleNotifier.Controller
         {
             double nextUpdate = 5; // Seconds.
 
-            Battle battle = GetOngoingBattleIfAny();
+            Battle battle = CurrentBattleApi.GetOngoingBattleIfAny(CurrentDateTime);
 
             if (battle == null || currentFinishedNormally)
             {
@@ -213,92 +205,6 @@ namespace BattleNotifier.Controller
             }
 
             return nextUpdate;
-        }
-
-        /// <summary>
-        /// Get the current battle from domi's api, and elmaonline.
-        /// </summary>
-        /// <returns> Ongoing battle if any, else null.</returns>
-        private Battle GetOngoingBattleIfAny()
-        {
-            try
-            {
-                XmlDocument xmlDoc = WebRequestHelper.GetXmlFromUrl(Settings.Default.CurrentBattleApiUrl);
-
-                CurrentDateTime = DateTime.Now;
-                if (xmlDoc.FirstChild.HasChildNodes)
-                {
-                    Battle battle = new Battle();
-
-                    battle.Desginer = xmlDoc.DocumentElement.SelectSingleNode("designer").InnerText;
-                    battle.FileName = xmlDoc.DocumentElement.SelectSingleNode("file_name").InnerText;
-
-                    int startDelta = 0;
-                    string strDelta = xmlDoc.DocumentElement.SelectSingleNode("start_delta").InnerText;
-                    if (!Int32.TryParse(strDelta, out startDelta))
-                    {
-                        double delta = double.Parse(strDelta, System.Globalization.CultureInfo.InvariantCulture);
-                        startDelta = Convert.ToInt32(delta);
-                    }
-
-                    battle.StartedDateTime = CurrentDateTime.AddSeconds(Convert.ToInt32(startDelta));
-
-                    battle.Type = (BattleType)Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("battle_type").InnerText);
-                    battle.Attributes = (BattleAttribute)Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("battle_attrs").InnerText);
-                    battle.Duration = Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("duration").InnerText) / 60;
-
-                    battle.Id = Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("id").InnerText);
-
-                    if (!eolDataLoaded)
-                    {
-                        try
-                        {
-                            SetBattleUrls(battle);
-
-                            eolDataLoaded = true;
-                        }
-                        catch (Exception ex)
-                        {
-                            try
-                            {
-                                SetBattleUrls(battle);
-                                Logger.Log(101, ex);
-                            }
-                            catch (Exception iex)
-                            {
-                                Logger.Log(103, iex);
-                            }
-                        }
-                    }
-
-                    return battle;
-                }
-                else
-                {
-                    eolDataLoaded = false;
-                    return null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.Log(100, ex);
-                return null;
-            }
-        }
-
-        private void SetBattleUrls(Battle battle)
-        {
-            HtmlAgilityPack.HtmlDocument document = new HtmlWeb().Load(battle.Url);
-
-            battle.LevelUrl = document.DocumentNode.Descendants("a")
-                                                .Select(e => e.GetAttributeValue("href", null))
-                                                .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLLevelUrl))
-                                                .FirstOrDefault();
-
-            battle.MapUrl = document.DocumentNode.Descendants("img")
-                                            .Select(e => e.GetAttributeValue("src", null))
-                                            .Where(s => !String.IsNullOrEmpty(s) && s.StartsWith(Settings.Default.EOLMapsUrl))
-                                            .FirstOrDefault();
         }
 
         #endregion
