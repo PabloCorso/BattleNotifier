@@ -29,7 +29,7 @@ namespace BattleNotifier.BusinessLogic
         {
             double nextUpdate = 5; // Seconds.
 
-            Battle battle = CurrentBattleApi.GetOngoingBattleIfAny(CurrentDateTime);
+            Battle battle = CurrentBattleApi.GetOngoingBattleIfAny();
 
             if (battle == null || currentFinishedNormally)
             {
@@ -58,7 +58,7 @@ namespace BattleNotifier.BusinessLogic
                     }
                 }
 
-                double timePassed = (CurrentDateTime - battle.StartedDateTime).TotalSeconds;
+                double timePassed = battle.TimePassed;
                 double timeLeft = (battle.Duration * 60) - timePassed;
 
                 if (timeLeft < 1)

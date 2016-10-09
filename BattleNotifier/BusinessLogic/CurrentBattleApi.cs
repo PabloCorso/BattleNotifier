@@ -3,10 +3,7 @@ using BattleNotifier.Properties;
 using BattleNotifier.Utils;
 using HtmlAgilityPack;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using Utils;
 
@@ -19,17 +16,21 @@ namespace BattleNotifier.BusinessLogic
         /// </summary>
         public bool EolDataLoaded { private get; set; }
 
+        public Battle GetOngoingBattleIfAnyFromNewApi()
+        {
+            return null;
+        }
+
         /// <summary>
         /// Get the current battle from domi's api, and elmaonline.
         /// </summary>
         /// <returns> Ongoing battle if any, else null.</returns>
-        public Battle GetOngoingBattleIfAny(DateTime CurrentDateTime)
+        public Battle GetOngoingBattleIfAny()
         {
             try
             {
                 XmlDocument xmlDoc = WebRequestHelper.GetXmlFromUrl(Settings.Default.CurrentBattleApiUrl);
 
-                CurrentDateTime = DateTime.Now;
                 if (xmlDoc.FirstChild.HasChildNodes)
                 {
                     Battle battle = new Battle();
@@ -45,7 +46,7 @@ namespace BattleNotifier.BusinessLogic
                         startDelta = Convert.ToInt32(delta);
                     }
 
-                    battle.StartedDateTime = CurrentDateTime.AddSeconds(Convert.ToInt32(startDelta));
+                    battle.StartedDateTime = battle.CreatedDateTime.AddSeconds(Convert.ToInt32(startDelta));
 
                     battle.Type = (BattleType)Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("battle_type").InnerText);
                     battle.Attributes = (BattleAttribute)Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("battle_attrs").InnerText);

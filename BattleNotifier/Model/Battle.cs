@@ -5,6 +5,8 @@ namespace BattleNotifier.Model
 {
     public class Battle
     {
+        public DateTime CreatedDateTime { get; private set; }
+
         private const string battleUrl = "http://elmaonline.net/battles/";
         public int Id { get; set; }
         public string FileName { get; set; }
@@ -18,6 +20,11 @@ namespace BattleNotifier.Model
         public string Url { get { return battleUrl + Id; } }
         public string MapUrl { get; set; }
         public string LevelUrl { get; set; }
+
+        public Battle()
+        {
+            CreatedDateTime = DateTime.Now;
+        }
 
         public string MapId
         {
@@ -59,6 +66,14 @@ namespace BattleNotifier.Model
             {
                 double timePassed = (DateTime.Now - this.StartedDateTime).TotalSeconds;
                 return (this.Duration * 60) - timePassed;
+            }
+        }
+
+        public double TimePassed
+        {
+            get
+            {
+                return (this.CreatedDateTime - this.StartedDateTime).TotalSeconds;
             }
         }
 
