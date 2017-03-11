@@ -3,8 +3,12 @@ using BattleNotifier.Properties;
 using BattleNotifier.Utils;
 using HtmlAgilityPack;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Web.Script.Serialization;
 using System.Xml;
+using System.Xml.Linq;
 using Utils;
 
 namespace BattleNotifier.BusinessLogic
@@ -16,43 +20,33 @@ namespace BattleNotifier.BusinessLogic
         /// </summary>
         public bool EolDataLoaded { private get; set; }
 
-        public Battle GetOngoingBattleIfAnyFromNewApi()
-        {
-            return null;
-        }
-
         /// <summary>
-        /// Get the current battle from domi's api, and elmaonline.
+        /// Get the current battle from elmaonline api, and image from elmaonline.
         /// </summary>
         /// <returns> Ongoing battle if any, else null.</returns>
         public Battle GetOngoingBattleIfAny()
         {
             try
             {
-                XmlDocument xmlDoc = WebRequestHelper.GetXmlFromUrl(Settings.Default.CurrentBattleApiUrl);
-
-                if (xmlDoc.FirstChild.HasChildNodes)
+                string json = null;
+                using (WebClient wc = new WebClient())
                 {
-                    Battle battle = new Battle();
+                    json = wc.DownloadString(Settings.Default.CurrentBattleApiUrl);
+                }
 
-                    battle.Desginer = xmlDoc.DocumentElement.SelectSingleNode("designer").InnerText;
-                    battle.FileName = xmlDoc.DocumentElement.SelectSingleNode("file_name").InnerText;
+                var json_serializer = new JavaScriptSerializer();
+                var queue = json_serializer.Deserialize<EolApiBattle[]>(json);
+                var newestBattle = queue.FirstOrDefault();
 
-                    int startDelta = 0;
-                    string strDelta = xmlDoc.DocumentElement.SelectSingleNode("start_delta").InnerText;
-                    if (!Int32.TryParse(strDelta, out startDelta))
-                    {
-                        double delta = double.Parse(strDelta, System.Globalization.CultureInfo.InvariantCulture);
-                        startDelta = Convert.ToInt32(delta);
-                    }
-
-                    battle.StartedDateTime = battle.CreatedDateTime.AddSeconds(Convert.ToInt32(startDelta));
-
-                    battle.Type = (BattleType)Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("battle_type").InnerText);
-                    battle.Attributes = (BattleAttribute)Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("battle_attrs").InnerText);
-                    battle.Duration = Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("duration").InnerText) / 60;
-
-                    battle.Id = Convert.ToInt32(xmlDoc.DocumentElement.SelectSingleNode("id").InnerText);
+                if (!newestBattle.IsInQueue && !newestBattle.IsFinished)
+                {
+                    var battle = new Battle();
+                    battle.StartedDateTime = UnixTimeStampToDateTime(newestBattle.Started);
+                    battle.Id = newestBattle.Index;
+                    battle.Desginer = newestBattle.Kuski;
+                    battle.FileName = newestBattle.LevelName;
+                    battle.Duration = newestBattle.Duration;
+                    battle.Type = ParseBattleType(newestBattle.Type);
 
                     if (!EolDataLoaded)
                     {
@@ -79,7 +73,7 @@ namespace BattleNotifier.BusinessLogic
                 }
                 else
                 {
-                    EolDataLoaded = false;
+                    Clear();
                     return null;
                 }
             }
@@ -88,6 +82,27 @@ namespace BattleNotifier.BusinessLogic
                 Logger.Log(100, ex);
                 return null;
             }
+        }
+
+        private BattleType ParseBattleType(string battleType)
+        {
+            switch (battleType)
+            {
+                case "Normal":
+                    return BattleType.Normal;
+                case "Apple":
+                    return BattleType.Apple;
+                default:
+                    return BattleType.Normal;
+            }
+        }
+
+        private static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp - (60 * 60 * 10)).ToLocalTime();
+            return dtDateTime;
         }
 
         private void SetBattleUrls(Battle battle)

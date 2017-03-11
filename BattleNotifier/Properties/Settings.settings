@@ -104,7 +104,7 @@
       <Value Profile="(Default)">http://elmaonline.net/downloads/lev/</Value>
     </Setting>
     <Setting Name="CurrentBattleApiUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://108.61.164.75:8880/current_battle</Value>
+      <Value Profile="(Default)">http://elmaonline.net/API/battlelist/</Value>
     </Setting>
     <Setting Name="NeedsUpdate" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>

@@ -59,7 +59,7 @@ namespace BattleNotifier.BusinessLogic
                 }
 
                 double timePassed = battle.TimePassed;
-                double timeLeft = (battle.Duration * 60) - timePassed;
+                double timeLeft = battle.TimeLeft;
 
                 if (timeLeft < 1)
                 {

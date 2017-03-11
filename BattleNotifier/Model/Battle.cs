@@ -5,7 +5,7 @@ namespace BattleNotifier.Model
 {
     public class Battle
     {
-        public DateTime CreatedDateTime { get; private set; }
+        //public DateTime CreatedDateTime { get; private set; }
 
         private const string battleUrl = "http://elmaonline.net/battles/";
         public int Id { get; set; }
@@ -23,7 +23,7 @@ namespace BattleNotifier.Model
 
         public Battle()
         {
-            CreatedDateTime = DateTime.Now;
+            //CreatedDateTime = DateTime.Now;
         }
 
         public string MapId
@@ -53,9 +53,9 @@ namespace BattleNotifier.Model
 
         public override bool Equals(object obj)
         {
-            if ((object)obj == null || GetType() != obj.GetType())
+            if (obj == null || GetType() != obj.GetType())
                 return false;
-            Battle battle = (Battle)obj;
+            var battle = (Battle)obj;
 
             return Name.Equals(battle.Name);
         }
@@ -64,8 +64,7 @@ namespace BattleNotifier.Model
         {
             get
             {
-                double timePassed = (DateTime.Now - this.StartedDateTime).TotalSeconds;
-                return (this.Duration * 60) - timePassed;
+                return (Duration * 60) - TimePassed;
             }
         }
 
@@ -73,7 +72,7 @@ namespace BattleNotifier.Model
         {
             get
             {
-                return (this.CreatedDateTime - this.StartedDateTime).TotalSeconds;
+                return (DateTime.Now - StartedDateTime).TotalSeconds + 60;
             }
         }
 
